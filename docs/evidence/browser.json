@@ -16,6 +16,7 @@
     "network failure exhausts exactly three attempts",
     "revocation clears pending events and prevents retry",
     "delayed grant cannot override later revocation",
+    "recorded native public-sample status remains distinct from local dbt and production GA4",
     "nine responsive view/width combinations without page overflow",
     "no external network requests",
     "no JavaScript runtime errors"
@@ -78,7 +79,7 @@
     },
     {
       "file": "browser-laboratory.png",
-      "sha256": "812b642859751092f8191f86154def40728fb840b0d80ab9a201a13efa4cae08",
+      "sha256": "0ba7e9a433d9d6af25278a30b3cd02375d1bb5ae983afbc1779c35ee155a1181",
       "viewport": {
         "width": 1440,
         "height": 1080
@@ -86,7 +87,7 @@
     },
     {
       "file": "warehouse-proof.png",
-      "sha256": "c225dd0bdba05cb96cca4bd2a04bf08ab7b2f4b5b4705ad1d99dc23ce031e042",
+      "sha256": "b8e9cc9585198150b1b4dff24482e2ebf8efa0f0f019d15101e9cc12a3ec6ea4",
       "viewport": {
         "width": 1440,
         "height": 1080
@@ -102,7 +103,7 @@
     },
     {
       "file": "browser-mobile.png",
-      "sha256": "a5c6759d21fc5b4b560845ba2070b5bc2f46f1b85baaf606671b36c5d760bd53",
+      "sha256": "acc959b72ffecaf7d5de6d515a044a3242f5baa09ef17a5af8d6617b7f1acd7f",
       "viewport": {
         "width": 390,
         "height": 900
@@ -110,7 +111,7 @@
     },
     {
       "file": "proof-mobile.png",
-      "sha256": "41cd37b1f58e80d306a363657839469cfc78d4fc7a808610f7156211484a34d0",
+      "sha256": "469860b1a1d30481439833adbb6d6833dfcaf2878ff8e2327ec79ebe6bde95e4",
       "viewport": {
         "width": 390,
         "height": 900
@@ -119,7 +120,7 @@
   ],
   "source_sha256": {
     "web/app.js": "9af98c38960d31949a24c8ad1a24d5a2871bbe277e34c0e67a280ad82e5429b8",
-    "web/index.html": "fbc0b2ee608e33851bdc9686d5a2cdddd845e5ca262767f291d2901cbaeb9bce",
+    "web/index.html": "47898de7e6d889540c9cbce8642b6ce76adc84e5e95d4def39c508d49e26b021",
     "web/style.css": "fcc5dd6f65bf04882efdf6f548211221df887a8a1a772e33a81f6ae6846709bd",
     "assurance/analytics.py": "5d9fce4fc4da7a194e46ac53618bc7951f47d119fa6a35040115393f3d99d34a",
     "assurance/core.py": "45649c6960ebcee273642da3f3d6f88485dfcbae4dca8946003e688d0aebe273",

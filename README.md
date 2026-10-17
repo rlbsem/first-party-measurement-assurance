@@ -78,6 +78,8 @@ The verifier runs Python/API and native-adapter contract tests, actual Chromium 
 
 The revised demonstration has **29 admission attempts, 19 distinct events, three contained replays, one late arrival and three unresolved financial findings**. All **nine dbt models** compare exactly with an independent full build. Each successful build passes **21 data tests**. [Executed verification](docs/evidence/verification.json) and [control-to-test map](docs/testing.md).
 
+**Native GoogleSQL also executed** against Google's separate public GA4 sample in a billing-disabled sandbox: two uncached queries agree on 14 purchase events, while 57 item rows, 13 distinct transaction IDs and two item/revenue disagreements remain visible. [Native results, job IDs and exact resource usage](docs/evidence/google-bigquery/README.md).
+
 ![Executed warehouse proof and source-value distinction](docs/images/warehouse-proof.png)
 
 ## GTM and Google boundaries
@@ -90,11 +92,11 @@ The revised demonstration has **29 admission attempts, 19 distinct events, three
 | Local source-to-analytics processing | SQLite, DuckDB/dbt, independent source oracle and full-build comparison executed |
 | GA4 payload projection | Six documented lead/payment event patterns, USD units and explicit value basis locally tested |
 | Google Measurement Protocol debug | **Not executed**; requires an approved isolated property configuration |
-| Native BigQuery public sample | **Not executed**; requires authorized project/ADC access |
+| Native BigQuery public sample | **Executed 2026-10-17** through BigQuery Studio in a billing-disabled sandbox; two public-data queries plus a job-metadata lookup. [Evidence](docs/evidence/google-bigquery/README.md) |
 | Production GA4 to BigQuery integration | **Not implemented or claimed** |
 | Hosted GitHub CI | [Windows and Ubuntu verification](https://github.com/rlbsem/first-party-measurement-assurance/actions/workflows/verify.yml); inspect the run for the relevant commit |
 
-The official public GA4 ecommerce sample remains a separate optional GoogleSQL validation lane. It is not Evermere data. No Google tag, paid resource, native connector success or deployment is implied by local results. [Native runbook](docs/native-google.md) and [official references](docs/sources.md).
+The official public GA4 ecommerce sample is a separate executed GoogleSQL validation lane. It is not Evermere data. This proves native public-data query execution, not a Google tag deployment, Python ADC authentication, dbt-bigquery execution or production GA4 export. [Native runbook](docs/native-google.md) and [official references](docs/sources.md).
 
 [Architecture and source lineage](docs/architecture.md) / [Operations and limits](docs/operations.md) / [Scenario revision and retained controls](docs/scenario-revision.md).
 

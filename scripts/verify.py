@@ -20,6 +20,7 @@ from assurance.native import write_evidence
 from demo import run as demo
 from browser_verify import run as browser
 from package import files, audit, write_manifest
+from check_google_evidence import verify_record
 
 
 def sources():
@@ -61,6 +62,7 @@ def main():
         from package import check_manifest
         check_manifest()
         archived()
+    google_record = verify_record()
     work = ROOT/'.local'/('verify-'+uuid.uuid4().hex[:10])
     work.mkdir(parents=True)
     subprocess.run([sys.executable, '-m', 'pip', 'check'], check=True)
@@ -104,7 +106,8 @@ def main():
         'expected_dbt_fault': {'status':'detected', 'failed_nodes':failures},
         'independent_model_equivalence': True, 'deterministic_fixture': True,
         'browser_checks': len(capture['checks']), 'responsive_combinations': len(capture['layouts']),
-        'source_sha256': sources(), 'native_bigquery':'not_executed', 'native_mp':'not_executed',
+        'source_sha256': sources(), 'native_bigquery':'separate_record:docs/evidence/google-bigquery/acceptance.json',
+        'native_record_check': google_record, 'native_mp':'not_executed',
         'hosted_ci':'not_executed_in_this_delivery'})
     checked = links()
     audit_result = audit(files())

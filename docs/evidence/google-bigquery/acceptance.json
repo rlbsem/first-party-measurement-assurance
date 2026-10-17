@@ -1,0 +1,261 @@
+{
+  "status": "executed",
+  "executed_on_utc": "2026-10-17",
+  "boundary": "Google public GA4 obfuscated ecommerce sample only; not Evermere, dbt-bigquery, a live GA4 export or production integration",
+  "client": {
+    "name": "Google Cloud Console / BigQuery Studio",
+    "version": null,
+    "version_note": "Console client version not exposed; Python google-cloud-bigquery was not used and ADC was not configured"
+  },
+  "access": {
+    "mode": "billing-disabled BigQuery sandbox",
+    "verified_by": "BigQuery sandbox banner: Set up billing to upgrade to the full BigQuery experience.",
+    "private_project_and_user_identity": "omitted"
+  },
+  "settings": {
+    "maximum_bytes_billed_per_query": 100000000,
+    "job_timeout_ms": 90000,
+    "use_query_cache": false,
+    "destination": "temporary results only",
+    "location": "US"
+  },
+  "dry_run_boundary": "Real console query validator estimates were inspected for both SQL files before either executed. Python dry_run=True was not exercised.",
+  "queries": {
+    "event_health": {
+      "source_path": "bigquery/event_health.sql",
+      "source_sha256": "cbc3fbca20b2a858cccf48b3f459fb009a3a43be8cdb7addbf6e38593e00bb99",
+      "executed_sql_sha256": "ad49317f83d9864ca56fdd9ea3f1792c3b981ca6d10e2870bb069c33f176cbaf",
+      "executed_line_endings": "CRLF",
+      "validator": {
+        "status": "valid",
+        "estimated_processed_display": "8.17 MB",
+        "precision": "rounded console display; not exact bytes"
+      },
+      "job": {
+        "job_id": "job_JKIqXynG1hJxZJ06oOVpnxXeV1Dm",
+        "creation_time": "2026-10-17 05:45:44.966000 UTC",
+        "start_time": "2026-10-17 05:45:45.190000 UTC",
+        "end_time": "2026-10-17 05:45:45.574000 UTC",
+        "state": "DONE",
+        "job_type": "QUERY",
+        "statement_type": "SELECT",
+        "priority": "INTERACTIVE",
+        "total_bytes_processed": 8564154,
+        "total_bytes_billed": 10485760,
+        "total_slot_ms": 112,
+        "cache_hit": false,
+        "completed_without_error": true
+      },
+      "rows": [
+        {
+          "event_name": "add_payment_info",
+          "event_count": 33,
+          "missing_pseudo_id": 0,
+          "duplicate_session_keys": 0,
+          "missing_session_key": 0,
+          "item_rows": 0
+        },
+        {
+          "event_name": "add_shipping_info",
+          "event_count": 54,
+          "missing_pseudo_id": 0,
+          "duplicate_session_keys": 0,
+          "missing_session_key": 0,
+          "item_rows": 0
+        },
+        {
+          "event_name": "add_to_cart",
+          "event_count": 295,
+          "missing_pseudo_id": 0,
+          "duplicate_session_keys": 0,
+          "missing_session_key": 0,
+          "item_rows": 3394
+        },
+        {
+          "event_name": "begin_checkout",
+          "event_count": 162,
+          "missing_pseudo_id": 0,
+          "duplicate_session_keys": 0,
+          "missing_session_key": 0,
+          "item_rows": 489
+        },
+        {
+          "event_name": "click",
+          "event_count": 2,
+          "missing_pseudo_id": 0,
+          "duplicate_session_keys": 0,
+          "missing_session_key": 0,
+          "item_rows": 0
+        },
+        {
+          "event_name": "first_visit",
+          "event_count": 1916,
+          "missing_pseudo_id": 0,
+          "duplicate_session_keys": 0,
+          "missing_session_key": 0,
+          "item_rows": 0
+        },
+        {
+          "event_name": "page_view",
+          "event_count": 7906,
+          "missing_pseudo_id": 0,
+          "duplicate_session_keys": 0,
+          "missing_session_key": 0,
+          "item_rows": 0
+        },
+        {
+          "event_name": "purchase",
+          "event_count": 14,
+          "missing_pseudo_id": 0,
+          "duplicate_session_keys": 0,
+          "missing_session_key": 0,
+          "item_rows": 57
+        },
+        {
+          "event_name": "scroll",
+          "event_count": 2113,
+          "missing_pseudo_id": 0,
+          "duplicate_session_keys": 0,
+          "missing_session_key": 0,
+          "item_rows": 0
+        },
+        {
+          "event_name": "select_item",
+          "event_count": 186,
+          "missing_pseudo_id": 0,
+          "duplicate_session_keys": 0,
+          "missing_session_key": 0,
+          "item_rows": 1977
+        },
+        {
+          "event_name": "select_promotion",
+          "event_count": 63,
+          "missing_pseudo_id": 0,
+          "duplicate_session_keys": 0,
+          "missing_session_key": 0,
+          "item_rows": 57
+        },
+        {
+          "event_name": "session_start",
+          "event_count": 2289,
+          "missing_pseudo_id": 0,
+          "duplicate_session_keys": 0,
+          "missing_session_key": 0,
+          "item_rows": 0
+        },
+        {
+          "event_name": "user_engagement",
+          "event_count": 4618,
+          "missing_pseudo_id": 0,
+          "duplicate_session_keys": 0,
+          "missing_session_key": 0,
+          "item_rows": 0
+        },
+        {
+          "event_name": "view_item",
+          "event_count": 1498,
+          "missing_pseudo_id": 0,
+          "duplicate_session_keys": 0,
+          "missing_session_key": 0,
+          "item_rows": 12125
+        },
+        {
+          "event_name": "view_promotion",
+          "event_count": 798,
+          "missing_pseudo_id": 0,
+          "duplicate_session_keys": 0,
+          "missing_session_key": 0,
+          "item_rows": 617
+        },
+        {
+          "event_name": "view_search_results",
+          "event_count": 149,
+          "missing_pseudo_id": 0,
+          "duplicate_session_keys": 0,
+          "missing_session_key": 0,
+          "item_rows": 0
+        }
+      ]
+    },
+    "purchase_grain": {
+      "source_path": "bigquery/purchase_grain.sql",
+      "source_sha256": "04cda679bb2830bd5cca53ea0f050a97265bae5fb916b4317a0fe15a5b8bcf1c",
+      "executed_sql_sha256": "04834928fc4ec8f5a3f234b0dab4e6181ffcce1d2f5c972f81a1b0845c9af9f1",
+      "executed_line_endings": "CRLF",
+      "validator": {
+        "status": "valid",
+        "estimated_processed_display": "459 KB",
+        "precision": "rounded console display; not exact bytes"
+      },
+      "job": {
+        "job_id": "job_EgSHl_of2fLqQeIIjpuktW4Bk8AM",
+        "creation_time": "2026-10-17 05:45:14.520000 UTC",
+        "start_time": "2026-10-17 05:45:15.169000 UTC",
+        "end_time": "2026-10-17 05:45:15.787000 UTC",
+        "state": "DONE",
+        "job_type": "QUERY",
+        "statement_type": "SELECT",
+        "priority": "INTERACTIVE",
+        "total_bytes_processed": 470013,
+        "total_bytes_billed": 10485760,
+        "total_slot_ms": 73,
+        "cache_hit": false,
+        "completed_without_error": true
+      },
+      "rows": [
+        {
+          "purchase_events": 14,
+          "distinct_transaction_ids": 13,
+          "missing_transaction_ids": 0,
+          "missing_revenue": 0,
+          "item_revenue_disagreements": 2
+        }
+      ]
+    }
+  },
+  "metadata_capture": {
+    "source_path": "docs/evidence/google-bigquery/job-statistics.sql",
+    "sql_sha256": "be49eac5314acf5e546d371eaf8353275345ec96b69e441bebccea2c000def92",
+    "raw_result_path": "docs/evidence/google-bigquery/job-statistics-results.json",
+    "job_id": "job_JzOfDrz0KroLm9z5RuBbGf3NPFjS",
+    "status": "completed",
+    "creation_time_display": "Oct 17, 2026, 1:46:56 AM UTC-4",
+    "start_time_display": "Oct 17, 2026, 1:46:57 AM UTC-4",
+    "end_time_display": "Oct 17, 2026, 1:46:58 AM UTC-4",
+    "duration_ms": 1139,
+    "total_bytes_processed": 0,
+    "total_bytes_billed": 0,
+    "total_slot_ms": 448,
+    "description": "Third read-only job, restricted to the two public-data job IDs; no project or user fields selected."
+  },
+  "findings": {
+    "purchase_events": 14,
+    "distinct_transaction_ids": 13,
+    "purchase_item_rows": 57,
+    "missing_transaction_ids": 0,
+    "missing_purchase_revenue": 0,
+    "item_revenue_disagreements": 2,
+    "source_quality": "findings_present; counts are not silently repaired",
+    "interpretation": "UNNEST(items) would produce 57 item rows from 14 purchase events. Repeated transaction identifiers and item/revenue disagreement are observations, not proof of ingestion duplicates or a specific cause; the sample is obfuscated."
+  },
+  "capture": {
+    "file": "docs/images/native-bigquery.png",
+    "sha256": "d32fc78765689036d6b55da8186e8f6cece03567e505fe6523d83696fffe883c",
+    "method": "Direct screenshot of completed native console purchase query, cropped during capture",
+    "clip": {
+      "x": 571,
+      "y": 188,
+      "width": 1044,
+      "height": 700
+    },
+    "privacy": "Project selector, resource sidebar, account identity and browser address excluded; result pixels unchanged"
+  },
+  "unexecuted": [
+    "Measurement Protocol debug: no approved isolated property configuration",
+    "Python BigQuery ADC/client execution",
+    "dbt-bigquery models",
+    "Imported or published GTM container",
+    "Production GA4 ingestion or export",
+    "Production cloud deployment"
+  ]
+}

@@ -136,6 +136,9 @@ def run(workspace, images):
             checks.append('delayed grant cannot override later revocation')
             page.get_by_role("button", name="03 Warehouse proof").click()
             expect(page.locator("#parity")).to_have_text("Matched")
+            expect(page.locator("#proof .metrics article").last).to_contain_text("Executed")
+            expect(page.locator("#proof .boundary")).to_contain_text("not Evermere data or a live GA4 export")
+            checks.append("recorded native public-sample status remains distinct from local dbt and production GA4")
             shot("warehouse-proof.png")
             layouts = []
             for width in (390, 768, 1440):
