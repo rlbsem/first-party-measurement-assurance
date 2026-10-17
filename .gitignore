@@ -1,0 +1,15 @@
+.venv/
+.local/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+target/
+logs/
+dbt_packages/
+.env
+*.db
+*.duckdb
+*.sqlite*
+*.pem
+*.key
