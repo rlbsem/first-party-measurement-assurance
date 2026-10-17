@@ -92,7 +92,7 @@ The revised demonstration has **29 admission attempts, 19 distinct events, three
 | Google Measurement Protocol debug | **Not executed**; requires an approved isolated property configuration |
 | Native BigQuery public sample | **Not executed**; requires authorized project/ADC access |
 | Production GA4 to BigQuery integration | **Not implemented or claimed** |
-| Hosted GitHub CI | Workflow prepared; hosted execution is not claimed before publication |
+| Hosted GitHub CI | [Windows and Ubuntu verification](https://github.com/rlbsem/first-party-measurement-assurance/actions/workflows/verify.yml); inspect the run for the relevant commit |
 
 The official public GA4 ecommerce sample remains a separate optional GoogleSQL validation lane. It is not Evermere data. No Google tag, paid resource, native connector success or deployment is implied by local results. [Native runbook](docs/native-google.md) and [official references](docs/sources.md).
 

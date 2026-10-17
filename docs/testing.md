@@ -34,4 +34,4 @@ The fixed-retail catalog check is now a project/service-binding check plus indep
 
 The current build runs nine models and 21 data tests. Python/API totals and browser assertions come from [verification.json](evidence/verification.json). The expected SQL rejection is recorded separately from successful builds.
 
-Chromium executes locally; no cross-browser certification or complete accessibility audit is claimed. Visual inspection supplements layout checks. GitHub Actions is prepared for Windows/Ubuntu, but hosted CI has not run because publication has not been authorized. Native BigQuery and MP debug remain unexecuted; local adapter tests are not vendor proof.
+Chromium executes locally; no cross-browser certification or complete accessibility audit is claimed. Visual inspection supplements layout checks. GitHub Actions executes credential-free verification on Windows and Ubuntu. [Hosted results](https://github.com/rlbsem/first-party-measurement-assurance/actions/workflows/verify.yml) report the status for each commit. Native BigQuery and MP debug remain unexecuted; local adapter tests are not vendor proof.
