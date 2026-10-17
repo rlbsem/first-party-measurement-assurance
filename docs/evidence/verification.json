@@ -33,7 +33,7 @@
   "responsive_combinations": 9,
   "source_sha256": {
     ".gitattributes": "23302dd90b8bb74b44d365fafef8df20f809b61cb347023951ecf60a88a29651",
-    ".github/workflows/verify.yml": "ce9ab611cc4c5a64ee553549576141870b3e677eb12e2f602d2fcd3e1285d0fe",
+    ".github/workflows/verify.yml": "43e29b3df3c2843619b303c9ff24c6310954bf18ee42f6380d2826e8dc72a53b",
     ".gitignore": "7538cd16114eedfdf1ed1320e48ad8f9bc3e0fb02936eeaa9e488ac48e7c0504",
     "assurance/__init__.py": "e5c08755a5a0bd480a16801f57e0d6e014d23a1e6920ed7a93b64a2b707df91a",
     "assurance/analytics.py": "5d9fce4fc4da7a194e46ac53618bc7951f47d119fa6a35040115393f3d99d34a",

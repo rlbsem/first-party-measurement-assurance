@@ -1,6 +1,6 @@
 {
   ".gitattributes": "23302dd90b8bb74b44d365fafef8df20f809b61cb347023951ecf60a88a29651",
-  ".github/workflows/verify.yml": "ce9ab611cc4c5a64ee553549576141870b3e677eb12e2f602d2fcd3e1285d0fe",
+  ".github/workflows/verify.yml": "43e29b3df3c2843619b303c9ff24c6310954bf18ee42f6380d2826e8dc72a53b",
   ".gitignore": "7538cd16114eedfdf1ed1320e48ad8f9bc3e0fb02936eeaa9e488ac48e7c0504",
   "assurance/__init__.py": "e5c08755a5a0bd480a16801f57e0d6e014d23a1e6920ed7a93b64a2b707df91a",
   "assurance/analytics.py": "5d9fce4fc4da7a194e46ac53618bc7951f47d119fa6a35040115393f3d99d34a",
@@ -34,7 +34,7 @@
   "docs/evidence/demo.json": "a172b8ae2389cf7fada07286c427aeb1f1c097f4c8745a74daa9f7e5921439de",
   "docs/evidence/README.md": "8ed682252f7456a6641b7934d44736e5d9eacd62961adb403a59e6ea92539d27",
   "docs/evidence/source-ledger.json": "7bf74bd1fbf42effcc92f871d52d5de5197ad0e1ed5cb1acebde93ee41b2cb44",
-  "docs/evidence/verification.json": "123d73c0cc2f7eae18728e8ddd86d3cbd64d8d122188c205459324f090c0eeeb",
+  "docs/evidence/verification.json": "d1126863873129c2edb29eeebb24b1d92f7eeb0f4d77983d78be3471f878087e",
   "docs/gtm-implementation.md": "c592dbd0caf4474614be2e80088b399c0b3e562e2057585117fe2eec50c9df4a",
   "docs/images/browser-laboratory.png": "812b642859751092f8191f86154def40728fb840b0d80ab9a201a13efa4cae08",
   "docs/images/browser-mobile.png": "a5c6759d21fc5b4b560845ba2070b5bc2f46f1b85baaf606671b36c5d760bd53",
