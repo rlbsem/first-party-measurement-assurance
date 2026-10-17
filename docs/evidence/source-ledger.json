@@ -1,0 +1,949 @@
+{
+  "events": [
+    {
+      "event_id": "00000000-0000-0000-0000-000000000001",
+      "payload": {
+        "campaign": "design-journal",
+        "currency": "USD",
+        "event_id": "00000000-0000-0000-0000-000000000001",
+        "event_name": "generate_lead",
+        "occurred_at": "2025-09-01T12:00:00+00:00",
+        "origin": "browser",
+        "project_id": "SYN-P01",
+        "project_type": "hardscaping",
+        "schema_version": 2,
+        "session_id": "00000000-0000-0000-0000-000000000384",
+        "source_ref": "SYN-P01-inquiry",
+        "value_basis": "unvalued",
+        "value_cents": 0
+      },
+      "hash": "28afefbdd2c651c6ad381e58e9a20a089ffb1a9e12fd5bc40ea972c2cb1fcca8",
+      "received_at": "2025-09-01T12:00:00+00:00",
+      "late": 0,
+      "transaction_id": null,
+      "conversion_key": "generate_lead|SYN-P01-inquiry"
+    },
+    {
+      "event_id": "00000000-0000-0000-0000-000000000002",
+      "payload": {
+        "campaign": "design-journal",
+        "currency": "USD",
+        "event_id": "00000000-0000-0000-0000-000000000002",
+        "event_name": "qualify_lead",
+        "occurred_at": "2025-09-03T12:00:00+00:00",
+        "origin": "offline",
+        "project_id": "SYN-P01",
+        "project_type": "hardscaping",
+        "schema_version": 2,
+        "session_id": "00000000-0000-0000-0000-000000000384",
+        "source_ref": "SYN-P01-qualified",
+        "value_basis": "unvalued",
+        "value_cents": 0
+      },
+      "hash": "d97a3b7adea4a236bf111a5ac670c71ca52afc1683127baae087ec8f7b80118e",
+      "received_at": "2025-09-03T12:00:00+00:00",
+      "late": 0,
+      "transaction_id": null,
+      "conversion_key": "qualify_lead|SYN-P01-qualified"
+    },
+    {
+      "event_id": "00000000-0000-0000-0000-000000000003",
+      "payload": {
+        "campaign": "design-journal",
+        "currency": "USD",
+        "event_id": "00000000-0000-0000-0000-000000000003",
+        "event_name": "working_lead",
+        "occurred_at": "2025-09-06T12:00:00+00:00",
+        "origin": "offline",
+        "project_id": "SYN-P01",
+        "project_type": "hardscaping",
+        "schema_version": 2,
+        "session_id": "00000000-0000-0000-0000-000000000384",
+        "source_ref": "SYN-P01-working",
+        "value_basis": "unvalued",
+        "value_cents": 0
+      },
+      "hash": "c32cf6d1c69016a421f91b3092d4fcfb86bb3e2c880712acaad0d5b71c4e9c13",
+      "received_at": "2025-09-06T12:00:00+00:00",
+      "late": 0,
+      "transaction_id": null,
+      "conversion_key": "working_lead|SYN-P01-working"
+    },
+    {
+      "event_id": "00000000-0000-0000-0000-000000000005",
+      "payload": {
+        "campaign": "design-journal",
+        "currency": "USD",
+        "event_id": "00000000-0000-0000-0000-000000000005",
+        "event_name": "close_convert_lead",
+        "occurred_at": "2026-01-08T12:00:00+00:00",
+        "origin": "offline",
+        "project_id": "SYN-P01",
+        "project_type": "hardscaping",
+        "schema_version": 2,
+        "session_id": "00000000-0000-0000-0000-000000000384",
+        "source_ref": "SYN-P01-signed_contract",
+        "value_basis": "contract",
+        "value_cents": 6500000
+      },
+      "hash": "e4f3307fbd47e0e9b592470106f3c4403c1e7c7239bd8ebea2ce4dcb4d01205e",
+      "received_at": "2026-01-08T12:00:00+00:00",
+      "late": 0,
+      "transaction_id": null,
+      "conversion_key": "close_convert_lead|SYN-P01-signed_contract"
+    },
+    {
+      "event_id": "00000000-0000-0000-0000-000000000006",
+      "payload": {
+        "campaign": "design-journal",
+        "currency": "USD",
+        "event_id": "00000000-0000-0000-0000-000000000006",
+        "event_name": "purchase",
+        "items": [
+          {
+            "item_id": "hardscaping",
+            "price_cents": 1950000,
+            "quantity": 1
+          }
+        ],
+        "occurred_at": "2026-01-15T12:00:00+00:00",
+        "origin": "offline",
+        "project_id": "SYN-P01",
+        "project_type": "hardscaping",
+        "schema_version": 2,
+        "session_id": "00000000-0000-0000-0000-000000000384",
+        "source_ref": "SYN-P01-payment",
+        "transaction_id": "SYN-P01-payment",
+        "value_basis": "payment",
+        "value_cents": 1950000
+      },
+      "hash": "c71b28f60bea93310e74c32bdd2061fbbc8c3f77f1df481d5efc999eea8a7c4f",
+      "received_at": "2026-01-15T12:00:00+00:00",
+      "late": 0,
+      "transaction_id": "SYN-P01-payment",
+      "conversion_key": "purchase|SYN-P01-payment"
+    },
+    {
+      "event_id": "00000000-0000-0000-0000-000000000007",
+      "payload": {
+        "campaign": "design-journal",
+        "currency": "USD",
+        "event_id": "00000000-0000-0000-0000-000000000007",
+        "event_name": "generate_lead",
+        "occurred_at": "2025-09-01T12:00:00+00:00",
+        "origin": "browser",
+        "project_id": "SYN-P02",
+        "project_type": "outdoor_kitchen",
+        "schema_version": 2,
+        "session_id": "00000000-0000-0000-0000-000000000384",
+        "source_ref": "SYN-P02-inquiry",
+        "value_basis": "unvalued",
+        "value_cents": 0
+      },
+      "hash": "f8c4edc06f6217822876a8749bd14c9d29691fa5e61190f9f24857338a829da1",
+      "received_at": "2025-09-01T12:00:00+00:00",
+      "late": 0,
+      "transaction_id": null,
+      "conversion_key": "generate_lead|SYN-P02-inquiry"
+    },
+    {
+      "event_id": "00000000-0000-0000-0000-000000000008",
+      "payload": {
+        "campaign": "design-journal",
+        "currency": "USD",
+        "event_id": "00000000-0000-0000-0000-000000000008",
+        "event_name": "qualify_lead",
+        "occurred_at": "2025-09-03T12:00:00+00:00",
+        "origin": "offline",
+        "project_id": "SYN-P02",
+        "project_type": "outdoor_kitchen",
+        "schema_version": 2,
+        "session_id": "00000000-0000-0000-0000-000000000384",
+        "source_ref": "SYN-P02-qualified",
+        "value_basis": "unvalued",
+        "value_cents": 0
+      },
+      "hash": "893ee281e890c27343eb35111ad1aa12cceb49df4a8ff692f45c472fbb2b476f",
+      "received_at": "2025-09-03T12:00:00+00:00",
+      "late": 0,
+      "transaction_id": null,
+      "conversion_key": "qualify_lead|SYN-P02-qualified"
+    },
+    {
+      "event_id": "00000000-0000-0000-0000-000000000009",
+      "payload": {
+        "campaign": "design-journal",
+        "currency": "USD",
+        "event_id": "00000000-0000-0000-0000-000000000009",
+        "event_name": "working_lead",
+        "occurred_at": "2025-09-06T12:00:00+00:00",
+        "origin": "offline",
+        "project_id": "SYN-P02",
+        "project_type": "outdoor_kitchen",
+        "schema_version": 2,
+        "session_id": "00000000-0000-0000-0000-000000000384",
+        "source_ref": "SYN-P02-working",
+        "value_basis": "unvalued",
+        "value_cents": 0
+      },
+      "hash": "54996d98ac3f065c85dad6b9d4727d296e473be384d86d925a600cd19b1dc7a4",
+      "received_at": "2025-09-06T12:00:00+00:00",
+      "late": 0,
+      "transaction_id": null,
+      "conversion_key": "working_lead|SYN-P02-working"
+    },
+    {
+      "event_id": "00000000-0000-0000-0000-00000000000b",
+      "payload": {
+        "campaign": "design-journal",
+        "currency": "USD",
+        "event_id": "00000000-0000-0000-0000-00000000000b",
+        "event_name": "close_convert_lead",
+        "occurred_at": "2026-01-08T12:00:00+00:00",
+        "origin": "offline",
+        "project_id": "SYN-P02",
+        "project_type": "outdoor_kitchen",
+        "schema_version": 2,
+        "session_id": "00000000-0000-0000-0000-000000000384",
+        "source_ref": "SYN-P02-signed_contract",
+        "value_basis": "contract",
+        "value_cents": 12500000
+      },
+      "hash": "618d3f001ea34e9ca8f88ca6810d470b05623e7198e50dba1aba5340a8b17acf",
+      "received_at": "2026-01-08T12:00:00+00:00",
+      "late": 0,
+      "transaction_id": null,
+      "conversion_key": "close_convert_lead|SYN-P02-signed_contract"
+    },
+    {
+      "event_id": "00000000-0000-0000-0000-00000000000d",
+      "payload": {
+        "campaign": "design-journal",
+        "currency": "USD",
+        "event_id": "00000000-0000-0000-0000-00000000000d",
+        "event_name": "generate_lead",
+        "occurred_at": "2025-09-01T12:00:00+00:00",
+        "origin": "browser",
+        "project_id": "SYN-P03",
+        "project_type": "custom_pool",
+        "schema_version": 2,
+        "session_id": "00000000-0000-0000-0000-000000000384",
+        "source_ref": "SYN-P03-inquiry",
+        "value_basis": "unvalued",
+        "value_cents": 0
+      },
+      "hash": "a213817c9edbb3080f674e69eb4615f47b9c6ba1bcb1065d74350b1761a9fca8",
+      "received_at": "2025-09-01T12:00:00+00:00",
+      "late": 0,
+      "transaction_id": null,
+      "conversion_key": "generate_lead|SYN-P03-inquiry"
+    },
+    {
+      "event_id": "00000000-0000-0000-0000-00000000000e",
+      "payload": {
+        "campaign": "design-journal",
+        "currency": "USD",
+        "event_id": "00000000-0000-0000-0000-00000000000e",
+        "event_name": "qualify_lead",
+        "occurred_at": "2025-09-03T12:00:00+00:00",
+        "origin": "offline",
+        "project_id": "SYN-P03",
+        "project_type": "custom_pool",
+        "schema_version": 2,
+        "session_id": "00000000-0000-0000-0000-000000000384",
+        "source_ref": "SYN-P03-qualified",
+        "value_basis": "unvalued",
+        "value_cents": 0
+      },
+      "hash": "ac3b363c0c355037d36fccaf9b412ecf853ec31503e5818a08beabc8415eba19",
+      "received_at": "2025-09-03T12:00:00+00:00",
+      "late": 0,
+      "transaction_id": null,
+      "conversion_key": "qualify_lead|SYN-P03-qualified"
+    },
+    {
+      "event_id": "00000000-0000-0000-0000-00000000000f",
+      "payload": {
+        "campaign": "design-journal",
+        "currency": "USD",
+        "event_id": "00000000-0000-0000-0000-00000000000f",
+        "event_name": "working_lead",
+        "occurred_at": "2025-09-06T12:00:00+00:00",
+        "origin": "offline",
+        "project_id": "SYN-P03",
+        "project_type": "custom_pool",
+        "schema_version": 2,
+        "session_id": "00000000-0000-0000-0000-000000000384",
+        "source_ref": "SYN-P03-working",
+        "value_basis": "unvalued",
+        "value_cents": 0
+      },
+      "hash": "f7bfa09b79b4bf97d63c51d76f3455d38a3502b85297188140bf84f647b1026d",
+      "received_at": "2025-09-06T12:00:00+00:00",
+      "late": 0,
+      "transaction_id": null,
+      "conversion_key": "working_lead|SYN-P03-working"
+    },
+    {
+      "event_id": "00000000-0000-0000-0000-000000000012",
+      "payload": {
+        "campaign": "design-journal",
+        "currency": "USD",
+        "event_id": "00000000-0000-0000-0000-000000000012",
+        "event_name": "purchase",
+        "items": [
+          {
+            "item_id": "custom_pool",
+            "price_cents": 24500000,
+            "quantity": 1
+          }
+        ],
+        "occurred_at": "2026-01-15T12:00:00+00:00",
+        "origin": "offline",
+        "project_id": "SYN-P03",
+        "project_type": "custom_pool",
+        "schema_version": 2,
+        "session_id": "00000000-0000-0000-0000-000000000384",
+        "source_ref": "SYN-P03-payment",
+        "transaction_id": "SYN-P03-payment",
+        "value_basis": "payment",
+        "value_cents": 24500000
+      },
+      "hash": "99c8fb6375dc16698081cad460a5b31bf89e72d052fee1b8f14f6f4464ee663f",
+      "received_at": "2026-01-15T12:00:00+00:00",
+      "late": 0,
+      "transaction_id": "SYN-P03-payment",
+      "conversion_key": "purchase|SYN-P03-payment"
+    },
+    {
+      "event_id": "00000000-0000-0000-0000-000000000013",
+      "payload": {
+        "campaign": "design-journal",
+        "currency": "USD",
+        "event_id": "00000000-0000-0000-0000-000000000013",
+        "event_name": "generate_lead",
+        "occurred_at": "2025-09-01T12:00:00+00:00",
+        "origin": "browser",
+        "project_id": "SYN-P04",
+        "project_type": "premium_renovation",
+        "schema_version": 2,
+        "session_id": "00000000-0000-0000-0000-000000000384",
+        "source_ref": "SYN-P04-inquiry",
+        "value_basis": "unvalued",
+        "value_cents": 0
+      },
+      "hash": "43d73524d14af35afbed714d8d75e070dc9e7005ec79eaed2dd450d2803b7a37",
+      "received_at": "2025-09-01T12:00:00+00:00",
+      "late": 0,
+      "transaction_id": null,
+      "conversion_key": "generate_lead|SYN-P04-inquiry"
+    },
+    {
+      "event_id": "00000000-0000-0000-0000-000000000014",
+      "payload": {
+        "campaign": "design-journal",
+        "currency": "USD",
+        "event_id": "00000000-0000-0000-0000-000000000014",
+        "event_name": "qualify_lead",
+        "occurred_at": "2025-09-03T12:00:00+00:00",
+        "origin": "offline",
+        "project_id": "SYN-P04",
+        "project_type": "premium_renovation",
+        "schema_version": 2,
+        "session_id": "00000000-0000-0000-0000-000000000384",
+        "source_ref": "SYN-P04-qualified",
+        "value_basis": "unvalued",
+        "value_cents": 0
+      },
+      "hash": "2f047660de10ae5c869fdb4dff4d616716b9fb9296541f09debc6de054b81654",
+      "received_at": "2025-09-03T12:00:00+00:00",
+      "late": 0,
+      "transaction_id": null,
+      "conversion_key": "qualify_lead|SYN-P04-qualified"
+    },
+    {
+      "event_id": "00000000-0000-0000-0000-000000000015",
+      "payload": {
+        "campaign": "design-journal",
+        "currency": "USD",
+        "event_id": "00000000-0000-0000-0000-000000000015",
+        "event_name": "working_lead",
+        "occurred_at": "2025-09-06T12:00:00+00:00",
+        "origin": "offline",
+        "project_id": "SYN-P04",
+        "project_type": "premium_renovation",
+        "schema_version": 2,
+        "session_id": "00000000-0000-0000-0000-000000000384",
+        "source_ref": "SYN-P04-working",
+        "value_basis": "unvalued",
+        "value_cents": 0
+      },
+      "hash": "ed628431d8e221f09a57d0db065a16835669c578a30bd95d4d411d740746cc39",
+      "received_at": "2025-09-06T12:00:00+00:00",
+      "late": 0,
+      "transaction_id": null,
+      "conversion_key": "working_lead|SYN-P04-working"
+    },
+    {
+      "event_id": "00000000-0000-0000-0000-000000000017",
+      "payload": {
+        "campaign": "design-journal",
+        "currency": "USD",
+        "event_id": "00000000-0000-0000-0000-000000000017",
+        "event_name": "generate_lead",
+        "occurred_at": "2025-09-01T12:00:00+00:00",
+        "origin": "browser",
+        "project_id": "SYN-P05",
+        "project_type": "landscape_construction",
+        "schema_version": 2,
+        "session_id": "00000000-0000-0000-0000-000000000384",
+        "source_ref": "SYN-P05-inquiry",
+        "value_basis": "unvalued",
+        "value_cents": 0
+      },
+      "hash": "43f2fda31e62fa9d7d384d60daece22901899f066f893b5ad95213ebd445568e",
+      "received_at": "2025-09-01T12:00:00+00:00",
+      "late": 0,
+      "transaction_id": null,
+      "conversion_key": "generate_lead|SYN-P05-inquiry"
+    },
+    {
+      "event_id": "00000000-0000-0000-0000-000000000018",
+      "payload": {
+        "campaign": "design-journal",
+        "currency": "USD",
+        "event_id": "00000000-0000-0000-0000-000000000018",
+        "event_name": "disqualify_lead",
+        "occurred_at": "2025-09-03T12:00:00+00:00",
+        "origin": "offline",
+        "project_id": "SYN-P05",
+        "project_type": "landscape_construction",
+        "schema_version": 2,
+        "session_id": "00000000-0000-0000-0000-000000000384",
+        "source_ref": "SYN-P05-disqualified",
+        "value_basis": "unvalued",
+        "value_cents": 0
+      },
+      "hash": "e190aa615a22d69b6c8ab8d5f27944f5e9e925c98d552ea6d746c913aaaf8a0e",
+      "received_at": "2025-09-03T12:00:00+00:00",
+      "late": 0,
+      "transaction_id": null,
+      "conversion_key": "disqualify_lead|SYN-P05-disqualified"
+    },
+    {
+      "event_id": "00000000-0000-0000-0000-0000000000c8",
+      "payload": {
+        "campaign": "design-journal",
+        "currency": "USD",
+        "event_id": "00000000-0000-0000-0000-0000000000c8",
+        "event_name": "purchase",
+        "items": [
+          {
+            "item_id": "outdoor_kitchen",
+            "price_cents": 3750000,
+            "quantity": 1
+          }
+        ],
+        "occurred_at": "2026-01-15T12:00:00+00:00",
+        "origin": "offline",
+        "project_id": "SYN-P02",
+        "project_type": "outdoor_kitchen",
+        "schema_version": 2,
+        "session_id": "00000000-0000-0000-0000-000000000384",
+        "source_ref": "SYN-P02-payment",
+        "transaction_id": "SYN-P02-payment",
+        "value_basis": "payment",
+        "value_cents": 3750000
+      },
+      "hash": "3d340997015f4be45bbea0bafd1804545a50cbb62bdf96c247485e73feeedeb5",
+      "received_at": "2026-01-17T12:00:00+00:00",
+      "late": 1,
+      "transaction_id": "SYN-P02-payment",
+      "conversion_key": "purchase|SYN-P02-payment"
+    }
+  ],
+  "projects": [
+    {
+      "project_id": "SYN-P01",
+      "project_type": "hardscaping",
+      "opportunity_cents": 6500000
+    },
+    {
+      "project_id": "SYN-P02",
+      "project_type": "outdoor_kitchen",
+      "opportunity_cents": 12500000
+    },
+    {
+      "project_id": "SYN-P03",
+      "project_type": "custom_pool",
+      "opportunity_cents": 24500000
+    },
+    {
+      "project_id": "SYN-P04",
+      "project_type": "premium_renovation",
+      "opportunity_cents": 48500000
+    },
+    {
+      "project_id": "SYN-P05",
+      "project_type": "landscape_construction",
+      "opportunity_cents": 5000000
+    }
+  ],
+  "source_facts": [
+    {
+      "source_ref": "SYN-P01-inquiry",
+      "project_id": "SYN-P01",
+      "stage": "inquiry",
+      "value_cents": 0,
+      "currency": "USD",
+      "occurred_at": "2025-09-01T12:00:00+00:00",
+      "session_id": "00000000-0000-0000-0000-000000000384",
+      "measurement_eligible": 1
+    },
+    {
+      "source_ref": "SYN-P01-payment",
+      "project_id": "SYN-P01",
+      "stage": "payment",
+      "value_cents": 1950000,
+      "currency": "USD",
+      "occurred_at": "2026-01-15T12:00:00+00:00",
+      "session_id": "00000000-0000-0000-0000-000000000384",
+      "measurement_eligible": 1
+    },
+    {
+      "source_ref": "SYN-P01-progress",
+      "project_id": "SYN-P01",
+      "stage": "payment",
+      "value_cents": 1300000,
+      "currency": "USD",
+      "occurred_at": "2026-01-15T12:00:00+00:00",
+      "session_id": "00000000-0000-0000-0000-000000000384",
+      "measurement_eligible": 1
+    },
+    {
+      "source_ref": "SYN-P01-proposal",
+      "project_id": "SYN-P01",
+      "stage": "proposal",
+      "value_cents": 6500000,
+      "currency": "USD",
+      "occurred_at": "2025-10-01T12:00:00+00:00",
+      "session_id": "00000000-0000-0000-0000-000000000384",
+      "measurement_eligible": 1
+    },
+    {
+      "source_ref": "SYN-P01-qualified",
+      "project_id": "SYN-P01",
+      "stage": "qualified",
+      "value_cents": 0,
+      "currency": "USD",
+      "occurred_at": "2025-09-03T12:00:00+00:00",
+      "session_id": "00000000-0000-0000-0000-000000000384",
+      "measurement_eligible": 1
+    },
+    {
+      "source_ref": "SYN-P01-signed_contract",
+      "project_id": "SYN-P01",
+      "stage": "signed_contract",
+      "value_cents": 6500000,
+      "currency": "USD",
+      "occurred_at": "2026-01-08T12:00:00+00:00",
+      "session_id": "00000000-0000-0000-0000-000000000384",
+      "measurement_eligible": 1
+    },
+    {
+      "source_ref": "SYN-P01-working",
+      "project_id": "SYN-P01",
+      "stage": "working",
+      "value_cents": 0,
+      "currency": "USD",
+      "occurred_at": "2025-09-06T12:00:00+00:00",
+      "session_id": "00000000-0000-0000-0000-000000000384",
+      "measurement_eligible": 1
+    },
+    {
+      "source_ref": "SYN-P02-inquiry",
+      "project_id": "SYN-P02",
+      "stage": "inquiry",
+      "value_cents": 0,
+      "currency": "USD",
+      "occurred_at": "2025-09-01T12:00:00+00:00",
+      "session_id": "00000000-0000-0000-0000-000000000384",
+      "measurement_eligible": 1
+    },
+    {
+      "source_ref": "SYN-P02-payment",
+      "project_id": "SYN-P02",
+      "stage": "payment",
+      "value_cents": 3750000,
+      "currency": "USD",
+      "occurred_at": "2026-01-15T12:00:00+00:00",
+      "session_id": "00000000-0000-0000-0000-000000000384",
+      "measurement_eligible": 1
+    },
+    {
+      "source_ref": "SYN-P02-proposal",
+      "project_id": "SYN-P02",
+      "stage": "proposal",
+      "value_cents": 12500000,
+      "currency": "USD",
+      "occurred_at": "2025-10-01T12:00:00+00:00",
+      "session_id": "00000000-0000-0000-0000-000000000384",
+      "measurement_eligible": 1
+    },
+    {
+      "source_ref": "SYN-P02-qualified",
+      "project_id": "SYN-P02",
+      "stage": "qualified",
+      "value_cents": 0,
+      "currency": "USD",
+      "occurred_at": "2025-09-03T12:00:00+00:00",
+      "session_id": "00000000-0000-0000-0000-000000000384",
+      "measurement_eligible": 1
+    },
+    {
+      "source_ref": "SYN-P02-signed_contract",
+      "project_id": "SYN-P02",
+      "stage": "signed_contract",
+      "value_cents": 12500000,
+      "currency": "USD",
+      "occurred_at": "2026-01-08T12:00:00+00:00",
+      "session_id": "00000000-0000-0000-0000-000000000384",
+      "measurement_eligible": 1
+    },
+    {
+      "source_ref": "SYN-P02-working",
+      "project_id": "SYN-P02",
+      "stage": "working",
+      "value_cents": 0,
+      "currency": "USD",
+      "occurred_at": "2025-09-06T12:00:00+00:00",
+      "session_id": "00000000-0000-0000-0000-000000000384",
+      "measurement_eligible": 1
+    },
+    {
+      "source_ref": "SYN-P03-inquiry",
+      "project_id": "SYN-P03",
+      "stage": "inquiry",
+      "value_cents": 0,
+      "currency": "USD",
+      "occurred_at": "2025-09-01T12:00:00+00:00",
+      "session_id": "00000000-0000-0000-0000-000000000384",
+      "measurement_eligible": 1
+    },
+    {
+      "source_ref": "SYN-P03-payment",
+      "project_id": "SYN-P03",
+      "stage": "payment",
+      "value_cents": 7350000,
+      "currency": "USD",
+      "occurred_at": "2026-01-15T12:00:00+00:00",
+      "session_id": "00000000-0000-0000-0000-000000000384",
+      "measurement_eligible": 1
+    },
+    {
+      "source_ref": "SYN-P03-proposal",
+      "project_id": "SYN-P03",
+      "stage": "proposal",
+      "value_cents": 24500000,
+      "currency": "USD",
+      "occurred_at": "2025-10-01T12:00:00+00:00",
+      "session_id": "00000000-0000-0000-0000-000000000384",
+      "measurement_eligible": 1
+    },
+    {
+      "source_ref": "SYN-P03-qualified",
+      "project_id": "SYN-P03",
+      "stage": "qualified",
+      "value_cents": 0,
+      "currency": "USD",
+      "occurred_at": "2025-09-03T12:00:00+00:00",
+      "session_id": "00000000-0000-0000-0000-000000000384",
+      "measurement_eligible": 1
+    },
+    {
+      "source_ref": "SYN-P03-signed_contract",
+      "project_id": "SYN-P03",
+      "stage": "signed_contract",
+      "value_cents": 24500000,
+      "currency": "USD",
+      "occurred_at": "2026-01-08T12:00:00+00:00",
+      "session_id": "00000000-0000-0000-0000-000000000384",
+      "measurement_eligible": 1
+    },
+    {
+      "source_ref": "SYN-P03-working",
+      "project_id": "SYN-P03",
+      "stage": "working",
+      "value_cents": 0,
+      "currency": "USD",
+      "occurred_at": "2025-09-06T12:00:00+00:00",
+      "session_id": "00000000-0000-0000-0000-000000000384",
+      "measurement_eligible": 1
+    },
+    {
+      "source_ref": "SYN-P04-inquiry",
+      "project_id": "SYN-P04",
+      "stage": "inquiry",
+      "value_cents": 0,
+      "currency": "USD",
+      "occurred_at": "2025-09-01T12:00:00+00:00",
+      "session_id": "00000000-0000-0000-0000-000000000384",
+      "measurement_eligible": 1
+    },
+    {
+      "source_ref": "SYN-P04-proposal",
+      "project_id": "SYN-P04",
+      "stage": "proposal",
+      "value_cents": 48500000,
+      "currency": "USD",
+      "occurred_at": "2025-10-01T12:00:00+00:00",
+      "session_id": "00000000-0000-0000-0000-000000000384",
+      "measurement_eligible": 1
+    },
+    {
+      "source_ref": "SYN-P04-qualified",
+      "project_id": "SYN-P04",
+      "stage": "qualified",
+      "value_cents": 0,
+      "currency": "USD",
+      "occurred_at": "2025-09-03T12:00:00+00:00",
+      "session_id": "00000000-0000-0000-0000-000000000384",
+      "measurement_eligible": 1
+    },
+    {
+      "source_ref": "SYN-P04-working",
+      "project_id": "SYN-P04",
+      "stage": "working",
+      "value_cents": 0,
+      "currency": "USD",
+      "occurred_at": "2025-09-06T12:00:00+00:00",
+      "session_id": "00000000-0000-0000-0000-000000000384",
+      "measurement_eligible": 1
+    },
+    {
+      "source_ref": "SYN-P05-disqualified",
+      "project_id": "SYN-P05",
+      "stage": "disqualified",
+      "value_cents": 0,
+      "currency": "USD",
+      "occurred_at": "2025-09-03T12:00:00+00:00",
+      "session_id": "00000000-0000-0000-0000-000000000384",
+      "measurement_eligible": 1
+    },
+    {
+      "source_ref": "SYN-P05-inquiry",
+      "project_id": "SYN-P05",
+      "stage": "inquiry",
+      "value_cents": 0,
+      "currency": "USD",
+      "occurred_at": "2025-09-01T12:00:00+00:00",
+      "session_id": "00000000-0000-0000-0000-000000000384",
+      "measurement_eligible": 1
+    }
+  ],
+  "decisions": [
+    {
+      "receipt": 1,
+      "received_at": "2025-09-01T12:00:00+00:00",
+      "status": "accepted",
+      "event_id": "00000000-0000-0000-0000-000000000001",
+      "detail": "see_admitted_event"
+    },
+    {
+      "receipt": 2,
+      "received_at": "2025-09-03T12:00:00+00:00",
+      "status": "accepted",
+      "event_id": "00000000-0000-0000-0000-000000000002",
+      "detail": "see_admitted_event"
+    },
+    {
+      "receipt": 3,
+      "received_at": "2025-09-06T12:00:00+00:00",
+      "status": "accepted",
+      "event_id": "00000000-0000-0000-0000-000000000003",
+      "detail": "see_admitted_event"
+    },
+    {
+      "receipt": 4,
+      "received_at": "2026-01-08T12:00:00+00:00",
+      "status": "accepted",
+      "event_id": "00000000-0000-0000-0000-000000000005",
+      "detail": "see_admitted_event"
+    },
+    {
+      "receipt": 5,
+      "received_at": "2026-01-15T12:00:00+00:00",
+      "status": "accepted",
+      "event_id": "00000000-0000-0000-0000-000000000006",
+      "detail": "see_admitted_event"
+    },
+    {
+      "receipt": 6,
+      "received_at": "2025-09-01T12:00:00+00:00",
+      "status": "accepted",
+      "event_id": "00000000-0000-0000-0000-000000000007",
+      "detail": "see_admitted_event"
+    },
+    {
+      "receipt": 7,
+      "received_at": "2025-09-03T12:00:00+00:00",
+      "status": "accepted",
+      "event_id": "00000000-0000-0000-0000-000000000008",
+      "detail": "see_admitted_event"
+    },
+    {
+      "receipt": 8,
+      "received_at": "2025-09-06T12:00:00+00:00",
+      "status": "accepted",
+      "event_id": "00000000-0000-0000-0000-000000000009",
+      "detail": "see_admitted_event"
+    },
+    {
+      "receipt": 9,
+      "received_at": "2026-01-08T12:00:00+00:00",
+      "status": "accepted",
+      "event_id": "00000000-0000-0000-0000-00000000000b",
+      "detail": "see_admitted_event"
+    },
+    {
+      "receipt": 10,
+      "received_at": "2025-09-01T12:00:00+00:00",
+      "status": "accepted",
+      "event_id": "00000000-0000-0000-0000-00000000000d",
+      "detail": "see_admitted_event"
+    },
+    {
+      "receipt": 11,
+      "received_at": "2025-09-03T12:00:00+00:00",
+      "status": "accepted",
+      "event_id": "00000000-0000-0000-0000-00000000000e",
+      "detail": "see_admitted_event"
+    },
+    {
+      "receipt": 12,
+      "received_at": "2025-09-06T12:00:00+00:00",
+      "status": "accepted",
+      "event_id": "00000000-0000-0000-0000-00000000000f",
+      "detail": "see_admitted_event"
+    },
+    {
+      "receipt": 13,
+      "received_at": "2026-01-15T12:00:00+00:00",
+      "status": "accepted",
+      "event_id": "00000000-0000-0000-0000-000000000012",
+      "detail": "see_admitted_event"
+    },
+    {
+      "receipt": 14,
+      "received_at": "2025-09-01T12:00:00+00:00",
+      "status": "accepted",
+      "event_id": "00000000-0000-0000-0000-000000000013",
+      "detail": "see_admitted_event"
+    },
+    {
+      "receipt": 15,
+      "received_at": "2025-09-03T12:00:00+00:00",
+      "status": "accepted",
+      "event_id": "00000000-0000-0000-0000-000000000014",
+      "detail": "see_admitted_event"
+    },
+    {
+      "receipt": 16,
+      "received_at": "2025-09-06T12:00:00+00:00",
+      "status": "accepted",
+      "event_id": "00000000-0000-0000-0000-000000000015",
+      "detail": "see_admitted_event"
+    },
+    {
+      "receipt": 17,
+      "received_at": "2025-09-01T12:00:00+00:00",
+      "status": "accepted",
+      "event_id": "00000000-0000-0000-0000-000000000017",
+      "detail": "see_admitted_event"
+    },
+    {
+      "receipt": 18,
+      "received_at": "2025-09-03T12:00:00+00:00",
+      "status": "accepted",
+      "event_id": "00000000-0000-0000-0000-000000000018",
+      "detail": "see_admitted_event"
+    },
+    {
+      "receipt": 19,
+      "received_at": "2025-09-01T12:00:00+00:00",
+      "status": "duplicate_conversion",
+      "event_id": "00000000-0000-0000-0000-000000000001",
+      "detail": "see_admitted_event"
+    },
+    {
+      "receipt": 20,
+      "received_at": "2026-01-15T12:00:00+00:00",
+      "status": "duplicate_event",
+      "event_id": "00000000-0000-0000-0000-000000000006",
+      "detail": "see_admitted_event"
+    },
+    {
+      "receipt": 21,
+      "received_at": "2026-01-15T12:00:00+00:00",
+      "status": "duplicate_transaction",
+      "event_id": "00000000-0000-0000-0000-000000000006",
+      "detail": "see_admitted_event"
+    },
+    {
+      "receipt": 22,
+      "received_at": "2026-01-15T12:00:00+00:00",
+      "status": "identity_conflict",
+      "event_id": "00000000-0000-0000-0000-000000000006",
+      "detail": "see_admitted_event"
+    },
+    {
+      "receipt": 23,
+      "received_at": "2026-01-15T12:00:00+00:00",
+      "status": "contract_rejected",
+      "event_id": null,
+      "detail": "payload_not_retained"
+    },
+    {
+      "receipt": 24,
+      "received_at": "2026-01-15T12:00:00+00:00",
+      "status": "contract_rejected",
+      "event_id": null,
+      "detail": "payload_not_retained"
+    },
+    {
+      "receipt": 25,
+      "received_at": "2026-01-15T12:00:00+00:00",
+      "status": "value_rejected",
+      "event_id": null,
+      "detail": "payload_not_retained"
+    },
+    {
+      "receipt": 26,
+      "received_at": "2026-01-15T12:00:00+00:00",
+      "status": "consent_denied",
+      "event_id": null,
+      "detail": "payload_not_retained"
+    },
+    {
+      "receipt": 27,
+      "received_at": "2026-01-15T12:00:00+00:00",
+      "status": "authority_denied",
+      "event_id": null,
+      "detail": "payload_not_retained"
+    },
+    {
+      "receipt": 28,
+      "received_at": "2026-01-15T12:00:00+00:00",
+      "status": "authority_denied",
+      "event_id": null,
+      "detail": "payload_not_retained"
+    },
+    {
+      "receipt": 29,
+      "received_at": "2026-01-17T12:00:00+00:00",
+      "status": "accepted_late",
+      "event_id": "00000000-0000-0000-0000-0000000000c8",
+      "detail": "see_admitted_event"
+    }
+  ]
+}

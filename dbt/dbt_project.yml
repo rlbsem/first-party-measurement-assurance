@@ -1,0 +1,10 @@
+name: measurement_assurance
+version: '1.0.0'
+config-version: 2
+profile: measurement_assurance
+model-paths: [models]
+seed-paths: [seeds]
+test-paths: [tests]
+models:
+  measurement_assurance:
+    +materialized: table

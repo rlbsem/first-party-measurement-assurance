@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:measurement-assurance:data-layer:1",
+  "title": "GTM-compatible browser inquiry message v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event",
+    "event_params",
+    "measurement"
+  ],
+  "properties": {
+    "event": {
+      "const": "generate_lead"
+    },
+    "event_params": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "lead_source",
+        "project_type",
+        "value_basis"
+      ],
+      "properties": {
+        "lead_source": {
+          "enum": [
+            "direct",
+            "design-journal",
+            "architect-referral",
+            "organic-search"
+          ]
+        },
+        "project_type": {
+          "enum": [
+            "landscape_construction",
+            "custom_pool",
+            "outdoor_kitchen",
+            "hardscaping",
+            "premium_renovation"
+          ]
+        },
+        "value_basis": {
+          "const": "unvalued"
+        }
+      }
+    },
+    "measurement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "data_layer_version",
+        "event_id"
+      ],
+      "properties": {
+        "data_layer_version": {
+          "const": 1
+        },
+        "event_id": {
+          "type": "string",
+          "format": "uuid"
+        }
+      }
+    }
+  }
+}

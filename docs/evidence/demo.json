@@ -1,0 +1,3909 @@
+{
+  "boundary": "executed local synthetic ledger and dbt-duckdb; no Google execution",
+  "baseline": {
+    "models": {
+      "fct_events": [
+        {
+          "event_id": "00000000-0000-0000-0000-000000000001",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "generate_lead",
+          "origin": "browser",
+          "source_ref": "SYN-P01-inquiry",
+          "project_id": "SYN-P01",
+          "project_type": "hardscaping",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-01 12:00:00",
+          "received_at": "2025-09-01 12:00:00",
+          "event_date": "2025-09-01",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "28afefbdd2c651c6ad381e58e9a20a089ffb1a9e12fd5bc40ea972c2cb1fcca8"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000002",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "qualify_lead",
+          "origin": "offline",
+          "source_ref": "SYN-P01-qualified",
+          "project_id": "SYN-P01",
+          "project_type": "hardscaping",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-03 12:00:00",
+          "received_at": "2025-09-03 12:00:00",
+          "event_date": "2025-09-03",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "d97a3b7adea4a236bf111a5ac670c71ca52afc1683127baae087ec8f7b80118e"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000003",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "working_lead",
+          "origin": "offline",
+          "source_ref": "SYN-P01-working",
+          "project_id": "SYN-P01",
+          "project_type": "hardscaping",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-06 12:00:00",
+          "received_at": "2025-09-06 12:00:00",
+          "event_date": "2025-09-06",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "c32cf6d1c69016a421f91b3092d4fcfb86bb3e2c880712acaad0d5b71c4e9c13"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000005",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "close_convert_lead",
+          "origin": "offline",
+          "source_ref": "SYN-P01-signed_contract",
+          "project_id": "SYN-P01",
+          "project_type": "hardscaping",
+          "value_basis": "contract",
+          "occurred_at": "2026-01-08 12:00:00",
+          "received_at": "2026-01-08 12:00:00",
+          "event_date": "2026-01-08",
+          "value_cents": 6500000,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "e4f3307fbd47e0e9b592470106f3c4403c1e7c7239bd8ebea2ce4dcb4d01205e"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000006",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "purchase",
+          "origin": "offline",
+          "source_ref": "SYN-P01-payment",
+          "project_id": "SYN-P01",
+          "project_type": "hardscaping",
+          "value_basis": "payment",
+          "occurred_at": "2026-01-15 12:00:00",
+          "received_at": "2026-01-15 12:00:00",
+          "event_date": "2026-01-15",
+          "value_cents": 1950000,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": "SYN-P01-payment",
+          "is_late": false,
+          "payload_hash": "c71b28f60bea93310e74c32bdd2061fbbc8c3f77f1df481d5efc999eea8a7c4f"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000007",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "generate_lead",
+          "origin": "browser",
+          "source_ref": "SYN-P02-inquiry",
+          "project_id": "SYN-P02",
+          "project_type": "outdoor_kitchen",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-01 12:00:00",
+          "received_at": "2025-09-01 12:00:00",
+          "event_date": "2025-09-01",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "f8c4edc06f6217822876a8749bd14c9d29691fa5e61190f9f24857338a829da1"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000008",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "qualify_lead",
+          "origin": "offline",
+          "source_ref": "SYN-P02-qualified",
+          "project_id": "SYN-P02",
+          "project_type": "outdoor_kitchen",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-03 12:00:00",
+          "received_at": "2025-09-03 12:00:00",
+          "event_date": "2025-09-03",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "893ee281e890c27343eb35111ad1aa12cceb49df4a8ff692f45c472fbb2b476f"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000009",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "working_lead",
+          "origin": "offline",
+          "source_ref": "SYN-P02-working",
+          "project_id": "SYN-P02",
+          "project_type": "outdoor_kitchen",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-06 12:00:00",
+          "received_at": "2025-09-06 12:00:00",
+          "event_date": "2025-09-06",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "54996d98ac3f065c85dad6b9d4727d296e473be384d86d925a600cd19b1dc7a4"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-00000000000b",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "close_convert_lead",
+          "origin": "offline",
+          "source_ref": "SYN-P02-signed_contract",
+          "project_id": "SYN-P02",
+          "project_type": "outdoor_kitchen",
+          "value_basis": "contract",
+          "occurred_at": "2026-01-08 12:00:00",
+          "received_at": "2026-01-08 12:00:00",
+          "event_date": "2026-01-08",
+          "value_cents": 12500000,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "618d3f001ea34e9ca8f88ca6810d470b05623e7198e50dba1aba5340a8b17acf"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-00000000000d",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "generate_lead",
+          "origin": "browser",
+          "source_ref": "SYN-P03-inquiry",
+          "project_id": "SYN-P03",
+          "project_type": "custom_pool",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-01 12:00:00",
+          "received_at": "2025-09-01 12:00:00",
+          "event_date": "2025-09-01",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "a213817c9edbb3080f674e69eb4615f47b9c6ba1bcb1065d74350b1761a9fca8"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-00000000000e",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "qualify_lead",
+          "origin": "offline",
+          "source_ref": "SYN-P03-qualified",
+          "project_id": "SYN-P03",
+          "project_type": "custom_pool",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-03 12:00:00",
+          "received_at": "2025-09-03 12:00:00",
+          "event_date": "2025-09-03",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "ac3b363c0c355037d36fccaf9b412ecf853ec31503e5818a08beabc8415eba19"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-00000000000f",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "working_lead",
+          "origin": "offline",
+          "source_ref": "SYN-P03-working",
+          "project_id": "SYN-P03",
+          "project_type": "custom_pool",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-06 12:00:00",
+          "received_at": "2025-09-06 12:00:00",
+          "event_date": "2025-09-06",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "f7bfa09b79b4bf97d63c51d76f3455d38a3502b85297188140bf84f647b1026d"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000012",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "purchase",
+          "origin": "offline",
+          "source_ref": "SYN-P03-payment",
+          "project_id": "SYN-P03",
+          "project_type": "custom_pool",
+          "value_basis": "payment",
+          "occurred_at": "2026-01-15 12:00:00",
+          "received_at": "2026-01-15 12:00:00",
+          "event_date": "2026-01-15",
+          "value_cents": 24500000,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": "SYN-P03-payment",
+          "is_late": false,
+          "payload_hash": "99c8fb6375dc16698081cad460a5b31bf89e72d052fee1b8f14f6f4464ee663f"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000013",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "generate_lead",
+          "origin": "browser",
+          "source_ref": "SYN-P04-inquiry",
+          "project_id": "SYN-P04",
+          "project_type": "premium_renovation",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-01 12:00:00",
+          "received_at": "2025-09-01 12:00:00",
+          "event_date": "2025-09-01",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "43d73524d14af35afbed714d8d75e070dc9e7005ec79eaed2dd450d2803b7a37"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000014",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "qualify_lead",
+          "origin": "offline",
+          "source_ref": "SYN-P04-qualified",
+          "project_id": "SYN-P04",
+          "project_type": "premium_renovation",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-03 12:00:00",
+          "received_at": "2025-09-03 12:00:00",
+          "event_date": "2025-09-03",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "2f047660de10ae5c869fdb4dff4d616716b9fb9296541f09debc6de054b81654"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000015",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "working_lead",
+          "origin": "offline",
+          "source_ref": "SYN-P04-working",
+          "project_id": "SYN-P04",
+          "project_type": "premium_renovation",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-06 12:00:00",
+          "received_at": "2025-09-06 12:00:00",
+          "event_date": "2025-09-06",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "ed628431d8e221f09a57d0db065a16835669c578a30bd95d4d411d740746cc39"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000017",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "generate_lead",
+          "origin": "browser",
+          "source_ref": "SYN-P05-inquiry",
+          "project_id": "SYN-P05",
+          "project_type": "landscape_construction",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-01 12:00:00",
+          "received_at": "2025-09-01 12:00:00",
+          "event_date": "2025-09-01",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "43f2fda31e62fa9d7d384d60daece22901899f066f893b5ad95213ebd445568e"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000018",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "disqualify_lead",
+          "origin": "offline",
+          "source_ref": "SYN-P05-disqualified",
+          "project_id": "SYN-P05",
+          "project_type": "landscape_construction",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-03 12:00:00",
+          "received_at": "2025-09-03 12:00:00",
+          "event_date": "2025-09-03",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "e190aa615a22d69b6c8ab8d5f27944f5e9e925c98d552ea6d746c913aaaf8a0e"
+        }
+      ],
+      "fct_items": [
+        {
+          "event_id": "00000000-0000-0000-0000-000000000006",
+          "item_index": 0,
+          "item_id": "hardscaping",
+          "price_cents": 1950000,
+          "quantity": 1,
+          "extended_cents": 1950000
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000012",
+          "item_index": 0,
+          "item_id": "custom_pool",
+          "price_cents": 24500000,
+          "quantity": 1,
+          "extended_cents": 24500000
+        }
+      ],
+      "fct_purchases": [
+        {
+          "event_id": "00000000-0000-0000-0000-000000000006",
+          "transaction_id": "SYN-P01-payment",
+          "event_date": "2026-01-15",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "currency": "USD",
+          "value_cents": 1950000,
+          "campaign": "design-journal"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000012",
+          "transaction_id": "SYN-P03-payment",
+          "event_date": "2026-01-15",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "currency": "USD",
+          "value_cents": 24500000,
+          "campaign": "design-journal"
+        }
+      ],
+      "mart_reconciliation": [
+        {
+          "conversion_key": "close_convert_lead|SYN-P01-signed_contract",
+          "project_id": "SYN-P01",
+          "source_ref": "SYN-P01-signed_contract",
+          "event_name": "close_convert_lead",
+          "value_basis": "contract",
+          "expected_cents": 6500000,
+          "measured_cents": 6500000,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "close_convert_lead|SYN-P02-signed_contract",
+          "project_id": "SYN-P02",
+          "source_ref": "SYN-P02-signed_contract",
+          "event_name": "close_convert_lead",
+          "value_basis": "contract",
+          "expected_cents": 12500000,
+          "measured_cents": 12500000,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "close_convert_lead|SYN-P03-signed_contract",
+          "project_id": "SYN-P03",
+          "source_ref": "SYN-P03-signed_contract",
+          "event_name": "close_convert_lead",
+          "value_basis": "contract",
+          "expected_cents": 24500000,
+          "measured_cents": null,
+          "delta_cents": -24500000,
+          "status": "missing"
+        },
+        {
+          "conversion_key": "disqualify_lead|SYN-P05-disqualified",
+          "project_id": "SYN-P05",
+          "source_ref": "SYN-P05-disqualified",
+          "event_name": "disqualify_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "generate_lead|SYN-P01-inquiry",
+          "project_id": "SYN-P01",
+          "source_ref": "SYN-P01-inquiry",
+          "event_name": "generate_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "generate_lead|SYN-P02-inquiry",
+          "project_id": "SYN-P02",
+          "source_ref": "SYN-P02-inquiry",
+          "event_name": "generate_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "generate_lead|SYN-P03-inquiry",
+          "project_id": "SYN-P03",
+          "source_ref": "SYN-P03-inquiry",
+          "event_name": "generate_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "generate_lead|SYN-P04-inquiry",
+          "project_id": "SYN-P04",
+          "source_ref": "SYN-P04-inquiry",
+          "event_name": "generate_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "generate_lead|SYN-P05-inquiry",
+          "project_id": "SYN-P05",
+          "source_ref": "SYN-P05-inquiry",
+          "event_name": "generate_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "purchase|SYN-P01-payment",
+          "project_id": "SYN-P01",
+          "source_ref": "SYN-P01-payment",
+          "event_name": "purchase",
+          "value_basis": "payment",
+          "expected_cents": 1950000,
+          "measured_cents": 1950000,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "purchase|SYN-P01-progress",
+          "project_id": "SYN-P01",
+          "source_ref": "SYN-P01-progress",
+          "event_name": "purchase",
+          "value_basis": "payment",
+          "expected_cents": 1300000,
+          "measured_cents": null,
+          "delta_cents": -1300000,
+          "status": "missing"
+        },
+        {
+          "conversion_key": "purchase|SYN-P02-payment",
+          "project_id": "SYN-P02",
+          "source_ref": "SYN-P02-payment",
+          "event_name": "purchase",
+          "value_basis": "payment",
+          "expected_cents": 3750000,
+          "measured_cents": null,
+          "delta_cents": -3750000,
+          "status": "missing"
+        },
+        {
+          "conversion_key": "purchase|SYN-P03-payment",
+          "project_id": "SYN-P03",
+          "source_ref": "SYN-P03-payment",
+          "event_name": "purchase",
+          "value_basis": "payment",
+          "expected_cents": 7350000,
+          "measured_cents": 24500000,
+          "delta_cents": 17150000,
+          "status": "value_mismatch"
+        },
+        {
+          "conversion_key": "qualify_lead|SYN-P01-qualified",
+          "project_id": "SYN-P01",
+          "source_ref": "SYN-P01-qualified",
+          "event_name": "qualify_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "qualify_lead|SYN-P02-qualified",
+          "project_id": "SYN-P02",
+          "source_ref": "SYN-P02-qualified",
+          "event_name": "qualify_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "qualify_lead|SYN-P03-qualified",
+          "project_id": "SYN-P03",
+          "source_ref": "SYN-P03-qualified",
+          "event_name": "qualify_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "qualify_lead|SYN-P04-qualified",
+          "project_id": "SYN-P04",
+          "source_ref": "SYN-P04-qualified",
+          "event_name": "qualify_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "working_lead|SYN-P01-working",
+          "project_id": "SYN-P01",
+          "source_ref": "SYN-P01-working",
+          "event_name": "working_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "working_lead|SYN-P02-working",
+          "project_id": "SYN-P02",
+          "source_ref": "SYN-P02-working",
+          "event_name": "working_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "working_lead|SYN-P03-working",
+          "project_id": "SYN-P03",
+          "source_ref": "SYN-P03-working",
+          "event_name": "working_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "working_lead|SYN-P04-working",
+          "project_id": "SYN-P04",
+          "source_ref": "SYN-P04-working",
+          "event_name": "working_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        }
+      ],
+      "mart_daily": [
+        {
+          "event_date": "2025-09-01",
+          "currency": "USD",
+          "value_basis": "unvalued",
+          "event_name": "generate_lead",
+          "accepted_events": 5,
+          "measured_cents": 0,
+          "late_events": 0
+        },
+        {
+          "event_date": "2025-09-03",
+          "currency": "USD",
+          "value_basis": "unvalued",
+          "event_name": "disqualify_lead",
+          "accepted_events": 1,
+          "measured_cents": 0,
+          "late_events": 0
+        },
+        {
+          "event_date": "2025-09-03",
+          "currency": "USD",
+          "value_basis": "unvalued",
+          "event_name": "qualify_lead",
+          "accepted_events": 4,
+          "measured_cents": 0,
+          "late_events": 0
+        },
+        {
+          "event_date": "2025-09-06",
+          "currency": "USD",
+          "value_basis": "unvalued",
+          "event_name": "working_lead",
+          "accepted_events": 4,
+          "measured_cents": 0,
+          "late_events": 0
+        },
+        {
+          "event_date": "2026-01-08",
+          "currency": "USD",
+          "value_basis": "contract",
+          "event_name": "close_convert_lead",
+          "accepted_events": 2,
+          "measured_cents": 19000000,
+          "late_events": 0
+        },
+        {
+          "event_date": "2026-01-15",
+          "currency": "USD",
+          "value_basis": "payment",
+          "event_name": "purchase",
+          "accepted_events": 2,
+          "measured_cents": 26450000,
+          "late_events": 0
+        }
+      ],
+      "mart_channels": [
+        {
+          "campaign": "design-journal",
+          "currency": "USD",
+          "value_basis": "contract",
+          "event_name": "close_convert_lead",
+          "conversions": 2,
+          "measured_cents": 19000000
+        },
+        {
+          "campaign": "design-journal",
+          "currency": "USD",
+          "value_basis": "payment",
+          "event_name": "purchase",
+          "conversions": 2,
+          "measured_cents": 26450000
+        },
+        {
+          "campaign": "design-journal",
+          "currency": "USD",
+          "value_basis": "unvalued",
+          "event_name": "disqualify_lead",
+          "conversions": 1,
+          "measured_cents": 0
+        },
+        {
+          "campaign": "design-journal",
+          "currency": "USD",
+          "value_basis": "unvalued",
+          "event_name": "generate_lead",
+          "conversions": 5,
+          "measured_cents": 0
+        },
+        {
+          "campaign": "design-journal",
+          "currency": "USD",
+          "value_basis": "unvalued",
+          "event_name": "qualify_lead",
+          "conversions": 4,
+          "measured_cents": 0
+        },
+        {
+          "campaign": "design-journal",
+          "currency": "USD",
+          "value_basis": "unvalued",
+          "event_name": "working_lead",
+          "conversions": 4,
+          "measured_cents": 0
+        }
+      ],
+      "mart_health": [
+        {
+          "status": "accepted",
+          "attempts": 18
+        },
+        {
+          "status": "authority_denied",
+          "attempts": 2
+        },
+        {
+          "status": "consent_denied",
+          "attempts": 1
+        },
+        {
+          "status": "contract_rejected",
+          "attempts": 2
+        },
+        {
+          "status": "duplicate_conversion",
+          "attempts": 1
+        },
+        {
+          "status": "duplicate_event",
+          "attempts": 1
+        },
+        {
+          "status": "duplicate_transaction",
+          "attempts": 1
+        },
+        {
+          "status": "identity_conflict",
+          "attempts": 1
+        },
+        {
+          "status": "value_rejected",
+          "attempts": 1
+        }
+      ],
+      "fct_conversions": [
+        {
+          "conversion_key": "close_convert_lead|SYN-P01-signed_contract",
+          "event_id": "00000000-0000-0000-0000-000000000005",
+          "source_ref": "SYN-P01-signed_contract",
+          "project_id": "SYN-P01",
+          "event_name": "close_convert_lead",
+          "event_date": "2026-01-08",
+          "origin": "offline",
+          "value_basis": "contract",
+          "currency": "USD",
+          "value_cents": 6500000,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "close_convert_lead|SYN-P02-signed_contract",
+          "event_id": "00000000-0000-0000-0000-00000000000b",
+          "source_ref": "SYN-P02-signed_contract",
+          "project_id": "SYN-P02",
+          "event_name": "close_convert_lead",
+          "event_date": "2026-01-08",
+          "origin": "offline",
+          "value_basis": "contract",
+          "currency": "USD",
+          "value_cents": 12500000,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "disqualify_lead|SYN-P05-disqualified",
+          "event_id": "00000000-0000-0000-0000-000000000018",
+          "source_ref": "SYN-P05-disqualified",
+          "project_id": "SYN-P05",
+          "event_name": "disqualify_lead",
+          "event_date": "2025-09-03",
+          "origin": "offline",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "generate_lead|SYN-P01-inquiry",
+          "event_id": "00000000-0000-0000-0000-000000000001",
+          "source_ref": "SYN-P01-inquiry",
+          "project_id": "SYN-P01",
+          "event_name": "generate_lead",
+          "event_date": "2025-09-01",
+          "origin": "browser",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "generate_lead|SYN-P02-inquiry",
+          "event_id": "00000000-0000-0000-0000-000000000007",
+          "source_ref": "SYN-P02-inquiry",
+          "project_id": "SYN-P02",
+          "event_name": "generate_lead",
+          "event_date": "2025-09-01",
+          "origin": "browser",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "generate_lead|SYN-P03-inquiry",
+          "event_id": "00000000-0000-0000-0000-00000000000d",
+          "source_ref": "SYN-P03-inquiry",
+          "project_id": "SYN-P03",
+          "event_name": "generate_lead",
+          "event_date": "2025-09-01",
+          "origin": "browser",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "generate_lead|SYN-P04-inquiry",
+          "event_id": "00000000-0000-0000-0000-000000000013",
+          "source_ref": "SYN-P04-inquiry",
+          "project_id": "SYN-P04",
+          "event_name": "generate_lead",
+          "event_date": "2025-09-01",
+          "origin": "browser",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "generate_lead|SYN-P05-inquiry",
+          "event_id": "00000000-0000-0000-0000-000000000017",
+          "source_ref": "SYN-P05-inquiry",
+          "project_id": "SYN-P05",
+          "event_name": "generate_lead",
+          "event_date": "2025-09-01",
+          "origin": "browser",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "purchase|SYN-P01-payment",
+          "event_id": "00000000-0000-0000-0000-000000000006",
+          "source_ref": "SYN-P01-payment",
+          "project_id": "SYN-P01",
+          "event_name": "purchase",
+          "event_date": "2026-01-15",
+          "origin": "offline",
+          "value_basis": "payment",
+          "currency": "USD",
+          "value_cents": 1950000,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "purchase|SYN-P03-payment",
+          "event_id": "00000000-0000-0000-0000-000000000012",
+          "source_ref": "SYN-P03-payment",
+          "project_id": "SYN-P03",
+          "event_name": "purchase",
+          "event_date": "2026-01-15",
+          "origin": "offline",
+          "value_basis": "payment",
+          "currency": "USD",
+          "value_cents": 24500000,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "qualify_lead|SYN-P01-qualified",
+          "event_id": "00000000-0000-0000-0000-000000000002",
+          "source_ref": "SYN-P01-qualified",
+          "project_id": "SYN-P01",
+          "event_name": "qualify_lead",
+          "event_date": "2025-09-03",
+          "origin": "offline",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "qualify_lead|SYN-P02-qualified",
+          "event_id": "00000000-0000-0000-0000-000000000008",
+          "source_ref": "SYN-P02-qualified",
+          "project_id": "SYN-P02",
+          "event_name": "qualify_lead",
+          "event_date": "2025-09-03",
+          "origin": "offline",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "qualify_lead|SYN-P03-qualified",
+          "event_id": "00000000-0000-0000-0000-00000000000e",
+          "source_ref": "SYN-P03-qualified",
+          "project_id": "SYN-P03",
+          "event_name": "qualify_lead",
+          "event_date": "2025-09-03",
+          "origin": "offline",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "qualify_lead|SYN-P04-qualified",
+          "event_id": "00000000-0000-0000-0000-000000000014",
+          "source_ref": "SYN-P04-qualified",
+          "project_id": "SYN-P04",
+          "event_name": "qualify_lead",
+          "event_date": "2025-09-03",
+          "origin": "offline",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "working_lead|SYN-P01-working",
+          "event_id": "00000000-0000-0000-0000-000000000003",
+          "source_ref": "SYN-P01-working",
+          "project_id": "SYN-P01",
+          "event_name": "working_lead",
+          "event_date": "2025-09-06",
+          "origin": "offline",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "working_lead|SYN-P02-working",
+          "event_id": "00000000-0000-0000-0000-000000000009",
+          "source_ref": "SYN-P02-working",
+          "project_id": "SYN-P02",
+          "event_name": "working_lead",
+          "event_date": "2025-09-06",
+          "origin": "offline",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "working_lead|SYN-P03-working",
+          "event_id": "00000000-0000-0000-0000-00000000000f",
+          "source_ref": "SYN-P03-working",
+          "project_id": "SYN-P03",
+          "event_name": "working_lead",
+          "event_date": "2025-09-06",
+          "origin": "offline",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "working_lead|SYN-P04-working",
+          "event_id": "00000000-0000-0000-0000-000000000015",
+          "source_ref": "SYN-P04-working",
+          "project_id": "SYN-P04",
+          "event_name": "working_lead",
+          "event_date": "2025-09-06",
+          "origin": "offline",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        }
+      ],
+      "mart_project_values": [
+        {
+          "project_id": "SYN-P01",
+          "project_type": "hardscaping",
+          "opportunity_cents": 6500000,
+          "proposal_cents": 6500000,
+          "signed_contract_cents": 6500000,
+          "payment_cents": 3250000,
+          "measured_contract_cents": 6500000,
+          "measured_payment_cents": 1950000
+        },
+        {
+          "project_id": "SYN-P02",
+          "project_type": "outdoor_kitchen",
+          "opportunity_cents": 12500000,
+          "proposal_cents": 12500000,
+          "signed_contract_cents": 12500000,
+          "payment_cents": 3750000,
+          "measured_contract_cents": 12500000,
+          "measured_payment_cents": 0
+        },
+        {
+          "project_id": "SYN-P03",
+          "project_type": "custom_pool",
+          "opportunity_cents": 24500000,
+          "proposal_cents": 24500000,
+          "signed_contract_cents": 24500000,
+          "payment_cents": 7350000,
+          "measured_contract_cents": 0,
+          "measured_payment_cents": 24500000
+        },
+        {
+          "project_id": "SYN-P04",
+          "project_type": "premium_renovation",
+          "opportunity_cents": 48500000,
+          "proposal_cents": 48500000,
+          "signed_contract_cents": 0,
+          "payment_cents": 0,
+          "measured_contract_cents": 0,
+          "measured_payment_cents": 0
+        },
+        {
+          "project_id": "SYN-P05",
+          "project_type": "landscape_construction",
+          "opportunity_cents": 5000000,
+          "proposal_cents": 0,
+          "signed_contract_cents": 0,
+          "payment_cents": 0,
+          "measured_contract_cents": 0,
+          "measured_payment_cents": 0
+        }
+      ]
+    },
+    "dbt_results": [
+      {
+        "node": "seed.measurement_assurance.accepted_events",
+        "status": "success"
+      },
+      {
+        "node": "seed.measurement_assurance.collection_decisions",
+        "status": "success"
+      },
+      {
+        "node": "seed.measurement_assurance.event_items",
+        "status": "success"
+      },
+      {
+        "node": "seed.measurement_assurance.projects",
+        "status": "success"
+      },
+      {
+        "node": "seed.measurement_assurance.source_facts",
+        "status": "success"
+      },
+      {
+        "node": "model.measurement_assurance.fct_events",
+        "status": "success"
+      },
+      {
+        "node": "model.measurement_assurance.mart_health",
+        "status": "success"
+      },
+      {
+        "node": "test.measurement_assurance.accepted_values_fct_events_event_name__generate_lead__qualify_lead__working_lead__disqualify_lead__close_convert_lead__purchase.18f15a5ec0",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.authority_and_basis",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.not_null_fct_events_event_id.62d59fe27e",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.not_null_fct_events_payload_hash.fdeaf9ca60",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.relationships_fct_events_source_ref__source_ref__ref_source_facts_.0d4e409003",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.unique_fct_events_event_id.355e3ede35",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.attempt_conservation",
+        "status": "pass"
+      },
+      {
+        "node": "model.measurement_assurance.fct_conversions",
+        "status": "success"
+      },
+      {
+        "node": "model.measurement_assurance.fct_items",
+        "status": "success"
+      },
+      {
+        "node": "model.measurement_assurance.fct_purchases",
+        "status": "success"
+      },
+      {
+        "node": "model.measurement_assurance.mart_daily",
+        "status": "success"
+      },
+      {
+        "node": "test.measurement_assurance.not_null_fct_conversions_conversion_key.3515ecd8f2",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.unique_fct_conversions_conversion_key.75a5b975b9",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.item_conservation",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.item_grain",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.relationships_fct_items_event_id__event_id__ref_fct_events_.87668c82ac",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.not_null_fct_purchases_transaction_id.027be88514",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.relationships_fct_purchases_event_id__event_id__ref_fct_events_.5c630c9e5b",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.unique_fct_purchases_transaction_id.5844577678",
+        "status": "pass"
+      },
+      {
+        "node": "model.measurement_assurance.mart_channels",
+        "status": "success"
+      },
+      {
+        "node": "model.measurement_assurance.mart_project_values",
+        "status": "success"
+      },
+      {
+        "node": "model.measurement_assurance.mart_reconciliation",
+        "status": "success"
+      },
+      {
+        "node": "test.measurement_assurance.not_null_mart_project_values_project_id.88ff41abdb",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.project_no_fanout",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.unique_mart_project_values_project_id.b5a84a9397",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.accepted_values_mart_reconciliation_status__matched__missing__unexpected__value_mismatch__not_eligible.3d55b0b06b",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.not_null_mart_reconciliation_conversion_key.59063a748b",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.unique_mart_reconciliation_conversion_key.e7790df499",
+        "status": "pass"
+      }
+    ],
+    "model_hashes": {
+      "fct_events": "c190b599e5d909a45ffa2214a324c1870387860e63d605aa3ecafb7836b9d0ab",
+      "fct_items": "53edaf204506a54e82f52ab49ba6e02c938e6abe0778dbf515b95ba5081060e5",
+      "fct_purchases": "af1c0286febc2d3bf003ff58dc5376074e39ace439e8172ef47812860d3c8ae4",
+      "mart_reconciliation": "ab98cd96123298906cd9c87e1dea2fe96d0c417892055a321a981bfb24fe9b63",
+      "mart_daily": "e5976e398fe98aefad79d190862d433d5be3e199b9034bf23f7c228ea338c3c0",
+      "mart_channels": "1dced78b202fc0be80aafbfb596920dd533d4fa2a2f68ba6c7e27f70418fcb31",
+      "mart_health": "d62e2a71b962cf5f2690fd856b2fef5c896314357e04630c007bbd7e0927f216",
+      "fct_conversions": "8998596b2e7926436e740284bac204838e4edd5608a16f7a71b31e8f975c9bd2",
+      "mart_project_values": "f28fe32cc9492312ea69a5e7ec06222c1c8c1fd8e6e27b6b372baec487eb7488"
+    },
+    "reconciliation": "passed",
+    "source_sha256": "8f45422a1d1320662fa6a5dbeeba661c1fe3412d60acf9d03ce153c935b22e2a"
+  },
+  "final": {
+    "models": {
+      "fct_events": [
+        {
+          "event_id": "00000000-0000-0000-0000-000000000001",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "generate_lead",
+          "origin": "browser",
+          "source_ref": "SYN-P01-inquiry",
+          "project_id": "SYN-P01",
+          "project_type": "hardscaping",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-01 12:00:00",
+          "received_at": "2025-09-01 12:00:00",
+          "event_date": "2025-09-01",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "28afefbdd2c651c6ad381e58e9a20a089ffb1a9e12fd5bc40ea972c2cb1fcca8"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000002",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "qualify_lead",
+          "origin": "offline",
+          "source_ref": "SYN-P01-qualified",
+          "project_id": "SYN-P01",
+          "project_type": "hardscaping",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-03 12:00:00",
+          "received_at": "2025-09-03 12:00:00",
+          "event_date": "2025-09-03",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "d97a3b7adea4a236bf111a5ac670c71ca52afc1683127baae087ec8f7b80118e"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000003",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "working_lead",
+          "origin": "offline",
+          "source_ref": "SYN-P01-working",
+          "project_id": "SYN-P01",
+          "project_type": "hardscaping",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-06 12:00:00",
+          "received_at": "2025-09-06 12:00:00",
+          "event_date": "2025-09-06",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "c32cf6d1c69016a421f91b3092d4fcfb86bb3e2c880712acaad0d5b71c4e9c13"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000005",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "close_convert_lead",
+          "origin": "offline",
+          "source_ref": "SYN-P01-signed_contract",
+          "project_id": "SYN-P01",
+          "project_type": "hardscaping",
+          "value_basis": "contract",
+          "occurred_at": "2026-01-08 12:00:00",
+          "received_at": "2026-01-08 12:00:00",
+          "event_date": "2026-01-08",
+          "value_cents": 6500000,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "e4f3307fbd47e0e9b592470106f3c4403c1e7c7239bd8ebea2ce4dcb4d01205e"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000006",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "purchase",
+          "origin": "offline",
+          "source_ref": "SYN-P01-payment",
+          "project_id": "SYN-P01",
+          "project_type": "hardscaping",
+          "value_basis": "payment",
+          "occurred_at": "2026-01-15 12:00:00",
+          "received_at": "2026-01-15 12:00:00",
+          "event_date": "2026-01-15",
+          "value_cents": 1950000,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": "SYN-P01-payment",
+          "is_late": false,
+          "payload_hash": "c71b28f60bea93310e74c32bdd2061fbbc8c3f77f1df481d5efc999eea8a7c4f"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000007",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "generate_lead",
+          "origin": "browser",
+          "source_ref": "SYN-P02-inquiry",
+          "project_id": "SYN-P02",
+          "project_type": "outdoor_kitchen",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-01 12:00:00",
+          "received_at": "2025-09-01 12:00:00",
+          "event_date": "2025-09-01",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "f8c4edc06f6217822876a8749bd14c9d29691fa5e61190f9f24857338a829da1"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000008",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "qualify_lead",
+          "origin": "offline",
+          "source_ref": "SYN-P02-qualified",
+          "project_id": "SYN-P02",
+          "project_type": "outdoor_kitchen",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-03 12:00:00",
+          "received_at": "2025-09-03 12:00:00",
+          "event_date": "2025-09-03",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "893ee281e890c27343eb35111ad1aa12cceb49df4a8ff692f45c472fbb2b476f"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000009",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "working_lead",
+          "origin": "offline",
+          "source_ref": "SYN-P02-working",
+          "project_id": "SYN-P02",
+          "project_type": "outdoor_kitchen",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-06 12:00:00",
+          "received_at": "2025-09-06 12:00:00",
+          "event_date": "2025-09-06",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "54996d98ac3f065c85dad6b9d4727d296e473be384d86d925a600cd19b1dc7a4"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-00000000000b",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "close_convert_lead",
+          "origin": "offline",
+          "source_ref": "SYN-P02-signed_contract",
+          "project_id": "SYN-P02",
+          "project_type": "outdoor_kitchen",
+          "value_basis": "contract",
+          "occurred_at": "2026-01-08 12:00:00",
+          "received_at": "2026-01-08 12:00:00",
+          "event_date": "2026-01-08",
+          "value_cents": 12500000,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "618d3f001ea34e9ca8f88ca6810d470b05623e7198e50dba1aba5340a8b17acf"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-00000000000d",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "generate_lead",
+          "origin": "browser",
+          "source_ref": "SYN-P03-inquiry",
+          "project_id": "SYN-P03",
+          "project_type": "custom_pool",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-01 12:00:00",
+          "received_at": "2025-09-01 12:00:00",
+          "event_date": "2025-09-01",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "a213817c9edbb3080f674e69eb4615f47b9c6ba1bcb1065d74350b1761a9fca8"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-00000000000e",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "qualify_lead",
+          "origin": "offline",
+          "source_ref": "SYN-P03-qualified",
+          "project_id": "SYN-P03",
+          "project_type": "custom_pool",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-03 12:00:00",
+          "received_at": "2025-09-03 12:00:00",
+          "event_date": "2025-09-03",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "ac3b363c0c355037d36fccaf9b412ecf853ec31503e5818a08beabc8415eba19"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-00000000000f",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "working_lead",
+          "origin": "offline",
+          "source_ref": "SYN-P03-working",
+          "project_id": "SYN-P03",
+          "project_type": "custom_pool",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-06 12:00:00",
+          "received_at": "2025-09-06 12:00:00",
+          "event_date": "2025-09-06",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "f7bfa09b79b4bf97d63c51d76f3455d38a3502b85297188140bf84f647b1026d"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000012",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "purchase",
+          "origin": "offline",
+          "source_ref": "SYN-P03-payment",
+          "project_id": "SYN-P03",
+          "project_type": "custom_pool",
+          "value_basis": "payment",
+          "occurred_at": "2026-01-15 12:00:00",
+          "received_at": "2026-01-15 12:00:00",
+          "event_date": "2026-01-15",
+          "value_cents": 24500000,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": "SYN-P03-payment",
+          "is_late": false,
+          "payload_hash": "99c8fb6375dc16698081cad460a5b31bf89e72d052fee1b8f14f6f4464ee663f"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000013",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "generate_lead",
+          "origin": "browser",
+          "source_ref": "SYN-P04-inquiry",
+          "project_id": "SYN-P04",
+          "project_type": "premium_renovation",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-01 12:00:00",
+          "received_at": "2025-09-01 12:00:00",
+          "event_date": "2025-09-01",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "43d73524d14af35afbed714d8d75e070dc9e7005ec79eaed2dd450d2803b7a37"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000014",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "qualify_lead",
+          "origin": "offline",
+          "source_ref": "SYN-P04-qualified",
+          "project_id": "SYN-P04",
+          "project_type": "premium_renovation",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-03 12:00:00",
+          "received_at": "2025-09-03 12:00:00",
+          "event_date": "2025-09-03",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "2f047660de10ae5c869fdb4dff4d616716b9fb9296541f09debc6de054b81654"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000015",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "working_lead",
+          "origin": "offline",
+          "source_ref": "SYN-P04-working",
+          "project_id": "SYN-P04",
+          "project_type": "premium_renovation",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-06 12:00:00",
+          "received_at": "2025-09-06 12:00:00",
+          "event_date": "2025-09-06",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "ed628431d8e221f09a57d0db065a16835669c578a30bd95d4d411d740746cc39"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000017",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "generate_lead",
+          "origin": "browser",
+          "source_ref": "SYN-P05-inquiry",
+          "project_id": "SYN-P05",
+          "project_type": "landscape_construction",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-01 12:00:00",
+          "received_at": "2025-09-01 12:00:00",
+          "event_date": "2025-09-01",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "43f2fda31e62fa9d7d384d60daece22901899f066f893b5ad95213ebd445568e"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000018",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "disqualify_lead",
+          "origin": "offline",
+          "source_ref": "SYN-P05-disqualified",
+          "project_id": "SYN-P05",
+          "project_type": "landscape_construction",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-03 12:00:00",
+          "received_at": "2025-09-03 12:00:00",
+          "event_date": "2025-09-03",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "e190aa615a22d69b6c8ab8d5f27944f5e9e925c98d552ea6d746c913aaaf8a0e"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-0000000000c8",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "purchase",
+          "origin": "offline",
+          "source_ref": "SYN-P02-payment",
+          "project_id": "SYN-P02",
+          "project_type": "outdoor_kitchen",
+          "value_basis": "payment",
+          "occurred_at": "2026-01-15 12:00:00",
+          "received_at": "2026-01-17 12:00:00",
+          "event_date": "2026-01-15",
+          "value_cents": 3750000,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": "SYN-P02-payment",
+          "is_late": true,
+          "payload_hash": "3d340997015f4be45bbea0bafd1804545a50cbb62bdf96c247485e73feeedeb5"
+        }
+      ],
+      "fct_items": [
+        {
+          "event_id": "00000000-0000-0000-0000-000000000006",
+          "item_index": 0,
+          "item_id": "hardscaping",
+          "price_cents": 1950000,
+          "quantity": 1,
+          "extended_cents": 1950000
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000012",
+          "item_index": 0,
+          "item_id": "custom_pool",
+          "price_cents": 24500000,
+          "quantity": 1,
+          "extended_cents": 24500000
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-0000000000c8",
+          "item_index": 0,
+          "item_id": "outdoor_kitchen",
+          "price_cents": 3750000,
+          "quantity": 1,
+          "extended_cents": 3750000
+        }
+      ],
+      "fct_purchases": [
+        {
+          "event_id": "00000000-0000-0000-0000-000000000006",
+          "transaction_id": "SYN-P01-payment",
+          "event_date": "2026-01-15",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "currency": "USD",
+          "value_cents": 1950000,
+          "campaign": "design-journal"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000012",
+          "transaction_id": "SYN-P03-payment",
+          "event_date": "2026-01-15",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "currency": "USD",
+          "value_cents": 24500000,
+          "campaign": "design-journal"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-0000000000c8",
+          "transaction_id": "SYN-P02-payment",
+          "event_date": "2026-01-15",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "currency": "USD",
+          "value_cents": 3750000,
+          "campaign": "design-journal"
+        }
+      ],
+      "mart_reconciliation": [
+        {
+          "conversion_key": "close_convert_lead|SYN-P01-signed_contract",
+          "project_id": "SYN-P01",
+          "source_ref": "SYN-P01-signed_contract",
+          "event_name": "close_convert_lead",
+          "value_basis": "contract",
+          "expected_cents": 6500000,
+          "measured_cents": 6500000,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "close_convert_lead|SYN-P02-signed_contract",
+          "project_id": "SYN-P02",
+          "source_ref": "SYN-P02-signed_contract",
+          "event_name": "close_convert_lead",
+          "value_basis": "contract",
+          "expected_cents": 12500000,
+          "measured_cents": 12500000,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "close_convert_lead|SYN-P03-signed_contract",
+          "project_id": "SYN-P03",
+          "source_ref": "SYN-P03-signed_contract",
+          "event_name": "close_convert_lead",
+          "value_basis": "contract",
+          "expected_cents": 24500000,
+          "measured_cents": null,
+          "delta_cents": -24500000,
+          "status": "missing"
+        },
+        {
+          "conversion_key": "disqualify_lead|SYN-P05-disqualified",
+          "project_id": "SYN-P05",
+          "source_ref": "SYN-P05-disqualified",
+          "event_name": "disqualify_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "generate_lead|SYN-P01-inquiry",
+          "project_id": "SYN-P01",
+          "source_ref": "SYN-P01-inquiry",
+          "event_name": "generate_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "generate_lead|SYN-P02-inquiry",
+          "project_id": "SYN-P02",
+          "source_ref": "SYN-P02-inquiry",
+          "event_name": "generate_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "generate_lead|SYN-P03-inquiry",
+          "project_id": "SYN-P03",
+          "source_ref": "SYN-P03-inquiry",
+          "event_name": "generate_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "generate_lead|SYN-P04-inquiry",
+          "project_id": "SYN-P04",
+          "source_ref": "SYN-P04-inquiry",
+          "event_name": "generate_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "generate_lead|SYN-P05-inquiry",
+          "project_id": "SYN-P05",
+          "source_ref": "SYN-P05-inquiry",
+          "event_name": "generate_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "purchase|SYN-P01-payment",
+          "project_id": "SYN-P01",
+          "source_ref": "SYN-P01-payment",
+          "event_name": "purchase",
+          "value_basis": "payment",
+          "expected_cents": 1950000,
+          "measured_cents": 1950000,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "purchase|SYN-P01-progress",
+          "project_id": "SYN-P01",
+          "source_ref": "SYN-P01-progress",
+          "event_name": "purchase",
+          "value_basis": "payment",
+          "expected_cents": 1300000,
+          "measured_cents": null,
+          "delta_cents": -1300000,
+          "status": "missing"
+        },
+        {
+          "conversion_key": "purchase|SYN-P02-payment",
+          "project_id": "SYN-P02",
+          "source_ref": "SYN-P02-payment",
+          "event_name": "purchase",
+          "value_basis": "payment",
+          "expected_cents": 3750000,
+          "measured_cents": 3750000,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "purchase|SYN-P03-payment",
+          "project_id": "SYN-P03",
+          "source_ref": "SYN-P03-payment",
+          "event_name": "purchase",
+          "value_basis": "payment",
+          "expected_cents": 7350000,
+          "measured_cents": 24500000,
+          "delta_cents": 17150000,
+          "status": "value_mismatch"
+        },
+        {
+          "conversion_key": "qualify_lead|SYN-P01-qualified",
+          "project_id": "SYN-P01",
+          "source_ref": "SYN-P01-qualified",
+          "event_name": "qualify_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "qualify_lead|SYN-P02-qualified",
+          "project_id": "SYN-P02",
+          "source_ref": "SYN-P02-qualified",
+          "event_name": "qualify_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "qualify_lead|SYN-P03-qualified",
+          "project_id": "SYN-P03",
+          "source_ref": "SYN-P03-qualified",
+          "event_name": "qualify_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "qualify_lead|SYN-P04-qualified",
+          "project_id": "SYN-P04",
+          "source_ref": "SYN-P04-qualified",
+          "event_name": "qualify_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "working_lead|SYN-P01-working",
+          "project_id": "SYN-P01",
+          "source_ref": "SYN-P01-working",
+          "event_name": "working_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "working_lead|SYN-P02-working",
+          "project_id": "SYN-P02",
+          "source_ref": "SYN-P02-working",
+          "event_name": "working_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "working_lead|SYN-P03-working",
+          "project_id": "SYN-P03",
+          "source_ref": "SYN-P03-working",
+          "event_name": "working_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "working_lead|SYN-P04-working",
+          "project_id": "SYN-P04",
+          "source_ref": "SYN-P04-working",
+          "event_name": "working_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        }
+      ],
+      "mart_daily": [
+        {
+          "event_date": "2025-09-01",
+          "currency": "USD",
+          "value_basis": "unvalued",
+          "event_name": "generate_lead",
+          "accepted_events": 5,
+          "measured_cents": 0,
+          "late_events": 0
+        },
+        {
+          "event_date": "2025-09-03",
+          "currency": "USD",
+          "value_basis": "unvalued",
+          "event_name": "disqualify_lead",
+          "accepted_events": 1,
+          "measured_cents": 0,
+          "late_events": 0
+        },
+        {
+          "event_date": "2025-09-03",
+          "currency": "USD",
+          "value_basis": "unvalued",
+          "event_name": "qualify_lead",
+          "accepted_events": 4,
+          "measured_cents": 0,
+          "late_events": 0
+        },
+        {
+          "event_date": "2025-09-06",
+          "currency": "USD",
+          "value_basis": "unvalued",
+          "event_name": "working_lead",
+          "accepted_events": 4,
+          "measured_cents": 0,
+          "late_events": 0
+        },
+        {
+          "event_date": "2026-01-08",
+          "currency": "USD",
+          "value_basis": "contract",
+          "event_name": "close_convert_lead",
+          "accepted_events": 2,
+          "measured_cents": 19000000,
+          "late_events": 0
+        },
+        {
+          "event_date": "2026-01-15",
+          "currency": "USD",
+          "value_basis": "payment",
+          "event_name": "purchase",
+          "accepted_events": 3,
+          "measured_cents": 30200000,
+          "late_events": 1
+        }
+      ],
+      "mart_channels": [
+        {
+          "campaign": "design-journal",
+          "currency": "USD",
+          "value_basis": "contract",
+          "event_name": "close_convert_lead",
+          "conversions": 2,
+          "measured_cents": 19000000
+        },
+        {
+          "campaign": "design-journal",
+          "currency": "USD",
+          "value_basis": "payment",
+          "event_name": "purchase",
+          "conversions": 3,
+          "measured_cents": 30200000
+        },
+        {
+          "campaign": "design-journal",
+          "currency": "USD",
+          "value_basis": "unvalued",
+          "event_name": "disqualify_lead",
+          "conversions": 1,
+          "measured_cents": 0
+        },
+        {
+          "campaign": "design-journal",
+          "currency": "USD",
+          "value_basis": "unvalued",
+          "event_name": "generate_lead",
+          "conversions": 5,
+          "measured_cents": 0
+        },
+        {
+          "campaign": "design-journal",
+          "currency": "USD",
+          "value_basis": "unvalued",
+          "event_name": "qualify_lead",
+          "conversions": 4,
+          "measured_cents": 0
+        },
+        {
+          "campaign": "design-journal",
+          "currency": "USD",
+          "value_basis": "unvalued",
+          "event_name": "working_lead",
+          "conversions": 4,
+          "measured_cents": 0
+        }
+      ],
+      "mart_health": [
+        {
+          "status": "accepted",
+          "attempts": 18
+        },
+        {
+          "status": "accepted_late",
+          "attempts": 1
+        },
+        {
+          "status": "authority_denied",
+          "attempts": 2
+        },
+        {
+          "status": "consent_denied",
+          "attempts": 1
+        },
+        {
+          "status": "contract_rejected",
+          "attempts": 2
+        },
+        {
+          "status": "duplicate_conversion",
+          "attempts": 1
+        },
+        {
+          "status": "duplicate_event",
+          "attempts": 1
+        },
+        {
+          "status": "duplicate_transaction",
+          "attempts": 1
+        },
+        {
+          "status": "identity_conflict",
+          "attempts": 1
+        },
+        {
+          "status": "value_rejected",
+          "attempts": 1
+        }
+      ],
+      "fct_conversions": [
+        {
+          "conversion_key": "close_convert_lead|SYN-P01-signed_contract",
+          "event_id": "00000000-0000-0000-0000-000000000005",
+          "source_ref": "SYN-P01-signed_contract",
+          "project_id": "SYN-P01",
+          "event_name": "close_convert_lead",
+          "event_date": "2026-01-08",
+          "origin": "offline",
+          "value_basis": "contract",
+          "currency": "USD",
+          "value_cents": 6500000,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "close_convert_lead|SYN-P02-signed_contract",
+          "event_id": "00000000-0000-0000-0000-00000000000b",
+          "source_ref": "SYN-P02-signed_contract",
+          "project_id": "SYN-P02",
+          "event_name": "close_convert_lead",
+          "event_date": "2026-01-08",
+          "origin": "offline",
+          "value_basis": "contract",
+          "currency": "USD",
+          "value_cents": 12500000,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "disqualify_lead|SYN-P05-disqualified",
+          "event_id": "00000000-0000-0000-0000-000000000018",
+          "source_ref": "SYN-P05-disqualified",
+          "project_id": "SYN-P05",
+          "event_name": "disqualify_lead",
+          "event_date": "2025-09-03",
+          "origin": "offline",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "generate_lead|SYN-P01-inquiry",
+          "event_id": "00000000-0000-0000-0000-000000000001",
+          "source_ref": "SYN-P01-inquiry",
+          "project_id": "SYN-P01",
+          "event_name": "generate_lead",
+          "event_date": "2025-09-01",
+          "origin": "browser",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "generate_lead|SYN-P02-inquiry",
+          "event_id": "00000000-0000-0000-0000-000000000007",
+          "source_ref": "SYN-P02-inquiry",
+          "project_id": "SYN-P02",
+          "event_name": "generate_lead",
+          "event_date": "2025-09-01",
+          "origin": "browser",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "generate_lead|SYN-P03-inquiry",
+          "event_id": "00000000-0000-0000-0000-00000000000d",
+          "source_ref": "SYN-P03-inquiry",
+          "project_id": "SYN-P03",
+          "event_name": "generate_lead",
+          "event_date": "2025-09-01",
+          "origin": "browser",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "generate_lead|SYN-P04-inquiry",
+          "event_id": "00000000-0000-0000-0000-000000000013",
+          "source_ref": "SYN-P04-inquiry",
+          "project_id": "SYN-P04",
+          "event_name": "generate_lead",
+          "event_date": "2025-09-01",
+          "origin": "browser",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "generate_lead|SYN-P05-inquiry",
+          "event_id": "00000000-0000-0000-0000-000000000017",
+          "source_ref": "SYN-P05-inquiry",
+          "project_id": "SYN-P05",
+          "event_name": "generate_lead",
+          "event_date": "2025-09-01",
+          "origin": "browser",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "purchase|SYN-P01-payment",
+          "event_id": "00000000-0000-0000-0000-000000000006",
+          "source_ref": "SYN-P01-payment",
+          "project_id": "SYN-P01",
+          "event_name": "purchase",
+          "event_date": "2026-01-15",
+          "origin": "offline",
+          "value_basis": "payment",
+          "currency": "USD",
+          "value_cents": 1950000,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "purchase|SYN-P02-payment",
+          "event_id": "00000000-0000-0000-0000-0000000000c8",
+          "source_ref": "SYN-P02-payment",
+          "project_id": "SYN-P02",
+          "event_name": "purchase",
+          "event_date": "2026-01-15",
+          "origin": "offline",
+          "value_basis": "payment",
+          "currency": "USD",
+          "value_cents": 3750000,
+          "campaign": "design-journal",
+          "is_late": true
+        },
+        {
+          "conversion_key": "purchase|SYN-P03-payment",
+          "event_id": "00000000-0000-0000-0000-000000000012",
+          "source_ref": "SYN-P03-payment",
+          "project_id": "SYN-P03",
+          "event_name": "purchase",
+          "event_date": "2026-01-15",
+          "origin": "offline",
+          "value_basis": "payment",
+          "currency": "USD",
+          "value_cents": 24500000,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "qualify_lead|SYN-P01-qualified",
+          "event_id": "00000000-0000-0000-0000-000000000002",
+          "source_ref": "SYN-P01-qualified",
+          "project_id": "SYN-P01",
+          "event_name": "qualify_lead",
+          "event_date": "2025-09-03",
+          "origin": "offline",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "qualify_lead|SYN-P02-qualified",
+          "event_id": "00000000-0000-0000-0000-000000000008",
+          "source_ref": "SYN-P02-qualified",
+          "project_id": "SYN-P02",
+          "event_name": "qualify_lead",
+          "event_date": "2025-09-03",
+          "origin": "offline",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "qualify_lead|SYN-P03-qualified",
+          "event_id": "00000000-0000-0000-0000-00000000000e",
+          "source_ref": "SYN-P03-qualified",
+          "project_id": "SYN-P03",
+          "event_name": "qualify_lead",
+          "event_date": "2025-09-03",
+          "origin": "offline",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "qualify_lead|SYN-P04-qualified",
+          "event_id": "00000000-0000-0000-0000-000000000014",
+          "source_ref": "SYN-P04-qualified",
+          "project_id": "SYN-P04",
+          "event_name": "qualify_lead",
+          "event_date": "2025-09-03",
+          "origin": "offline",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "working_lead|SYN-P01-working",
+          "event_id": "00000000-0000-0000-0000-000000000003",
+          "source_ref": "SYN-P01-working",
+          "project_id": "SYN-P01",
+          "event_name": "working_lead",
+          "event_date": "2025-09-06",
+          "origin": "offline",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "working_lead|SYN-P02-working",
+          "event_id": "00000000-0000-0000-0000-000000000009",
+          "source_ref": "SYN-P02-working",
+          "project_id": "SYN-P02",
+          "event_name": "working_lead",
+          "event_date": "2025-09-06",
+          "origin": "offline",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "working_lead|SYN-P03-working",
+          "event_id": "00000000-0000-0000-0000-00000000000f",
+          "source_ref": "SYN-P03-working",
+          "project_id": "SYN-P03",
+          "event_name": "working_lead",
+          "event_date": "2025-09-06",
+          "origin": "offline",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "working_lead|SYN-P04-working",
+          "event_id": "00000000-0000-0000-0000-000000000015",
+          "source_ref": "SYN-P04-working",
+          "project_id": "SYN-P04",
+          "event_name": "working_lead",
+          "event_date": "2025-09-06",
+          "origin": "offline",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        }
+      ],
+      "mart_project_values": [
+        {
+          "project_id": "SYN-P01",
+          "project_type": "hardscaping",
+          "opportunity_cents": 6500000,
+          "proposal_cents": 6500000,
+          "signed_contract_cents": 6500000,
+          "payment_cents": 3250000,
+          "measured_contract_cents": 6500000,
+          "measured_payment_cents": 1950000
+        },
+        {
+          "project_id": "SYN-P02",
+          "project_type": "outdoor_kitchen",
+          "opportunity_cents": 12500000,
+          "proposal_cents": 12500000,
+          "signed_contract_cents": 12500000,
+          "payment_cents": 3750000,
+          "measured_contract_cents": 12500000,
+          "measured_payment_cents": 3750000
+        },
+        {
+          "project_id": "SYN-P03",
+          "project_type": "custom_pool",
+          "opportunity_cents": 24500000,
+          "proposal_cents": 24500000,
+          "signed_contract_cents": 24500000,
+          "payment_cents": 7350000,
+          "measured_contract_cents": 0,
+          "measured_payment_cents": 24500000
+        },
+        {
+          "project_id": "SYN-P04",
+          "project_type": "premium_renovation",
+          "opportunity_cents": 48500000,
+          "proposal_cents": 48500000,
+          "signed_contract_cents": 0,
+          "payment_cents": 0,
+          "measured_contract_cents": 0,
+          "measured_payment_cents": 0
+        },
+        {
+          "project_id": "SYN-P05",
+          "project_type": "landscape_construction",
+          "opportunity_cents": 5000000,
+          "proposal_cents": 0,
+          "signed_contract_cents": 0,
+          "payment_cents": 0,
+          "measured_contract_cents": 0,
+          "measured_payment_cents": 0
+        }
+      ]
+    },
+    "dbt_results": [
+      {
+        "node": "seed.measurement_assurance.accepted_events",
+        "status": "success"
+      },
+      {
+        "node": "seed.measurement_assurance.collection_decisions",
+        "status": "success"
+      },
+      {
+        "node": "seed.measurement_assurance.event_items",
+        "status": "success"
+      },
+      {
+        "node": "seed.measurement_assurance.projects",
+        "status": "success"
+      },
+      {
+        "node": "seed.measurement_assurance.source_facts",
+        "status": "success"
+      },
+      {
+        "node": "model.measurement_assurance.fct_events",
+        "status": "success"
+      },
+      {
+        "node": "model.measurement_assurance.mart_health",
+        "status": "success"
+      },
+      {
+        "node": "test.measurement_assurance.accepted_values_fct_events_event_name__generate_lead__qualify_lead__working_lead__disqualify_lead__close_convert_lead__purchase.18f15a5ec0",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.authority_and_basis",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.not_null_fct_events_event_id.62d59fe27e",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.not_null_fct_events_payload_hash.fdeaf9ca60",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.relationships_fct_events_source_ref__source_ref__ref_source_facts_.0d4e409003",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.unique_fct_events_event_id.355e3ede35",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.attempt_conservation",
+        "status": "pass"
+      },
+      {
+        "node": "model.measurement_assurance.fct_conversions",
+        "status": "success"
+      },
+      {
+        "node": "model.measurement_assurance.fct_items",
+        "status": "success"
+      },
+      {
+        "node": "model.measurement_assurance.fct_purchases",
+        "status": "success"
+      },
+      {
+        "node": "model.measurement_assurance.mart_daily",
+        "status": "success"
+      },
+      {
+        "node": "test.measurement_assurance.not_null_fct_conversions_conversion_key.3515ecd8f2",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.unique_fct_conversions_conversion_key.75a5b975b9",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.item_conservation",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.item_grain",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.relationships_fct_items_event_id__event_id__ref_fct_events_.87668c82ac",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.not_null_fct_purchases_transaction_id.027be88514",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.relationships_fct_purchases_event_id__event_id__ref_fct_events_.5c630c9e5b",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.unique_fct_purchases_transaction_id.5844577678",
+        "status": "pass"
+      },
+      {
+        "node": "model.measurement_assurance.mart_channels",
+        "status": "success"
+      },
+      {
+        "node": "model.measurement_assurance.mart_project_values",
+        "status": "success"
+      },
+      {
+        "node": "model.measurement_assurance.mart_reconciliation",
+        "status": "success"
+      },
+      {
+        "node": "test.measurement_assurance.not_null_mart_project_values_project_id.88ff41abdb",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.project_no_fanout",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.unique_mart_project_values_project_id.b5a84a9397",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.accepted_values_mart_reconciliation_status__matched__missing__unexpected__value_mismatch__not_eligible.3d55b0b06b",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.not_null_mart_reconciliation_conversion_key.59063a748b",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.unique_mart_reconciliation_conversion_key.e7790df499",
+        "status": "pass"
+      }
+    ],
+    "model_hashes": {
+      "fct_events": "91865d6decaf0cc8050170c0767cd50425231ebf7f4ce6310ce61e08f1696b31",
+      "fct_items": "6cd63d6369738f65d14b48185560c0ad9aad76caa7790ede16ed6c01eb4eecb0",
+      "fct_purchases": "b047ff71a24d87aee09eb0c0612a51da850102f4809450e36374acb5cbe82893",
+      "mart_reconciliation": "63f02206ede1cff3ec91214cd83a69b94c33952af45aa3fa69fa81e15bdc9aa8",
+      "mart_daily": "15c11d48a3a83a2c5296776ca35f59ea4b579301650dc3929ddd572121072a8e",
+      "mart_channels": "d4ba351a87c98aeaf65cbc6275092404a415a0ab24b6c6d17a3ec4953b09f056",
+      "mart_health": "35d848e3dd34ba42fcc05430de1e74f15f814a030e27f95f1944c067787bcec9",
+      "fct_conversions": "17481f745c75e787e3a01f6974aea42e12a0a35303099566935d54e5149c4f72",
+      "mart_project_values": "dc18c806c59b44b1eb0e82ccb58e51f5d3b1ca1afb030d29e83d31e560f4e890"
+    },
+    "reconciliation": "passed",
+    "source_sha256": "fad9a51e5f2c45206654568df70bf762ba27a2cf631e5e8d59a9f23611787336"
+  },
+  "independent": {
+    "models": {
+      "fct_events": [
+        {
+          "event_id": "00000000-0000-0000-0000-000000000001",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "generate_lead",
+          "origin": "browser",
+          "source_ref": "SYN-P01-inquiry",
+          "project_id": "SYN-P01",
+          "project_type": "hardscaping",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-01 12:00:00",
+          "received_at": "2025-09-01 12:00:00",
+          "event_date": "2025-09-01",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "28afefbdd2c651c6ad381e58e9a20a089ffb1a9e12fd5bc40ea972c2cb1fcca8"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000002",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "qualify_lead",
+          "origin": "offline",
+          "source_ref": "SYN-P01-qualified",
+          "project_id": "SYN-P01",
+          "project_type": "hardscaping",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-03 12:00:00",
+          "received_at": "2025-09-03 12:00:00",
+          "event_date": "2025-09-03",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "d97a3b7adea4a236bf111a5ac670c71ca52afc1683127baae087ec8f7b80118e"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000003",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "working_lead",
+          "origin": "offline",
+          "source_ref": "SYN-P01-working",
+          "project_id": "SYN-P01",
+          "project_type": "hardscaping",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-06 12:00:00",
+          "received_at": "2025-09-06 12:00:00",
+          "event_date": "2025-09-06",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "c32cf6d1c69016a421f91b3092d4fcfb86bb3e2c880712acaad0d5b71c4e9c13"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000005",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "close_convert_lead",
+          "origin": "offline",
+          "source_ref": "SYN-P01-signed_contract",
+          "project_id": "SYN-P01",
+          "project_type": "hardscaping",
+          "value_basis": "contract",
+          "occurred_at": "2026-01-08 12:00:00",
+          "received_at": "2026-01-08 12:00:00",
+          "event_date": "2026-01-08",
+          "value_cents": 6500000,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "e4f3307fbd47e0e9b592470106f3c4403c1e7c7239bd8ebea2ce4dcb4d01205e"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000006",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "purchase",
+          "origin": "offline",
+          "source_ref": "SYN-P01-payment",
+          "project_id": "SYN-P01",
+          "project_type": "hardscaping",
+          "value_basis": "payment",
+          "occurred_at": "2026-01-15 12:00:00",
+          "received_at": "2026-01-15 12:00:00",
+          "event_date": "2026-01-15",
+          "value_cents": 1950000,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": "SYN-P01-payment",
+          "is_late": false,
+          "payload_hash": "c71b28f60bea93310e74c32bdd2061fbbc8c3f77f1df481d5efc999eea8a7c4f"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000007",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "generate_lead",
+          "origin": "browser",
+          "source_ref": "SYN-P02-inquiry",
+          "project_id": "SYN-P02",
+          "project_type": "outdoor_kitchen",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-01 12:00:00",
+          "received_at": "2025-09-01 12:00:00",
+          "event_date": "2025-09-01",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "f8c4edc06f6217822876a8749bd14c9d29691fa5e61190f9f24857338a829da1"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000008",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "qualify_lead",
+          "origin": "offline",
+          "source_ref": "SYN-P02-qualified",
+          "project_id": "SYN-P02",
+          "project_type": "outdoor_kitchen",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-03 12:00:00",
+          "received_at": "2025-09-03 12:00:00",
+          "event_date": "2025-09-03",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "893ee281e890c27343eb35111ad1aa12cceb49df4a8ff692f45c472fbb2b476f"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000009",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "working_lead",
+          "origin": "offline",
+          "source_ref": "SYN-P02-working",
+          "project_id": "SYN-P02",
+          "project_type": "outdoor_kitchen",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-06 12:00:00",
+          "received_at": "2025-09-06 12:00:00",
+          "event_date": "2025-09-06",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "54996d98ac3f065c85dad6b9d4727d296e473be384d86d925a600cd19b1dc7a4"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-00000000000b",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "close_convert_lead",
+          "origin": "offline",
+          "source_ref": "SYN-P02-signed_contract",
+          "project_id": "SYN-P02",
+          "project_type": "outdoor_kitchen",
+          "value_basis": "contract",
+          "occurred_at": "2026-01-08 12:00:00",
+          "received_at": "2026-01-08 12:00:00",
+          "event_date": "2026-01-08",
+          "value_cents": 12500000,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "618d3f001ea34e9ca8f88ca6810d470b05623e7198e50dba1aba5340a8b17acf"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-00000000000d",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "generate_lead",
+          "origin": "browser",
+          "source_ref": "SYN-P03-inquiry",
+          "project_id": "SYN-P03",
+          "project_type": "custom_pool",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-01 12:00:00",
+          "received_at": "2025-09-01 12:00:00",
+          "event_date": "2025-09-01",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "a213817c9edbb3080f674e69eb4615f47b9c6ba1bcb1065d74350b1761a9fca8"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-00000000000e",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "qualify_lead",
+          "origin": "offline",
+          "source_ref": "SYN-P03-qualified",
+          "project_id": "SYN-P03",
+          "project_type": "custom_pool",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-03 12:00:00",
+          "received_at": "2025-09-03 12:00:00",
+          "event_date": "2025-09-03",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "ac3b363c0c355037d36fccaf9b412ecf853ec31503e5818a08beabc8415eba19"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-00000000000f",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "working_lead",
+          "origin": "offline",
+          "source_ref": "SYN-P03-working",
+          "project_id": "SYN-P03",
+          "project_type": "custom_pool",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-06 12:00:00",
+          "received_at": "2025-09-06 12:00:00",
+          "event_date": "2025-09-06",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "f7bfa09b79b4bf97d63c51d76f3455d38a3502b85297188140bf84f647b1026d"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000012",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "purchase",
+          "origin": "offline",
+          "source_ref": "SYN-P03-payment",
+          "project_id": "SYN-P03",
+          "project_type": "custom_pool",
+          "value_basis": "payment",
+          "occurred_at": "2026-01-15 12:00:00",
+          "received_at": "2026-01-15 12:00:00",
+          "event_date": "2026-01-15",
+          "value_cents": 24500000,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": "SYN-P03-payment",
+          "is_late": false,
+          "payload_hash": "99c8fb6375dc16698081cad460a5b31bf89e72d052fee1b8f14f6f4464ee663f"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000013",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "generate_lead",
+          "origin": "browser",
+          "source_ref": "SYN-P04-inquiry",
+          "project_id": "SYN-P04",
+          "project_type": "premium_renovation",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-01 12:00:00",
+          "received_at": "2025-09-01 12:00:00",
+          "event_date": "2025-09-01",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "43d73524d14af35afbed714d8d75e070dc9e7005ec79eaed2dd450d2803b7a37"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000014",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "qualify_lead",
+          "origin": "offline",
+          "source_ref": "SYN-P04-qualified",
+          "project_id": "SYN-P04",
+          "project_type": "premium_renovation",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-03 12:00:00",
+          "received_at": "2025-09-03 12:00:00",
+          "event_date": "2025-09-03",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "2f047660de10ae5c869fdb4dff4d616716b9fb9296541f09debc6de054b81654"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000015",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "working_lead",
+          "origin": "offline",
+          "source_ref": "SYN-P04-working",
+          "project_id": "SYN-P04",
+          "project_type": "premium_renovation",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-06 12:00:00",
+          "received_at": "2025-09-06 12:00:00",
+          "event_date": "2025-09-06",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "ed628431d8e221f09a57d0db065a16835669c578a30bd95d4d411d740746cc39"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000017",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "generate_lead",
+          "origin": "browser",
+          "source_ref": "SYN-P05-inquiry",
+          "project_id": "SYN-P05",
+          "project_type": "landscape_construction",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-01 12:00:00",
+          "received_at": "2025-09-01 12:00:00",
+          "event_date": "2025-09-01",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "43f2fda31e62fa9d7d384d60daece22901899f066f893b5ad95213ebd445568e"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000018",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "disqualify_lead",
+          "origin": "offline",
+          "source_ref": "SYN-P05-disqualified",
+          "project_id": "SYN-P05",
+          "project_type": "landscape_construction",
+          "value_basis": "unvalued",
+          "occurred_at": "2025-09-03 12:00:00",
+          "received_at": "2025-09-03 12:00:00",
+          "event_date": "2025-09-03",
+          "value_cents": 0,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": null,
+          "is_late": false,
+          "payload_hash": "e190aa615a22d69b6c8ab8d5f27944f5e9e925c98d552ea6d746c913aaaf8a0e"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-0000000000c8",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "event_name": "purchase",
+          "origin": "offline",
+          "source_ref": "SYN-P02-payment",
+          "project_id": "SYN-P02",
+          "project_type": "outdoor_kitchen",
+          "value_basis": "payment",
+          "occurred_at": "2026-01-15 12:00:00",
+          "received_at": "2026-01-17 12:00:00",
+          "event_date": "2026-01-15",
+          "value_cents": 3750000,
+          "currency": "USD",
+          "campaign": "design-journal",
+          "transaction_id": "SYN-P02-payment",
+          "is_late": true,
+          "payload_hash": "3d340997015f4be45bbea0bafd1804545a50cbb62bdf96c247485e73feeedeb5"
+        }
+      ],
+      "fct_items": [
+        {
+          "event_id": "00000000-0000-0000-0000-000000000006",
+          "item_index": 0,
+          "item_id": "hardscaping",
+          "price_cents": 1950000,
+          "quantity": 1,
+          "extended_cents": 1950000
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000012",
+          "item_index": 0,
+          "item_id": "custom_pool",
+          "price_cents": 24500000,
+          "quantity": 1,
+          "extended_cents": 24500000
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-0000000000c8",
+          "item_index": 0,
+          "item_id": "outdoor_kitchen",
+          "price_cents": 3750000,
+          "quantity": 1,
+          "extended_cents": 3750000
+        }
+      ],
+      "fct_purchases": [
+        {
+          "event_id": "00000000-0000-0000-0000-000000000006",
+          "transaction_id": "SYN-P01-payment",
+          "event_date": "2026-01-15",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "currency": "USD",
+          "value_cents": 1950000,
+          "campaign": "design-journal"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-000000000012",
+          "transaction_id": "SYN-P03-payment",
+          "event_date": "2026-01-15",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "currency": "USD",
+          "value_cents": 24500000,
+          "campaign": "design-journal"
+        },
+        {
+          "event_id": "00000000-0000-0000-0000-0000000000c8",
+          "transaction_id": "SYN-P02-payment",
+          "event_date": "2026-01-15",
+          "session_id": "00000000-0000-0000-0000-000000000384",
+          "currency": "USD",
+          "value_cents": 3750000,
+          "campaign": "design-journal"
+        }
+      ],
+      "mart_reconciliation": [
+        {
+          "conversion_key": "close_convert_lead|SYN-P01-signed_contract",
+          "project_id": "SYN-P01",
+          "source_ref": "SYN-P01-signed_contract",
+          "event_name": "close_convert_lead",
+          "value_basis": "contract",
+          "expected_cents": 6500000,
+          "measured_cents": 6500000,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "close_convert_lead|SYN-P02-signed_contract",
+          "project_id": "SYN-P02",
+          "source_ref": "SYN-P02-signed_contract",
+          "event_name": "close_convert_lead",
+          "value_basis": "contract",
+          "expected_cents": 12500000,
+          "measured_cents": 12500000,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "close_convert_lead|SYN-P03-signed_contract",
+          "project_id": "SYN-P03",
+          "source_ref": "SYN-P03-signed_contract",
+          "event_name": "close_convert_lead",
+          "value_basis": "contract",
+          "expected_cents": 24500000,
+          "measured_cents": null,
+          "delta_cents": -24500000,
+          "status": "missing"
+        },
+        {
+          "conversion_key": "disqualify_lead|SYN-P05-disqualified",
+          "project_id": "SYN-P05",
+          "source_ref": "SYN-P05-disqualified",
+          "event_name": "disqualify_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "generate_lead|SYN-P01-inquiry",
+          "project_id": "SYN-P01",
+          "source_ref": "SYN-P01-inquiry",
+          "event_name": "generate_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "generate_lead|SYN-P02-inquiry",
+          "project_id": "SYN-P02",
+          "source_ref": "SYN-P02-inquiry",
+          "event_name": "generate_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "generate_lead|SYN-P03-inquiry",
+          "project_id": "SYN-P03",
+          "source_ref": "SYN-P03-inquiry",
+          "event_name": "generate_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "generate_lead|SYN-P04-inquiry",
+          "project_id": "SYN-P04",
+          "source_ref": "SYN-P04-inquiry",
+          "event_name": "generate_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "generate_lead|SYN-P05-inquiry",
+          "project_id": "SYN-P05",
+          "source_ref": "SYN-P05-inquiry",
+          "event_name": "generate_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "purchase|SYN-P01-payment",
+          "project_id": "SYN-P01",
+          "source_ref": "SYN-P01-payment",
+          "event_name": "purchase",
+          "value_basis": "payment",
+          "expected_cents": 1950000,
+          "measured_cents": 1950000,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "purchase|SYN-P01-progress",
+          "project_id": "SYN-P01",
+          "source_ref": "SYN-P01-progress",
+          "event_name": "purchase",
+          "value_basis": "payment",
+          "expected_cents": 1300000,
+          "measured_cents": null,
+          "delta_cents": -1300000,
+          "status": "missing"
+        },
+        {
+          "conversion_key": "purchase|SYN-P02-payment",
+          "project_id": "SYN-P02",
+          "source_ref": "SYN-P02-payment",
+          "event_name": "purchase",
+          "value_basis": "payment",
+          "expected_cents": 3750000,
+          "measured_cents": 3750000,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "purchase|SYN-P03-payment",
+          "project_id": "SYN-P03",
+          "source_ref": "SYN-P03-payment",
+          "event_name": "purchase",
+          "value_basis": "payment",
+          "expected_cents": 7350000,
+          "measured_cents": 24500000,
+          "delta_cents": 17150000,
+          "status": "value_mismatch"
+        },
+        {
+          "conversion_key": "qualify_lead|SYN-P01-qualified",
+          "project_id": "SYN-P01",
+          "source_ref": "SYN-P01-qualified",
+          "event_name": "qualify_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "qualify_lead|SYN-P02-qualified",
+          "project_id": "SYN-P02",
+          "source_ref": "SYN-P02-qualified",
+          "event_name": "qualify_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "qualify_lead|SYN-P03-qualified",
+          "project_id": "SYN-P03",
+          "source_ref": "SYN-P03-qualified",
+          "event_name": "qualify_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "qualify_lead|SYN-P04-qualified",
+          "project_id": "SYN-P04",
+          "source_ref": "SYN-P04-qualified",
+          "event_name": "qualify_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "working_lead|SYN-P01-working",
+          "project_id": "SYN-P01",
+          "source_ref": "SYN-P01-working",
+          "event_name": "working_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "working_lead|SYN-P02-working",
+          "project_id": "SYN-P02",
+          "source_ref": "SYN-P02-working",
+          "event_name": "working_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "working_lead|SYN-P03-working",
+          "project_id": "SYN-P03",
+          "source_ref": "SYN-P03-working",
+          "event_name": "working_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        },
+        {
+          "conversion_key": "working_lead|SYN-P04-working",
+          "project_id": "SYN-P04",
+          "source_ref": "SYN-P04-working",
+          "event_name": "working_lead",
+          "value_basis": "unvalued",
+          "expected_cents": 0,
+          "measured_cents": 0,
+          "delta_cents": 0,
+          "status": "matched"
+        }
+      ],
+      "mart_daily": [
+        {
+          "event_date": "2025-09-01",
+          "currency": "USD",
+          "value_basis": "unvalued",
+          "event_name": "generate_lead",
+          "accepted_events": 5,
+          "measured_cents": 0,
+          "late_events": 0
+        },
+        {
+          "event_date": "2025-09-03",
+          "currency": "USD",
+          "value_basis": "unvalued",
+          "event_name": "disqualify_lead",
+          "accepted_events": 1,
+          "measured_cents": 0,
+          "late_events": 0
+        },
+        {
+          "event_date": "2025-09-03",
+          "currency": "USD",
+          "value_basis": "unvalued",
+          "event_name": "qualify_lead",
+          "accepted_events": 4,
+          "measured_cents": 0,
+          "late_events": 0
+        },
+        {
+          "event_date": "2025-09-06",
+          "currency": "USD",
+          "value_basis": "unvalued",
+          "event_name": "working_lead",
+          "accepted_events": 4,
+          "measured_cents": 0,
+          "late_events": 0
+        },
+        {
+          "event_date": "2026-01-08",
+          "currency": "USD",
+          "value_basis": "contract",
+          "event_name": "close_convert_lead",
+          "accepted_events": 2,
+          "measured_cents": 19000000,
+          "late_events": 0
+        },
+        {
+          "event_date": "2026-01-15",
+          "currency": "USD",
+          "value_basis": "payment",
+          "event_name": "purchase",
+          "accepted_events": 3,
+          "measured_cents": 30200000,
+          "late_events": 1
+        }
+      ],
+      "mart_channels": [
+        {
+          "campaign": "design-journal",
+          "currency": "USD",
+          "value_basis": "contract",
+          "event_name": "close_convert_lead",
+          "conversions": 2,
+          "measured_cents": 19000000
+        },
+        {
+          "campaign": "design-journal",
+          "currency": "USD",
+          "value_basis": "payment",
+          "event_name": "purchase",
+          "conversions": 3,
+          "measured_cents": 30200000
+        },
+        {
+          "campaign": "design-journal",
+          "currency": "USD",
+          "value_basis": "unvalued",
+          "event_name": "disqualify_lead",
+          "conversions": 1,
+          "measured_cents": 0
+        },
+        {
+          "campaign": "design-journal",
+          "currency": "USD",
+          "value_basis": "unvalued",
+          "event_name": "generate_lead",
+          "conversions": 5,
+          "measured_cents": 0
+        },
+        {
+          "campaign": "design-journal",
+          "currency": "USD",
+          "value_basis": "unvalued",
+          "event_name": "qualify_lead",
+          "conversions": 4,
+          "measured_cents": 0
+        },
+        {
+          "campaign": "design-journal",
+          "currency": "USD",
+          "value_basis": "unvalued",
+          "event_name": "working_lead",
+          "conversions": 4,
+          "measured_cents": 0
+        }
+      ],
+      "mart_health": [
+        {
+          "status": "accepted",
+          "attempts": 18
+        },
+        {
+          "status": "accepted_late",
+          "attempts": 1
+        },
+        {
+          "status": "authority_denied",
+          "attempts": 2
+        },
+        {
+          "status": "consent_denied",
+          "attempts": 1
+        },
+        {
+          "status": "contract_rejected",
+          "attempts": 2
+        },
+        {
+          "status": "duplicate_conversion",
+          "attempts": 1
+        },
+        {
+          "status": "duplicate_event",
+          "attempts": 1
+        },
+        {
+          "status": "duplicate_transaction",
+          "attempts": 1
+        },
+        {
+          "status": "identity_conflict",
+          "attempts": 1
+        },
+        {
+          "status": "value_rejected",
+          "attempts": 1
+        }
+      ],
+      "fct_conversions": [
+        {
+          "conversion_key": "close_convert_lead|SYN-P01-signed_contract",
+          "event_id": "00000000-0000-0000-0000-000000000005",
+          "source_ref": "SYN-P01-signed_contract",
+          "project_id": "SYN-P01",
+          "event_name": "close_convert_lead",
+          "event_date": "2026-01-08",
+          "origin": "offline",
+          "value_basis": "contract",
+          "currency": "USD",
+          "value_cents": 6500000,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "close_convert_lead|SYN-P02-signed_contract",
+          "event_id": "00000000-0000-0000-0000-00000000000b",
+          "source_ref": "SYN-P02-signed_contract",
+          "project_id": "SYN-P02",
+          "event_name": "close_convert_lead",
+          "event_date": "2026-01-08",
+          "origin": "offline",
+          "value_basis": "contract",
+          "currency": "USD",
+          "value_cents": 12500000,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "disqualify_lead|SYN-P05-disqualified",
+          "event_id": "00000000-0000-0000-0000-000000000018",
+          "source_ref": "SYN-P05-disqualified",
+          "project_id": "SYN-P05",
+          "event_name": "disqualify_lead",
+          "event_date": "2025-09-03",
+          "origin": "offline",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "generate_lead|SYN-P01-inquiry",
+          "event_id": "00000000-0000-0000-0000-000000000001",
+          "source_ref": "SYN-P01-inquiry",
+          "project_id": "SYN-P01",
+          "event_name": "generate_lead",
+          "event_date": "2025-09-01",
+          "origin": "browser",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "generate_lead|SYN-P02-inquiry",
+          "event_id": "00000000-0000-0000-0000-000000000007",
+          "source_ref": "SYN-P02-inquiry",
+          "project_id": "SYN-P02",
+          "event_name": "generate_lead",
+          "event_date": "2025-09-01",
+          "origin": "browser",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "generate_lead|SYN-P03-inquiry",
+          "event_id": "00000000-0000-0000-0000-00000000000d",
+          "source_ref": "SYN-P03-inquiry",
+          "project_id": "SYN-P03",
+          "event_name": "generate_lead",
+          "event_date": "2025-09-01",
+          "origin": "browser",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "generate_lead|SYN-P04-inquiry",
+          "event_id": "00000000-0000-0000-0000-000000000013",
+          "source_ref": "SYN-P04-inquiry",
+          "project_id": "SYN-P04",
+          "event_name": "generate_lead",
+          "event_date": "2025-09-01",
+          "origin": "browser",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "generate_lead|SYN-P05-inquiry",
+          "event_id": "00000000-0000-0000-0000-000000000017",
+          "source_ref": "SYN-P05-inquiry",
+          "project_id": "SYN-P05",
+          "event_name": "generate_lead",
+          "event_date": "2025-09-01",
+          "origin": "browser",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "purchase|SYN-P01-payment",
+          "event_id": "00000000-0000-0000-0000-000000000006",
+          "source_ref": "SYN-P01-payment",
+          "project_id": "SYN-P01",
+          "event_name": "purchase",
+          "event_date": "2026-01-15",
+          "origin": "offline",
+          "value_basis": "payment",
+          "currency": "USD",
+          "value_cents": 1950000,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "purchase|SYN-P02-payment",
+          "event_id": "00000000-0000-0000-0000-0000000000c8",
+          "source_ref": "SYN-P02-payment",
+          "project_id": "SYN-P02",
+          "event_name": "purchase",
+          "event_date": "2026-01-15",
+          "origin": "offline",
+          "value_basis": "payment",
+          "currency": "USD",
+          "value_cents": 3750000,
+          "campaign": "design-journal",
+          "is_late": true
+        },
+        {
+          "conversion_key": "purchase|SYN-P03-payment",
+          "event_id": "00000000-0000-0000-0000-000000000012",
+          "source_ref": "SYN-P03-payment",
+          "project_id": "SYN-P03",
+          "event_name": "purchase",
+          "event_date": "2026-01-15",
+          "origin": "offline",
+          "value_basis": "payment",
+          "currency": "USD",
+          "value_cents": 24500000,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "qualify_lead|SYN-P01-qualified",
+          "event_id": "00000000-0000-0000-0000-000000000002",
+          "source_ref": "SYN-P01-qualified",
+          "project_id": "SYN-P01",
+          "event_name": "qualify_lead",
+          "event_date": "2025-09-03",
+          "origin": "offline",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "qualify_lead|SYN-P02-qualified",
+          "event_id": "00000000-0000-0000-0000-000000000008",
+          "source_ref": "SYN-P02-qualified",
+          "project_id": "SYN-P02",
+          "event_name": "qualify_lead",
+          "event_date": "2025-09-03",
+          "origin": "offline",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "qualify_lead|SYN-P03-qualified",
+          "event_id": "00000000-0000-0000-0000-00000000000e",
+          "source_ref": "SYN-P03-qualified",
+          "project_id": "SYN-P03",
+          "event_name": "qualify_lead",
+          "event_date": "2025-09-03",
+          "origin": "offline",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "qualify_lead|SYN-P04-qualified",
+          "event_id": "00000000-0000-0000-0000-000000000014",
+          "source_ref": "SYN-P04-qualified",
+          "project_id": "SYN-P04",
+          "event_name": "qualify_lead",
+          "event_date": "2025-09-03",
+          "origin": "offline",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "working_lead|SYN-P01-working",
+          "event_id": "00000000-0000-0000-0000-000000000003",
+          "source_ref": "SYN-P01-working",
+          "project_id": "SYN-P01",
+          "event_name": "working_lead",
+          "event_date": "2025-09-06",
+          "origin": "offline",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "working_lead|SYN-P02-working",
+          "event_id": "00000000-0000-0000-0000-000000000009",
+          "source_ref": "SYN-P02-working",
+          "project_id": "SYN-P02",
+          "event_name": "working_lead",
+          "event_date": "2025-09-06",
+          "origin": "offline",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "working_lead|SYN-P03-working",
+          "event_id": "00000000-0000-0000-0000-00000000000f",
+          "source_ref": "SYN-P03-working",
+          "project_id": "SYN-P03",
+          "event_name": "working_lead",
+          "event_date": "2025-09-06",
+          "origin": "offline",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        },
+        {
+          "conversion_key": "working_lead|SYN-P04-working",
+          "event_id": "00000000-0000-0000-0000-000000000015",
+          "source_ref": "SYN-P04-working",
+          "project_id": "SYN-P04",
+          "event_name": "working_lead",
+          "event_date": "2025-09-06",
+          "origin": "offline",
+          "value_basis": "unvalued",
+          "currency": "USD",
+          "value_cents": 0,
+          "campaign": "design-journal",
+          "is_late": false
+        }
+      ],
+      "mart_project_values": [
+        {
+          "project_id": "SYN-P01",
+          "project_type": "hardscaping",
+          "opportunity_cents": 6500000,
+          "proposal_cents": 6500000,
+          "signed_contract_cents": 6500000,
+          "payment_cents": 3250000,
+          "measured_contract_cents": 6500000,
+          "measured_payment_cents": 1950000
+        },
+        {
+          "project_id": "SYN-P02",
+          "project_type": "outdoor_kitchen",
+          "opportunity_cents": 12500000,
+          "proposal_cents": 12500000,
+          "signed_contract_cents": 12500000,
+          "payment_cents": 3750000,
+          "measured_contract_cents": 12500000,
+          "measured_payment_cents": 3750000
+        },
+        {
+          "project_id": "SYN-P03",
+          "project_type": "custom_pool",
+          "opportunity_cents": 24500000,
+          "proposal_cents": 24500000,
+          "signed_contract_cents": 24500000,
+          "payment_cents": 7350000,
+          "measured_contract_cents": 0,
+          "measured_payment_cents": 24500000
+        },
+        {
+          "project_id": "SYN-P04",
+          "project_type": "premium_renovation",
+          "opportunity_cents": 48500000,
+          "proposal_cents": 48500000,
+          "signed_contract_cents": 0,
+          "payment_cents": 0,
+          "measured_contract_cents": 0,
+          "measured_payment_cents": 0
+        },
+        {
+          "project_id": "SYN-P05",
+          "project_type": "landscape_construction",
+          "opportunity_cents": 5000000,
+          "proposal_cents": 0,
+          "signed_contract_cents": 0,
+          "payment_cents": 0,
+          "measured_contract_cents": 0,
+          "measured_payment_cents": 0
+        }
+      ]
+    },
+    "dbt_results": [
+      {
+        "node": "seed.measurement_assurance.accepted_events",
+        "status": "success"
+      },
+      {
+        "node": "seed.measurement_assurance.collection_decisions",
+        "status": "success"
+      },
+      {
+        "node": "seed.measurement_assurance.event_items",
+        "status": "success"
+      },
+      {
+        "node": "seed.measurement_assurance.projects",
+        "status": "success"
+      },
+      {
+        "node": "seed.measurement_assurance.source_facts",
+        "status": "success"
+      },
+      {
+        "node": "model.measurement_assurance.fct_events",
+        "status": "success"
+      },
+      {
+        "node": "model.measurement_assurance.mart_health",
+        "status": "success"
+      },
+      {
+        "node": "test.measurement_assurance.accepted_values_fct_events_event_name__generate_lead__qualify_lead__working_lead__disqualify_lead__close_convert_lead__purchase.18f15a5ec0",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.authority_and_basis",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.not_null_fct_events_event_id.62d59fe27e",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.not_null_fct_events_payload_hash.fdeaf9ca60",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.relationships_fct_events_source_ref__source_ref__ref_source_facts_.0d4e409003",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.unique_fct_events_event_id.355e3ede35",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.attempt_conservation",
+        "status": "pass"
+      },
+      {
+        "node": "model.measurement_assurance.fct_conversions",
+        "status": "success"
+      },
+      {
+        "node": "model.measurement_assurance.fct_items",
+        "status": "success"
+      },
+      {
+        "node": "model.measurement_assurance.fct_purchases",
+        "status": "success"
+      },
+      {
+        "node": "model.measurement_assurance.mart_daily",
+        "status": "success"
+      },
+      {
+        "node": "test.measurement_assurance.not_null_fct_conversions_conversion_key.3515ecd8f2",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.unique_fct_conversions_conversion_key.75a5b975b9",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.item_conservation",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.item_grain",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.relationships_fct_items_event_id__event_id__ref_fct_events_.87668c82ac",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.not_null_fct_purchases_transaction_id.027be88514",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.relationships_fct_purchases_event_id__event_id__ref_fct_events_.5c630c9e5b",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.unique_fct_purchases_transaction_id.5844577678",
+        "status": "pass"
+      },
+      {
+        "node": "model.measurement_assurance.mart_channels",
+        "status": "success"
+      },
+      {
+        "node": "model.measurement_assurance.mart_project_values",
+        "status": "success"
+      },
+      {
+        "node": "model.measurement_assurance.mart_reconciliation",
+        "status": "success"
+      },
+      {
+        "node": "test.measurement_assurance.not_null_mart_project_values_project_id.88ff41abdb",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.project_no_fanout",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.unique_mart_project_values_project_id.b5a84a9397",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.accepted_values_mart_reconciliation_status__matched__missing__unexpected__value_mismatch__not_eligible.3d55b0b06b",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.not_null_mart_reconciliation_conversion_key.59063a748b",
+        "status": "pass"
+      },
+      {
+        "node": "test.measurement_assurance.unique_mart_reconciliation_conversion_key.e7790df499",
+        "status": "pass"
+      }
+    ],
+    "model_hashes": {
+      "fct_events": "91865d6decaf0cc8050170c0767cd50425231ebf7f4ce6310ce61e08f1696b31",
+      "fct_items": "6cd63d6369738f65d14b48185560c0ad9aad76caa7790ede16ed6c01eb4eecb0",
+      "fct_purchases": "b047ff71a24d87aee09eb0c0612a51da850102f4809450e36374acb5cbe82893",
+      "mart_reconciliation": "63f02206ede1cff3ec91214cd83a69b94c33952af45aa3fa69fa81e15bdc9aa8",
+      "mart_daily": "15c11d48a3a83a2c5296776ca35f59ea4b579301650dc3929ddd572121072a8e",
+      "mart_channels": "d4ba351a87c98aeaf65cbc6275092404a415a0ab24b6c6d17a3ec4953b09f056",
+      "mart_health": "35d848e3dd34ba42fcc05430de1e74f15f814a030e27f95f1944c067787bcec9",
+      "fct_conversions": "17481f745c75e787e3a01f6974aea42e12a0a35303099566935d54e5149c4f72",
+      "mart_project_values": "dc18c806c59b44b1eb0e82ccb58e51f5d3b1ca1afb030d29e83d31e560f4e890"
+    },
+    "reconciliation": "passed",
+    "source_sha256": "fad9a51e5f2c45206654568df70bf762ba27a2cf631e5e8d59a9f23611787336"
+  },
+  "equivalence": true,
+  "commercial": {
+    "proposal_cents": 92000000,
+    "signed_contract_cents": 43500000,
+    "payment_cents": 14350000,
+    "measured_contract_cents": 19000000,
+    "measured_payment_cents": 30200000
+  },
+  "ga4_export_examples": {
+    "generate_lead": {
+      "client_id": "123456789.1234567890",
+      "validation_behavior": "ENFORCE_RECOMMENDATIONS",
+      "events": [
+        {
+          "name": "generate_lead",
+          "params": {
+            "lead_source": "design-journal",
+            "project_type": "hardscaping",
+            "value_basis": "unvalued"
+          }
+        }
+      ]
+    },
+    "qualify_lead": {
+      "client_id": "123456789.1234567890",
+      "validation_behavior": "ENFORCE_RECOMMENDATIONS",
+      "events": [
+        {
+          "name": "qualify_lead",
+          "params": {
+            "lead_source": "design-journal",
+            "project_type": "hardscaping",
+            "value_basis": "unvalued"
+          }
+        }
+      ]
+    },
+    "working_lead": {
+      "client_id": "123456789.1234567890",
+      "validation_behavior": "ENFORCE_RECOMMENDATIONS",
+      "events": [
+        {
+          "name": "working_lead",
+          "params": {
+            "lead_source": "design-journal",
+            "project_type": "hardscaping",
+            "value_basis": "unvalued"
+          }
+        }
+      ]
+    },
+    "disqualify_lead": {
+      "client_id": "123456789.1234567890",
+      "validation_behavior": "ENFORCE_RECOMMENDATIONS",
+      "events": [
+        {
+          "name": "disqualify_lead",
+          "params": {
+            "lead_source": "design-journal",
+            "project_type": "hardscaping",
+            "value_basis": "unvalued"
+          }
+        }
+      ]
+    },
+    "close_convert_lead": {
+      "client_id": "123456789.1234567890",
+      "validation_behavior": "ENFORCE_RECOMMENDATIONS",
+      "events": [
+        {
+          "name": "close_convert_lead",
+          "params": {
+            "lead_source": "design-journal",
+            "project_type": "hardscaping",
+            "value_basis": "contract",
+            "currency": "USD",
+            "value": 65000.0
+          }
+        }
+      ]
+    },
+    "purchase": {
+      "client_id": "123456789.1234567890",
+      "validation_behavior": "ENFORCE_RECOMMENDATIONS",
+      "events": [
+        {
+          "name": "purchase",
+          "params": {
+            "lead_source": "design-journal",
+            "project_type": "hardscaping",
+            "value_basis": "payment",
+            "currency": "USD",
+            "value": 19500.0,
+            "transaction_id": "SYN-P01-payment",
+            "items": [
+              {
+                "item_id": "hardscaping",
+                "price": 19500.0,
+                "quantity": 1
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "data_layer_example": {
+    "event": "generate_lead",
+    "event_params": {
+      "lead_source": "design-journal",
+      "project_type": "hardscaping",
+      "value_basis": "unvalued"
+    },
+    "measurement": {
+      "data_layer_version": 1,
+      "event_id": "00000000-0000-0000-0000-000000000001"
+    }
+  },
+  "native_bigquery": {
+    "status": "not_executed",
+    "reason": "No authorized project or ADC configured"
+  },
+  "native_mp": {
+    "status": "not_executed",
+    "reason": "No isolated GA4 property configuration supplied"
+  }
+}

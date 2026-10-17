@@ -1,0 +1,49 @@
+version: 2
+models:
+  - name: fct_events
+    columns:
+      - name: event_id
+        tests: [unique, not_null]
+      - name: event_name
+        tests:
+          - accepted_values:
+              values: [generate_lead, qualify_lead, working_lead, disqualify_lead, close_convert_lead, purchase]
+      - name: payload_hash
+        tests: [not_null]
+      - name: source_ref
+        tests:
+          - relationships:
+              to: ref('source_facts')
+              field: source_ref
+  - name: fct_purchases
+    columns:
+      - name: transaction_id
+        tests: [unique, not_null]
+      - name: event_id
+        tests:
+          - relationships:
+              to: ref('fct_events')
+              field: event_id
+  - name: fct_items
+    columns:
+      - name: event_id
+        tests:
+          - relationships:
+              to: ref('fct_events')
+              field: event_id
+  - name: fct_conversions
+    columns:
+      - name: conversion_key
+        tests: [unique, not_null]
+  - name: mart_project_values
+    columns:
+      - name: project_id
+        tests: [unique, not_null]
+  - name: mart_reconciliation
+    columns:
+      - name: conversion_key
+        tests: [unique, not_null]
+      - name: status
+        tests:
+          - accepted_values:
+              values: [matched, missing, unexpected, value_mismatch, not_eligible]

@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "first-party-measurement-assurance"
+version = "1.0.0"
+description = "Executable browser-to-analytics measurement assurance"
+requires-python = ">=3.12"
+
+[tool.setuptools]
+packages = ["assurance"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

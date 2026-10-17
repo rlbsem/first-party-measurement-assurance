@@ -1,0 +1,228 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:measurement-assurance:event:2",
+  "title": "Internal project conversion envelope v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "event_id",
+    "session_id",
+    "origin",
+    "occurred_at",
+    "event_name",
+    "currency",
+    "value_cents",
+    "value_basis",
+    "campaign",
+    "project_type",
+    "project_id",
+    "source_ref"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 2
+    },
+    "event_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "session_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "origin": {
+      "enum": [
+        "browser",
+        "offline"
+      ]
+    },
+    "occurred_at": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "(Z|[+]00:00)$"
+    },
+    "event_name": {
+      "enum": [
+        "generate_lead",
+        "qualify_lead",
+        "working_lead",
+        "disqualify_lead",
+        "close_convert_lead",
+        "purchase"
+      ]
+    },
+    "currency": {
+      "const": "USD"
+    },
+    "value_cents": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 50000000
+    },
+    "value_basis": {
+      "enum": [
+        "unvalued",
+        "contract",
+        "payment"
+      ]
+    },
+    "campaign": {
+      "enum": [
+        "direct",
+        "design-journal",
+        "architect-referral",
+        "organic-search"
+      ]
+    },
+    "project_type": {
+      "enum": [
+        "landscape_construction",
+        "custom_pool",
+        "outdoor_kitchen",
+        "hardscaping",
+        "premium_renovation"
+      ]
+    },
+    "project_id": {
+      "type": "string",
+      "pattern": "^SYN-[A-Za-z0-9_-]{1,48}$"
+    },
+    "source_ref": {
+      "type": "string",
+      "pattern": "^SYN-[A-Za-z0-9_-]{1,48}$"
+    },
+    "transaction_id": {
+      "type": "string",
+      "pattern": "^SYN-[A-Za-z0-9_-]{1,48}$"
+    },
+    "collection": {
+      "const": "synthetic"
+    },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 20,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "item_id",
+          "price_cents",
+          "quantity"
+        ],
+        "properties": {
+          "item_id": {
+            "enum": [
+              "landscape_construction",
+              "custom_pool",
+              "outdoor_kitchen",
+              "hardscaping",
+              "premium_renovation"
+            ]
+          },
+          "price_cents": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 50000000
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 20
+          }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "event_name": {
+            "const": "purchase"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "items",
+          "transaction_id"
+        ],
+        "properties": {
+          "value_basis": {
+            "const": "payment"
+          },
+          "value_cents": {
+            "minimum": 1
+          },
+          "origin": {
+            "const": "offline"
+          }
+        }
+      },
+      "else": {
+        "not": {
+          "anyOf": [
+            {
+              "required": [
+                "items"
+              ]
+            },
+            {
+              "required": [
+                "transaction_id"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "event_name": {
+            "const": "close_convert_lead"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "value_basis": {
+            "const": "contract"
+          },
+          "value_cents": {
+            "minimum": 5000000
+          },
+          "origin": {
+            "const": "offline"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "event_name": {
+            "enum": [
+              "generate_lead",
+              "qualify_lead",
+              "working_lead",
+              "disqualify_lead"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "value_basis": {
+            "const": "unvalued"
+          },
+          "value_cents": {
+            "const": 0
+          }
+        }
+      }
+    }
+  ]
+}

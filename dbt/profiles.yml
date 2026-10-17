@@ -1,0 +1,7 @@
+measurement_assurance:
+  target: local
+  outputs:
+    local:
+      type: duckdb
+      path: "{{ env_var('ASSURANCE_WAREHOUSE') }}"
+      threads: 1
