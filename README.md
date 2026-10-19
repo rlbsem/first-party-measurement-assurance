@@ -2,15 +2,15 @@
 
 **A $245,000 project is signed. The customer pays a $73,500 deposit. Why does marketing report another $245,000 purchase?**
 
-This executable measurement platform explains conversion errors for **Evermere Design + Build**, a fictional premium US home-services operator. It connects real browser inquiries to consent-aware collection, authoritative offline project facts, durable receipts and dbt reconciliation. Luxury landscapes, custom pools, outdoor kitchens, hardscaping and premium renovations provide high-value measurement cases.
+An inquiry, signed project and payment represent different business events. This application traces those events through browser collection, offline source authority, durable receipts and dbt reconciliation. **Evermere Design + Build** is a fictional US home-services operator used for the synthetic measurement scenarios.
 
-**All companies, projects, contracts and payments are synthetic. USD is the primary scenario's only currency.** Browser HTTP, local processing and DuckDB/dbt execute. GTM compatibility, Google debug validation and native BigQuery are distinct evidence boundaries. No private credential is required to run the core.
+The local browser, HTTP and DuckDB/dbt workflows execute with synthetic USD project data. Native BigQuery evidence uses Google's separate public GA4 sample. The core application runs without private credentials.
 
 ![Executed project measurement-health console](docs/images/measurement-health.png)
 
 The exact fixture has **$920,000 in proposals, $435,000 in signed contracts and $143,500 in actual payments**. Measured contract conversions total $190,000; measured payment conversions total $302,000. The system exposes three financial findings: a missing $245,000 contract conversion, a missing $13,000 progress-payment conversion and a deposit overstated by $171,500.
 
-**Proposal value is not signed contract value. Signed contract value is not collected cash. A deposit is not another full contract.** Those values remain separate in the interface, SQL grains and evidence. These are hand-authored synthetic cases, not client revenue or measured commercial uplift. [Exact results](docs/evidence/demo.json) and [evidence index](docs/evidence/README.md).
+Proposals, signed commitments and collected cash retain separate measures and SQL grains. A deposit is not counted as another full contract. [Exact synthetic results](docs/evidence/demo.json) · [Evidence index](docs/evidence/README.md).
 
 ## Try the application
 
@@ -36,7 +36,7 @@ Open `http://127.0.0.1:8550`. On Linux, browser tests may require `python -m pla
 
 ![Real inquiry instrumentation with the actual data-layer message](docs/images/browser-laboratory.png)
 
-The concept drawing is CSS; screenshots are genuine captures of the running application. Project opportunities include $65,000, $125,000, $245,000 and $485,000. An inquiry collects no contact details and receives no assumed conversion revenue. It cannot qualify a lead, sign a contract or receive payment. [Browser execution and screenshot provenance](docs/evidence/browser.json).
+Screenshots show the running application; decorative visuals use CSS. The synthetic opportunities range from $65,000 to $485,000. Browser inquiries collect no contact details and carry no assumed sales or payment value. [Browser and screenshot evidence](docs/evidence/browser.json).
 
 ## Commercial definitions and authority
 
@@ -50,7 +50,7 @@ The concept drawing is CSS; screenshots are genuine captures of the running appl
 | Signed contract | `close_convert_lead` | Trusted signature source; signed USD commitment once |
 | Actual deposit or progress payment | `purchase` | Trusted payment source; unique transaction and actual USD amount |
 
-The browser-facing collector cannot grant itself offline authority, even if a request claims `origin=offline`. Offline events must match the registered source stage, project, timestamp and eligible session association. The source fixture/adapter lane is Python-only; there is no browser payment, signature or arbitrary source-write endpoint. This is a bounded source-authority demonstration, not a rebuilt CRM or general ledger.
+The browser collector cannot claim offline source authority by supplying `origin=offline`. Trusted offline events require a registered project, source stage, timestamp and eligible session association. Signature and payment facts enter through the Python fixture/adapter, not a public browser endpoint.
 
 ## Controls under failure
 
@@ -74,7 +74,7 @@ The browser-facing collector cannot grant itself offline authority, even if a re
 python scripts/verify.py
 ```
 
-The verifier runs Python/API and native-adapter contract tests, actual Chromium interactions, three successful dbt builds, a deliberately failing SQL experiment, exact incremental/full equivalence, independent Python reconciliation, deterministic fixture checks, screenshot/source integrity, Markdown targets and a public-file audit. Runtime data and logs stay in ignored workspaces.
+The verifier checks Python/API and adapter contracts, Chromium interactions, three dbt builds, a deliberately failing SQL case, incremental/full-build equivalence, independent reconciliation and artifact integrity. Runtime data stays in ignored workspaces.
 
 The revised demonstration has **29 admission attempts, 19 distinct events, three contained replays, one late arrival and three unresolved financial findings**. All **nine dbt models** compare exactly with an independent full build. Each successful build passes **21 data tests**. [Executed verification](docs/evidence/verification.json) and [control-to-test map](docs/testing.md).
 
@@ -96,7 +96,7 @@ The revised demonstration has **29 admission attempts, 19 distinct events, three
 | Production GA4 to BigQuery integration | **Not implemented or claimed** |
 | Hosted GitHub CI | [Windows and Ubuntu verification](https://github.com/rlbsem/first-party-measurement-assurance/actions/workflows/verify.yml); inspect the run for the relevant commit |
 
-The official public GA4 ecommerce sample is a separate executed GoogleSQL validation lane. It is not Evermere data. This proves native public-data query execution, not a Google tag deployment, Python ADC authentication, dbt-bigquery execution or production GA4 export. [Native runbook](docs/native-google.md) and [official references](docs/sources.md).
+The native GoogleSQL results come from Google's public ecommerce sample, not Evermere. GTM deployment, GA4 export and dbt-bigquery execution remain outside this test. [Native runbook](docs/native-google.md) · [Google references](docs/sources.md).
 
 [Architecture and source lineage](docs/architecture.md) / [Operations and limits](docs/operations.md) / [Scenario revision and retained controls](docs/scenario-revision.md).
 
