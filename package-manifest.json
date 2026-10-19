@@ -54,7 +54,7 @@
   "docs/testing.md": "026e59f32312885b7d1dcac6e98b33edbd9248a6d4f5f561305a12cfea70d238",
   "LICENSE": "bfa35d897efdd7b0c543024c4d8a4d39feb8d9132f5432c1644f7f74443b4c13",
   "pyproject.toml": "7a06d5b6cccf2204e255b40cfe044a81b70dbb61223dcdd3342728b731899ab9",
-  "README.md": "ef942418df1ebcbe2a06a60ff19718eac23cea141d420ed91ee6cb7017a9d8ba",
+  "README.md": "2f7ca5798420634ba862b27a132aca35c76c45eb7881444d37de523357de9667",
   "requirements.lock": "4a1f01033a9122f6736690db75a341d76d6aa56633e815d1609e407a5e702b5d",
   "requirements.txt": "2e8567eacdfcb4640e4f21f24532c24431315e86c184e13e5a1eaf5fc421ff02",
   "scripts/browser_verify.py": "ebdf2b7a1f606c8a69697ebd59bd38a7c3bba61ee6b44c65578ee89f8b427ea3",
