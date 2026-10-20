@@ -96,6 +96,8 @@ The [isolated GA4 warehouse module](ga4_pipeline/README.md) takes synthetic GA4-
 
 The [local GA4 warehouse acceptance](docs/evidence/ga4-warehouse/README.md) passed on Linux and Windows, with exact incremental/full-refresh parity and preserved source anomalies. This is separate from the [previously executed BigQuery sample queries](docs/evidence/google-bigquery/README.md). **Native dbt-bigquery execution remains unverified.** [Architecture and execution contract](docs/ga4-warehouse.md).
 
+[Native acceptance tooling](docs/bigquery-acceptance.md) adds a pinned BigQuery adapter, complete Python rowset oracle and approval-gated synthetic runner. The existing billing-disabled sandbox excludes incremental DML; no new cloud jobs or billing changes were made. [Offline readiness evidence](docs/evidence/bigquery-readiness/README.md).
+
 ## GTM and Google boundaries
 
 | Evidence lane | Actual status |

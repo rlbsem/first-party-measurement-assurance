@@ -14,3 +14,6 @@ ga4_governed_warehouse:
       threads: 1
       priority: interactive
       maximum_bytes_billed: 100000000
+      job_retries: 0
+      job_creation_timeout_seconds: 30
+      job_execution_timeout_seconds: 120

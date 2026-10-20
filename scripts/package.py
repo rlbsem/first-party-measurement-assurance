@@ -8,9 +8,9 @@ import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DIRECTORIES = {'assurance', 'contracts', 'dbt', 'web', 'bigquery', 'scripts', 'tests', 'docs', '.github'}
-ROOT_FILES = {'README.md', 'LICENSE', '.gitignore', '.gitattributes', 'pyproject.toml', 'requirements.txt', 'requirements.lock'}
-EXTENSIONS = {'.py', '.json', '.sql', '.yml', '.yaml', '.html', '.css', '.js', '.md', '.png', '.txt', '.lock', '.toml'}
+DIRECTORIES = {'assurance', 'contracts', 'dbt', 'ga4_pipeline', 'web', 'bigquery', 'scripts', 'tests', 'docs', '.github'}
+ROOT_FILES = {'README.md', 'LICENSE', '.gitignore', '.gitattributes', 'pyproject.toml', 'requirements.txt', 'requirements.lock', 'requirements-bigquery.lock'}
+EXTENSIONS = {'.py', '.json', '.sql', '.yml', '.yaml', '.html', '.css', '.js', '.md', '.png', '.txt', '.lock', '.toml', '.csv'}
 
 
 def files():
@@ -19,7 +19,7 @@ def files():
     for folder in DIRECTORIES:
         for base, directories, names in os.walk(ROOT/folder):
             directories[:] = [d for d in directories if d not in ('__pycache__','target','logs','dbt_packages')]
-            candidates.extend(Path(base)/n for n in names)
+            candidates.extend(Path(base)/n for n in names if n != '.user.yml')
     for path in candidates:
         rel = path.relative_to(ROOT)
         if not path.is_file() or any(p in ('__pycache__', 'target', 'logs', 'dbt_packages') for p in rel.parts):
