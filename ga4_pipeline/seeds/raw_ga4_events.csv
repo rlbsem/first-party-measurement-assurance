@@ -1,0 +1,12 @@
+event_key,event_date,arrival_batch,source_version,event_name,user_pseudo_id,session_id,transaction_id,revenue_cents
+ev01,2026-10-01,1,1,page_view,u01,s01,,0
+ev02,2026-10-01,1,1,purchase,u01,s01,T100,10000
+ev03,2026-10-02,1,1,purchase,u02,s02,T200,12000
+ev04,2026-10-02,1,1,add_to_cart,u02,s02,,0
+ev05,2026-10-03,1,1,purchase,u03,s03,T300,8000
+ev03,2026-10-02,2,2,purchase,u02,s02,T200,13000
+ev06,2026-09-26,2,1,purchase,u04,s04,T400,5000
+ev07,2026-10-04,2,1,purchase,u05,s05,T200,10000
+ev08,2026-10-04,2,1,purchase,u06,s06,T500,7300
+ev09,2026-10-04,2,1,page_view,u07,,,0
+ev10,2026-10-04,2,1,purchase,,s10,T600,1000

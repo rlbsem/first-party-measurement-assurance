@@ -1,0 +1,68 @@
+version: 2
+models:
+  - name: stg_event_versions
+    description: Every landed version, including late arrivals and superseded source rows.
+    columns:
+      - name: event_key
+        tests: [not_null]
+      - name: arrival_batch
+        tests: [not_null]
+      - name: source_version
+        tests: [not_null]
+  - name: stg_item_versions
+    columns:
+      - name: event_key
+        tests: [not_null]
+      - name: item_index
+        tests: [not_null]
+  - name: fct_ga4_events
+    description: Event grain. Exactly one selected revision per stable event key.
+    columns:
+      - name: event_key
+        tests: [unique, not_null]
+      - name: event_date
+        tests: [not_null]
+      - name: arrival_batch
+        tests: [not_null]
+      - name: source_version
+        tests: [not_null]
+  - name: fct_ga4_items
+    description: Item grain is event key plus zero-based item index.
+    columns:
+      - name: event_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('fct_ga4_events')
+              field: event_key
+      - name: item_index
+        tests: [not_null]
+  - name: mart_ga4_purchase_quality
+    description: One row per purchase event. Findings are retained, not concealed by repairs.
+    columns:
+      - name: event_key
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('fct_ga4_events')
+              field: event_key
+      - name: transaction_id_finding
+        tests:
+          - accepted_values:
+              values: [0, 1]
+      - name: revenue_finding
+        tests:
+          - accepted_values:
+              values: [0, 1]
+  - name: mart_ga4_sessions
+    description: One row per pseudo-user and session. Missing identities stay in event facts.
+    columns:
+      - name: session_id
+        tests: [not_null]
+      - name: user_pseudo_id
+        tests: [not_null]
+  - name: mart_ga4_daily
+    columns:
+      - name: event_date
+        tests: [unique, not_null]

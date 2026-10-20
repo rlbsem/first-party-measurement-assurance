@@ -1,0 +1,16 @@
+ga4_governed_warehouse:
+  target: local
+  outputs:
+    local:
+      type: duckdb
+      path: "{{ env_var('GA4_LOCAL_DB', '.local/ga4-warehouse.duckdb') }}"
+      threads: 1
+    bigquery:
+      type: bigquery
+      method: oauth
+      project: "{{ env_var('GA4_BQ_PROJECT', 'UNCONFIGURED_NO_CLOUD') }}"
+      dataset: "{{ env_var('GA4_BQ_DATASET', 'UNCONFIGURED_NO_CLOUD') }}"
+      location: US
+      threads: 1
+      priority: interactive
+      maximum_bytes_billed: 100000000

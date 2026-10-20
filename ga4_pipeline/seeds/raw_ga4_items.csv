@@ -1,0 +1,10 @@
+event_key,source_version,item_index,item_id,price_cents,quantity
+ev02,1,0,starter,5000,2
+ev03,1,0,kit,4000,3
+ev04,1,0,accessory,1000,1
+ev05,1,0,part,8000,1
+ev03,2,0,kit,6500,2
+ev06,1,0,repair,5000,1
+ev07,1,0,kit,10000,1
+ev08,1,0,accessory,7000,1
+ev10,1,0,support,1000,1
