@@ -4,7 +4,7 @@
   ".github/workflows/verify.yml": "43e29b3df3c2843619b303c9ff24c6310954bf18ee42f6380d2826e8dc72a53b",
   ".gitignore": "7538cd16114eedfdf1ed1320e48ad8f9bc3e0fb02936eeaa9e488ac48e7c0504",
   "LICENSE": "bfa35d897efdd7b0c543024c4d8a4d39feb8d9132f5432c1644f7f74443b4c13",
-  "README.md": "7feb7b87bb47068e9477a2e2bbc80df287114e2144cf79e8be9562081c5388de",
+  "README.md": "1411916e7ba752a13e25cb3840e22ca0bd7a42ac36ddb04a75c262910bf73b09",
   "assurance/__init__.py": "e5c08755a5a0bd480a16801f57e0d6e014d23a1e6920ed7a93b64a2b707df91a",
   "assurance/analytics.py": "5d9fce4fc4da7a194e46ac53618bc7951f47d119fa6a35040115393f3d99d34a",
   "assurance/core.py": "45649c6960ebcee273642da3f3d6f88485dfcbae4dca8946003e688d0aebe273",
