@@ -8,8 +8,8 @@ ga4_governed_warehouse:
     bigquery:
       type: bigquery
       method: oauth
-      project: "{{ env_var('GA4_BQ_PROJECT') }}"
-      dataset: "{{ env_var('GA4_BQ_DATASET') }}"
+      project: "{{ env_var('GA4_BQ_PROJECT', 'UNCONFIGURED_NO_CLOUD') }}"
+      dataset: "{{ env_var('GA4_BQ_DATASET', 'UNCONFIGURED_NO_CLOUD') }}"
       location: US
       threads: 1
       priority: interactive
