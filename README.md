@@ -82,6 +82,12 @@ The revised demonstration has **29 admission attempts, 19 distinct events, three
 
 ![Executed warehouse proof and source-value distinction](docs/images/warehouse-proof.png)
 
+## GA4 warehouse modeling extension
+
+The [isolated GA4 warehouse module](ga4_pipeline/README.md) takes synthetic GA4-style event versions and item rows through dbt into governed event, purchase, session and daily metrics. Its acceptance harness tests late-arriving events, corrected purchases, replay safety, preserved transaction/revenue discrepancies and row-for-row incremental versus full-refresh parity.
+
+The local DuckDB/dbt verification and optional BigQuery source projections are separate from the [previously executed public GA4 BigQuery queries](docs/evidence/google-bigquery/README.md). **Native dbt-bigquery execution remains unverified.** [Architecture and execution contract](docs/ga4-warehouse.md).
+
 ## GTM and Google boundaries
 
 | Evidence lane | Actual status |
