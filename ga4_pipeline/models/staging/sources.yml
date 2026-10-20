@@ -2,6 +2,7 @@ version: 2
 sources:
   - name: ga4_landing
     description: Owner-approved normalized GA4 landing tables. Not populated by local CI.
+    database: "{{ env_var('GA4_BQ_PROJECT', 'UNCONFIGURED_NO_CLOUD') }}"
     schema: "{{ env_var('GA4_BQ_LANDING', 'ga4_landing') }}"
     tables:
       - name: event_versions

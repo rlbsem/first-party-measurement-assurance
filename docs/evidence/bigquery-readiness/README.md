@@ -1,0 +1,9 @@
+# BigQuery readiness — offline evidence
+
+This is **not a native dbt-bigquery execution record**. [Observed local results](local-checks.json) cover the actual pinned adapter's offline parse, source/admission and safety tests, and the existing DuckDB/dbt incremental pipeline. The original [Google public sample jobs](../google-bigquery/README.md) and [previous local GA4 acceptance](../ga4-warehouse/README.md) are unchanged.
+
+The separate [Windows/Linux adapter workflow](../../../.github/workflows/bigquery-readiness.yml) installs the optional lock and parses without Google credentials. The existing workflows still verify the measurement application and local GA4 incremental/full-refresh behavior. Consult the pull request's current check results for hosted CI status; local checks are not GitHub-hosted execution.
+
+The new complete Python oracle was checked against both actual local incremental and independent full-build databases. It checks every field in five rowsets and retains duplicate multiplicities. Additional negative checks reject plan tampering, stale approval, dataset reuse, uncertain cleanup, source identity errors and duplicate/corrupted rowsets. Local SQL fault injection separately verifies incomplete item values and orphan item revisions are rejected.
+
+The authenticated console assessment found a billing-disabled sandbox. No new BigQuery job, dataset, model deployment, credential setup, billing activation or permission change was performed. The [execution proposal](../../bigquery-acceptance.md) explains the DML restriction, exact bounded resources, authentication gap, cost allowance and cleanup requirements. Native MERGE, native tests, real job/SQL statistics, service permissions and cloud cleanup remain unverified until a separately approved execution succeeds.

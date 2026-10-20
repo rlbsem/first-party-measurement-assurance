@@ -15,3 +15,5 @@ python scripts/verify_ga4_pipeline.py --output .local/ga4-run.json
 The test builds batches one and two, checks late events and corrected source versions, verifies duplicate transaction and item-value findings, replays the admitted batch, and compares five modeled rowsets to an independent full-refresh database.
 
 The `bigquery` profile and two source projections are optional execution contracts. They do not make cloud requests or create datasets from this repository.
+
+The [native acceptance procedure](../docs/bigquery-acceptance.md) includes the optional pinned adapter, offline checks, approval-gated runner and sandbox DML blocker. It has not executed native dbt models.

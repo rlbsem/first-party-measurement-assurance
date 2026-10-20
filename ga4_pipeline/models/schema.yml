@@ -51,10 +51,12 @@ models:
         tests:
           - accepted_values:
               values: [0, 1]
+              quote: false
       - name: revenue_finding
         tests:
           - accepted_values:
               values: [0, 1]
+              quote: false
   - name: mart_ga4_sessions
     description: One row per pseudo-user and session. Missing identities stay in event facts.
     columns:

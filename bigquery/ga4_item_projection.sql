@@ -1,4 +1,6 @@
--- OPTIONAL NATIVE SOURCE PROJECTION. Uses the same immutable event-key recipe.
+-- OPTIONAL NATIVE SOURCE PROJECTION. Uses the same candidate snapshot-key recipe.
+-- It is not a trusted cross-export correction identity. Reject collisions before
+-- admission; retain unknown item amounts/quantities rather than inventing zero.
 -- @shard: one approved YYYYMMDD shard, @arrival_batch is recorded separately
 -- in the matching event_versions materialization. No writes occur in this SQL.
 with bounded as (
@@ -15,7 +17,7 @@ select
   1 as source_version,
   offset as item_index,
   i.item_id as item_id,
-  cast(round(coalesce(i.price,0)*100) as int64) as price_cents,
-  cast(coalesce(i.quantity,0) as int64) as quantity
+  cast(round(i.price*100) as int64) as price_cents,
+  cast(i.quantity as int64) as quantity
 from bounded e
 cross join unnest(e.items) i with offset as offset

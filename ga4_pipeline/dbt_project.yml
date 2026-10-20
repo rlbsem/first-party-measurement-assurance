@@ -6,6 +6,9 @@ model-paths: [models]
 seed-paths: [seeds]
 test-paths: [tests]
 macro-paths: [macros]
+query-comment:
+  comment: '{"assurance_run": "{{ env_var("GA4_BQ_RUN", "offline") }}"}'
+  job-label: true
 models:
   ga4_governed_warehouse:
     +materialized: view

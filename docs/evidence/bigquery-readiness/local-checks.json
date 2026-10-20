@@ -1,0 +1,114 @@
+{
+  "observed_on": "2026-10-20",
+  "scope": "offline Windows Python 3.12; no native model execution",
+  "native_dbt_bigquery": "not_executed",
+  "adapter_parse": {
+    "status": "passed",
+    "dbt_core": "1.9.8",
+    "dbt_bigquery": "1.9.2",
+    "nodes": {
+      "model": 7,
+      "test": 30,
+      "seed": 2
+    },
+    "google_authentication": "not_used"
+  },
+  "targeted_contract_tests": {
+    "passed": 45,
+    "failed": 0
+  },
+  "local_pipeline": {
+    "scope": "synthetic GA4-style fixture; local DuckDB/dbt only",
+    "native_bigquery": "not_executed",
+    "run_id": "ca0c285f7e",
+    "source": "ga4_pipeline/seeds",
+    "phases": [
+      {
+        "admitted_batch": 1,
+        "events": 5,
+        "purchase_events": 3,
+        "item_rows": 4,
+        "daily_rows": 3,
+        "quality_flags": {
+          "duplicate_transaction_event_rows": 0,
+          "item_revenue_discrepancies": 0
+        }
+      },
+      {
+        "admitted_batch": 2,
+        "events": 10,
+        "purchase_events": 7,
+        "item_rows": 8,
+        "daily_rows": 5,
+        "quality_flags": {
+          "duplicate_transaction_event_rows": 2,
+          "item_revenue_discrepancies": 1
+        }
+      }
+    ],
+    "rowset_comparison": {
+      "models": [
+        "fct_ga4_events",
+        "fct_ga4_items",
+        "mart_ga4_purchase_quality",
+        "mart_ga4_sessions",
+        "mart_ga4_daily"
+      ],
+      "incremental_equals_full_refresh": true,
+      "same_batch_replay_unchanged": true
+    },
+    "status": "passed"
+  },
+  "complete_python_oracle": "matched all five rowsets in both actual local final databases",
+  "hosted_ci": "consult current PR checks; not claimed by this local record",
+  "local_sql_fault_injection": {
+    "cases": 8,
+    "passed": 8,
+    "scope": "DuckDB execution of the actual landing-value and item-revision singular SQL tests; not native BigQuery"
+  },
+  "full_local_regression": {
+    "tests": 130,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "isolated_full_verifier": {
+    "status": "passed",
+    "python_tests_before_eight_additional_fault_cases": 122,
+    "analytical_builds": 3,
+    "models_per_build": 9,
+    "expected_fault": "detected",
+    "browser_checks": 16,
+    "markdown_links": 76,
+    "historical_evidence": "verified unchanged in working repository"
+  },
+  "source_sha256": {
+    "ga4_pipeline/dbt_project.yml": "a56ba894d0b8a69412c7b4bf2a35cc63447b30de2a77e48154df6174a1839f70",
+    "ga4_pipeline/macros/source_relations.sql": "d5017d19c26100650f5800c597109d0eb3a585aa514ec7e8a911964bc42c301b",
+    "ga4_pipeline/models/fct_ga4_events.sql": "881a1ac06a8409665c17605b2e9660d8e12ef984cfbc336eaa457cc13df4b236",
+    "ga4_pipeline/models/fct_ga4_items.sql": "fd7db0c9929a64846f022cc89751fc371ded1620eed04012e1d6f27dcc9b93ec",
+    "ga4_pipeline/models/mart_ga4_daily.sql": "8c2053dbb2ee65bc4bc50f1e3792a8491f3d45a11e1c85871a6fcc88f4f51bcd",
+    "ga4_pipeline/models/mart_ga4_purchase_quality.sql": "2a8270a43673056c7e274869118d05c0cf6be628b170f4af0f011e0d9e46bd5b",
+    "ga4_pipeline/models/mart_ga4_sessions.sql": "63ea53af4ab63281d94d6e0415879fd574a50a7f111dfd640063d4699793b7c9",
+    "ga4_pipeline/models/schema.yml": "bdb2c9d780129993482ac19d1ceec8de453c3a6fcae4969d5341a6cdee0b5434",
+    "ga4_pipeline/models/staging/sources.yml": "8dfddfc143d77f1ec74ae0587eb80ba0e789ce648c158776fb5551fc057a7c33",
+    "ga4_pipeline/models/staging/stg_event_versions.sql": "3674cecc8625e20b5326d68bdbe005647505817aa9d73635488eb537489b6a09",
+    "ga4_pipeline/models/staging/stg_item_versions.sql": "6d5564c520862ae6c09e463200191d64aab4bd7c29dc44a2ea7776051cad6ea7",
+    "ga4_pipeline/profiles.yml": "bf64bffc7b8064f67c5bdad15d4e11071913837396a3f168c238d20921e58ae3",
+    "ga4_pipeline/README.md": "d5b7ffdacfb414981265bb3c5e8c58aa47db3fd4b328b45f9b139749a1eedcdd",
+    "ga4_pipeline/seeds/raw_ga4_events.csv": "10d91747b13a3bf9861eaaed205000586837ac4bce53324c8409713b5e2f2da1",
+    "ga4_pipeline/seeds/raw_ga4_items.csv": "8b3cdb9bca56369c3132254cdede97725928fa842b0e68f2f0dcc1cba15be154",
+    "ga4_pipeline/tests/assert_item_grain.sql": "33ba5618ce24513ea4e531b325ca9d0f5bbb956df7a1f1fbb69ce9a1e5e007a0",
+    "ga4_pipeline/tests/assert_item_version_identity.sql": "a89d7d3533dcc5cbfee9a7a837e2c138676a71356dc370b85e563ef2319af8f1",
+    "ga4_pipeline/tests/assert_landing_values.sql": "792cf1793d0571b13ca8a6239400d9867a99bd067205b489c9a745ea232d388a",
+    "ga4_pipeline/tests/assert_mart_reconciliation.sql": "cd10c893f8aee0c2a80418d0456cdb0ee26a8324c2249be899d18c638fadb3ec",
+    "ga4_pipeline/tests/assert_no_regression.sql": "1a13f63dee48b082090f31cff42f29faa183644d93c6823df4ea44bb42f69440",
+    "ga4_pipeline/tests/assert_purchase_item_conservation.sql": "98fbce9515c42acf1270465646f6e561676d59a832b01ebb959396a81c222ea6",
+    "ga4_pipeline/tests/assert_quality_flags.sql": "07f570a2750ca6c6b4a91b15ac95901c667015a384f9b5dbe12158033286cb20",
+    "ga4_pipeline/tests/assert_source_version_identity.sql": "6f52200ffb4fa6dea47a1f091124cb4cf7ca249871dd4dea5c39ab19ba0bac4e",
+    "requirements-bigquery.lock": "f0fa7a45817f98bf1921d86c6a0126139291986adef78608bb1ae21d5a523d24",
+    "scripts/bigquery_oracle.py": "14efada7d849116e832f24607907ddf6b11532bc2f647730e8103300860d5888",
+    "scripts/verify_bigquery.py": "8a1ddc50d588ee42acfca855ec7f99019ee4f1b54070ea011514535eea8880bf",
+    "scripts/verify_ga4_pipeline.py": "e0aa4c7f57f4c484b879bea0921e6fbd2c0d3e5835d6fcd5ff8d3c9ab640d660"
+  }
+}
