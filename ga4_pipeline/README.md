@@ -1,6 +1,6 @@
 # GA4 event-to-warehouse modeling
 
-**Current status:** Local synthetic fixture implementation. Native dbt-bigquery not executed.
+**Current status:** [Local synthetic acceptance passed on Windows and Linux](../docs/evidence/ga4-warehouse/README.md). Native dbt-bigquery not executed.
 
 This isolated dbt project extends First-Party Measurement Assurance with event, item, session and purchase-quality grains, governed daily marts, incremental event corrections and independent source-to-mart reconciliation.
 
