@@ -28,9 +28,9 @@ def test_same_revision_collision_is_not_resolved_arbitrarily(monkeypatch):
     fixture = ga4.csv_records("raw_ga4_events.csv")
     duplicate = deepcopy(fixture[1])
     duplicate["revenue_cents"] = "999999"
+    ga4_items = ga4.csv_records("raw_ga4_items.csv")
     monkeypatch.setattr(ga4, "csv_records", lambda name: fixture + [duplicate]
                         if name == "raw_ga4_events.csv" else ga4_items)
-    ga4_items = ga4.csv_records("raw_ga4_items.csv")
     with pytest.raises(ValueError, match="Ambiguous repeated"):
         ga4.expected_state(2)
 
