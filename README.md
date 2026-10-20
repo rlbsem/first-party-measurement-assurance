@@ -12,6 +12,14 @@ The exact fixture has **$920,000 in proposals, $435,000 in signed contracts and 
 
 Proposals, signed commitments and collected cash retain separate measures and SQL grains. A deposit is not counted as another full contract. [Exact synthetic results](docs/evidence/demo.json) · [Evidence index](docs/evidence/README.md).
 
+## Measurement that follows the commercial event
+
+At Lorex, I connected ecommerce measurement with product, transaction and executive reporting using Google Analytics, GTM and Adobe Analytics. At LMN, I used GA4/GTM and Salesforce data to assess SaaS acquisition beyond lead volume. Groundbreakers work extended that source-preservation and reconciliation discipline across CRM, operations and finance.
+
+A conversion must represent the business event it claims to measure. This repository implements consent-aware browser instrumentation, event identity, offline source authority and separate contract and payment measures. Its GA4/dbt warehouse extension preserves event, item and session grain, late corrections, data-quality findings and local incremental/full-refresh parity. Synthetic sources expose missing and overstated conversions without publishing client data. Native BigQuery sample queries executed separately; native dbt-bigquery acceptance remains unexecuted. These controls apply to ecommerce, SaaS and longer sales cycles where attribution must reconcile with authoritative commercial events.
+
+[Source authority](docs/architecture.md) · [GA4 warehouse proof](docs/evidence/ga4-warehouse/README.md) · [Native BigQuery queries](docs/evidence/google-bigquery/README.md)
+
 ## Try the application
 
 Use **Python 3.12** from the existing source checkout:
