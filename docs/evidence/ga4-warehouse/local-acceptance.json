@@ -1,0 +1,58 @@
+{
+  "status": "passed_local_synthetic",
+  "executed_on_utc": "2026-10-20",
+  "scope": "Deterministic synthetic GA4-style landing data, locally executed DuckDB/dbt on GitHub Actions. No native dbt-bigquery job.",
+  "source": "ga4_pipeline/seeds",
+  "runs": {
+    "ga4_warehouse": {
+      "workflow_run": 39360154556,
+      "url": "https://github.com/rlbsem/first-party-measurement-assurance/actions/runs/39360154556",
+      "ubuntu": "success",
+      "windows": "success"
+    },
+    "original_measurement": {
+      "workflow_run": 39360154330,
+      "url": "https://github.com/rlbsem/first-party-measurement-assurance/actions/runs/39360154330",
+      "ubuntu": "success",
+      "windows": "success"
+    }
+  },
+  "phases": [
+    {
+      "admitted_batch": 1,
+      "events": 5,
+      "purchase_events": 3,
+      "item_rows": 4,
+      "daily_rows": 3,
+      "duplicate_transaction_event_rows": 0,
+      "item_revenue_discrepancies": 0
+    },
+    {
+      "admitted_batch": 2,
+      "events": 10,
+      "purchase_events": 7,
+      "item_rows": 8,
+      "daily_rows": 5,
+      "duplicate_transaction_event_rows": 2,
+      "item_revenue_discrepancies": 1
+    }
+  ],
+  "controls": {
+    "late_historical_event_present": true,
+    "corrected_purchase_source_version": 2,
+    "corrected_purchase_revenue_cents": 13000,
+    "old_item_revision_removed": true,
+    "same_batch_replay_unchanged": true,
+    "incremental_equals_independent_full_refresh": true,
+    "compared_models": [
+      "fct_ga4_events",
+      "fct_ga4_items",
+      "mart_ga4_purchase_quality",
+      "mart_ga4_sessions",
+      "mart_ga4_daily"
+    ]
+  },
+  "native_bigquery": "not_executed",
+  "native_ga4_export": "not_executed",
+  "archived_execution": "Recorded from GitHub Actions job output; source-native GA4 sample jobs remain separately documented in docs/evidence/google-bigquery."
+}
