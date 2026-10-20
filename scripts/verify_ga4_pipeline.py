@@ -158,18 +158,18 @@ def verify_snapshot(rows, batch):
 
 
 def command(args, env, logs):
-    binary = shutil.which("dbt")
-    if not binary:
-        raise RuntimeError("dbt executable is required; install requirements.lock")
+    # Match the existing repo's invocation: flags follow the dbt subcommand.
     proc = subprocess.run(
-        [binary, "--project-dir", str(PROJECT), "--profiles-dir", str(PROJECT),
-         "--target", "local", *args],
+        [sys.executable, "-m", "dbt.cli.main", args[0],
+         "--project-dir", str(PROJECT), "--profiles-dir", str(PROJECT),
+         "--target", "local", *args[1:]],
         cwd=ROOT, env=env, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
         timeout=180,
     )
     logs.write(f"$ dbt {' '.join(args)}\n{proc.stdout}\n")
     logs.flush()
     if proc.returncode:
+        print(proc.stdout[-9000:], file=sys.stderr)
         raise RuntimeError(f"dbt {' '.join(args)} failed; inspect local run log")
 
 
