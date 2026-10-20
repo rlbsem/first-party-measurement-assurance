@@ -174,6 +174,7 @@ class NativeRun:
 
     def query(self, sql):
         config = self.bq.QueryJobConfig(maximum_bytes_billed=MAX_BYTES, use_query_cache=False,
+                                        job_timeout_ms=120_000,
                                         labels=self.labels)
         job_id = f'{self.plan["run_id"]}_{uuid.uuid4().hex}'
         self.job_intents.add(job_id)
@@ -207,7 +208,7 @@ class NativeRun:
         for table, rows in landing_rows(batch).items():
             fields = EVENT_FIELDS if table == 'event_versions' else ITEM_FIELDS
             config = self.bq.LoadJobConfig(schema=[self.bq.SchemaField(k, t) for k, t in fields],
-                write_disposition='WRITE_APPEND', labels=self.labels)
+                write_disposition='WRITE_APPEND', labels=self.labels, job_timeout_ms=120_000)
             job_id = f'{self.plan["run_id"]}_batch{batch}_{table}'
             self.job_intents.add(job_id)
             write(self.output / 'job-intents.json', sorted(self.job_intents))

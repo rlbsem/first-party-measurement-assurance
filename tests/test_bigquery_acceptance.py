@@ -140,6 +140,25 @@ def test_uncertain_job_receipt_prohibits_cleanup(monkeypatch):
     assert not deleted
 
 
+def test_query_submission_is_bounded_and_intent_precedes_request(tmp_path):
+    run = native.NativeRun.__new__(native.NativeRun)
+    run.plan, run.output = approved_plan(), tmp_path
+    run.labels = {'assurance_run': 'offline_check'}
+    run.job_intents, run.jobs = set(), {}
+    run.bq = SimpleNamespace(QueryJobConfig=lambda **kwargs: SimpleNamespace(**kwargs))
+    def submit(sql, **kwargs):
+        assert kwargs['job_id'] in run.job_intents
+        assert (tmp_path / 'job-intents.json').exists()
+        assert kwargs['job_config'].maximum_bytes_billed == 100_000_000
+        assert kwargs['job_config'].job_timeout_ms == 120_000
+        assert kwargs['job_config'].use_query_cache is False
+        assert kwargs['job_retry'] is None and kwargs['retry'] is None
+        assert kwargs['location'] == 'US'
+        return SimpleNamespace(job_id=kwargs['job_id'], result=lambda **kwargs: [])
+    run.client = SimpleNamespace(query=submit)
+    assert run.query('SELECT 1') == []
+
+
 def test_package_includes_entire_ga4_module_and_optional_lock():
     packaged = {p.relative_to(package.ROOT).as_posix() for p in package.files()}
     for path in (package.ROOT / 'ga4_pipeline').rglob('*'):

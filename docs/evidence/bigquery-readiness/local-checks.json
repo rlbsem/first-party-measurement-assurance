@@ -14,7 +14,7 @@
     "google_authentication": "not_used"
   },
   "targeted_contract_tests": {
-    "passed": 45,
+    "passed": 46,
     "failed": 0
   },
   "local_pipeline": {
@@ -67,7 +67,7 @@
     "scope": "DuckDB execution of the actual landing-value and item-revision singular SQL tests; not native BigQuery"
   },
   "full_local_regression": {
-    "tests": 130,
+    "tests": 131,
     "failures": 0,
     "errors": 0,
     "skipped": 0
@@ -108,7 +108,7 @@
     "ga4_pipeline/tests/assert_source_version_identity.sql": "6f52200ffb4fa6dea47a1f091124cb4cf7ca249871dd4dea5c39ab19ba0bac4e",
     "requirements-bigquery.lock": "f0fa7a45817f98bf1921d86c6a0126139291986adef78608bb1ae21d5a523d24",
     "scripts/bigquery_oracle.py": "14efada7d849116e832f24607907ddf6b11532bc2f647730e8103300860d5888",
-    "scripts/verify_bigquery.py": "8a1ddc50d588ee42acfca855ec7f99019ee4f1b54070ea011514535eea8880bf",
+    "scripts/verify_bigquery.py": "6d919665c8ef8ff50c1dfbeb21555e9e061756f6b5d9301019ad2522a8085ca8",
     "scripts/verify_ga4_pipeline.py": "e0aa4c7f57f4c484b879bea0921e6fbd2c0d3e5835d6fcd5ff8d3c9ab640d660"
   }
 }
