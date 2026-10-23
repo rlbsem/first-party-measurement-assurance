@@ -20,9 +20,11 @@ A conversion must represent the business event it claims to measure. This reposi
 
 [Source authority](docs/architecture.md) · [GA4 warehouse proof](docs/evidence/ga4-warehouse/README.md) · [Native BigQuery queries](docs/evidence/google-bigquery/README.md)
 
-## Try the application
+## Try the application locally
 
-Use **Python 3.12** from the existing source checkout:
+**No-install preview:** See the [executed measurement-health screenshot](docs/images/measurement-health.png), [browser instrumentation screenshot](docs/images/browser-laboratory.png), and [recorded execution evidence](docs/evidence/README.md). These are saved results, not a publicly hosted live application.
+
+To run the application on your own computer, use **Python 3.12** from the existing source checkout:
 
 ```text
 python -m venv .venv
@@ -36,7 +38,7 @@ python -m playwright install chromium
 python -m assurance.server --fixture --workspace .local/projects-v2
 ```
 
-Open `http://127.0.0.1:8550`. On Linux, browser tests may require `python -m playwright install --with-deps chromium`. This server binds to loopback. Use a fresh v2 workspace: earlier databases are refused and left untouched.
+After starting the server above, open `http://127.0.0.1:8550` in a browser on the **same computer**. This is a local-only address, not a public website. On Linux, browser tests may require `python -m playwright install --with-deps chromium`. The server binds to loopback. Use a fresh v2 workspace: earlier databases are refused and left untouched.
 
 1. **Measurement health:** compare source contracts and payments with their separate measured conversions. Inspect stage counts, rejected attempts, late arrivals and receipt details.
 2. **Inquiry laboratory:** request a consultation before permission, allow analytics, inspect the real GTM-compatible data-layer message, replay it, introduce schema drift and lose an acknowledgement.
