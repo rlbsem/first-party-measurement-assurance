@@ -2,7 +2,7 @@
 
 **A $245,000 project is signed. The customer pays a $73,500 deposit. Why does marketing report another $245,000 purchase?**
 
-An inquiry, signed project and payment represent different business events. This application traces those events through browser collection, offline source authority, durable receipts and dbt reconciliation. **Evermere Design + Build** is a fictional US home-services operator used for the synthetic measurement scenarios.
+**Business impact:** Recover missing conversion signals, expose overstated purchase values and connect acquisition reporting to real commercial milestones so budget and revenue decisions use credible evidence. An inquiry, a signed project and a payment are different business events. This application traces them through browser collection, offline source authority, durable receipts and dbt reconciliation. **Evermere Design + Build** is a fictional US home-services operator used for the synthetic measurement scenarios.
 
 The local browser, HTTP and DuckDB/dbt workflows execute with synthetic USD project data. Native BigQuery evidence uses Google's separate public GA4 sample. The core application runs without private credentials.
 
