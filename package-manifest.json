@@ -87,7 +87,7 @@
   "ga4_pipeline/tests/assert_source_version_identity.sql": "6f52200ffb4fa6dea47a1f091124cb4cf7ca249871dd4dea5c39ab19ba0bac4e",
   "LICENSE": "bfa35d897efdd7b0c543024c4d8a4d39feb8d9132f5432c1644f7f74443b4c13",
   "pyproject.toml": "7a06d5b6cccf2204e255b40cfe044a81b70dbb61223dcdd3342728b731899ab9",
-  "README.md": "a2fad1fe19b6a492b86e795b8b784cd627ad4281cb5bc80e542bdc2314af8f8b",
+  "README.md": "3a168e37dadef34da74b857a8cf215a4eb1840fe468f83f4b8d7615bd20eaadf",
   "requirements-bigquery.lock": "f0fa7a45817f98bf1921d86c6a0126139291986adef78608bb1ae21d5a523d24",
   "requirements.lock": "4a1f01033a9122f6736690db75a341d76d6aa56633e815d1609e407a5e702b5d",
   "requirements.txt": "2e8567eacdfcb4640e4f21f24532c24431315e86c184e13e5a1eaf5fc421ff02",
