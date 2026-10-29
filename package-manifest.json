@@ -85,7 +85,7 @@
   "ga4_pipeline/tests/assert_purchase_item_conservation.sql": "98fbce9515c42acf1270465646f6e561676d59a832b01ebb959396a81c222ea6",
   "ga4_pipeline/tests/assert_quality_flags.sql": "07f570a2750ca6c6b4a91b15ac95901c667015a384f9b5dbe12158033286cb20",
   "ga4_pipeline/tests/assert_source_version_identity.sql": "6f52200ffb4fa6dea47a1f091124cb4cf7ca249871dd4dea5c39ab19ba0bac4e",
-  "LICENSE": "bfa35d897efdd7b0c543024c4d8a4d39feb8d9132f5432c1644f7f74443b4c13",
+  "LICENSE": "1819462f2e141f8a0f1371c5191ad9ceffe1455611b2d2359674485cb7c3a8c5",
   "pyproject.toml": "7a06d5b6cccf2204e255b40cfe044a81b70dbb61223dcdd3342728b731899ab9",
   "README.md": "3a168e37dadef34da74b857a8cf215a4eb1840fe468f83f4b8d7615bd20eaadf",
   "requirements-bigquery.lock": "f0fa7a45817f98bf1921d86c6a0126139291986adef78608bb1ae21d5a523d24",
