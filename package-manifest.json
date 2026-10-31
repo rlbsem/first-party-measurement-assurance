@@ -120,7 +120,7 @@
   "scripts/verify.py": "8c02d8314427e127133a29126933e679c66c76a9ffb5261f54fbce438e094db9",
   "scripts/verify_bigquery.py": "6d919665c8ef8ff50c1dfbeb21555e9e061756f6b5d9301019ad2522a8085ca8",
   "scripts/verify_current_copy.py": "007255fd26295231c1498c723595cfc4ea0bda7131b2e2a64eb36ffbca4a2da6",
-  "scripts/verify_ga4_current.py": "98281b7b6a571d3d132c7a40c34cf6a5f1f9b852ff5f8f6e9cd6686b88c347d6",
+  "scripts/verify_ga4_current.py": "28e8867eaf5eb3f240b0679a05205073295601598c3ce244b644930c5d58e6ed",
   "scripts/verify_ga4_pipeline.py": "e0aa4c7f57f4c484b879bea0921e6fbd2c0d3e5835d6fcd5ff8d3c9ab640d660",
   "scripts/warehouse_preview.py": "68b7a54f749dbf86e806ae3f9cc9c841021a1b8587c695655a8ec0241b8a705c",
   "tests/test_bigquery_acceptance.py": "c6b0d39be36246d53336597699661e1dbf2373a44820875b55698a623fd92eb2",

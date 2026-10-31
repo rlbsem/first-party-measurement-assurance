@@ -29,7 +29,7 @@ def main():
         parser.error('Use a fresh private .local output file')
     before = fingerprints()
     work = ROOT / '.local' / ('ga4-complete-' + uuid.uuid4().hex[:10])
-    work.mkdir()
+    work.mkdir(parents=True)
     subprocess.run([sys.executable, 'scripts/verify_ga4_pipeline.py', '--output', str(work / 'pipeline.json')],
                    cwd=ROOT, check=True)
     record = json.loads((work / 'pipeline.json').read_text())
