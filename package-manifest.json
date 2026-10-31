@@ -52,6 +52,8 @@
   "docs/evidence/source-ledger.json": "7bf74bd1fbf42effcc92f871d52d5de5197ad0e1ed5cb1acebde93ee41b2cb44",
   "docs/evidence/verification.json": "436c8b749f574cf96a8c2ad9eec4ef39c01f69b2b49d441d7c7eb2e295c6bef2",
   "docs/evidence/warehouse-review/access-assessment.json": "561318576ff282fbb9ab5e33f79e2d5f7476cca3dd55cd2741ad3138eaa83d1d",
+  "docs/evidence/warehouse-review/local/adapter-parse.json": "0c5323477a1020a99035c3d1cd1a150f8d192b331a523b0faaa8c22b74600714",
+  "docs/evidence/warehouse-review/local/application-verification.json": "3d0db3bce2beaea3a9dd4994b94888914561a2e9b40547624790528e9977e0f4",
   "docs/evidence/warehouse-review/local/guard-observations.json": "b743d464373f055b90b5afc4b861d9b02586f9b49b14dfd7353ae746e67464e8",
   "docs/evidence/warehouse-review/local/oracle.json": "1d0ca83cd576ace2bb8250ade29cc44178f30ebba7ee5eaa5f00881d5addcc54",
   "docs/evidence/warehouse-review/local/pipeline.json": "ed248614f1ab5cd5698f6fc25cb7f4513619f70ae577740b8873f165f94a8418",
