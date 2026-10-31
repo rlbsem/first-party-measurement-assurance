@@ -1,0 +1,32 @@
+{
+  "observed_local_date": "2026-10-30",
+  "timezone": "America/Toronto",
+  "adc": {
+    "standard_file_present": false,
+    "credential_environment_present": false,
+    "discovery_result": "DefaultCredentialsError"
+  },
+  "gcloud_available_on_path": false,
+  "bq_available_on_path": false,
+  "bigquery_connector": {
+    "installed": false,
+    "status": "DISABLED_BY_ADMIN",
+    "installation_policy": "NOT_AVAILABLE"
+  },
+  "browser": {
+    "authenticated": true,
+    "project_mode": "billing-disabled sandbox banner",
+    "billing_or_IAM_changes": false
+  },
+  "native_dbt_acceptance": "blocked",
+  "blockers": [
+    "Python/dbt lacks supported ADC authentication; browser cookies are not SDK credentials.",
+    "Current sandbox excludes DML and cannot execute the declared incremental MERGE."
+  ],
+  "partial_native_lane": "Two read-only model/source SELECT queries executed; no dbt build, MERGE, persistent datasets, billing enablement or IAM changes.",
+  "minimum_future_access": "Separately approved isolated DML-capable project, short-lived ADC and exact resource/cost approval. No secrets in chat and no automatic billing changes.",
+  "sources": [
+    "https://docs.cloud.google.com/bigquery/docs/sandbox",
+    "https://cloud.google.com/docs/authentication/application-default-credentials"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "executed": true,
+  "scope": "Actual local DuckDB/dbt fixture, not native BigQuery",
+  "rowsets": 5,
+  "complete_python_oracle": true,
+  "physical_databases": [
+    "incremental",
+    "full"
+  ],
+  "matches": true
+}

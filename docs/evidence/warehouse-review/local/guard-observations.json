@@ -1,0 +1,99 @@
+{
+  "scope": "Actual DuckDB execution of original and revised singular-test SQL on deliberately altered synthetic facts; not native vendor execution",
+  "baseline_revision": "5e8c4da6c3e8fa3e7a48e69b8cf973a872ddd121",
+  "original_sql_sha256": "1a13f63dee48b082090f31cff42f29faa183644d93c6823df4ea44bb42f69440",
+  "revised_sql_sha256": "6011761773265245c9ca3fc72e4d7e63cb85a40100460aba4ce3d707ecd5ea4d",
+  "observations": [
+    {
+      "fault": "event_name",
+      "value": "page_view",
+      "original_guard_findings": 0,
+      "revised_guard_findings": 1
+    },
+    {
+      "fault": "user_pseudo_id",
+      "value": "other",
+      "original_guard_findings": 0,
+      "revised_guard_findings": 1
+    },
+    {
+      "fault": "session_id",
+      "value": "other",
+      "original_guard_findings": 0,
+      "revised_guard_findings": 1
+    },
+    {
+      "fault": "transaction_id",
+      "value": "other",
+      "original_guard_findings": 0,
+      "revised_guard_findings": 1
+    },
+    {
+      "fault": "event_date",
+      "value": "2020-01-01",
+      "original_guard_findings": 1,
+      "revised_guard_findings": 1
+    },
+    {
+      "fault": "arrival_batch",
+      "value": 1,
+      "original_guard_findings": 1,
+      "revised_guard_findings": 1
+    },
+    {
+      "fault": "source_version",
+      "value": 99,
+      "original_guard_findings": 1,
+      "revised_guard_findings": 1
+    },
+    {
+      "fault": "revenue_cents",
+      "value": 1,
+      "original_guard_findings": 1,
+      "revised_guard_findings": 1
+    },
+    {
+      "fault": "event_key",
+      "value": "wrong",
+      "original_guard_findings": 1,
+      "revised_guard_findings": 2
+    },
+    {
+      "fault": "user_pseudo_id",
+      "value": null,
+      "original_guard_findings": 0,
+      "revised_guard_findings": 1
+    },
+    {
+      "fault": "transaction_id",
+      "value": null,
+      "original_guard_findings": 0,
+      "revised_guard_findings": 1
+    },
+    {
+      "fault": "session_id",
+      "value": null,
+      "original_guard_findings": 0,
+      "revised_guard_findings": 1
+    },
+    {
+      "fault": "extra_future_event",
+      "value": null,
+      "original_guard_findings": 0,
+      "revised_guard_findings": 1
+    },
+    {
+      "fault": "missing_event",
+      "value": null,
+      "original_guard_findings": 1,
+      "revised_guard_findings": 1
+    },
+    {
+      "fault": "none",
+      "value": null,
+      "original_guard_findings": 0,
+      "revised_guard_findings": 0
+    }
+  ],
+  "missed_negative_cases_in_original": 8
+}

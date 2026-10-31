@@ -81,10 +81,12 @@ The browser collector cannot claim offline source authority by supplying `origin
 ## Engineering evidence
 
 ```text
-python scripts/verify.py
+python scripts/verify_current_copy.py --output .local/current-verification
 ```
 
 The verifier checks Python/API and adapter contracts, Chromium interactions, three dbt builds, a deliberately failing SQL case, incremental/full-build equivalence, independent reconciliation and artifact integrity. Runtime data stays in ignored workspaces.
+
+Current verification runs in a fresh source copy so its generated records and screenshots do not overwrite historical evidence. Use a new output directory for each run.
 
 The revised demonstration has **29 admission attempts, 19 distinct events, three contained replays, one late arrival and three unresolved financial findings**. All **nine dbt models** compare exactly with an independent full build. Each successful build passes **21 data tests**. [Executed verification](docs/evidence/verification.json) and [control-to-test map](docs/testing.md).
 
@@ -98,7 +100,9 @@ The [isolated GA4 warehouse module](ga4_pipeline/README.md) takes synthetic GA4-
 
 The [local GA4 warehouse acceptance](docs/evidence/ga4-warehouse/README.md) passed on Linux and Windows, with exact incremental/full-refresh parity and preserved source anomalies. This is separate from the [previously executed BigQuery sample queries](docs/evidence/google-bigquery/README.md). **Native dbt-bigquery execution remains unverified.** [Architecture and execution contract](docs/ga4-warehouse.md).
 
-[Native acceptance tooling](docs/bigquery-acceptance.md) adds a pinned BigQuery adapter, complete Python rowset oracle and approval-gated synthetic runner. The existing billing-disabled sandbox excludes incremental DML; no new cloud jobs or billing changes were made. [Offline readiness evidence](docs/evidence/bigquery-readiness/README.md).
+[Native acceptance tooling](docs/bigquery-acceptance.md) adds a pinned BigQuery adapter, complete Python rowset oracle and approval-gated synthetic runner. That readiness pass made no cloud jobs or billing changes; the existing billing-disabled sandbox still excludes incremental DML. [Offline readiness evidence](docs/evidence/bigquery-readiness/README.md).
+
+The [current warehouse review](docs/warehouse-review.md) adds **fresh native read-only GoogleSQL execution** of the existing seven model SELECT bodies. Five duplicate-preserving multiset comparisons agree with an independent source query: **1,856 event rows, 4,828 item rows, 14 purchase-event rows, 12 observed user/session keys and one daily row** in a bounded public-sample cohort. This is Jinja rendering and native SQL execution, **not dbt compilation/build or MERGE**. Local tests separately verify incremental correctness and reject changed identity fields or extra future-batch facts. [Exact new evidence and blockers](docs/evidence/warehouse-review/README.md).
 
 ## GTM and Google boundaries
 
@@ -111,6 +115,7 @@ The [local GA4 warehouse acceptance](docs/evidence/ga4-warehouse/README.md) pass
 | GA4 payload projection | Six documented lead/payment event patterns, USD units and explicit value basis locally tested |
 | Google Measurement Protocol debug | **Not executed**; requires an approved isolated property configuration |
 | Native BigQuery public sample | **Executed 2026-10-17** through BigQuery Studio in a billing-disabled sandbox; two public-data queries plus a job-metadata lookup. [Evidence](docs/evidence/google-bigquery/README.md) |
+| Native model SELECT preview | **Executed 2026-10-30** in the sandbox; five cohort multiset signatures agree. Not dbt build or MERGE. [Evidence](docs/evidence/warehouse-review/README.md) |
 | Production GA4 to BigQuery integration | **Not implemented or claimed** |
 | Hosted GitHub CI | [Windows and Ubuntu verification](https://github.com/rlbsem/first-party-measurement-assurance/actions/workflows/verify.yml); inspect the run for the relevant commit |
 

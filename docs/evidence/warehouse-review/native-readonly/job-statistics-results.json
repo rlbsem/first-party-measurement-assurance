@@ -1,0 +1,34 @@
+[
+  {
+    "job_id": "job_ib0BxcS6RY-xnY1v-bmmSzpjuNng",
+    "creation_time": "2026-10-31 01:22:37.832000 UTC",
+    "start_time": "2026-10-31 01:22:38.396000 UTC",
+    "end_time": "2026-10-31 01:22:40.155000 UTC",
+    "state": "DONE",
+    "completed_without_error": "true",
+    "job_type": "QUERY",
+    "statement_type": "SELECT",
+    "priority": "INTERACTIVE",
+    "total_bytes_processed": "9992652",
+    "total_bytes_billed": "10485760",
+    "total_slot_ms": "128559",
+    "cache_hit": "false",
+    "sql_sha256": "382878994d5899ebcc3a1320d3fa1808edd63cb3c4a911449fef791c09504f43"
+  },
+  {
+    "job_id": "job_jQgap-SnGKMDxYOUmYmvO4OqqIO3",
+    "creation_time": "2026-10-31 01:24:52.722000 UTC",
+    "start_time": "2026-10-31 01:24:52.993000 UTC",
+    "end_time": "2026-10-31 01:24:54.226000 UTC",
+    "state": "DONE",
+    "completed_without_error": "true",
+    "job_type": "QUERY",
+    "statement_type": "SELECT",
+    "priority": "INTERACTIVE",
+    "total_bytes_processed": "9639116",
+    "total_bytes_billed": "10485760",
+    "total_slot_ms": "4734",
+    "cache_hit": "false",
+    "sql_sha256": "1489ac7fe29873cac50a47d3886f79e71a21649033353a4aef7cb67edfb42914"
+  }
+]

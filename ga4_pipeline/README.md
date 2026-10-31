@@ -9,7 +9,7 @@ Read [implementation, boundaries and native acceptance requirements](../docs/ga4
 ## Local acceptance
 
 ```text
-python scripts/verify_ga4_pipeline.py --output .local/ga4-run.json
+python scripts/verify_ga4_current.py --output .local/ga4-run.json
 ```
 
 The test builds batches one and two, checks late events and corrected source versions, verifies duplicate transaction and item-value findings, replays the admitted batch, and compares five modeled rowsets to an independent full-refresh database.
@@ -17,3 +17,5 @@ The test builds batches one and two, checks late events and corrected source ver
 The `bigquery` profile and two source projections are optional execution contracts. They do not make cloud requests or create datasets from this repository.
 
 The [native acceptance procedure](../docs/bigquery-acceptance.md) includes the optional pinned adapter, offline checks, approval-gated runner and sandbox DML blocker. It has not executed native dbt models.
+
+The [current warehouse review](../docs/warehouse-review.md) separately executed these seven model SELECT bodies as read-only GoogleSQL against a bounded public cohort, with five matching independent source signatures. It also strengthens full-event regression checks. This is not native dbt materialization or incremental MERGE acceptance; those access boundaries remain unchanged.

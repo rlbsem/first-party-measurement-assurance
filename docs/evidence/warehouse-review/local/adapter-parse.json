@@ -1,0 +1,11 @@
+{
+  "status": "passed_offline_parse",
+  "dbt_core": "1.9.8",
+  "dbt_bigquery": "1.9.2",
+  "native_authenticated": false,
+  "nodes": {
+    "model": 7,
+    "test": 30,
+    "seed": 2
+  }
+}

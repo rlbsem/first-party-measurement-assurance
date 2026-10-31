@@ -1,0 +1,27 @@
+[
+  {
+    "model": "daily",
+    "row_count": "1",
+    "multiset_sha256": "f98715bd97b080830868a552176ac8c13686303d5eb867f6a23550a504365ac7"
+  },
+  {
+    "model": "events",
+    "row_count": "1856",
+    "multiset_sha256": "0e36c73324370a6251fd52b1308081d48ace09fc5d95b043c54530c32f59136c"
+  },
+  {
+    "model": "items",
+    "row_count": "4828",
+    "multiset_sha256": "d25c49ef4fa69c626c11e492c7db1ce2b67cf809f06fa08de67cf3b4e49e7f96"
+  },
+  {
+    "model": "purchases",
+    "row_count": "14",
+    "multiset_sha256": "f3232fb96d4bf4dbee1ee9c874a7d8902e64a89dfccc0787845dfeacf607486e"
+  },
+  {
+    "model": "sessions",
+    "row_count": "12",
+    "multiset_sha256": "f35b2077faa78c724ea57f1206c9332b6b81ca6613c5687adb3e1538cb068bf1"
+  }
+]

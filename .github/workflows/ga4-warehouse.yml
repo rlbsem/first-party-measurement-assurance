@@ -4,14 +4,28 @@ on:
     paths:
       - 'ga4_pipeline/**'
       - 'scripts/verify_ga4_pipeline.py'
+      - 'scripts/verify_ga4_current.py'
       - 'tests/test_ga4_contract.py'
+      - 'tests/test_ga4_regression_guard.py'
+      - 'tests/test_warehouse_preview*'
+      - 'scripts/warehouse_preview.py'
+      - 'scripts/check_warehouse_preview_evidence.py'
+      - 'bigquery/warehouse_*.sql'
+      - 'docs/evidence/warehouse-review/**'
       - 'docs/ga4-warehouse.md'
       - '.github/workflows/ga4-warehouse.yml'
   pull_request:
     paths:
       - 'ga4_pipeline/**'
       - 'scripts/verify_ga4_pipeline.py'
+      - 'scripts/verify_ga4_current.py'
       - 'tests/test_ga4_contract.py'
+      - 'tests/test_ga4_regression_guard.py'
+      - 'tests/test_warehouse_preview*'
+      - 'scripts/warehouse_preview.py'
+      - 'scripts/check_warehouse_preview_evidence.py'
+      - 'bigquery/warehouse_*.sql'
+      - 'docs/evidence/warehouse-review/**'
       - 'docs/ga4-warehouse.md'
       - '.github/workflows/ga4-warehouse.yml'
   workflow_dispatch:
@@ -41,9 +55,13 @@ jobs:
           cache-dependency-path: requirements.lock
       - run: python -m pip install -r requirements.lock
       - name: Independent source contract checks
-        run: python -m pytest -q tests/test_ga4_contract.py
+        run: python -m pytest -q tests/test_ga4_contract.py tests/test_ga4_regression_guard.py tests/test_warehouse_preview.py tests/test_warehouse_preview_evidence.py
+      - name: Check recorded native SQL and preserved historical evidence
+        run: python scripts/check_warehouse_preview_evidence.py
+      - name: Preserve original source and execution records
+        run: python scripts/check_warehouse_preservation.py
       - name: Incremental, replay and full-refresh acceptance
-        run: python scripts/verify_ga4_pipeline.py --output .local/ga4-run.json
+        run: python scripts/verify_ga4_current.py --output .local/ga4-run.json
       - name: Preserve synthetic local execution evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
