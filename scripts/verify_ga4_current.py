@@ -41,7 +41,9 @@ def main():
     record['complete_python_oracle'] = {'models': 5, 'all_fields_and_multiplicities': True,
                                         'incremental_matches': True, 'independent_full_matches': True}
     record['source_sha256'] = before
-    record['source_revision'] = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
+    record['source_revision'] = (subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
+                                 if (ROOT / '.git').exists() else None)
+    record['source_revision_origin'] = 'git' if (ROOT / '.git').exists() else 'unversioned_source_copy'
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(record, indent=2)+'\n', encoding='utf-8', newline='\n')
     print('Five complete Python-oracle rowsets match both actual dbt databases; acceptance sealed:', output)

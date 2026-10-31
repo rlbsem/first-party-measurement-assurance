@@ -44,9 +44,12 @@ def main():
     if result.returncode:
         raise RuntimeError('Application verifier failed; fresh-copy outputs retained')
     preserved()
-    revision = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
+    revision = (subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
+                if (ROOT / '.git').exists() else None)
     record = {'status': 'passed', 'source_revision': revision, 'source_sha256': before,
-              'preservation': preservation, 'scope': 'Credential-free application reproduction in a fresh source copy; no native requests.'}
+              'preservation': preservation,
+              'source_revision_origin': 'git' if (ROOT / '.git').exists() else 'unversioned_source_copy',
+              'scope': 'Credential-free application reproduction in a fresh source copy; no native requests.'}
     (output / 'copy-verification.json').write_text(json.dumps(record, indent=2)+'\n', encoding='utf-8', newline='\n')
     print('Current application verified in fresh copy; historical root evidence unchanged')
 
