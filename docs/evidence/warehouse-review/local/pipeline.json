@@ -1,0 +1,42 @@
+{
+  "scope": "synthetic GA4-style fixture; local DuckDB/dbt only",
+  "native_bigquery": "not_executed",
+  "run_id": "c1d23d857a",
+  "source": "ga4_pipeline/seeds",
+  "phases": [
+    {
+      "admitted_batch": 1,
+      "events": 5,
+      "purchase_events": 3,
+      "item_rows": 4,
+      "daily_rows": 3,
+      "quality_flags": {
+        "duplicate_transaction_event_rows": 0,
+        "item_revenue_discrepancies": 0
+      }
+    },
+    {
+      "admitted_batch": 2,
+      "events": 10,
+      "purchase_events": 7,
+      "item_rows": 8,
+      "daily_rows": 5,
+      "quality_flags": {
+        "duplicate_transaction_event_rows": 2,
+        "item_revenue_discrepancies": 1
+      }
+    }
+  ],
+  "rowset_comparison": {
+    "models": [
+      "fct_ga4_events",
+      "fct_ga4_items",
+      "mart_ga4_purchase_quality",
+      "mart_ga4_sessions",
+      "mart_ga4_daily"
+    ],
+    "incremental_equals_full_refresh": true,
+    "same_batch_replay_unchanged": true
+  },
+  "status": "passed"
+}

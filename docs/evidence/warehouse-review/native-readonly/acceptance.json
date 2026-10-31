@@ -1,0 +1,77 @@
+{
+  "status": "executed_read_only_sql",
+  "execution_local_date": "2026-10-30",
+  "execution_timezone": "America/Toronto",
+  "native_client": "Google Cloud Console / BigQuery Studio; version not exposed",
+  "source_revision": "1ebe32b3ed07f6db218a1da302a21fa49f064b08",
+  "source_state_at_execution": "Uncommitted source bytes, subsequently committed unchanged at source_revision; bound by exact hashes and provider SQL hashes.",
+  "scope": "One 20210101 public GA4 shard, purchase events plus all same-day events for those pseudo-users; not full-day population or uncensored complete sessions.",
+  "source_dataset": "bigquery-public-data.ga4_obfuscated_sample_ecommerce",
+  "source_sha256": {
+    "ga4_pipeline/macros/source_relations.sql": "d5017d19c26100650f5800c597109d0eb3a585aa514ec7e8a911964bc42c301b",
+    "ga4_pipeline/models/fct_ga4_events.sql": "881a1ac06a8409665c17605b2e9660d8e12ef984cfbc336eaa457cc13df4b236",
+    "ga4_pipeline/models/fct_ga4_items.sql": "fd7db0c9929a64846f022cc89751fc371ded1620eed04012e1d6f27dcc9b93ec",
+    "ga4_pipeline/models/mart_ga4_daily.sql": "8c2053dbb2ee65bc4bc50f1e3792a8491f3d45a11e1c85871a6fcc88f4f51bcd",
+    "ga4_pipeline/models/mart_ga4_purchase_quality.sql": "2a8270a43673056c7e274869118d05c0cf6be628b170f4af0f011e0d9e46bd5b",
+    "ga4_pipeline/models/mart_ga4_sessions.sql": "63ea53af4ab63281d94d6e0415879fd574a50a7f111dfd640063d4699793b7c9",
+    "ga4_pipeline/models/staging/stg_event_versions.sql": "3674cecc8625e20b5326d68bdbe005647505817aa9d73635488eb537489b6a09",
+    "ga4_pipeline/models/staging/stg_item_versions.sql": "6d5564c520862ae6c09e463200191d64aab4bd7c29dc44a2ea7776051cad6ea7",
+    "scripts/warehouse_preview.py": "68b7a54f749dbf86e806ae3f9cc9c841021a1b8587c695655a8ec0241b8a705c"
+  },
+  "queries": {
+    "warehouse_models_preview": {
+      "source_path": "bigquery/warehouse_models_preview.sql",
+      "source_sha256": "f0aae01795260beaeb20196a8f93193c23d874b29d6654e0ee5aff2244228752",
+      "job_id": "job_ib0BxcS6RY-xnY1v-bmmSzpjuNng",
+      "validator_estimate_display": "9.53 MB",
+      "executed_line_endings": "CRLF"
+    },
+    "warehouse_source_oracle": {
+      "source_path": "bigquery/warehouse_source_oracle.sql",
+      "source_sha256": "6f5d3aef7e43773c202d1339644f40fd69c62717d8d8cfd49d2dcaf44ef60b43",
+      "job_id": "job_jQgap-SnGKMDxYOUmYmvO4OqqIO3",
+      "validator_estimate_display": "9.19 MB",
+      "executed_line_endings": "CRLF"
+    }
+  },
+  "metadata_query": {
+    "source_path": "bigquery/warehouse_job_metadata.sql",
+    "source_sha256": "15f488af5cd3e3ba3253ffde469d762e42d7e080d14ff70dceaf0f5f4c2e01b6",
+    "job_id": "job_xBn8YIp8lepCTm2EtpqqeK0OFdiO",
+    "validator_estimate_display": "0 B",
+    "bytes_processed": 0,
+    "bytes_billed": 0,
+    "slot_millis": 1685,
+    "observation": "Completed job information UI; only data-job metadata was queried independently."
+  },
+  "observed_project_mode": "billing-disabled sandbox banner",
+  "resources": "Only managed temporary query results and job history; no persistent dataset, table, bucket, billing or IAM changes.",
+  "settings": {
+    "estimated_scan_gate_bytes": 100000000,
+    "maximum_bytes_billed_per_job": null,
+    "job_timeout_ms": null,
+    "note": "Pre-execution UI estimates inspected. Native per-job bytes/timeout configuration was not verified; no configured limits are claimed. Both data jobs actually processed less than 100MB and were uncached."
+  },
+  "evidence_boundaries": {
+    "native_google_sql": true,
+    "jinja_rendered_existing_model_select_bodies": true,
+    "native_dbt_compile": false,
+    "native_dbt_build": false,
+    "native_incremental_merge": false,
+    "production_ga4_export": false
+  },
+  "rowset_comparison": {
+    "model_classes": [
+      "daily",
+      "events",
+      "items",
+      "purchases",
+      "sessions"
+    ],
+    "all_five_match": true,
+    "method": "SHA-256 of sorted per-row SHA-256 values, retaining repeated rows and nulls, plus row count. Opaque snapshot event keys excluded; item comparison includes parent event fields.",
+    "key_limitation": "Content hash plus occurrence ordinal preserves repeats within one snapshot; not canonical identity or correction tracking across re-exports.",
+    "monetary_basis": "Provider-normalized *_in_usd fields, rounded to integer cents per unit; no custom FX model.",
+    "capture": "Normalized values read from rendered provider JSON results, not fabricated SDK responses."
+  }
+}

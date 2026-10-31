@@ -32,7 +32,9 @@ jobs:
       - run: python -m pip install -r requirements-bigquery.lock
       - run: python -m pip check
       - name: Offline safety, admission and complete rowset contracts
-        run: python -m pytest -q tests/test_bigquery_acceptance.py tests/test_ga4_contract.py
+        run: python -m pytest -q tests/test_bigquery_acceptance.py tests/test_ga4_contract.py tests/test_ga4_regression_guard.py tests/test_warehouse_preview.py tests/test_warehouse_preview_evidence.py
+      - name: Verify recorded native read-only results without credentials
+        run: python scripts/check_warehouse_preview_evidence.py
       - name: Parse the actual pinned BigQuery adapter without connecting
         run: python -m dbt.cli.main parse --project-dir ga4_pipeline --profiles-dir ga4_pipeline --target bigquery --no-partial-parse
       - name: Verify exact public package inventory
