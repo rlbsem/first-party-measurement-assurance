@@ -4,6 +4,7 @@ on:
     paths:
       - 'ga4_pipeline/**'
       - 'scripts/verify_ga4_pipeline.py'
+      - 'scripts/verify_ga4_current.py'
       - 'tests/test_ga4_contract.py'
       - 'tests/test_ga4_regression_guard.py'
       - 'tests/test_warehouse_preview*'
@@ -17,6 +18,7 @@ on:
     paths:
       - 'ga4_pipeline/**'
       - 'scripts/verify_ga4_pipeline.py'
+      - 'scripts/verify_ga4_current.py'
       - 'tests/test_ga4_contract.py'
       - 'tests/test_ga4_regression_guard.py'
       - 'tests/test_warehouse_preview*'
@@ -59,7 +61,7 @@ jobs:
       - name: Preserve original source and execution records
         run: python scripts/check_warehouse_preservation.py
       - name: Incremental, replay and full-refresh acceptance
-        run: python scripts/verify_ga4_pipeline.py --output .local/ga4-run.json
+        run: python scripts/verify_ga4_current.py --output .local/ga4-run.json
       - name: Preserve synthetic local execution evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

@@ -9,7 +9,7 @@ Read [implementation, boundaries and native acceptance requirements](../docs/ga4
 ## Local acceptance
 
 ```text
-python scripts/verify_ga4_pipeline.py --output .local/ga4-run.json
+python scripts/verify_ga4_current.py --output .local/ga4-run.json
 ```
 
 The test builds batches one and two, checks late events and corrected source versions, verifies duplicate transaction and item-value findings, replays the admitted batch, and compares five modeled rowsets to an independent full-refresh database.

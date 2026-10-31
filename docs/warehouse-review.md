@@ -64,11 +64,13 @@ python scripts/check_warehouse_preservation.py
 python scripts/check_google_evidence.py
 python scripts/check_warehouse_preview_evidence.py
 python -m pytest -q tests/test_ga4_regression_guard.py tests/test_warehouse_preview.py tests/test_warehouse_preview_evidence.py
-python scripts/verify_ga4_pipeline.py --output .local/ga4-new.json
+python scripts/verify_ga4_current.py --output .local/ga4-new.json
 python scripts/verify_current_copy.py --output .local/core-new
 ```
 
 Use a fresh directory for the final command. It runs the unchanged full application verifier inside an isolated copy, retaining new browser/dbt output there and leaving original evidence intact. The preservation check protects the original application, source contracts, model bodies, fixtures, tests, license and historical artifacts.
+
+`verify_ga4_current.py` runs the unchanged incremental/replay/full-build procedure and then compares every field and duplicate multiplicity in all five resulting rowsets against the Python source oracle, on both physical databases. It seals a fresh acceptance file only after these additional checks pass. CI uses the same command.
 
 `python scripts/warehouse_preview.py --output .local/sql-preview` regenerates the SELECT queries offline. It performs no authentication or Google calls. The checked SQL files are now executed evidence sources; preserve them and create a separately versioned capture if transformation semantics change.
 
