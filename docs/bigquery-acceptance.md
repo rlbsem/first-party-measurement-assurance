@@ -2,7 +2,7 @@
 
 **Status: prepared, not executed.** The existing [native public-sample queries](evidence/google-bigquery/README.md) and [local incremental acceptance](evidence/ga4-warehouse/README.md) remain separate historical records. This extension adds a pinned adapter, an approval-gated synthetic runner and offline safety checks. It does not establish a production GA4 export integration.
 
-## Environment assessment — October 20, 2026
+## Environment assessment: October 20, 2026
 
 The existing authenticated Google Cloud console showed the original project's **BigQuery sandbox** banner and the signed-in principal's **Owner** role. Its explorer showed no datasets. This is a UI observation, not an SDK dataset inventory or a successful permission probe. No new query job, dataset, model deployment, billing change or IAM change was submitted during assessment. Account identifiers and the principal's email are omitted from public evidence.
 

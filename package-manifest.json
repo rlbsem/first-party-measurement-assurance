@@ -37,7 +37,7 @@
   "dbt/tests/item_grain.sql": "685405a2dc27e26183ab780a1d621d57ff3b3225efc47597499cd29b90e1caca",
   "dbt/tests/project_no_fanout.sql": "561312006868525bd20db56a1fc4f1cbcbc68c46a77bcbc8d6a43897feaa06eb",
   "docs/architecture.md": "2e8cd8990ccc2050c24b88612e5bf5da34aeae2916fe5f1498ce10ee514f0460",
-  "docs/bigquery-acceptance.md": "702620893783999dcb1b9e6c195a630e0951ae7d71e6803f56ab02ab11a53714",
+  "docs/bigquery-acceptance.md": "489e97f5a898251373d41c1d38fc33d511bae4ecbebd5951442ed1bbae8abb5c",
   "docs/evidence/bigquery-readiness/local-checks.json": "52afa4ff39ce7f5a285b4eeeff401bd542c4eae734f634ef59f99819dc8da5df",
   "docs/evidence/bigquery-readiness/README.md": "83823282e05d7a80105a56c044f73f1bf1999bc3799f4032c0209038c72f70b8",
   "docs/evidence/browser.json": "a2d66e0dbb1a983f70f76f651591a940a7b32c9e56fa10694ae11f67639cc51f",
