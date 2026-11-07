@@ -4,21 +4,21 @@
 
 **Business impact:** Recover missing conversion signals, expose overstated purchase values and connect acquisition reporting to real commercial milestones so budget and revenue decisions use credible evidence. An inquiry, a signed project and a payment are different business events. This application traces them through browser collection, offline source authority, durable receipts and dbt reconciliation. **Evermere Design + Build** is a fictional US home-services operator used for the synthetic measurement scenarios.
 
-The local browser, HTTP and DuckDB/dbt workflows execute with synthetic USD project data. Native BigQuery evidence uses Google's separate public GA4 sample. The core application runs without private credentials.
+The local browser, HTTP and DuckDB/dbt workflows execute with synthetic USD project data. Native BigQuery evidence includes separate public-sample queries and a completed synthetic dbt/MERGE acceptance. The core application runs without private credentials.
 
 ![Executed project measurement-health console](docs/images/measurement-health.png)
 
 The exact fixture has **$920,000 in proposals, $435,000 in signed contracts and $143,500 in actual payments**. Measured contract conversions total $190,000; measured payment conversions total $302,000. The system exposes three financial findings: a missing $245,000 contract conversion, a missing $13,000 progress-payment conversion and a deposit overstated by $171,500.
 
-Proposals, signed commitments and collected cash retain separate measures and SQL grains. A deposit is not counted as another full contract. [Exact synthetic results](docs/evidence/demo.json) · [Evidence index](docs/evidence/README.md).
+Proposals, signed commitments and collected cash retain separate measures and SQL grains. A deposit is not counted as another full contract. [Exact synthetic results](docs/evidence/demo.json) Â· [Evidence index](docs/evidence/README.md).
 
 ## Measurement that follows the commercial event
 
 At Lorex, I connected ecommerce measurement with product, transaction and executive reporting using Google Analytics, GTM and Adobe Analytics. At LMN, I used GA4/GTM and Salesforce data to assess SaaS acquisition beyond lead volume. Groundbreakers work extended that source-preservation and reconciliation discipline across CRM, operations and finance.
 
-A conversion must represent the business event it claims to measure. This repository implements consent-aware browser instrumentation, event identity, offline source authority and separate contract and payment measures. Its GA4/dbt warehouse extension preserves event, item and session grain, late corrections, data-quality findings and local incremental/full-refresh parity. Synthetic sources expose missing and overstated conversions without publishing client data. Native BigQuery sample queries executed separately; native dbt-bigquery acceptance remains unexecuted. These controls apply to ecommerce, SaaS and longer sales cycles where attribution must reconcile with authoritative commercial events.
+A conversion must represent the business event it claims to measure. This repository implements consent-aware browser instrumentation, event identity, offline source authority and separate contract and payment measures. Its GA4/dbt warehouse extension preserves event, item and session grain, late corrections, data-quality findings and local incremental/full-refresh parity. Synthetic sources expose missing and overstated conversions without publishing client data. Native BigQuery sample queries and synthetic dbt-BigQuery acceptance executed separately; the latter verifies real incremental MERGE, replay and independent full-build parity. These controls apply to ecommerce, SaaS and longer sales cycles where attribution must reconcile with authoritative commercial events.
 
-[Source authority](docs/architecture.md) · [GA4 warehouse proof](docs/evidence/ga4-warehouse/README.md) · [Native BigQuery queries](docs/evidence/google-bigquery/README.md)
+[Source authority](docs/architecture.md) Â· [GA4 warehouse proof](docs/evidence/ga4-warehouse/README.md) Â· [Native BigQuery queries](docs/evidence/google-bigquery/README.md)
 
 ## Try the application locally
 
@@ -98,11 +98,11 @@ The revised demonstration has **29 admission attempts, 19 distinct events, three
 
 The [isolated GA4 warehouse module](ga4_pipeline/README.md) takes synthetic GA4-style event versions and item rows through dbt into governed event, purchase, session and daily metrics. Its acceptance harness tests late-arriving events, corrected purchases, replay safety, preserved transaction/revenue discrepancies and row-for-row incremental versus full-refresh parity.
 
-The [local GA4 warehouse acceptance](docs/evidence/ga4-warehouse/README.md) passed on Linux and Windows, with exact incremental/full-refresh parity and preserved source anomalies. This is separate from the [previously executed BigQuery sample queries](docs/evidence/google-bigquery/README.md). **Native dbt-bigquery execution remains unverified.** [Architecture and execution contract](docs/ga4-warehouse.md).
+The [local GA4 warehouse acceptance](docs/evidence/ga4-warehouse/README.md) passed on Linux and Windows, with exact incremental/full-refresh parity and preserved source anomalies. This is separate from the [previously executed BigQuery sample queries](docs/evidence/google-bigquery/README.md). **Native dbt-BigQuery acceptance also passed:** seven models and 30 tests per build, genuine incremental MERGE, replay and complete five-rowset parity. [Recorded native execution](docs/evidence/native-dbt-bigquery/README.md). [Architecture and execution contract](docs/ga4-warehouse.md).
 
-[Native acceptance tooling](docs/bigquery-acceptance.md) adds a pinned BigQuery adapter, complete Python rowset oracle and approval-gated synthetic runner. That readiness pass made no cloud jobs or billing changes; the existing billing-disabled sandbox still excludes incremental DML. [Offline readiness evidence](docs/evidence/bigquery-readiness/README.md).
+[Native acceptance tooling](docs/bigquery-acceptance.md) adds a pinned BigQuery adapter, complete Python rowset oracle and approval-gated synthetic runner. The historical readiness pass made no cloud jobs or billing changes. The later approved native acceptance used a separate Free Trial project; the historical billing-disabled sandbox remains unchanged. [Offline readiness evidence](docs/evidence/bigquery-readiness/README.md).
 
-The [current warehouse review](docs/warehouse-review.md) adds **fresh native read-only GoogleSQL execution** of the existing seven model SELECT bodies. Five duplicate-preserving multiset comparisons agree with an independent source query: **1,856 event rows, 4,828 item rows, 14 purchase-event rows, 12 observed user/session keys and one daily row** in a bounded public-sample cohort. This is Jinja rendering and native SQL execution, **not dbt compilation/build or MERGE**. Local tests separately verify incremental correctness and reject changed identity fields or extra future-batch facts. [Exact new evidence and blockers](docs/evidence/warehouse-review/README.md).
+The [current warehouse review](docs/warehouse-review.md) adds **fresh native read-only GoogleSQL execution** of the existing seven model SELECT bodies. Five duplicate-preserving multiset comparisons agree with an independent source query: **1,856 event rows, 4,828 item rows, 14 purchase-event rows, 12 observed user/session keys and one daily row** in a bounded public-sample cohort. This is Jinja rendering and native SQL execution, **not dbt compilation/build or MERGE**. Local tests separately verify incremental correctness and reject changed identity fields or extra future-batch facts. [Preserved read-only evidence](docs/evidence/warehouse-review/README.md). The separately approved synthetic dbt run below closes the native build/MERGE gap without changing these historical observations.
 
 ## GTM and Google boundaries
 
@@ -116,10 +116,11 @@ The [current warehouse review](docs/warehouse-review.md) adds **fresh native rea
 | Google Measurement Protocol debug | **Not executed**; requires an approved isolated property configuration |
 | Native BigQuery public sample | **Executed 2026-10-17** through BigQuery Studio in a billing-disabled sandbox; two public-data queries plus a job-metadata lookup. [Evidence](docs/evidence/google-bigquery/README.md) |
 | Native model SELECT preview | **Executed 2026-10-30** in the sandbox; five cohort multiset signatures agree. Not dbt build or MERGE. [Evidence](docs/evidence/warehouse-review/README.md) |
+| Native synthetic dbt-BigQuery acceptance | **Executed 2026-11-07 UTC:** four builds, seven models and 30 tests each; correction, late arrival, replay, independent full build, expected uniqueness failure and verified three-dataset cleanup. [Evidence](docs/evidence/native-dbt-bigquery/README.md) |
 | Production GA4 to BigQuery integration | **Not implemented or claimed** |
 | Hosted GitHub CI | [Windows and Ubuntu verification](https://github.com/rlbsem/first-party-measurement-assurance/actions/workflows/verify.yml); inspect the run for the relevant commit |
 
-The native GoogleSQL results come from Google's public ecommerce sample, not Evermere. GTM deployment, GA4 export and dbt-bigquery execution remain outside this test. [Native runbook](docs/native-google.md) · [Google references](docs/sources.md).
+The native GoogleSQL results come from Google's public ecommerce sample, not Evermere. GTM deployment and live GA4 export remain unexecuted. Native dbt-BigQuery acceptance uses synthetic versioned landing rows, not a production GA4 export or the public-sample query cohort. [Native runbook](docs/native-google.md) Â· [Google references](docs/sources.md).
 
 [Architecture and source lineage](docs/architecture.md) / [Operations and limits](docs/operations.md) / [Scenario revision and retained controls](docs/scenario-revision.md).
 

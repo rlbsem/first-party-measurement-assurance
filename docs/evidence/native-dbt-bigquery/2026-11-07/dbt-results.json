@@ -1,0 +1,2561 @@
+{
+  "initial": {
+    "metadata": {
+      "dbt_version": "1.9.8",
+      "dbt_schema_version": "https://schemas.getdbt.com/dbt/run-results/v6.json",
+      "generated_at": "2026-11-07T04:02:35.131458Z"
+    },
+    "elapsed_time": 46.056381702423096,
+    "results": [
+      {
+        "unique_id": "model.ga4_governed_warehouse.stg_event_versions",
+        "status": "success",
+        "failures": null,
+        "execution_time": 1.3040826320648193,
+        "adapter_response": {
+          "_message": "CREATE VIEW (0 processed)",
+          "code": "CREATE VIEW",
+          "bytes_processed": 0,
+          "bytes_billed": 0,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "f5d8e8d7-07c3-4822-8ff2-0fb835bb3aff",
+          "slot_ms": 0
+        }
+      },
+      {
+        "unique_id": "model.ga4_governed_warehouse.stg_item_versions",
+        "status": "success",
+        "failures": null,
+        "execution_time": 1.0617930889129639,
+        "adapter_response": {
+          "_message": "CREATE VIEW (0 processed)",
+          "code": "CREATE VIEW",
+          "bytes_processed": 0,
+          "bytes_billed": 0,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "75a46021-4a7e-4f0d-b63a-5d43aadaedab",
+          "slot_ms": 0
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.assert_source_version_identity",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.3148839473724365,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 110.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 110,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "f65e51aa-295a-4794-bf59-a56bcc7b0ff1",
+          "slot_ms": 10
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_stg_event_versions_arrival_batch.3d96c4fe72",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.1132452487945557,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 40.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 40,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "942c4c2c-9d04-476c-a892-612a287d3bc5",
+          "slot_ms": 2
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_stg_event_versions_event_key.0f8688df07",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.9437170028686523,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 30.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 30,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "fa07f1f1-9f19-4ab3-9051-47e13acb01fe",
+          "slot_ms": 6
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_stg_event_versions_source_version.61e53d9a91",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.204977035522461,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 40.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 40,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "1b6ff49d-93ad-41dc-b3f1-2f881416f759",
+          "slot_ms": 5
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.assert_item_version_identity",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.3475792407989502,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 158.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 158,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "d82d4606-e79d-4d27-8ef4-cdca928e8a33",
+          "slot_ms": 11
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.assert_landing_values",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.288625955581665,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 356.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 356,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "6155d60e-f7dd-4e05-a3a3-6c2f2ee237b8",
+          "slot_ms": 70
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_stg_item_versions_event_key.34cd768a95",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.1195833683013916,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 24.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 24,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "c756be97-cd87-492b-aed7-aefa84d616fd",
+          "slot_ms": 2
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_stg_item_versions_item_index.e559b30ffa",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.137528419494629,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 32.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 32,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "e96e21af-b18c-49c8-ab7a-73d0746c7f1d",
+          "slot_ms": 7
+        }
+      },
+      {
+        "unique_id": "model.ga4_governed_warehouse.fct_ga4_events",
+        "status": "success",
+        "failures": null,
+        "execution_time": 2.6096854209899902,
+        "adapter_response": {
+          "_message": "CREATE TABLE (5.0 rows, 312.0 Bytes processed)",
+          "code": "CREATE TABLE",
+          "rows_affected": 5,
+          "bytes_processed": 312,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "ed028f8a-d65b-40e9-81a6-5cd0a390b186",
+          "slot_ms": 2684
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.assert_no_regression",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.244676113128662,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 624.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 624,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "9f55293b-adcf-4f90-aeb4-a84485ff4c5f",
+          "slot_ms": 30
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_fct_ga4_events_arrival_batch.5c48a4dd98",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.2012484073638916,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 40.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 40,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "4775a83e-77b6-408d-8e91-7bce162a1192",
+          "slot_ms": 52
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_fct_ga4_events_event_date.62109b8103",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 0.9877908229827881,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 0 processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 0,
+          "bytes_billed": 0,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "938ed2db-64ab-4e88-8e19-6d55dd1fbab2",
+          "slot_ms": 1
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_fct_ga4_events_event_key.92b3816dd3",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.5865919589996338,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 30.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 30,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "f9f9bd72-1366-457a-a877-98829a59b108",
+          "slot_ms": 15
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_fct_ga4_events_source_version.bff45677dc",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.068903923034668,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 40.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 40,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "2c6df67c-38a6-494c-8a47-b15522cbc24a",
+          "slot_ms": 19
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.unique_fct_ga4_events_event_key.b6b16f6c33",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 0.9581327438354492,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 30.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 30,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "813b1ca5-f118-4707-81ed-1b954843425d",
+          "slot_ms": 29
+        }
+      },
+      {
+        "unique_id": "model.ga4_governed_warehouse.fct_ga4_items",
+        "status": "success",
+        "failures": null,
+        "execution_time": 1.519655704498291,
+        "adapter_response": {
+          "_message": "CREATE VIEW (0 processed)",
+          "code": "CREATE VIEW",
+          "bytes_processed": 0,
+          "bytes_billed": 0,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "1dc730c6-0760-40db-8439-b8a6f2a7e3a8",
+          "slot_ms": 0
+        }
+      },
+      {
+        "unique_id": "model.ga4_governed_warehouse.mart_ga4_sessions",
+        "status": "success",
+        "failures": null,
+        "execution_time": 0.9714770317077637,
+        "adapter_response": {
+          "_message": "CREATE VIEW (0 processed)",
+          "code": "CREATE VIEW",
+          "bytes_processed": 0,
+          "bytes_billed": 0,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "a76937c8-3865-4fe8-a585-879990927c04",
+          "slot_ms": 0
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.assert_item_grain",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.0898654460906982,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 222.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 222,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "8ab5f6ab-507a-4875-83b7-a3808e043940",
+          "slot_ms": 36
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_fct_ga4_items_event_key.7826ba11fd",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.0372533798217773,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 126.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 126,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "13b90ce0-6acd-4bd0-8c24-2e02ff770265",
+          "slot_ms": 4
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_fct_ga4_items_item_index.cd5edf4b39",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.0860810279846191,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 158.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 158,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "bae49c3c-ad57-49e7-9646-53708335ca4f",
+          "slot_ms": 3
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.relationships_fct_ga4_items_event_key__event_key__ref_fct_ga4_events_.e379e103a0",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 0.9678921699523926,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 126.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 126,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "a6c6b368-606d-4db1-a7a1-93cb63f53022",
+          "slot_ms": 43
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_mart_ga4_sessions_session_id.dc3ff65a5e",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.0566380023956299,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 50.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 50,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "73fb8fdb-ed5d-41cc-b436-85fb99a2930c",
+          "slot_ms": 17
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_mart_ga4_sessions_user_pseudo_id.4256ecef29",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.192626953125,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 50.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 50,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "32f2c8a4-11b1-4ca3-9a78-dcec7279edad",
+          "slot_ms": 3
+        }
+      },
+      {
+        "unique_id": "model.ga4_governed_warehouse.mart_ga4_purchase_quality",
+        "status": "success",
+        "failures": null,
+        "execution_time": 0.8724269866943359,
+        "adapter_response": {
+          "_message": "CREATE VIEW (0 processed)",
+          "code": "CREATE VIEW",
+          "bytes_processed": 0,
+          "bytes_billed": 0,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "c8f1f58a-f856-441a-8021-29c0d57d14d9",
+          "slot_ms": 0
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.accepted_values_mart_ga4_purchase_quality_revenue_finding__False__0__1.5fe6acf181",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.4769017696380615,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 284.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 284,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "e0f50de9-900c-4dcd-9859-c899db01944b",
+          "slot_ms": 49
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.accepted_values_mart_ga4_purchase_quality_transaction_id_finding__False__0__1.b06ddcdf50",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.2179105281829834,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 72.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 72,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "ccbc23b7-4152-4bd2-b5fd-c321ad3934da",
+          "slot_ms": 20
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.assert_purchase_item_conservation",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.1008479595184326,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 180.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 180,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "829f9d0f-a209-4cd3-8f73-659f33d7c195",
+          "slot_ms": 63
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.assert_quality_flags",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.0451862812042236,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 302.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 302,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "ba05d38a-67d5-4b8f-a2da-383e6c8b9f59",
+          "slot_ms": 65
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_mart_ga4_purchase_quality_event_key.a67ab6c0f9",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.1289114952087402,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 180.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 180,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "b07a0f6f-be53-4472-ad8d-462c78319d7b",
+          "slot_ms": 37
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.relationships_mart_ga4_purchase_quality_event_key__event_key__ref_fct_ga4_events_.28c3ce1489",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.0543673038482666,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 180.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 180,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "3570a351-2f08-41a2-918f-7535c0beb2a0",
+          "slot_ms": 50
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.unique_mart_ga4_purchase_quality_event_key.9040fbfbee",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.1428718566894531,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 180.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 180,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "df472da0-fe23-40a4-9151-98614a41af4e",
+          "slot_ms": 46
+        }
+      },
+      {
+        "unique_id": "model.ga4_governed_warehouse.mart_ga4_daily",
+        "status": "success",
+        "failures": null,
+        "execution_time": 1.0508065223693848,
+        "adapter_response": {
+          "_message": "CREATE VIEW (0 processed)",
+          "code": "CREATE VIEW",
+          "bytes_processed": 0,
+          "bytes_billed": 0,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "2b5417d1-d5ab-4929-9ae9-ba820461212f",
+          "slot_ms": 0
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.assert_mart_reconciliation",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.2377657890319824,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 260.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 260,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "8e616aae-61d8-4124-a73d-3ffaa2759a25",
+          "slot_ms": 165
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_mart_ga4_daily_event_date.6846143a2b",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.4001026153564453,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 0 processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 0,
+          "bytes_billed": 0,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "558da692-bf89-4fa8-9ce8-d625c28c6b1d",
+          "slot_ms": 2
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.unique_mart_ga4_daily_event_date.96cdc260f4",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.104522705078125,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 40.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 40,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "e1f5e466-87bb-43fc-a549-5176c5b2239c",
+          "slot_ms": 36
+        }
+      }
+    ]
+  },
+  "incremental": {
+    "metadata": {
+      "dbt_version": "1.9.8",
+      "dbt_schema_version": "https://schemas.getdbt.com/dbt/run-results/v6.json",
+      "generated_at": "2026-11-07T04:03:47.318156Z"
+    },
+    "elapsed_time": 46.19940733909607,
+    "results": [
+      {
+        "unique_id": "model.ga4_governed_warehouse.stg_event_versions",
+        "status": "success",
+        "failures": null,
+        "execution_time": 0.8655672073364258,
+        "adapter_response": {
+          "_message": "CREATE VIEW (0 processed)",
+          "code": "CREATE VIEW",
+          "bytes_processed": 0,
+          "bytes_billed": 0,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "f6d1028a-3a20-49f8-bd35-4cb8dd075f90",
+          "slot_ms": 0
+        }
+      },
+      {
+        "unique_id": "model.ga4_governed_warehouse.stg_item_versions",
+        "status": "success",
+        "failures": null,
+        "execution_time": 0.6815311908721924,
+        "adapter_response": {
+          "_message": "CREATE VIEW (0 processed)",
+          "code": "CREATE VIEW",
+          "bytes_processed": 0,
+          "bytes_billed": 0,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "18965fbb-286e-40f5-8ec3-e1dc66572bd9",
+          "slot_ms": 0
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.assert_source_version_identity",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 0.9797098636627197,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 242.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 242,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "a2127336-1d4b-4128-9a91-12b382d48b15",
+          "slot_ms": 20
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_stg_event_versions_arrival_batch.3d96c4fe72",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.0328879356384277,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 88.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 88,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "b67ae371-fa64-4ccd-97cb-59bdbe954e2a",
+          "slot_ms": 6
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_stg_event_versions_event_key.0f8688df07",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.086526870727539,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 66.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 66,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "5d3c223b-c90e-4ac1-84d8-3a519e9b99cb",
+          "slot_ms": 8
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_stg_event_versions_source_version.61e53d9a91",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.1059982776641846,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 88.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 88,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "37fb7737-9f74-4aa6-a616-616ebe880fc8",
+          "slot_ms": 12
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.assert_item_version_identity",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.244356632232666,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 352.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 352,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "047a322d-b4fd-4e66-a812-ee6cadc1d353",
+          "slot_ms": 28
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.assert_landing_values",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.402040958404541,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 787.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 787,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "503caf1d-546b-47ea-b9dc-14408aab94ab",
+          "slot_ms": 21
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_stg_item_versions_event_key.34cd768a95",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.16064453125,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 54.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 54,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "d2774ed5-f41e-4322-9a12-d010750ca045",
+          "slot_ms": 3
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_stg_item_versions_item_index.e559b30ffa",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 0.9445164203643799,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 72.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 72,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "2c342912-a6c2-49c1-99ca-dd00d2391275",
+          "slot_ms": 3
+        }
+      },
+      {
+        "unique_id": "model.ga4_governed_warehouse.fct_ga4_events",
+        "status": "success",
+        "failures": null,
+        "execution_time": 3.0796732902526855,
+        "adapter_response": {
+          "_message": "MERGE (6.0 rows, 993.0 Bytes processed)",
+          "code": "MERGE",
+          "rows_affected": 6,
+          "bytes_processed": 993,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "d59a1ff0-0672-4543-88cc-806a61990676",
+          "slot_ms": 5219
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.assert_no_regression",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.0404410362243652,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 1.3 KiB processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 1298,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "d28117c7-c562-4a24-b7e2-42554029f47e",
+          "slot_ms": 45
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_fct_ga4_events_arrival_batch.5c48a4dd98",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 0.886394739151001,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 80.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 80,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "a416b32b-4609-4bd0-8c99-f2f0ef75fd26",
+          "slot_ms": 24
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_fct_ga4_events_event_date.62109b8103",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.309502124786377,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 0 processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 0,
+          "bytes_billed": 0,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "ba6dd05a-12f6-4045-87ec-61b0b6f85467",
+          "slot_ms": 1
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_fct_ga4_events_event_key.92b3816dd3",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.0776700973510742,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 60.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 60,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "895b2ad7-d027-40ad-ab44-f7f348510de9",
+          "slot_ms": 27
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_fct_ga4_events_source_version.bff45677dc",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 0.9029333591461182,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 80.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 80,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "9424de1b-9ede-45fc-a941-00a17fe0b7ea",
+          "slot_ms": 40
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.unique_fct_ga4_events_event_key.b6b16f6c33",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 0.968787431716919,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 60.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 60,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "6495dbff-d97f-4bc6-871c-28248ad51c0f",
+          "slot_ms": 56
+        }
+      },
+      {
+        "unique_id": "model.ga4_governed_warehouse.fct_ga4_items",
+        "status": "success",
+        "failures": null,
+        "execution_time": 1.5763225555419922,
+        "adapter_response": {
+          "_message": "CREATE VIEW (0 processed)",
+          "code": "CREATE VIEW",
+          "bytes_processed": 0,
+          "bytes_billed": 0,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "54049acc-9e1e-471a-9a19-42e2a4bc905d",
+          "slot_ms": 0
+        }
+      },
+      {
+        "unique_id": "model.ga4_governed_warehouse.mart_ga4_sessions",
+        "status": "success",
+        "failures": null,
+        "execution_time": 0.8328485488891602,
+        "adapter_response": {
+          "_message": "CREATE VIEW (0 processed)",
+          "code": "CREATE VIEW",
+          "bytes_processed": 0,
+          "bytes_billed": 0,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "0b0ac99a-7ba7-4029-a7d1-cf6e74dd388c",
+          "slot_ms": 0
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.assert_item_grain",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 0.9730761051177979,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 482.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 482,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "15e7b03b-d5b9-49ee-b551-fad7c976eeca",
+          "slot_ms": 41
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_fct_ga4_items_event_key.7826ba11fd",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 0.984715461730957,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 266.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 266,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "955f1132-b479-496c-afc6-e9afb2458d7c",
+          "slot_ms": 3
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_fct_ga4_items_item_index.cd5edf4b39",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.4311530590057373,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 338.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 338,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "63ed2d45-ad07-4f24-ad42-c58a3874ebf1",
+          "slot_ms": 4
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.relationships_fct_ga4_items_event_key__event_key__ref_fct_ga4_events_.e379e103a0",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.5740001201629639,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 266.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 266,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "3ebc5262-2449-41dc-bc28-c70f2f7d83a2",
+          "slot_ms": 49
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_mart_ga4_sessions_session_id.dc3ff65a5e",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.2143206596374512,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 90.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 90,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "8497e5c1-38f6-46c2-8ca2-25491bae4a82",
+          "slot_ms": 30
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_mart_ga4_sessions_user_pseudo_id.4256ecef29",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.1617634296417236,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 90.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 90,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "eb831d34-d107-4b31-a2b3-c3e47d95a90d",
+          "slot_ms": 8
+        }
+      },
+      {
+        "unique_id": "model.ga4_governed_warehouse.mart_ga4_purchase_quality",
+        "status": "success",
+        "failures": null,
+        "execution_time": 1.125833511352539,
+        "adapter_response": {
+          "_message": "CREATE VIEW (0 processed)",
+          "code": "CREATE VIEW",
+          "bytes_processed": 0,
+          "bytes_billed": 0,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "f0cb3403-4984-4d41-8d50-0728d4c13ad0",
+          "slot_ms": 0
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.accepted_values_mart_ga4_purchase_quality_revenue_finding__False__0__1.5fe6acf181",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.0973021984100342,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 595.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 595,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "f29662b3-5074-4047-98c4-0c9b6092033f",
+          "slot_ms": 58
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.accepted_values_mart_ga4_purchase_quality_transaction_id_finding__False__0__1.b06ddcdf50",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.3784825801849365,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 147.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 147,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "4e0cb4cd-4b4e-4ea6-8dd2-35e0380614f2",
+          "slot_ms": 28
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.assert_purchase_item_conservation",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.6774888038635254,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 371.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 371,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "2c5212df-f632-45dd-b731-2c067639d07b",
+          "slot_ms": 214
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.assert_quality_flags",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.3207452297210693,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 637.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 637,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "0bd02ddb-c692-4435-9058-f381395ffdf5",
+          "slot_ms": 85
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_mart_ga4_purchase_quality_event_key.a67ab6c0f9",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.2150259017944336,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 371.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 371,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "7a3de333-7782-4cfd-aa82-7e455e8b9b0c",
+          "slot_ms": 38
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.relationships_mart_ga4_purchase_quality_event_key__event_key__ref_fct_ga4_events_.28c3ce1489",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.4341797828674316,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 371.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 371,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "9727fff1-6cc2-4fba-a34b-f41d7bcef504",
+          "slot_ms": 77
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.unique_mart_ga4_purchase_quality_event_key.9040fbfbee",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.0526401996612549,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 371.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 371,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "60ef6c56-9a85-4886-a511-50a9d1844615",
+          "slot_ms": 52
+        }
+      },
+      {
+        "unique_id": "model.ga4_governed_warehouse.mart_ga4_daily",
+        "status": "success",
+        "failures": null,
+        "execution_time": 1.1296312808990479,
+        "adapter_response": {
+          "_message": "CREATE VIEW (0 processed)",
+          "code": "CREATE VIEW",
+          "bytes_processed": 0,
+          "bytes_billed": 0,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "ed6cb19f-b41e-40cd-a4c4-bfce8eea82ad",
+          "slot_ms": 0
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.assert_mart_reconciliation",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.947218656539917,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 531.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 531,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "8703ccc7-d068-49d9-a344-9d15ec082e17",
+          "slot_ms": 90
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_mart_ga4_daily_event_date.6846143a2b",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.3369994163513184,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 0 processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 0,
+          "bytes_billed": 0,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "81000c92-57d3-41a6-9cbd-1b05dac8623f",
+          "slot_ms": 0
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.unique_mart_ga4_daily_event_date.96cdc260f4",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.3009765148162842,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 80.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 80,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "41b08bc4-8e44-4424-b3f1-a6dfcddaabad",
+          "slot_ms": 43
+        }
+      }
+    ]
+  },
+  "replay": {
+    "metadata": {
+      "dbt_version": "1.9.8",
+      "dbt_schema_version": "https://schemas.getdbt.com/dbt/run-results/v6.json",
+      "generated_at": "2026-11-07T04:04:59.943264Z"
+    },
+    "elapsed_time": 45.17050623893738,
+    "results": [
+      {
+        "unique_id": "model.ga4_governed_warehouse.stg_event_versions",
+        "status": "success",
+        "failures": null,
+        "execution_time": 0.832282543182373,
+        "adapter_response": {
+          "_message": "CREATE VIEW (0 processed)",
+          "code": "CREATE VIEW",
+          "bytes_processed": 0,
+          "bytes_billed": 0,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "a9d89af0-788e-42eb-8c9e-2c8e8fcc09fe",
+          "slot_ms": 0
+        }
+      },
+      {
+        "unique_id": "model.ga4_governed_warehouse.stg_item_versions",
+        "status": "success",
+        "failures": null,
+        "execution_time": 1.1777873039245605,
+        "adapter_response": {
+          "_message": "CREATE VIEW (0 processed)",
+          "code": "CREATE VIEW",
+          "bytes_processed": 0,
+          "bytes_billed": 0,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "46006f66-72e0-4ba7-9792-da19195f69e6",
+          "slot_ms": 0
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.assert_source_version_identity",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.3314201831817627,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 242.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 242,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "e179285f-24d7-4ba0-af75-d833cbe6a197",
+          "slot_ms": 28
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_stg_event_versions_arrival_batch.3d96c4fe72",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.1892576217651367,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 88.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 88,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "97695e54-465c-4c51-b27a-6e5a41022b92",
+          "slot_ms": 2
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_stg_event_versions_event_key.0f8688df07",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.0788121223449707,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 66.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 66,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "338aba80-6c99-4ba3-9099-cd91d1f08569",
+          "slot_ms": 2
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_stg_event_versions_source_version.61e53d9a91",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.2222216129302979,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 88.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 88,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "42fc36cd-60cd-42e5-bd91-14fb572729ee",
+          "slot_ms": 1
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.assert_item_version_identity",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 0.949070930480957,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 352.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 352,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "b94dc2d7-1256-4d0f-8eed-036f7fe84677",
+          "slot_ms": 33
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.assert_landing_values",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.112025499343872,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 787.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 787,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "7ea0fb38-2024-4b07-8125-004c114b05a3",
+          "slot_ms": 25
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_stg_item_versions_event_key.34cd768a95",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.182471513748169,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 54.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 54,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "e0ba2275-6129-4ab0-a5fd-f6a39abdae9c",
+          "slot_ms": 3
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_stg_item_versions_item_index.e559b30ffa",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.2641303539276123,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 72.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 72,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "7c0e0e90-3f53-454a-b474-0d79c5c967f1",
+          "slot_ms": 5
+        }
+      },
+      {
+        "unique_id": "model.ga4_governed_warehouse.fct_ga4_events",
+        "status": "success",
+        "failures": null,
+        "execution_time": 2.9021968841552734,
+        "adapter_response": {
+          "_message": "MERGE (0.0 rows, 1.3 KiB processed)",
+          "code": "MERGE",
+          "rows_affected": 0,
+          "bytes_processed": 1298,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "f9581672-4e00-486f-909c-ae14e8636b72",
+          "slot_ms": 4773
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.assert_no_regression",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.242630958557129,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 1.3 KiB processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 1298,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "b2edf665-f613-4405-b662-a5b6d388c339",
+          "slot_ms": 33
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_fct_ga4_events_arrival_batch.5c48a4dd98",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.1644196510314941,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 80.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 80,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "a2f57794-6cb0-4cba-8af3-08acc1bea3b0",
+          "slot_ms": 8
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_fct_ga4_events_event_date.62109b8103",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.0222806930541992,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 0 processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 0,
+          "bytes_billed": 0,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "f68ed717-209c-4100-89b2-b474ead783ac",
+          "slot_ms": 5
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_fct_ga4_events_event_key.92b3816dd3",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.214439868927002,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 60.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 60,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "63f3b89d-db99-480f-b0bb-c27b7a123850",
+          "slot_ms": 6
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_fct_ga4_events_source_version.bff45677dc",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.1052930355072021,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 80.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 80,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "28769839-2def-4df1-a1f7-99a74b2e5c01",
+          "slot_ms": 12
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.unique_fct_ga4_events_event_key.b6b16f6c33",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.2960515022277832,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 60.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 60,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "82f0ddf3-17c1-4dd2-b9ac-8fc374de09d6",
+          "slot_ms": 30
+        }
+      },
+      {
+        "unique_id": "model.ga4_governed_warehouse.fct_ga4_items",
+        "status": "success",
+        "failures": null,
+        "execution_time": 0.9390053749084473,
+        "adapter_response": {
+          "_message": "CREATE VIEW (0 processed)",
+          "code": "CREATE VIEW",
+          "bytes_processed": 0,
+          "bytes_billed": 0,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "bd2f5004-c52f-4b73-a480-3c6c088e67fb",
+          "slot_ms": 0
+        }
+      },
+      {
+        "unique_id": "model.ga4_governed_warehouse.mart_ga4_sessions",
+        "status": "success",
+        "failures": null,
+        "execution_time": 0.7829160690307617,
+        "adapter_response": {
+          "_message": "CREATE VIEW (0 processed)",
+          "code": "CREATE VIEW",
+          "bytes_processed": 0,
+          "bytes_billed": 0,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "c4ede16b-f09b-4b8e-bd0a-570493889446",
+          "slot_ms": 0
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.assert_item_grain",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.2168989181518555,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 482.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 482,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "14a93324-1872-4773-8ca7-6e11f93cfc5f",
+          "slot_ms": 49
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_fct_ga4_items_event_key.7826ba11fd",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.2563002109527588,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 266.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 266,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "02768e29-3f58-4e81-89dc-9c5350763f5e",
+          "slot_ms": 4
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_fct_ga4_items_item_index.cd5edf4b39",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.6660895347595215,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 338.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 338,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "0efd470e-be72-4e44-bd02-be4e95ecee9c",
+          "slot_ms": 6
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.relationships_fct_ga4_items_event_key__event_key__ref_fct_ga4_events_.e379e103a0",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.5557243824005127,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 266.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 266,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "f6a73a7c-263c-4dbd-94c3-b2b1fa1664e5",
+          "slot_ms": 51
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_mart_ga4_sessions_session_id.dc3ff65a5e",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.147331953048706,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 90.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 90,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "d2998312-5159-495e-ae17-3276120adeac",
+          "slot_ms": 23
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_mart_ga4_sessions_user_pseudo_id.4256ecef29",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.1355438232421875,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 90.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 90,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "90073582-c940-4537-8df8-1baf0a63945e",
+          "slot_ms": 13
+        }
+      },
+      {
+        "unique_id": "model.ga4_governed_warehouse.mart_ga4_purchase_quality",
+        "status": "success",
+        "failures": null,
+        "execution_time": 0.8944211006164551,
+        "adapter_response": {
+          "_message": "CREATE VIEW (0 processed)",
+          "code": "CREATE VIEW",
+          "bytes_processed": 0,
+          "bytes_billed": 0,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "a0a6a803-eebe-41c8-978e-84a1f803afcf",
+          "slot_ms": 0
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.accepted_values_mart_ga4_purchase_quality_revenue_finding__False__0__1.5fe6acf181",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.018413782119751,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 595.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 595,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "4e203573-178e-4606-b271-ce4974b82cb5",
+          "slot_ms": 83
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.accepted_values_mart_ga4_purchase_quality_transaction_id_finding__False__0__1.b06ddcdf50",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.0766398906707764,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 147.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 147,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "0b45534d-c4e3-4fb9-886b-c3afb905083f",
+          "slot_ms": 33
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.assert_purchase_item_conservation",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.142653465270996,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 371.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 371,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "75d8aaa3-ce36-4e67-981d-1c34cef43562",
+          "slot_ms": 160
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.assert_quality_flags",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.3419313430786133,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 637.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 637,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "b122134f-2302-4f78-9466-4b0735642044",
+          "slot_ms": 109
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_mart_ga4_purchase_quality_event_key.a67ab6c0f9",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.2734768390655518,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 371.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 371,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "aab01118-06c1-47c1-afb6-b4a3aea2bb1c",
+          "slot_ms": 58
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.relationships_mart_ga4_purchase_quality_event_key__event_key__ref_fct_ga4_events_.28c3ce1489",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.0885686874389648,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 371.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 371,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "db5c9a05-90a8-4478-b2d6-cee761c55556",
+          "slot_ms": 78
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.unique_mart_ga4_purchase_quality_event_key.9040fbfbee",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.180765151977539,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 371.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 371,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "bdc142eb-940e-433e-bdd9-5ad96a879d4e",
+          "slot_ms": 80
+        }
+      },
+      {
+        "unique_id": "model.ga4_governed_warehouse.mart_ga4_daily",
+        "status": "success",
+        "failures": null,
+        "execution_time": 0.8134536743164062,
+        "adapter_response": {
+          "_message": "CREATE VIEW (0 processed)",
+          "code": "CREATE VIEW",
+          "bytes_processed": 0,
+          "bytes_billed": 0,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "9d88c044-5688-4a39-9d3e-cbe0c71c1139",
+          "slot_ms": 0
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.assert_mart_reconciliation",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.338454246520996,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 531.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 531,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "663449a1-1596-47a6-9c17-07eee6d12ace",
+          "slot_ms": 145
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_mart_ga4_daily_event_date.6846143a2b",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.3300559520721436,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 0 processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 0,
+          "bytes_billed": 0,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "5f5d0a6a-8027-4fff-8257-99b716a60064",
+          "slot_ms": 7
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.unique_mart_ga4_daily_event_date.96cdc260f4",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.0982990264892578,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 80.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 80,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "a213a545-3939-431e-8170-c040a0f7f610",
+          "slot_ms": 32
+        }
+      }
+    ]
+  },
+  "independent-full": {
+    "metadata": {
+      "dbt_version": "1.9.8",
+      "dbt_schema_version": "https://schemas.getdbt.com/dbt/run-results/v6.json",
+      "generated_at": "2026-11-07T04:06:16.052823Z"
+    },
+    "elapsed_time": 40.79485297203064,
+    "results": [
+      {
+        "unique_id": "model.ga4_governed_warehouse.stg_event_versions",
+        "status": "success",
+        "failures": null,
+        "execution_time": 1.0722064971923828,
+        "adapter_response": {
+          "_message": "CREATE VIEW (0 processed)",
+          "code": "CREATE VIEW",
+          "bytes_processed": 0,
+          "bytes_billed": 0,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "801963c7-2a4c-46af-b5f3-6307b2d5fc1d",
+          "slot_ms": 0
+        }
+      },
+      {
+        "unique_id": "model.ga4_governed_warehouse.stg_item_versions",
+        "status": "success",
+        "failures": null,
+        "execution_time": 0.8711764812469482,
+        "adapter_response": {
+          "_message": "CREATE VIEW (0 processed)",
+          "code": "CREATE VIEW",
+          "bytes_processed": 0,
+          "bytes_billed": 0,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "b3b89b40-b533-4e24-9ce6-3072bb7ff4f6",
+          "slot_ms": 0
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.assert_source_version_identity",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.6508750915527344,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 242.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 242,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "019cb2da-1aa6-4afe-855e-9118a2c2191c",
+          "slot_ms": 23
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_stg_event_versions_arrival_batch.3d96c4fe72",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.172917127609253,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 88.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 88,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "9f5829e6-3965-4059-9e2f-ea8396d690bb",
+          "slot_ms": 2
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_stg_event_versions_event_key.0f8688df07",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.205129623413086,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 66.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 66,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "01c9abae-d194-4dc3-8e63-60846bb2aa43",
+          "slot_ms": 3
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_stg_event_versions_source_version.61e53d9a91",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 0.9140079021453857,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 88.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 88,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "6b789795-aa6f-425b-8b1e-310f60c30b68",
+          "slot_ms": 2
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.assert_item_version_identity",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.2400867938995361,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 352.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 352,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "6a2d17e7-f3f3-4019-92ce-d8da6541693c",
+          "slot_ms": 109
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.assert_landing_values",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 0.9572055339813232,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 787.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 787,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "292449c5-16a3-49f0-a28f-d9cfd497f815",
+          "slot_ms": 23
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_stg_item_versions_event_key.34cd768a95",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.2041435241699219,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 54.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 54,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "6667974c-2b9a-4928-abc0-22a3c301b0bd",
+          "slot_ms": 3
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_stg_item_versions_item_index.e559b30ffa",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.0009660720825195,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 72.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 72,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "1bf9b6a5-48fc-484f-aa50-70036237857b",
+          "slot_ms": 2
+        }
+      },
+      {
+        "unique_id": "model.ga4_governed_warehouse.fct_ga4_events",
+        "status": "success",
+        "failures": null,
+        "execution_time": 2.541515350341797,
+        "adapter_response": {
+          "_message": "CREATE TABLE (10.0 rows, 681.0 Bytes processed)",
+          "code": "CREATE TABLE",
+          "rows_affected": 10,
+          "bytes_processed": 681,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "6ccb33c4-829e-4828-a428-1e92e9c5ffe5",
+          "slot_ms": 2851
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.assert_no_regression",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 0.965184211730957,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 1.3 KiB processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 1298,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "a4cd5588-e006-4396-8aa7-0abbf5cf3684",
+          "slot_ms": 37
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_fct_ga4_events_arrival_batch.5c48a4dd98",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 0.8816728591918945,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 80.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 80,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "5355bc38-11ef-4bd9-9798-03d028134f33",
+          "slot_ms": 23
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_fct_ga4_events_event_date.62109b8103",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 0.9049246311187744,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 0 processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 0,
+          "bytes_billed": 0,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "a57a401d-c814-4d74-bc23-dc0dd0587fc4",
+          "slot_ms": 1
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_fct_ga4_events_event_key.92b3816dd3",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 0.9312191009521484,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 60.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 60,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "549ec734-8219-4b32-a2e3-b1de94cd0cf8",
+          "slot_ms": 27
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_fct_ga4_events_source_version.bff45677dc",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.3610029220581055,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 80.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 80,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "b9f3123a-c270-4c4b-bc67-aa2728c13e28",
+          "slot_ms": 30
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.unique_fct_ga4_events_event_key.b6b16f6c33",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 0.8124790191650391,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 60.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 60,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "098b3abb-4b5d-4a32-af43-424357242fef",
+          "slot_ms": 28
+        }
+      },
+      {
+        "unique_id": "model.ga4_governed_warehouse.fct_ga4_items",
+        "status": "success",
+        "failures": null,
+        "execution_time": 0.7578966617584229,
+        "adapter_response": {
+          "_message": "CREATE VIEW (0 processed)",
+          "code": "CREATE VIEW",
+          "bytes_processed": 0,
+          "bytes_billed": 0,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "962cfee7-b0aa-4c67-9bc3-a0da391cd4ae",
+          "slot_ms": 0
+        }
+      },
+      {
+        "unique_id": "model.ga4_governed_warehouse.mart_ga4_sessions",
+        "status": "success",
+        "failures": null,
+        "execution_time": 0.6601371765136719,
+        "adapter_response": {
+          "_message": "CREATE VIEW (0 processed)",
+          "code": "CREATE VIEW",
+          "bytes_processed": 0,
+          "bytes_billed": 0,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "d0225898-7abe-4957-9993-9b002c9a99a9",
+          "slot_ms": 0
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.assert_item_grain",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.1050825119018555,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 482.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 482,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "795a5c2e-3c0d-4b0b-bea0-7384581863d5",
+          "slot_ms": 89
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_fct_ga4_items_event_key.7826ba11fd",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.0974175930023193,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 266.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 266,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "27c60a4c-9156-4786-87e1-b556759b78bb",
+          "slot_ms": 4
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_fct_ga4_items_item_index.cd5edf4b39",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 0.8895885944366455,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 338.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 338,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "64e560ae-76d0-42bc-86bc-29584fbb71d4",
+          "slot_ms": 5
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.relationships_fct_ga4_items_event_key__event_key__ref_fct_ga4_events_.e379e103a0",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 0.8664228916168213,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 266.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 266,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "97348a85-a7f3-42e9-bd65-a6471ad9280f",
+          "slot_ms": 48
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_mart_ga4_sessions_session_id.dc3ff65a5e",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 0.9475946426391602,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 90.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 90,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "bbe355c9-50d9-47be-a6ac-57ac44543ba5",
+          "slot_ms": 40
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_mart_ga4_sessions_user_pseudo_id.4256ecef29",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 0.7890112400054932,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 90.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 90,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "a87b6659-190a-4dda-92eb-64b25eb0573a",
+          "slot_ms": 9
+        }
+      },
+      {
+        "unique_id": "model.ga4_governed_warehouse.mart_ga4_purchase_quality",
+        "status": "success",
+        "failures": null,
+        "execution_time": 0.8075461387634277,
+        "adapter_response": {
+          "_message": "CREATE VIEW (0 processed)",
+          "code": "CREATE VIEW",
+          "bytes_processed": 0,
+          "bytes_billed": 0,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "668ded53-c8d2-4143-9d5b-74d3238e2541",
+          "slot_ms": 0
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.accepted_values_mart_ga4_purchase_quality_revenue_finding__False__0__1.5fe6acf181",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.3157715797424316,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 595.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 595,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "eba8316d-8f39-4400-a2b2-70283c944b6d",
+          "slot_ms": 54
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.accepted_values_mart_ga4_purchase_quality_transaction_id_finding__False__0__1.b06ddcdf50",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 0.9840166568756104,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 147.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 147,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "86f53434-a3f2-4ec5-a0e8-e4473495b152",
+          "slot_ms": 32
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.assert_purchase_item_conservation",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.0114052295684814,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 371.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 371,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "e3fba9a6-5908-4e0f-bc4c-f74b6a09d5ac",
+          "slot_ms": 99
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.assert_quality_flags",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.233137845993042,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 637.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 637,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "e39c8205-fbf1-40f8-92ce-144d2fc7a61b",
+          "slot_ms": 84
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_mart_ga4_purchase_quality_event_key.a67ab6c0f9",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.0770833492279053,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 371.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 371,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "6c97c922-c32d-4359-9e32-9d5d6946c62f",
+          "slot_ms": 51
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.relationships_mart_ga4_purchase_quality_event_key__event_key__ref_fct_ga4_events_.28c3ce1489",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.3954145908355713,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 371.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 371,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "1263a3eb-237d-4d44-b6a1-8a6cfe5c0ea0",
+          "slot_ms": 90
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.unique_mart_ga4_purchase_quality_event_key.9040fbfbee",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.001378059387207,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 371.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 371,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "1343eaa9-abd5-4891-a9d0-290c0e34959f",
+          "slot_ms": 66
+        }
+      },
+      {
+        "unique_id": "model.ga4_governed_warehouse.mart_ga4_daily",
+        "status": "success",
+        "failures": null,
+        "execution_time": 1.2662739753723145,
+        "adapter_response": {
+          "_message": "CREATE VIEW (0 processed)",
+          "code": "CREATE VIEW",
+          "bytes_processed": 0,
+          "bytes_billed": 0,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "d83824d6-571d-4f75-971c-b83f8737c35a",
+          "slot_ms": 0
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.assert_mart_reconciliation",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.0934503078460693,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 531.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 531,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "3c5738ca-ea03-48b1-b9a7-19e0894f1dd0",
+          "slot_ms": 129
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.not_null_mart_ga4_daily_event_date.6846143a2b",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.0484511852264404,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 0 processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 0,
+          "bytes_billed": 0,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "eb110d2e-82c1-4390-8320-45f83c3f3775",
+          "slot_ms": 1
+        }
+      },
+      {
+        "unique_id": "test.ga4_governed_warehouse.unique_mart_ga4_daily_event_date.96cdc260f4",
+        "status": "pass",
+        "failures": 0,
+        "execution_time": 1.1351385116577148,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 80.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 80,
+          "bytes_billed": 20971520,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "7883adde-9aea-4bb4-82c4-da4e0043302b",
+          "slot_ms": 35
+        }
+      }
+    ]
+  },
+  "negative-duplicate": {
+    "metadata": {
+      "dbt_version": "1.9.8",
+      "dbt_schema_version": "https://schemas.getdbt.com/dbt/run-results/v6.json",
+      "generated_at": "2026-11-07T04:06:56.751674Z"
+    },
+    "elapsed_time": 1.3935167789459229,
+    "results": [
+      {
+        "unique_id": "test.ga4_governed_warehouse.unique_fct_ga4_events_event_key.b6b16f6c33",
+        "status": "fail",
+        "failures": 1,
+        "execution_time": 1.1471529006958008,
+        "adapter_response": {
+          "_message": "SELECT (1.0 rows, 66.0 Bytes processed)",
+          "code": "SELECT",
+          "rows_affected": 1,
+          "bytes_processed": 66,
+          "bytes_billed": 10485760,
+          "location": "US",
+          "project_id": "<execution-project>",
+          "job_id": "dc42e80e-4845-415b-8857-0969357e497f",
+          "slot_ms": 39
+        }
+      }
+    ]
+  }
+}

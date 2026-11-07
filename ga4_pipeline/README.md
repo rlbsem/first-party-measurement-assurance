@@ -1,6 +1,6 @@
 # GA4 event-to-warehouse modeling
 
-**Current status:** [Local synthetic acceptance passed on Windows and Linux](../docs/evidence/ga4-warehouse/README.md). Native dbt-bigquery not executed.
+**Current status:** [Local synthetic acceptance passed on Windows and Linux](../docs/evidence/ga4-warehouse/README.md). [Native synthetic dbt-BigQuery acceptance passed](../docs/evidence/native-dbt-bigquery/README.md): seven models, 30 tests per build, real MERGE, complete oracle/full-build parity and verified cleanup.
 
 This isolated dbt project extends First-Party Measurement Assurance with event, item, session and purchase-quality grains, governed daily marts, incremental event corrections and independent source-to-mart reconciliation.
 
@@ -16,6 +16,6 @@ The test builds batches one and two, checks late events and corrected source ver
 
 The `bigquery` profile and two source projections are optional execution contracts. They do not make cloud requests or create datasets from this repository.
 
-The [native acceptance procedure](../docs/bigquery-acceptance.md) includes the optional pinned adapter, offline checks, approval-gated runner and sandbox DML blocker. It has not executed native dbt models.
+The [native acceptance procedure](../docs/bigquery-acceptance.md) includes the optional pinned adapter, offline checks, approval-gated runner and sandbox DML blocker. It subsequently executed the unchanged models in a separately approved Free Trial project; the dated native record preserves that execution.
 
-The [current warehouse review](../docs/warehouse-review.md) separately executed these seven model SELECT bodies as read-only GoogleSQL against a bounded public cohort, with five matching independent source signatures. It also strengthens full-event regression checks. This is not native dbt materialization or incremental MERGE acceptance; those access boundaries remain unchanged.
+The [current warehouse review](../docs/warehouse-review.md) separately executed these seven model SELECT bodies as read-only GoogleSQL against a bounded public cohort, with five matching independent source signatures. It also strengthens full-event regression checks. This is not native dbt materialization or incremental MERGE acceptance; the later synthetic acceptance establishes those capabilities separately, without claiming a production GA4 export.

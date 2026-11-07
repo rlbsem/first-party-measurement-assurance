@@ -1,5 +1,8 @@
 # Native Google execution: explicit optional lanes
 
+**Additional native lane:** [Synthetic dbt-BigQuery acceptance executed November 7, 2026 UTC](evidence/native-dbt-bigquery/README.md), including real MERGE, replay/full-build/Python parity and verified cleanup. The public-sample console route described below remains a separate historical execution. The SDK/dbt synthetic runner is not the unexecuted Python public-sample query route.
+
+
 ## Current status
 
 **Native BigQuery executed on 2026-10-17.** BigQuery Studio ran the two tracked public-data queries uncached in an explicitly authorized billing-disabled sandbox, followed by a read-only metadata query. [Results, job IDs, SQL hashes and resource usage](evidence/google-bigquery/README.md). Both console validator estimates were reviewed before execution. This was browser-based Google Cloud Console execution; the Python client and ADC route below remain unexecuted.
