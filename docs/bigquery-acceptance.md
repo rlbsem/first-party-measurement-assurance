@@ -1,6 +1,8 @@
 # Native BigQuery/dbt acceptance
 
-**Status: prepared, not executed.** The existing [native public-sample queries](evidence/google-bigquery/README.md) and [local incremental acceptance](evidence/ga4-warehouse/README.md) remain separate historical records. This extension adds a pinned adapter, an approval-gated synthetic runner and offline safety checks. It does not establish a production GA4 export integration.
+**Status: native synthetic acceptance executed on November 7, 2026 UTC.** [Actual results, job metadata, rowsets and independent cleanup](evidence/native-dbt-bigquery/README.md). Four native builds each passed seven models and 30 tests, with a deliberately failing uniqueness probe after full-build parity. No model, fixture or runner changes were needed.
+
+**Historical readiness scope:** The existing [native public-sample queries](evidence/google-bigquery/README.md) and [local incremental acceptance](evidence/ga4-warehouse/README.md) remain separate historical records. This extension adds a pinned adapter, an approval-gated synthetic runner and offline safety checks. It does not establish a production GA4 export integration.
 
 ## Environment assessment — October 20, 2026
 
@@ -47,7 +49,7 @@ The authenticated principal needs project job creation and dataset creation, own
 
 Proposed single-run planning allowance: **USD 0.25**, subject to explicit approval. One thread; 100,000,000 maximum bytes billed per query; query cache disabled for runner readbacks; 120-second query execution timeout; 30-second job-creation timeout; zero dbt job retries. No automatic restart of an interrupted run.
 
-Using a conservative **250-job × 100 MB** planning envelope yields 25 GB, or approximately **USD 0.142 in query processing** at US on-demand USD 6.25/TiB before any free allowance. The expected tiny synthetic table storage for one day adds far less than one cent. Actual job counts, multi-statement execution, remaining shared free allowance, account pricing and post-deletion storage/time-travel accounting must be checked at execution. See [official pricing](https://cloud.google.com/bigquery/pricing?authuser=1).
+Using a conservative **250-job Ã— 100 MB** planning envelope yields 25 GB, or approximately **USD 0.142 in query processing** at US on-demand USD 6.25/TiB before any free allowance. The expected tiny synthetic table storage for one day adds far less than one cent. Actual job counts, multi-statement execution, remaining shared free allowance, account pricing and post-deletion storage/time-travel accounting must be checked at execution. See [official pricing](https://cloud.google.com/bigquery/pricing?authuser=1).
 
 This is a planning estimate, **not a hard aggregate spending cap**. The runner stops before another dbt phase when the observed job count exceeds its planning envelope. Per-job limits do not impose an account-wide currency cap. Budget alerts also are not hard caps. If the owner requires an absolute zero-charge guarantee, leave this native lane blocked; do not enable billing to work around that requirement.
 
@@ -72,7 +74,7 @@ Before execution, present the exact project, generated dataset names, plan diges
    python scripts/verify_bigquery.py plan --project <project> --run-id <run> --output .local/bigquery-plan.json
    ```
 
-3. Stop for the resource/cost approval described above. The present sandbox is ineligible. After separate authorization for an eligible project, establish short-lived local ADC through an approved Google Cloud CLI user-login flow, such as `gcloud auth application-default login`, or an existing workload identity. Never paste tokens or commit ADC files. Installing/authenticating the CLI is not done by this runner. A browser session is insufficient; no service-account JSON key is required by the design.
+3. Stop for the resource/cost approval described above. The historical billing-disabled sandbox is ineligible. The completed run used a separately approved eligible Free Trial project. For a future run, after separate authorization, establish short-lived local ADC through an approved Google Cloud CLI user-login flow, such as `gcloud auth application-default login`, or an existing workload identity. Never paste tokens or commit ADC files. Installing/authenticating the CLI is not done by this runner. A browser session is insufficient; no service-account JSON key is required by the design.
 
 4. Only after approval, execute the exact reviewed digest into a fresh ignored directory:
 
@@ -90,8 +92,12 @@ The runner attempts cleanup in `finally`, including failed tests. It inventories
 
 Dataset/explicit job intents are written before submission. A lost load acknowledgement is not retried as a new append. A failed or interrupted run must **not** be blindly restarted, even with the same input plan: dataset collision checks refuse reuse. Inspect the private intent registry and job IDs, reconcile results using Google metadata, terminate only this run's jobs, and delete only datasets whose identity/labels match the approved plan. If submission status is still ambiguous, leave it marked incomplete rather than deleting or claiming cleanup. Cloud-side dbt job discovery relies on labels and the service's job listing; a host crash, authentication expiry or delayed job listing still requires operator follow-up. A 24-hour table TTL is a fallback, not an independent scheduled cleanup service; views/empty datasets and retained storage are not proven absent by TTL.
 
-No cleanup or delayed billing clearance has been executed for this proposed run. After native execution, independently inventory exact dataset IDs, confirm terminal jobs and report any residual retention or unavailable billing data separately.
+The November 7 run independently confirmed all three dataset IDs absent and every recorded job terminal; [the dated record](evidence/native-dbt-bigquery/README.md) reports exact resources and delayed-billing limits. The following procedure applies to any future proposed run; deletion does not establish billing clearance. After native execution, independently inventory exact dataset IDs, confirm terminal jobs and report any residual retention or unavailable billing data separately.
 
 ## Public evidence checklist
 
 Keep raw artifacts private. Publish only a reviewed synthetic subset with account/email/dataset identifiers redacted consistently, while preserving a private mapping to genuine job IDs and source/SQL hashes. Reject credentials, private paths, ADC data, authorization headers and unreviewed logs. Include actual seven-model/test coverage, the expected negative failure, five-rowset hashes/counts, replay/full-build equality and cleanup observations. Do not overwrite October 17 query evidence or earlier local records. A redacted native evidence checker can be finalized against the actual service artifacts after execution; no fabricated native result is supplied here.
+
+## Cloud Shell execution path
+
+The completed acceptance used Python 3.12 and the optional lock in a private Cloud Shell virtual environment, pinned to the recorded source revision. Cloud Shell session authorization supplied short-lived application-default credentials to both the SDK and dbt; no service-account key was created or downloaded. The owner separately approved enabling the Cloud Billing API for the runner's metadata safeguard. No billing association, account-plan or IAM changes were made. Cloud Resource Manager's SDK permission probe remained disabled; existing Owner membership was observed through the CLI, and actual operations subsequently exercised the required BigQuery permissions. CI only revalidates the saved evidence offline and never repeats cloud execution.

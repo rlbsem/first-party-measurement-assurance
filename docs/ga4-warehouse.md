@@ -1,6 +1,6 @@
 # GA4 governed warehouse: incremental modeling contract
 
-This isolated module extends the measurement project without changing its local CRM/payment application or historical native BigQuery job evidence. It models a GA4-export-shaped **event grain**, a separate **event + item-index grain**, session aggregates and retained data-quality findings. [Local acceptance passed on Windows and Linux](evidence/ga4-warehouse/README.md) against deterministic **synthetic** data. Native dbt-bigquery execution has not occurred.
+This isolated module extends the measurement project without changing its local CRM/payment application or historical native BigQuery job evidence. It models a GA4-export-shaped **event grain**, a separate **event + item-index grain**, session aggregates and retained data-quality findings. [Local acceptance passed on Windows and Linux](evidence/ga4-warehouse/README.md) against deterministic **synthetic** data. [Native synthetic dbt-BigQuery acceptance also passed](evidence/native-dbt-bigquery/README.md), including real MERGE and complete replay/full-build/Python parity. Public-sample SELECT execution remains a separate evidence set.
 
 ## Run locally (no vendor access)
 

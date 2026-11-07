@@ -13,7 +13,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        # Playwright 1.55 supports Ubuntu 24.04; ubuntu-latest can select 26.04.
+        os: [ubuntu-24.04, windows-latest]
     runs-on: ${{ matrix.os }}
     timeout-minutes: 20
     env:
@@ -35,6 +36,7 @@ jobs:
         if: runner.os == 'Windows'
         run: python -m playwright install chromium
       - run: python scripts/check_warehouse_preview_evidence.py
+      - run: python scripts/check_bigquery_execution.py
       - run: python scripts/verify_current_copy.py --output .local/current-core
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:

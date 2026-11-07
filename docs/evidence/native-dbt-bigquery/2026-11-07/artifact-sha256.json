@@ -1,0 +1,8 @@
+{
+  "acceptance.json": "f6e5ef35bf6774f30e0cd6f2fab11648370db4f4b57d3e1fc996b41557dcd0c6",
+  "dbt-results.json": "4f1871636f3409b9cfd3af6e4cba0059120b1400368855aa494f38d2f65e1a99",
+  "independent-audit.json": "0085c704bd7a7be04def1178d05ea0df1b077734b5a53c2017591a481ee80840",
+  "jobs.json": "c009c0a1aa3e9f6d9e005e859a67ae1a2c20da68be8464b6d9647d22d6b18616",
+  "provenance.json": "dc3fc4c92a9f65e842203fcbe55814e0f3ea7d3d76dcd40ee11be629f53b3057",
+  "rowsets.json": "3d7d84ffe56a76c6b40270eafa5072546a4a5c8fc6b36af3881c07f7395d7e94"
+}

@@ -1,0 +1,1441 @@
+{
+  "initial": {
+    "fct_ga4_events": [
+      {
+        "event_key": "ev03",
+        "event_date": "2026-10-02",
+        "arrival_batch": 1,
+        "source_version": 1,
+        "event_name": "purchase",
+        "user_pseudo_id": "u02",
+        "session_id": "s02",
+        "transaction_id": "T200",
+        "revenue_cents": 12000
+      },
+      {
+        "event_key": "ev04",
+        "event_date": "2026-10-02",
+        "arrival_batch": 1,
+        "source_version": 1,
+        "event_name": "add_to_cart",
+        "user_pseudo_id": "u02",
+        "session_id": "s02",
+        "transaction_id": null,
+        "revenue_cents": 0
+      },
+      {
+        "event_key": "ev05",
+        "event_date": "2026-10-03",
+        "arrival_batch": 1,
+        "source_version": 1,
+        "event_name": "purchase",
+        "user_pseudo_id": "u03",
+        "session_id": "s03",
+        "transaction_id": "T300",
+        "revenue_cents": 8000
+      },
+      {
+        "event_key": "ev02",
+        "event_date": "2026-10-01",
+        "arrival_batch": 1,
+        "source_version": 1,
+        "event_name": "purchase",
+        "user_pseudo_id": "u01",
+        "session_id": "s01",
+        "transaction_id": "T100",
+        "revenue_cents": 10000
+      },
+      {
+        "event_key": "ev01",
+        "event_date": "2026-10-01",
+        "arrival_batch": 1,
+        "source_version": 1,
+        "event_name": "page_view",
+        "user_pseudo_id": "u01",
+        "session_id": "s01",
+        "transaction_id": null,
+        "revenue_cents": 0
+      }
+    ],
+    "fct_ga4_items": [
+      {
+        "event_key": "ev05",
+        "item_index": 0,
+        "item_id": "part",
+        "price_cents": 8000,
+        "quantity": 1,
+        "extended_cents": 8000,
+        "event_date": "2026-10-03",
+        "source_version": 1
+      },
+      {
+        "event_key": "ev03",
+        "item_index": 0,
+        "item_id": "kit",
+        "price_cents": 4000,
+        "quantity": 3,
+        "extended_cents": 12000,
+        "event_date": "2026-10-02",
+        "source_version": 1
+      },
+      {
+        "event_key": "ev04",
+        "item_index": 0,
+        "item_id": "accessory",
+        "price_cents": 1000,
+        "quantity": 1,
+        "extended_cents": 1000,
+        "event_date": "2026-10-02",
+        "source_version": 1
+      },
+      {
+        "event_key": "ev02",
+        "item_index": 0,
+        "item_id": "starter",
+        "price_cents": 5000,
+        "quantity": 2,
+        "extended_cents": 10000,
+        "event_date": "2026-10-01",
+        "source_version": 1
+      }
+    ],
+    "mart_ga4_purchase_quality": [
+      {
+        "event_key": "ev03",
+        "event_date": "2026-10-02",
+        "arrival_batch": 1,
+        "transaction_id": "T200",
+        "user_pseudo_id": "u02",
+        "session_id": "s02",
+        "revenue_cents": 12000,
+        "item_rows": 1,
+        "item_value_cents": 12000,
+        "revenue_variance_cents": 0,
+        "transaction_id_finding": 0,
+        "identity_finding": 0,
+        "revenue_finding": 0
+      },
+      {
+        "event_key": "ev02",
+        "event_date": "2026-10-01",
+        "arrival_batch": 1,
+        "transaction_id": "T100",
+        "user_pseudo_id": "u01",
+        "session_id": "s01",
+        "revenue_cents": 10000,
+        "item_rows": 1,
+        "item_value_cents": 10000,
+        "revenue_variance_cents": 0,
+        "transaction_id_finding": 0,
+        "identity_finding": 0,
+        "revenue_finding": 0
+      },
+      {
+        "event_key": "ev05",
+        "event_date": "2026-10-03",
+        "arrival_batch": 1,
+        "transaction_id": "T300",
+        "user_pseudo_id": "u03",
+        "session_id": "s03",
+        "revenue_cents": 8000,
+        "item_rows": 1,
+        "item_value_cents": 8000,
+        "revenue_variance_cents": 0,
+        "transaction_id_finding": 0,
+        "identity_finding": 0,
+        "revenue_finding": 0
+      }
+    ],
+    "mart_ga4_sessions": [
+      {
+        "user_pseudo_id": "u03",
+        "session_id": "s03",
+        "first_event_date": "2026-10-03",
+        "last_event_date": "2026-10-03",
+        "event_count": 1,
+        "purchase_events": 1
+      },
+      {
+        "user_pseudo_id": "u02",
+        "session_id": "s02",
+        "first_event_date": "2026-10-02",
+        "last_event_date": "2026-10-02",
+        "event_count": 2,
+        "purchase_events": 1
+      },
+      {
+        "user_pseudo_id": "u01",
+        "session_id": "s01",
+        "first_event_date": "2026-10-01",
+        "last_event_date": "2026-10-01",
+        "event_count": 2,
+        "purchase_events": 1
+      }
+    ],
+    "mart_ga4_daily": [
+      {
+        "event_date": "2026-10-03",
+        "event_count": 1,
+        "purchase_events": 1,
+        "purchase_item_rows": 1,
+        "reported_revenue_cents": 8000,
+        "item_value_cents": 8000,
+        "transaction_id_findings": 0,
+        "revenue_findings": 0,
+        "identity_findings": 0
+      },
+      {
+        "event_date": "2026-10-01",
+        "event_count": 2,
+        "purchase_events": 1,
+        "purchase_item_rows": 1,
+        "reported_revenue_cents": 10000,
+        "item_value_cents": 10000,
+        "transaction_id_findings": 0,
+        "revenue_findings": 0,
+        "identity_findings": 0
+      },
+      {
+        "event_date": "2026-10-02",
+        "event_count": 2,
+        "purchase_events": 1,
+        "purchase_item_rows": 1,
+        "reported_revenue_cents": 12000,
+        "item_value_cents": 12000,
+        "transaction_id_findings": 0,
+        "revenue_findings": 0,
+        "identity_findings": 0
+      }
+    ]
+  },
+  "incremental": {
+    "fct_ga4_events": [
+      {
+        "event_key": "ev05",
+        "event_date": "2026-10-03",
+        "arrival_batch": 1,
+        "source_version": 1,
+        "event_name": "purchase",
+        "user_pseudo_id": "u03",
+        "session_id": "s03",
+        "transaction_id": "T300",
+        "revenue_cents": 8000
+      },
+      {
+        "event_key": "ev03",
+        "event_date": "2026-10-02",
+        "arrival_batch": 2,
+        "source_version": 2,
+        "event_name": "purchase",
+        "user_pseudo_id": "u02",
+        "session_id": "s02",
+        "transaction_id": "T200",
+        "revenue_cents": 13000
+      },
+      {
+        "event_key": "ev04",
+        "event_date": "2026-10-02",
+        "arrival_batch": 1,
+        "source_version": 1,
+        "event_name": "add_to_cart",
+        "user_pseudo_id": "u02",
+        "session_id": "s02",
+        "transaction_id": null,
+        "revenue_cents": 0
+      },
+      {
+        "event_key": "ev09",
+        "event_date": "2026-10-04",
+        "arrival_batch": 2,
+        "source_version": 1,
+        "event_name": "page_view",
+        "user_pseudo_id": "u07",
+        "session_id": null,
+        "transaction_id": null,
+        "revenue_cents": 0
+      },
+      {
+        "event_key": "ev10",
+        "event_date": "2026-10-04",
+        "arrival_batch": 2,
+        "source_version": 1,
+        "event_name": "purchase",
+        "user_pseudo_id": null,
+        "session_id": "s10",
+        "transaction_id": "T600",
+        "revenue_cents": 1000
+      },
+      {
+        "event_key": "ev07",
+        "event_date": "2026-10-04",
+        "arrival_batch": 2,
+        "source_version": 1,
+        "event_name": "purchase",
+        "user_pseudo_id": "u05",
+        "session_id": "s05",
+        "transaction_id": "T200",
+        "revenue_cents": 10000
+      },
+      {
+        "event_key": "ev08",
+        "event_date": "2026-10-04",
+        "arrival_batch": 2,
+        "source_version": 1,
+        "event_name": "purchase",
+        "user_pseudo_id": "u06",
+        "session_id": "s06",
+        "transaction_id": "T500",
+        "revenue_cents": 7300
+      },
+      {
+        "event_key": "ev02",
+        "event_date": "2026-10-01",
+        "arrival_batch": 1,
+        "source_version": 1,
+        "event_name": "purchase",
+        "user_pseudo_id": "u01",
+        "session_id": "s01",
+        "transaction_id": "T100",
+        "revenue_cents": 10000
+      },
+      {
+        "event_key": "ev01",
+        "event_date": "2026-10-01",
+        "arrival_batch": 1,
+        "source_version": 1,
+        "event_name": "page_view",
+        "user_pseudo_id": "u01",
+        "session_id": "s01",
+        "transaction_id": null,
+        "revenue_cents": 0
+      },
+      {
+        "event_key": "ev06",
+        "event_date": "2026-09-26",
+        "arrival_batch": 2,
+        "source_version": 1,
+        "event_name": "purchase",
+        "user_pseudo_id": "u04",
+        "session_id": "s04",
+        "transaction_id": "T400",
+        "revenue_cents": 5000
+      }
+    ],
+    "fct_ga4_items": [
+      {
+        "event_key": "ev06",
+        "item_index": 0,
+        "item_id": "repair",
+        "price_cents": 5000,
+        "quantity": 1,
+        "extended_cents": 5000,
+        "event_date": "2026-09-26",
+        "source_version": 1
+      },
+      {
+        "event_key": "ev02",
+        "item_index": 0,
+        "item_id": "starter",
+        "price_cents": 5000,
+        "quantity": 2,
+        "extended_cents": 10000,
+        "event_date": "2026-10-01",
+        "source_version": 1
+      },
+      {
+        "event_key": "ev05",
+        "item_index": 0,
+        "item_id": "part",
+        "price_cents": 8000,
+        "quantity": 1,
+        "extended_cents": 8000,
+        "event_date": "2026-10-03",
+        "source_version": 1
+      },
+      {
+        "event_key": "ev10",
+        "item_index": 0,
+        "item_id": "support",
+        "price_cents": 1000,
+        "quantity": 1,
+        "extended_cents": 1000,
+        "event_date": "2026-10-04",
+        "source_version": 1
+      },
+      {
+        "event_key": "ev07",
+        "item_index": 0,
+        "item_id": "kit",
+        "price_cents": 10000,
+        "quantity": 1,
+        "extended_cents": 10000,
+        "event_date": "2026-10-04",
+        "source_version": 1
+      },
+      {
+        "event_key": "ev08",
+        "item_index": 0,
+        "item_id": "accessory",
+        "price_cents": 7000,
+        "quantity": 1,
+        "extended_cents": 7000,
+        "event_date": "2026-10-04",
+        "source_version": 1
+      },
+      {
+        "event_key": "ev03",
+        "item_index": 0,
+        "item_id": "kit",
+        "price_cents": 6500,
+        "quantity": 2,
+        "extended_cents": 13000,
+        "event_date": "2026-10-02",
+        "source_version": 2
+      },
+      {
+        "event_key": "ev04",
+        "item_index": 0,
+        "item_id": "accessory",
+        "price_cents": 1000,
+        "quantity": 1,
+        "extended_cents": 1000,
+        "event_date": "2026-10-02",
+        "source_version": 1
+      }
+    ],
+    "mart_ga4_purchase_quality": [
+      {
+        "event_key": "ev05",
+        "event_date": "2026-10-03",
+        "arrival_batch": 1,
+        "transaction_id": "T300",
+        "user_pseudo_id": "u03",
+        "session_id": "s03",
+        "revenue_cents": 8000,
+        "item_rows": 1,
+        "item_value_cents": 8000,
+        "revenue_variance_cents": 0,
+        "transaction_id_finding": 0,
+        "identity_finding": 0,
+        "revenue_finding": 0
+      },
+      {
+        "event_key": "ev06",
+        "event_date": "2026-09-26",
+        "arrival_batch": 2,
+        "transaction_id": "T400",
+        "user_pseudo_id": "u04",
+        "session_id": "s04",
+        "revenue_cents": 5000,
+        "item_rows": 1,
+        "item_value_cents": 5000,
+        "revenue_variance_cents": 0,
+        "transaction_id_finding": 0,
+        "identity_finding": 0,
+        "revenue_finding": 0
+      },
+      {
+        "event_key": "ev10",
+        "event_date": "2026-10-04",
+        "arrival_batch": 2,
+        "transaction_id": "T600",
+        "user_pseudo_id": null,
+        "session_id": "s10",
+        "revenue_cents": 1000,
+        "item_rows": 1,
+        "item_value_cents": 1000,
+        "revenue_variance_cents": 0,
+        "transaction_id_finding": 0,
+        "identity_finding": 1,
+        "revenue_finding": 0
+      },
+      {
+        "event_key": "ev08",
+        "event_date": "2026-10-04",
+        "arrival_batch": 2,
+        "transaction_id": "T500",
+        "user_pseudo_id": "u06",
+        "session_id": "s06",
+        "revenue_cents": 7300,
+        "item_rows": 1,
+        "item_value_cents": 7000,
+        "revenue_variance_cents": 300,
+        "transaction_id_finding": 0,
+        "identity_finding": 0,
+        "revenue_finding": 1
+      },
+      {
+        "event_key": "ev07",
+        "event_date": "2026-10-04",
+        "arrival_batch": 2,
+        "transaction_id": "T200",
+        "user_pseudo_id": "u05",
+        "session_id": "s05",
+        "revenue_cents": 10000,
+        "item_rows": 1,
+        "item_value_cents": 10000,
+        "revenue_variance_cents": 0,
+        "transaction_id_finding": 1,
+        "identity_finding": 0,
+        "revenue_finding": 0
+      },
+      {
+        "event_key": "ev03",
+        "event_date": "2026-10-02",
+        "arrival_batch": 2,
+        "transaction_id": "T200",
+        "user_pseudo_id": "u02",
+        "session_id": "s02",
+        "revenue_cents": 13000,
+        "item_rows": 1,
+        "item_value_cents": 13000,
+        "revenue_variance_cents": 0,
+        "transaction_id_finding": 1,
+        "identity_finding": 0,
+        "revenue_finding": 0
+      },
+      {
+        "event_key": "ev02",
+        "event_date": "2026-10-01",
+        "arrival_batch": 1,
+        "transaction_id": "T100",
+        "user_pseudo_id": "u01",
+        "session_id": "s01",
+        "revenue_cents": 10000,
+        "item_rows": 1,
+        "item_value_cents": 10000,
+        "revenue_variance_cents": 0,
+        "transaction_id_finding": 0,
+        "identity_finding": 0,
+        "revenue_finding": 0
+      }
+    ],
+    "mart_ga4_sessions": [
+      {
+        "user_pseudo_id": "u06",
+        "session_id": "s06",
+        "first_event_date": "2026-10-04",
+        "last_event_date": "2026-10-04",
+        "event_count": 1,
+        "purchase_events": 1
+      },
+      {
+        "user_pseudo_id": "u02",
+        "session_id": "s02",
+        "first_event_date": "2026-10-02",
+        "last_event_date": "2026-10-02",
+        "event_count": 2,
+        "purchase_events": 1
+      },
+      {
+        "user_pseudo_id": "u05",
+        "session_id": "s05",
+        "first_event_date": "2026-10-04",
+        "last_event_date": "2026-10-04",
+        "event_count": 1,
+        "purchase_events": 1
+      },
+      {
+        "user_pseudo_id": "u01",
+        "session_id": "s01",
+        "first_event_date": "2026-10-01",
+        "last_event_date": "2026-10-01",
+        "event_count": 2,
+        "purchase_events": 1
+      },
+      {
+        "user_pseudo_id": "u04",
+        "session_id": "s04",
+        "first_event_date": "2026-09-26",
+        "last_event_date": "2026-09-26",
+        "event_count": 1,
+        "purchase_events": 1
+      },
+      {
+        "user_pseudo_id": "u03",
+        "session_id": "s03",
+        "first_event_date": "2026-10-03",
+        "last_event_date": "2026-10-03",
+        "event_count": 1,
+        "purchase_events": 1
+      }
+    ],
+    "mart_ga4_daily": [
+      {
+        "event_date": "2026-10-02",
+        "event_count": 2,
+        "purchase_events": 1,
+        "purchase_item_rows": 1,
+        "reported_revenue_cents": 13000,
+        "item_value_cents": 13000,
+        "transaction_id_findings": 1,
+        "revenue_findings": 0,
+        "identity_findings": 0
+      },
+      {
+        "event_date": "2026-09-26",
+        "event_count": 1,
+        "purchase_events": 1,
+        "purchase_item_rows": 1,
+        "reported_revenue_cents": 5000,
+        "item_value_cents": 5000,
+        "transaction_id_findings": 0,
+        "revenue_findings": 0,
+        "identity_findings": 0
+      },
+      {
+        "event_date": "2026-10-01",
+        "event_count": 2,
+        "purchase_events": 1,
+        "purchase_item_rows": 1,
+        "reported_revenue_cents": 10000,
+        "item_value_cents": 10000,
+        "transaction_id_findings": 0,
+        "revenue_findings": 0,
+        "identity_findings": 0
+      },
+      {
+        "event_date": "2026-10-03",
+        "event_count": 1,
+        "purchase_events": 1,
+        "purchase_item_rows": 1,
+        "reported_revenue_cents": 8000,
+        "item_value_cents": 8000,
+        "transaction_id_findings": 0,
+        "revenue_findings": 0,
+        "identity_findings": 0
+      },
+      {
+        "event_date": "2026-10-04",
+        "event_count": 4,
+        "purchase_events": 3,
+        "purchase_item_rows": 3,
+        "reported_revenue_cents": 18300,
+        "item_value_cents": 18000,
+        "transaction_id_findings": 1,
+        "revenue_findings": 1,
+        "identity_findings": 2
+      }
+    ]
+  },
+  "replay": {
+    "fct_ga4_events": [
+      {
+        "event_key": "ev06",
+        "event_date": "2026-09-26",
+        "arrival_batch": 2,
+        "source_version": 1,
+        "event_name": "purchase",
+        "user_pseudo_id": "u04",
+        "session_id": "s04",
+        "transaction_id": "T400",
+        "revenue_cents": 5000
+      },
+      {
+        "event_key": "ev09",
+        "event_date": "2026-10-04",
+        "arrival_batch": 2,
+        "source_version": 1,
+        "event_name": "page_view",
+        "user_pseudo_id": "u07",
+        "session_id": null,
+        "transaction_id": null,
+        "revenue_cents": 0
+      },
+      {
+        "event_key": "ev10",
+        "event_date": "2026-10-04",
+        "arrival_batch": 2,
+        "source_version": 1,
+        "event_name": "purchase",
+        "user_pseudo_id": null,
+        "session_id": "s10",
+        "transaction_id": "T600",
+        "revenue_cents": 1000
+      },
+      {
+        "event_key": "ev07",
+        "event_date": "2026-10-04",
+        "arrival_batch": 2,
+        "source_version": 1,
+        "event_name": "purchase",
+        "user_pseudo_id": "u05",
+        "session_id": "s05",
+        "transaction_id": "T200",
+        "revenue_cents": 10000
+      },
+      {
+        "event_key": "ev08",
+        "event_date": "2026-10-04",
+        "arrival_batch": 2,
+        "source_version": 1,
+        "event_name": "purchase",
+        "user_pseudo_id": "u06",
+        "session_id": "s06",
+        "transaction_id": "T500",
+        "revenue_cents": 7300
+      },
+      {
+        "event_key": "ev03",
+        "event_date": "2026-10-02",
+        "arrival_batch": 2,
+        "source_version": 2,
+        "event_name": "purchase",
+        "user_pseudo_id": "u02",
+        "session_id": "s02",
+        "transaction_id": "T200",
+        "revenue_cents": 13000
+      },
+      {
+        "event_key": "ev04",
+        "event_date": "2026-10-02",
+        "arrival_batch": 1,
+        "source_version": 1,
+        "event_name": "add_to_cart",
+        "user_pseudo_id": "u02",
+        "session_id": "s02",
+        "transaction_id": null,
+        "revenue_cents": 0
+      },
+      {
+        "event_key": "ev05",
+        "event_date": "2026-10-03",
+        "arrival_batch": 1,
+        "source_version": 1,
+        "event_name": "purchase",
+        "user_pseudo_id": "u03",
+        "session_id": "s03",
+        "transaction_id": "T300",
+        "revenue_cents": 8000
+      },
+      {
+        "event_key": "ev02",
+        "event_date": "2026-10-01",
+        "arrival_batch": 1,
+        "source_version": 1,
+        "event_name": "purchase",
+        "user_pseudo_id": "u01",
+        "session_id": "s01",
+        "transaction_id": "T100",
+        "revenue_cents": 10000
+      },
+      {
+        "event_key": "ev01",
+        "event_date": "2026-10-01",
+        "arrival_batch": 1,
+        "source_version": 1,
+        "event_name": "page_view",
+        "user_pseudo_id": "u01",
+        "session_id": "s01",
+        "transaction_id": null,
+        "revenue_cents": 0
+      }
+    ],
+    "fct_ga4_items": [
+      {
+        "event_key": "ev05",
+        "item_index": 0,
+        "item_id": "part",
+        "price_cents": 8000,
+        "quantity": 1,
+        "extended_cents": 8000,
+        "event_date": "2026-10-03",
+        "source_version": 1
+      },
+      {
+        "event_key": "ev10",
+        "item_index": 0,
+        "item_id": "support",
+        "price_cents": 1000,
+        "quantity": 1,
+        "extended_cents": 1000,
+        "event_date": "2026-10-04",
+        "source_version": 1
+      },
+      {
+        "event_key": "ev07",
+        "item_index": 0,
+        "item_id": "kit",
+        "price_cents": 10000,
+        "quantity": 1,
+        "extended_cents": 10000,
+        "event_date": "2026-10-04",
+        "source_version": 1
+      },
+      {
+        "event_key": "ev08",
+        "item_index": 0,
+        "item_id": "accessory",
+        "price_cents": 7000,
+        "quantity": 1,
+        "extended_cents": 7000,
+        "event_date": "2026-10-04",
+        "source_version": 1
+      },
+      {
+        "event_key": "ev02",
+        "item_index": 0,
+        "item_id": "starter",
+        "price_cents": 5000,
+        "quantity": 2,
+        "extended_cents": 10000,
+        "event_date": "2026-10-01",
+        "source_version": 1
+      },
+      {
+        "event_key": "ev03",
+        "item_index": 0,
+        "item_id": "kit",
+        "price_cents": 6500,
+        "quantity": 2,
+        "extended_cents": 13000,
+        "event_date": "2026-10-02",
+        "source_version": 2
+      },
+      {
+        "event_key": "ev04",
+        "item_index": 0,
+        "item_id": "accessory",
+        "price_cents": 1000,
+        "quantity": 1,
+        "extended_cents": 1000,
+        "event_date": "2026-10-02",
+        "source_version": 1
+      },
+      {
+        "event_key": "ev06",
+        "item_index": 0,
+        "item_id": "repair",
+        "price_cents": 5000,
+        "quantity": 1,
+        "extended_cents": 5000,
+        "event_date": "2026-09-26",
+        "source_version": 1
+      }
+    ],
+    "mart_ga4_purchase_quality": [
+      {
+        "event_key": "ev06",
+        "event_date": "2026-09-26",
+        "arrival_batch": 2,
+        "transaction_id": "T400",
+        "user_pseudo_id": "u04",
+        "session_id": "s04",
+        "revenue_cents": 5000,
+        "item_rows": 1,
+        "item_value_cents": 5000,
+        "revenue_variance_cents": 0,
+        "transaction_id_finding": 0,
+        "identity_finding": 0,
+        "revenue_finding": 0
+      },
+      {
+        "event_key": "ev08",
+        "event_date": "2026-10-04",
+        "arrival_batch": 2,
+        "transaction_id": "T500",
+        "user_pseudo_id": "u06",
+        "session_id": "s06",
+        "revenue_cents": 7300,
+        "item_rows": 1,
+        "item_value_cents": 7000,
+        "revenue_variance_cents": 300,
+        "transaction_id_finding": 0,
+        "identity_finding": 0,
+        "revenue_finding": 1
+      },
+      {
+        "event_key": "ev10",
+        "event_date": "2026-10-04",
+        "arrival_batch": 2,
+        "transaction_id": "T600",
+        "user_pseudo_id": null,
+        "session_id": "s10",
+        "revenue_cents": 1000,
+        "item_rows": 1,
+        "item_value_cents": 1000,
+        "revenue_variance_cents": 0,
+        "transaction_id_finding": 0,
+        "identity_finding": 1,
+        "revenue_finding": 0
+      },
+      {
+        "event_key": "ev07",
+        "event_date": "2026-10-04",
+        "arrival_batch": 2,
+        "transaction_id": "T200",
+        "user_pseudo_id": "u05",
+        "session_id": "s05",
+        "revenue_cents": 10000,
+        "item_rows": 1,
+        "item_value_cents": 10000,
+        "revenue_variance_cents": 0,
+        "transaction_id_finding": 1,
+        "identity_finding": 0,
+        "revenue_finding": 0
+      },
+      {
+        "event_key": "ev05",
+        "event_date": "2026-10-03",
+        "arrival_batch": 1,
+        "transaction_id": "T300",
+        "user_pseudo_id": "u03",
+        "session_id": "s03",
+        "revenue_cents": 8000,
+        "item_rows": 1,
+        "item_value_cents": 8000,
+        "revenue_variance_cents": 0,
+        "transaction_id_finding": 0,
+        "identity_finding": 0,
+        "revenue_finding": 0
+      },
+      {
+        "event_key": "ev03",
+        "event_date": "2026-10-02",
+        "arrival_batch": 2,
+        "transaction_id": "T200",
+        "user_pseudo_id": "u02",
+        "session_id": "s02",
+        "revenue_cents": 13000,
+        "item_rows": 1,
+        "item_value_cents": 13000,
+        "revenue_variance_cents": 0,
+        "transaction_id_finding": 1,
+        "identity_finding": 0,
+        "revenue_finding": 0
+      },
+      {
+        "event_key": "ev02",
+        "event_date": "2026-10-01",
+        "arrival_batch": 1,
+        "transaction_id": "T100",
+        "user_pseudo_id": "u01",
+        "session_id": "s01",
+        "revenue_cents": 10000,
+        "item_rows": 1,
+        "item_value_cents": 10000,
+        "revenue_variance_cents": 0,
+        "transaction_id_finding": 0,
+        "identity_finding": 0,
+        "revenue_finding": 0
+      }
+    ],
+    "mart_ga4_sessions": [
+      {
+        "user_pseudo_id": "u05",
+        "session_id": "s05",
+        "first_event_date": "2026-10-04",
+        "last_event_date": "2026-10-04",
+        "event_count": 1,
+        "purchase_events": 1
+      },
+      {
+        "user_pseudo_id": "u04",
+        "session_id": "s04",
+        "first_event_date": "2026-09-26",
+        "last_event_date": "2026-09-26",
+        "event_count": 1,
+        "purchase_events": 1
+      },
+      {
+        "user_pseudo_id": "u01",
+        "session_id": "s01",
+        "first_event_date": "2026-10-01",
+        "last_event_date": "2026-10-01",
+        "event_count": 2,
+        "purchase_events": 1
+      },
+      {
+        "user_pseudo_id": "u06",
+        "session_id": "s06",
+        "first_event_date": "2026-10-04",
+        "last_event_date": "2026-10-04",
+        "event_count": 1,
+        "purchase_events": 1
+      },
+      {
+        "user_pseudo_id": "u03",
+        "session_id": "s03",
+        "first_event_date": "2026-10-03",
+        "last_event_date": "2026-10-03",
+        "event_count": 1,
+        "purchase_events": 1
+      },
+      {
+        "user_pseudo_id": "u02",
+        "session_id": "s02",
+        "first_event_date": "2026-10-02",
+        "last_event_date": "2026-10-02",
+        "event_count": 2,
+        "purchase_events": 1
+      }
+    ],
+    "mart_ga4_daily": [
+      {
+        "event_date": "2026-10-04",
+        "event_count": 4,
+        "purchase_events": 3,
+        "purchase_item_rows": 3,
+        "reported_revenue_cents": 18300,
+        "item_value_cents": 18000,
+        "transaction_id_findings": 1,
+        "revenue_findings": 1,
+        "identity_findings": 2
+      },
+      {
+        "event_date": "2026-09-26",
+        "event_count": 1,
+        "purchase_events": 1,
+        "purchase_item_rows": 1,
+        "reported_revenue_cents": 5000,
+        "item_value_cents": 5000,
+        "transaction_id_findings": 0,
+        "revenue_findings": 0,
+        "identity_findings": 0
+      },
+      {
+        "event_date": "2026-10-02",
+        "event_count": 2,
+        "purchase_events": 1,
+        "purchase_item_rows": 1,
+        "reported_revenue_cents": 13000,
+        "item_value_cents": 13000,
+        "transaction_id_findings": 1,
+        "revenue_findings": 0,
+        "identity_findings": 0
+      },
+      {
+        "event_date": "2026-10-01",
+        "event_count": 2,
+        "purchase_events": 1,
+        "purchase_item_rows": 1,
+        "reported_revenue_cents": 10000,
+        "item_value_cents": 10000,
+        "transaction_id_findings": 0,
+        "revenue_findings": 0,
+        "identity_findings": 0
+      },
+      {
+        "event_date": "2026-10-03",
+        "event_count": 1,
+        "purchase_events": 1,
+        "purchase_item_rows": 1,
+        "reported_revenue_cents": 8000,
+        "item_value_cents": 8000,
+        "transaction_id_findings": 0,
+        "revenue_findings": 0,
+        "identity_findings": 0
+      }
+    ]
+  },
+  "independent-full": {
+    "fct_ga4_events": [
+      {
+        "event_key": "ev05",
+        "event_date": "2026-10-03",
+        "arrival_batch": 1,
+        "source_version": 1,
+        "event_name": "purchase",
+        "user_pseudo_id": "u03",
+        "session_id": "s03",
+        "transaction_id": "T300",
+        "revenue_cents": 8000
+      },
+      {
+        "event_key": "ev06",
+        "event_date": "2026-09-26",
+        "arrival_batch": 2,
+        "source_version": 1,
+        "event_name": "purchase",
+        "user_pseudo_id": "u04",
+        "session_id": "s04",
+        "transaction_id": "T400",
+        "revenue_cents": 5000
+      },
+      {
+        "event_key": "ev04",
+        "event_date": "2026-10-02",
+        "arrival_batch": 1,
+        "source_version": 1,
+        "event_name": "add_to_cart",
+        "user_pseudo_id": "u02",
+        "session_id": "s02",
+        "transaction_id": null,
+        "revenue_cents": 0
+      },
+      {
+        "event_key": "ev03",
+        "event_date": "2026-10-02",
+        "arrival_batch": 2,
+        "source_version": 2,
+        "event_name": "purchase",
+        "user_pseudo_id": "u02",
+        "session_id": "s02",
+        "transaction_id": "T200",
+        "revenue_cents": 13000
+      },
+      {
+        "event_key": "ev09",
+        "event_date": "2026-10-04",
+        "arrival_batch": 2,
+        "source_version": 1,
+        "event_name": "page_view",
+        "user_pseudo_id": "u07",
+        "session_id": null,
+        "transaction_id": null,
+        "revenue_cents": 0
+      },
+      {
+        "event_key": "ev07",
+        "event_date": "2026-10-04",
+        "arrival_batch": 2,
+        "source_version": 1,
+        "event_name": "purchase",
+        "user_pseudo_id": "u05",
+        "session_id": "s05",
+        "transaction_id": "T200",
+        "revenue_cents": 10000
+      },
+      {
+        "event_key": "ev08",
+        "event_date": "2026-10-04",
+        "arrival_batch": 2,
+        "source_version": 1,
+        "event_name": "purchase",
+        "user_pseudo_id": "u06",
+        "session_id": "s06",
+        "transaction_id": "T500",
+        "revenue_cents": 7300
+      },
+      {
+        "event_key": "ev10",
+        "event_date": "2026-10-04",
+        "arrival_batch": 2,
+        "source_version": 1,
+        "event_name": "purchase",
+        "user_pseudo_id": null,
+        "session_id": "s10",
+        "transaction_id": "T600",
+        "revenue_cents": 1000
+      },
+      {
+        "event_key": "ev01",
+        "event_date": "2026-10-01",
+        "arrival_batch": 1,
+        "source_version": 1,
+        "event_name": "page_view",
+        "user_pseudo_id": "u01",
+        "session_id": "s01",
+        "transaction_id": null,
+        "revenue_cents": 0
+      },
+      {
+        "event_key": "ev02",
+        "event_date": "2026-10-01",
+        "arrival_batch": 1,
+        "source_version": 1,
+        "event_name": "purchase",
+        "user_pseudo_id": "u01",
+        "session_id": "s01",
+        "transaction_id": "T100",
+        "revenue_cents": 10000
+      }
+    ],
+    "fct_ga4_items": [
+      {
+        "event_key": "ev07",
+        "item_index": 0,
+        "item_id": "kit",
+        "price_cents": 10000,
+        "quantity": 1,
+        "extended_cents": 10000,
+        "event_date": "2026-10-04",
+        "source_version": 1
+      },
+      {
+        "event_key": "ev08",
+        "item_index": 0,
+        "item_id": "accessory",
+        "price_cents": 7000,
+        "quantity": 1,
+        "extended_cents": 7000,
+        "event_date": "2026-10-04",
+        "source_version": 1
+      },
+      {
+        "event_key": "ev10",
+        "item_index": 0,
+        "item_id": "support",
+        "price_cents": 1000,
+        "quantity": 1,
+        "extended_cents": 1000,
+        "event_date": "2026-10-04",
+        "source_version": 1
+      },
+      {
+        "event_key": "ev06",
+        "item_index": 0,
+        "item_id": "repair",
+        "price_cents": 5000,
+        "quantity": 1,
+        "extended_cents": 5000,
+        "event_date": "2026-09-26",
+        "source_version": 1
+      },
+      {
+        "event_key": "ev05",
+        "item_index": 0,
+        "item_id": "part",
+        "price_cents": 8000,
+        "quantity": 1,
+        "extended_cents": 8000,
+        "event_date": "2026-10-03",
+        "source_version": 1
+      },
+      {
+        "event_key": "ev02",
+        "item_index": 0,
+        "item_id": "starter",
+        "price_cents": 5000,
+        "quantity": 2,
+        "extended_cents": 10000,
+        "event_date": "2026-10-01",
+        "source_version": 1
+      },
+      {
+        "event_key": "ev04",
+        "item_index": 0,
+        "item_id": "accessory",
+        "price_cents": 1000,
+        "quantity": 1,
+        "extended_cents": 1000,
+        "event_date": "2026-10-02",
+        "source_version": 1
+      },
+      {
+        "event_key": "ev03",
+        "item_index": 0,
+        "item_id": "kit",
+        "price_cents": 6500,
+        "quantity": 2,
+        "extended_cents": 13000,
+        "event_date": "2026-10-02",
+        "source_version": 2
+      }
+    ],
+    "mart_ga4_purchase_quality": [
+      {
+        "event_key": "ev08",
+        "event_date": "2026-10-04",
+        "arrival_batch": 2,
+        "transaction_id": "T500",
+        "user_pseudo_id": "u06",
+        "session_id": "s06",
+        "revenue_cents": 7300,
+        "item_rows": 1,
+        "item_value_cents": 7000,
+        "revenue_variance_cents": 300,
+        "transaction_id_finding": 0,
+        "identity_finding": 0,
+        "revenue_finding": 1
+      },
+      {
+        "event_key": "ev10",
+        "event_date": "2026-10-04",
+        "arrival_batch": 2,
+        "transaction_id": "T600",
+        "user_pseudo_id": null,
+        "session_id": "s10",
+        "revenue_cents": 1000,
+        "item_rows": 1,
+        "item_value_cents": 1000,
+        "revenue_variance_cents": 0,
+        "transaction_id_finding": 0,
+        "identity_finding": 1,
+        "revenue_finding": 0
+      },
+      {
+        "event_key": "ev02",
+        "event_date": "2026-10-01",
+        "arrival_batch": 1,
+        "transaction_id": "T100",
+        "user_pseudo_id": "u01",
+        "session_id": "s01",
+        "revenue_cents": 10000,
+        "item_rows": 1,
+        "item_value_cents": 10000,
+        "revenue_variance_cents": 0,
+        "transaction_id_finding": 0,
+        "identity_finding": 0,
+        "revenue_finding": 0
+      },
+      {
+        "event_key": "ev07",
+        "event_date": "2026-10-04",
+        "arrival_batch": 2,
+        "transaction_id": "T200",
+        "user_pseudo_id": "u05",
+        "session_id": "s05",
+        "revenue_cents": 10000,
+        "item_rows": 1,
+        "item_value_cents": 10000,
+        "revenue_variance_cents": 0,
+        "transaction_id_finding": 1,
+        "identity_finding": 0,
+        "revenue_finding": 0
+      },
+      {
+        "event_key": "ev05",
+        "event_date": "2026-10-03",
+        "arrival_batch": 1,
+        "transaction_id": "T300",
+        "user_pseudo_id": "u03",
+        "session_id": "s03",
+        "revenue_cents": 8000,
+        "item_rows": 1,
+        "item_value_cents": 8000,
+        "revenue_variance_cents": 0,
+        "transaction_id_finding": 0,
+        "identity_finding": 0,
+        "revenue_finding": 0
+      },
+      {
+        "event_key": "ev03",
+        "event_date": "2026-10-02",
+        "arrival_batch": 2,
+        "transaction_id": "T200",
+        "user_pseudo_id": "u02",
+        "session_id": "s02",
+        "revenue_cents": 13000,
+        "item_rows": 1,
+        "item_value_cents": 13000,
+        "revenue_variance_cents": 0,
+        "transaction_id_finding": 1,
+        "identity_finding": 0,
+        "revenue_finding": 0
+      },
+      {
+        "event_key": "ev06",
+        "event_date": "2026-09-26",
+        "arrival_batch": 2,
+        "transaction_id": "T400",
+        "user_pseudo_id": "u04",
+        "session_id": "s04",
+        "revenue_cents": 5000,
+        "item_rows": 1,
+        "item_value_cents": 5000,
+        "revenue_variance_cents": 0,
+        "transaction_id_finding": 0,
+        "identity_finding": 0,
+        "revenue_finding": 0
+      }
+    ],
+    "mart_ga4_sessions": [
+      {
+        "user_pseudo_id": "u03",
+        "session_id": "s03",
+        "first_event_date": "2026-10-03",
+        "last_event_date": "2026-10-03",
+        "event_count": 1,
+        "purchase_events": 1
+      },
+      {
+        "user_pseudo_id": "u02",
+        "session_id": "s02",
+        "first_event_date": "2026-10-02",
+        "last_event_date": "2026-10-02",
+        "event_count": 2,
+        "purchase_events": 1
+      },
+      {
+        "user_pseudo_id": "u06",
+        "session_id": "s06",
+        "first_event_date": "2026-10-04",
+        "last_event_date": "2026-10-04",
+        "event_count": 1,
+        "purchase_events": 1
+      },
+      {
+        "user_pseudo_id": "u04",
+        "session_id": "s04",
+        "first_event_date": "2026-09-26",
+        "last_event_date": "2026-09-26",
+        "event_count": 1,
+        "purchase_events": 1
+      },
+      {
+        "user_pseudo_id": "u05",
+        "session_id": "s05",
+        "first_event_date": "2026-10-04",
+        "last_event_date": "2026-10-04",
+        "event_count": 1,
+        "purchase_events": 1
+      },
+      {
+        "user_pseudo_id": "u01",
+        "session_id": "s01",
+        "first_event_date": "2026-10-01",
+        "last_event_date": "2026-10-01",
+        "event_count": 2,
+        "purchase_events": 1
+      }
+    ],
+    "mart_ga4_daily": [
+      {
+        "event_date": "2026-10-03",
+        "event_count": 1,
+        "purchase_events": 1,
+        "purchase_item_rows": 1,
+        "reported_revenue_cents": 8000,
+        "item_value_cents": 8000,
+        "transaction_id_findings": 0,
+        "revenue_findings": 0,
+        "identity_findings": 0
+      },
+      {
+        "event_date": "2026-10-04",
+        "event_count": 4,
+        "purchase_events": 3,
+        "purchase_item_rows": 3,
+        "reported_revenue_cents": 18300,
+        "item_value_cents": 18000,
+        "transaction_id_findings": 1,
+        "revenue_findings": 1,
+        "identity_findings": 2
+      },
+      {
+        "event_date": "2026-09-26",
+        "event_count": 1,
+        "purchase_events": 1,
+        "purchase_item_rows": 1,
+        "reported_revenue_cents": 5000,
+        "item_value_cents": 5000,
+        "transaction_id_findings": 0,
+        "revenue_findings": 0,
+        "identity_findings": 0
+      },
+      {
+        "event_date": "2026-10-02",
+        "event_count": 2,
+        "purchase_events": 1,
+        "purchase_item_rows": 1,
+        "reported_revenue_cents": 13000,
+        "item_value_cents": 13000,
+        "transaction_id_findings": 1,
+        "revenue_findings": 0,
+        "identity_findings": 0
+      },
+      {
+        "event_date": "2026-10-01",
+        "event_count": 2,
+        "purchase_events": 1,
+        "purchase_item_rows": 1,
+        "reported_revenue_cents": 10000,
+        "item_value_cents": 10000,
+        "transaction_id_findings": 0,
+        "revenue_findings": 0,
+        "identity_findings": 0
+      }
+    ]
+  }
+}

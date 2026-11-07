@@ -1,0 +1,71 @@
+{
+  "scope": "native BigQuery synthetic landing/dbt; not production GA4",
+  "status": "passed",
+  "plan_sha256": "137a97bfc54a05f9cfab55eec22ed3ec3c31f21b8b135c7ff8a3fb99ca795d0f",
+  "project": "<execution-project>",
+  "run_id": "bq261106_trial1",
+  "phases": [
+    {
+      "phase": "initial",
+      "complete_python_oracle": true,
+      "admitted_batch": 1,
+      "events": 5,
+      "purchase_events": 3,
+      "item_rows": 4,
+      "daily_rows": 3,
+      "quality_flags": {
+        "duplicate_transaction_event_rows": 0,
+        "item_revenue_discrepancies": 0
+      }
+    },
+    {
+      "phase": "incremental",
+      "complete_python_oracle": true,
+      "admitted_batch": 2,
+      "events": 10,
+      "purchase_events": 7,
+      "item_rows": 8,
+      "daily_rows": 5,
+      "quality_flags": {
+        "duplicate_transaction_event_rows": 2,
+        "item_revenue_discrepancies": 1
+      }
+    },
+    {
+      "phase": "replay",
+      "complete_python_oracle": true,
+      "admitted_batch": 2,
+      "events": 10,
+      "purchase_events": 7,
+      "item_rows": 8,
+      "daily_rows": 5,
+      "quality_flags": {
+        "duplicate_transaction_event_rows": 2,
+        "item_revenue_discrepancies": 1
+      }
+    },
+    {
+      "phase": "independent-full",
+      "complete_python_oracle": true,
+      "admitted_batch": 2,
+      "events": 10,
+      "purchase_events": 7,
+      "item_rows": 8,
+      "daily_rows": 5,
+      "quality_flags": {
+        "duplicate_transaction_event_rows": 2,
+        "item_revenue_discrepancies": 1
+      }
+    }
+  ],
+  "cleanup": {
+    "full": "confirmed_not_found",
+    "incremental": "confirmed_not_found",
+    "landing": "confirmed_not_found"
+  },
+  "negative_duplicate_probe": "expected_dbt_failure_detected",
+  "incremental_equals_full_refresh": true,
+  "replay_unchanged": true,
+  "native_merge_captured": true,
+  "completed_at": "2026-11-07T04:08:14.093296+00:00"
+}

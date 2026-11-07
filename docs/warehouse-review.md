@@ -1,5 +1,8 @@
 # GA4 warehouse verification: native SQL and incremental correctness
 
+**Subsequent execution:** [Native synthetic dbt-BigQuery acceptance passed November 7, 2026 UTC](evidence/native-dbt-bigquery/README.md). Access limitations below describe this earlier read-only review; its immutable observations remain separate from the later approved build/MERGE run.
+
+
 ## Execution boundaries
 
 This review strengthens the existing warehouse layer without changing the browser application, financial definitions, fixtures or previously recorded observations. [New evidence](evidence/warehouse-review/README.md) is separate from the October 17 [native sample queries](evidence/google-bigquery/README.md) and October 20 [local warehouse acceptance](evidence/ga4-warehouse/README.md).
