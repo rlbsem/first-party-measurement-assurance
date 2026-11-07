@@ -10,7 +10,7 @@ The local browser, HTTP and DuckDB/dbt workflows execute with synthetic USD proj
 
 The exact fixture has **$920,000 in proposals, $435,000 in signed contracts and $143,500 in actual payments**. Measured contract conversions total $190,000; measured payment conversions total $302,000. The system exposes three financial findings: a missing $245,000 contract conversion, a missing $13,000 progress-payment conversion and a deposit overstated by $171,500.
 
-Proposals, signed commitments and collected cash retain separate measures and SQL grains. A deposit is not counted as another full contract. [Exact synthetic results](docs/evidence/demo.json) Â· [Evidence index](docs/evidence/README.md).
+Proposals, signed commitments and collected cash retain separate measures and SQL grains. A deposit is not counted as another full contract. [Exact synthetic results](docs/evidence/demo.json) · [Evidence index](docs/evidence/README.md).
 
 ## Measurement that follows the commercial event
 
@@ -18,7 +18,7 @@ At Lorex, I connected ecommerce measurement with product, transaction and execut
 
 A conversion must represent the business event it claims to measure. This repository implements consent-aware browser instrumentation, event identity, offline source authority and separate contract and payment measures. Its GA4/dbt warehouse extension preserves event, item and session grain, late corrections, data-quality findings and local incremental/full-refresh parity. Synthetic sources expose missing and overstated conversions without publishing client data. Native BigQuery sample queries and synthetic dbt-BigQuery acceptance executed separately; the latter verifies real incremental MERGE, replay and independent full-build parity. These controls apply to ecommerce, SaaS and longer sales cycles where attribution must reconcile with authoritative commercial events.
 
-[Source authority](docs/architecture.md) Â· [GA4 warehouse proof](docs/evidence/ga4-warehouse/README.md) Â· [Native BigQuery queries](docs/evidence/google-bigquery/README.md)
+[Source authority](docs/architecture.md) · [GA4 warehouse proof](docs/evidence/ga4-warehouse/README.md) · [Native BigQuery queries](docs/evidence/google-bigquery/README.md)
 
 ## Try the application locally
 
@@ -120,7 +120,7 @@ The [current warehouse review](docs/warehouse-review.md) adds **fresh native rea
 | Production GA4 to BigQuery integration | **Not implemented or claimed** |
 | Hosted GitHub CI | [Windows and Ubuntu verification](https://github.com/rlbsem/first-party-measurement-assurance/actions/workflows/verify.yml); inspect the run for the relevant commit |
 
-The native GoogleSQL results come from Google's public ecommerce sample, not Evermere. GTM deployment and live GA4 export remain unexecuted. Native dbt-BigQuery acceptance uses synthetic versioned landing rows, not a production GA4 export or the public-sample query cohort. [Native runbook](docs/native-google.md) Â· [Google references](docs/sources.md).
+The native GoogleSQL results come from Google's public ecommerce sample, not Evermere. GTM deployment and live GA4 export remain unexecuted. Native dbt-BigQuery acceptance uses synthetic versioned landing rows, not a production GA4 export or the public-sample query cohort. [Native runbook](docs/native-google.md) · [Google references](docs/sources.md).
 
 [Architecture and source lineage](docs/architecture.md) / [Operations and limits](docs/operations.md) / [Scenario revision and retained controls](docs/scenario-revision.md).
 
