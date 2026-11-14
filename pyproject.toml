@@ -9,7 +9,7 @@ description = "Executable browser-to-analytics measurement assurance"
 requires-python = ">=3.12"
 
 [tool.setuptools]
-packages = ["assurance"]
+packages = ["assurance", "streaming"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

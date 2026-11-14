@@ -14,3 +14,7 @@ dbt_packages/
 *.sqlite*
 *.pem
 *.key
+.terraform/
+*.tfstate*
+*.tfplan
+.hypothesis/
