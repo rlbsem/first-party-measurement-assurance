@@ -1,116 +1,157 @@
-# Governed Streaming Measurement & Revenue Integrity — native Google Cloud acceptance
+# Governed Streaming Measurement & Recovery — Google Cloud engineering contract
 
-**Status: design/acceptance specification, not executed evidence.** This extends the existing native BigQuery/dbt/MERGE project; it does not replace previously executed evidence, alter its fixtures, or claim native Pub/Sub/Dataflow execution before that happens.
+**Status: architecture and acceptance specification only.** This document does not claim Pub/Sub, Dataflow, or streaming benchmark execution. The existing native BigQuery/dbt/MERGE evidence, browser implementation, GA4 public-sample evidence, synthetic business definitions, and historical artifacts remain independent and unchanged.
 
-## Objective
+## Thesis and hiring signal
 
-Build enterprise-grade, source-governed streaming infrastructure demonstrating canonical event identity, tenant/legal-entity isolation, event-time and processing-time semantics, late correction, idempotent replay, no-regress revision selection, independent financial reconciliation, fail-closed publication, recoverability, observability and native cloud authorization tests.
+**Question:** Can delayed, duplicated, conflicting and unauthorized first-party event streams become timely, accurate business measures while recovering from crashes, sink advancement, replay and publication races—without losing events, repeating financial value, or publishing incomplete results?
 
-**Tools execute. The control layer determines what is true.** Browser activity and transport acknowledgments never become authorities for signed contracts or actual payments. All workloads use labeled, deterministic synthetic data, not real client records.
+Build an **isolated streaming lane within First-Party Measurement Assurance**. It is not another acquisition-finance lakehouse or generic cloud ETL port. The proof is **stateful distributed processing, authority, operational correctness and measured architecture trade-offs**.
 
-## Proposed architecture
+The architecture must pass a skeptical senior data/platform architecture review: source-specific IAM; keyed state and timers; event-time windows and corrected state; durable canonical business identity; source/sink checkpoint divergence; concurrency-safe publication; independently derived source oracle; constrained native performance; and audit-grade failure evidence.
+
+**Principle: tools execute; the control layer determines what is true.** A consented browser signal does not establish a contract or payment. Pub/Sub message IDs and Dataflow delivery guarantees do not establish durable business identity. Business event time does not establish source completeness. Candidate tables do not become authoritative merely because a Dataflow job succeeded.
+
+## Physical and logical architecture
 
 ~~~mermaid
-flowchart LR
-  W[Consent-aware web events] --> P[Pub/Sub]
-  F[Authoritative synthetic signature/payment sources] --> P
-  P --> D[Apache Beam / Dataflow validation]
-  D --> B[BigQuery Bronze: durable delivery history]
-  D --> Q[Conflicts and quarantine]
-  B --> S[Governed revision selection / Silver]
-  S --> G[Gold measures by correct grain and value basis]
-  F --> O[Independent source oracle]
-  G --> R[Source coverage and financial reconciliation]
-  O --> R
-  R -->|passes| L[Versioned publication selector]
-  R -->|fails| Q
-  L --> C[Approved-only consumer views]
-  D --> M[Monitoring / Logging]
-  Q --> M
+flowchart TD
+  P[Authenticated synthetic source publishers] --> A[Sealed source archive + manifest]
+  P --> S[Pub/Sub ingress topics / subscriptions]
+  S --> D[Beam / Dataflow: schema, keyed state, timers, event time]
+  D --> E[BigQuery append-oriented delivery and exception ledgers]
+  D --> Q[Quarantine + late-horizon rebuild requests]
+  A --> R[Bounded archive replay / reconstruction]
+  R --> E
+  E --> M[dbt SQL: canonical revisions, measured facts, candidate releases]
+  A --> O[Independent source-only Python oracle]
+  M --> G[Coverage, authority, reconciliation + policy gate]
+  O --> G
+  G -->|verified and current predecessor| V[Transactional release selector]
+  V --> C[Published-only restricted consumer]
+  S --> X[Direct Pub/Sub-to-BigQuery baseline]
+  D --> T[Cloud Monitoring / execution logs]
+  G --> T
 ~~~
 
-Use Pub/Sub, Apache Beam on Dataflow, BigQuery, Cloud Storage for bounded replay/staging/evidence, service-account IAM and Cloud Monitoring/Logging. Do not add unrelated services to inflate the stack. Keep a local credential-free Beam DirectRunner path and a separate native execution path. Source contract, lineage and authority must remain explicit at every boundary.
+Required services: Google Cloud Pub/Sub, Apache Beam on Dataflow, BigQuery, Cloud Storage for frozen source archives/staging, scoped IAM service accounts, Cloud Logging and Cloud Monitoring. Use Terraform for exact-owned isolated resources and reproducibility. Use short-lived identities, pinned SDK/dependencies and runtime images. Private Dataflow workers and Private Google Access are desirable if supported by a scoped network/cost plan; do not casually deploy permanent NAT or unrelated cloud services. An isolated local DirectRunner path is **not native evidence**.
 
-## Canonical transport and source contract
+**Baseline is mandatory:** a separate Pub/Sub BigQuery subscription delivering the same frozen source cohort directly to a landing table, followed by matching governed SQL/dbt logic. Compare its correctness, freshness, simplicity and cost against the Dataflow path. Native Dataflow must earn its added stateful processing complexity; direct ingestion may win for simpler requirements.
 
-A typed versioned envelope should encode at minimum: tenant ID; legal entity; source system; immutable source record ID; trusted source revision and event type; canonical business key; event-schema version; producer event ID; event/effective timestamp and ingest timestamp; normalized payload hash; currency and integer minor units when financially valued; explicit value basis (unvalued, signed commitment, actual cash); policy/source authority reference; and pipeline provenance.
+The two paths consume independent subscriptions. They may share immutable source/archive fixtures and the independent oracle but must not modify each other's landing tables or publication selectors.
 
-Acceptance rules:
-- Exact replay must not create another financial effect.
-- Identical canonical key and revision with different bytes is a named conflict, not last-write-wins.
-- A later authorized correction creates a new revision and candidate publication.
-- Older, lower-authority or stale revisions cannot regress approved source state.
-- Missing source inventory/coverage, cross-entity key collisions and open material variances block publication.
-- Consent-aware browser events may be unvalued lead signals, never authoritative financial facts.
-- A payment event is actual collected cash, not the entire signed contract; GA4 nested item grain is never treated as the purchase-event grain.
+## Synthetic scenario and provenance
 
-Pub/Sub transport message IDs are not canonical business IDs. Publisher retries may create separate message IDs. Document exact deduplication boundaries and the selected Dataflow processing mode plus BigQuery Storage Write API sink mode. Do not make a blanket claim of exactly-once business effects from a transport feature. Test the configured semantics and maintain a deterministic governed deduplication/publication layer.
+Use versioned multi-tenant **measurement** fixtures: consented browser inquiries, qualified or disqualified leads, source-authorized contract signatures and actual deposits/progress payments. Keep explicit event, item, session, payment transaction, signed commitment, marketing event, campaign/day, tenant and publication grains. Model multiple independent home-services operators with varying volume; **do not replicate the 50-company acquisition consolidation financial model**.
 
-## End-to-end processing and governance
+Every source segment is sealed by a manifest containing source ID, tenant, legal entity, permitted event classes, segment sequence/count, source content hash, effective cutoff, manifest version and final-segment marker. An independent source-only oracle reconstructs expected canonical events and amounts from these archived records, without importing the Beam/SQL transformation helpers.
 
-1. **Ingress:** bounded topic/subscription, deterministic synthetic generator, immutable source manifest and receipt/readback evidence; explicitly model publisher retries, duplicate deliveries and delayed correction batches.
-2. **Validation:** closed schema, version/type validation, tenant/legal entity/source authority checks, integer-value conservation, trusted-event time and eligibility. Route failed cases to an inspectable exception store without retaining sensitive payloads in logs.
-3. **Bronze:** append delivery history with source version, provenance, content hash and replay/conflict observations. Do not delete evidence to make results match.
-4. **Silver:** deterministic canonical revision selection at explicit cutoffs, quarantine equal-revision conflicts, reject lower-authority writes and preserve original source memberships.
-5. **Gold:** event, item, session, payment transaction, signed contract, company/day and campaign grains remain separate. Reconcile against independent Python source traversal, not only circular SQL-to-SQL comparisons.
-6. **Publication:** build immutable candidates, verify independent source coverage, exact rowsets and unresolved exceptions, then move an explicit manifest/selector to the approved version. A partial candidate cannot become visible. Do not claim cross-table atomicity.
-7. **Consumers:** approved-version-only views; independent readback and negative principal tests. Observability must report backlogs, throughput, lateness, errors, lag and actual job/worker behavior.
+An immutable event envelope includes tenant ID, legal-entity ID, registered source ID, source record ID, business-event type, canonical business key, trusted source revision and effective timestamp, producer event ID, transport message metadata, schema version, payload hash, permitted value basis, currency/integer minor units when valued, issuer identity binding, ingest time and execution/policy version. Source-specific publisher authentication and Pub/Sub IAM/topic ownership must bind actual identity to authorized source/tenant/event classes. Self-declared payload source/tenant strings have no authority.
 
-## Required native acceptance (each must be executed or explicitly marked not executed)
+Use distinct evidence counters for publisher attempts, Pub/Sub accepted messages, delivered messages, persisted sink records, unique canonical business events, admitted financial effects, late corrections and quarantined exceptions. **Exactly-once transport processing is not a promise that every physical publisher attempt appears in the sink.**
 
-| Area | Acceptance evidence |
+## Executable stream-time contract
+
+Use an explicit, versioned **acceptance profile**, with fixture-scale defaults reviewed for native cost; do not silently import GA4 backdating rules as streaming delivery semantics.
+
+| Dimension | Acceptance requirement |
 |---|---|
-| Pub/Sub | Genuine topic/subscription publish, receipt, redelivery/replay observation and message metadata |
-| Dataflow | Genuine job ID, SDK/runtime versions, worker configuration, task state, job metrics and execution logs |
-| BigQuery | Actual sink readback, query IDs/bytes/slot usage, documented Storage Write API mode and committed rows |
-| Identity | Source/business-key replay under different transport IDs creates one financial effect |
-| Conflict | Same identity and revision with different content is quarantined |
-| Late correction | New trusted revision yields corrected candidate; previously approved publication stays queryable |
-| No-Regress | Older or lower-authority revision cannot overwrite newer approved source fact |
-| Completeness | Missing source batch and incompatible legal entity block publication |
-| Finance | Full rowset equality to independent oracle for each material grain and revision |
-| Failure | Deliberate runtime failure/restart, durable recovery and no double financial publication |
-| Sink failure | Malformed/rejected writes leave inspectable exception and safe recovery state |
-| Security | Separate authenticated restricted consumer; actual allowed reads and prohibited cross-tenant/raw/write operations |
-| Operations | Actual throughput, backlog/lag, worker/cost metrics, late-data and failure counters |
-| Cleanup | Owned-job drain/cancel, exact-owned resource removal and independent residual inventory |
+| Timestamp | Extract trusted source event time from a validated field/attribute; retain separate source effective time, broker publish time, ingest time and processing time |
+| Window | Begin with one-minute event-time fixed windows for provisional metrics; label these nonfinancial, never approved revenue |
+| Allowed lateness | Configurable; initial fixture profile tests a 10-minute allowed-lateness horizon, including samples just before, at, and after the boundary |
+| Triggers | Explicit on-time emission and recorded late-update behavior; capture pane identity and whether pane replacement or accumulation is selected |
+| Per-key state | Keyed tenant/source/business ID; explicit canonical revision, seen payload hash, current allowed source classes, first/last timestamps and conflict marker |
+| Timers | Event-time timer for window closure plus processing-time safety/idle timer as implemented; prove firing, cleanup and restart behavior |
+| Expiry | Bound short-lived operational state and measure its growth; *expiry must not delete durable business identity or suppress later corrections* |
+| Beyond-horizon data | Preserve in append ledger and named rebuild/correction queue; replay archived source into a **new** candidate; never silently discard as an ordinary late pane |
+| Clock anomalies | Test ahead-of-time, behind-time, malformed and incompatible-zone timestamps; quarantine untrusted extremes without advancing watermarks indefinitely |
+| Completeness | A watermark never seals a financial source batch: the separately authenticated source manifest and all expected segments must reconcile before publication |
 
-Preserve failed native attempts with original run IDs and corrected follow-up evidence. A workspace-login failure does not count as a data-plane authorization denial. A local test does not count as native Dataflow acceptance.
+Predeclare exact cutoff rules, state/timer lifecycle and accumulation semantics as executable tests before the first cloud run. Include a deliberate idle source and a skewed hot tenant; prove no watermark/stale-source deadlock creates a false completed publication.
 
-## Enterprise-scale study
+### Canonical business identity and no-regress behavior
 
-Create deterministic synthetic fixtures for **50 acquired companies**, each with independent source IDs and legal entities, uneven distributions, bursty senders, corrections, duplicates, late events, malformed envelopes, missing batches and deliberate cross-tenant conflicts.
+Pub/Sub can redeliver messages and different publish attempts can receive different broker IDs. Attribute-based deduplication has a finite window; it is **not** durable source-level idempotency.
 
-Run native correctness before throughput benchmarking. Target measured workloads of **100K** and **1M** deliveries; evaluate 5M+ only if projected account capacity and cost permit. Record attempted, published, delivered, unique business, Bronze, Silver, quarantine and published-financial counts separately. Each benchmark must include payload size, timestamps, job ID, worker resources, region, event rate, end-to-end lag percentiles, cost/DBU-equivalent provider units as applicable, and independent reconciliation results.
+Canonical identity is the tuple of authorized source, tenant/entity, business key, revision and normalized payload hash under an explicit schema/policy version. Exact replay yields no new financial effect; same key/revision with differing hashes yields an inspectable conflict; later authorized source revision yields a *new candidate*; earlier revision arriving last can never regress an approved value. Untrusted user/browser records cannot claim payment or contract authority. Preserve the original anomalous event instead of rewriting history.
 
-Run comparable constrained and scaled configurations; include a controlled backlog burst and at least one failure/recovery experiment. Preserve actual performance even if worse than expected. Do not claim measured scalability based solely on fixture size or provider marketing.
+Persist durable event/revision/conflict state in BigQuery-controlled records (or an explicitly justified alternative durable store) beyond Beam state lifetime. Document any consistency/collision tradeoff. Sink write retries can produce duplicates; canonical fact selection and approval gates must be replay-safe. Do not make uncontrolled external business mutations from retryable Beam transforms.
 
-## Automation, deployment and safety
+## Source, sink and state recovery
 
-- Versioned schema/contracts, deterministic fixture generator, pinned Python/Beam dependencies, tested IAM/resource configuration, controlled deployment and cleanup scripts, and CI with local Beam correctness tests.
-- Isolated project/run label; no changes to unrelated resources. Use short-lived identity, least privilege, no committed JSON keys.
-- Explicit timeouts, bounded Dataflow streaming runtime, worker ceilings, bounded Pub/Sub backlog/retention, finite retries and measurable stop conditions. Drain or cancel all jobs and verify terminal status; no permanent stream or schedule.
-- Keep private credentials and cloud identifiers out of public records. Export sanitized native job/result evidence, source hashes, actual failure states and resource inventory before teardown.
-- Verify logical absence separately from storage retention and final billing. Never declare a budget alert to be an absolute spending cap.
+Test **three separate authorities**:
 
-**Owner-reported funds:** CAD 421 in Google Cloud credits. Suggested engineering execution envelope CAD 350, leaving CAD 71 unallocated. This is a proposal, not verified billing availability, an account-enforced ceiling, or unlimited spending authorization. Obtain current service/region pricing, scope and permissions before writes.
+1. **Source:** sealed immutable Cloud Storage source segments and original publisher receipts, including acknowledged and unacknowledged segments.
+2. **Processing:** Dataflow checkpoint/save-state or native snapshot where supported, including watermark/keyed timer state and exact job/source metadata.
+3. **Sink:** BigQuery already contains committed append history, candidate rows and approved release selectors; it is **not rolled back** when processing state is restored.
 
-**Canary principle:** Perform one automatic, small acceptance fixture as the first stage **inside the complete implementation and same native execution campaign**. It checks the real API, identity, sink and runtime. If it passes, continue to the already-prepared correctness, fault, permission and bounded scale runs without another planning session or user-prompt loop. Stop only for genuine security, correctness, account, resource/cost exposure or cleanup blockers. Delayed usage data is not evidence of zero charges; calculate conservative exposure from bounded worker-time/resource assumptions.
+Required failure experiment: make a sink commit and then interrupt, cancel or fault processing before its acknowledgment or checkpoint is safely reflected. Restore or restart from an independently recorded processing boundary while retaining the advanced sink. Compare whole sink content, every canonical source effect and the release selector to the source-only oracle. No double payment, duplicate publication, stale-release resurrection or lost source segment is acceptable.
 
-## Definition of done
+Also test **independent archive replay** after state/window expiration, not only Pub/Sub redelivery within the broker retention horizon. No seeking backward on a live Dataflow subscription as a casual replay tactic; use a separately bounded subscription/archive strategy and preserve original failed attempts.
 
-1. Source contracts, governed financial authority, architecture/decision records and threat/failure model committed.
-2. Real Beam/Dataflow implementation, publisher, BigQuery models, exception/recovery logic, IAM and cleanup implemented.
-3. Offline regression and property-based replay/correction/conflict tests green.
-4. Genuinely executed Pub/Sub/Dataflow/BigQuery acceptance with independent financial oracle and negative security tests; actual provider IDs and logs preserved.
-5. At least one meaningful measured scaling comparison, if native constraints permit; otherwise explicitly mark blocked and state why.
-6. Reproducible native runbook, source-bound sanitized evidence, content hashes, independent evidence verifier, cleanup and residual inventory.
-7. Hiring-manager-facing README updated only after native execution, reporting what actually ran rather than proposed results. No account-funding labels.
-8. Draft PR and passing checks; preserve historical files and leave the GitHub profile untouched. Do not merge without review.
+If Dataflow snapshot or streaming update is unsupported for the selected SDK/job configuration, record the provider failure and execute the explicit archive-reconstruction recovery separately. Never call a recreated job with empty state a successful snapshot restore.
 
-Official references:
-- https://cloud.google.com/dataflow/docs/guides/streaming-modes
-- https://cloud.google.com/dataflow/docs/concepts/exactly-once
-- https://cloud.google.com/dataflow/docs/guides/write-to-bigquery
-- https://cloud.google.com/dataflow/docs/concepts/streaming-with-cloud-pubsub
-- https://cloud.google.com/pubsub/docs/exactly-once-delivery
+## Versioned publication and concurrent approvals
+
+Bronze is append-oriented, Silver is canonical source- and cutoff-specific, Gold calculates precisely scoped business metrics. A full cross-system transaction spanning Pub/Sub, Dataflow, Cloud Storage and BigQuery is **not claimed**.
+
+Create immutable candidate tables/partitions with source hashes, policy version, complete manifests, exact independent-oracle reconciliation and unresolved variances. Block the affected tenant/cutoff publication when a source segment is missing or authority is unconfirmed. Keep prior approved versions readable.
+
+Release selection must use a **single transactionally enforced expected-predecessor change** or other demonstrably atomic compare-and-set mechanism, with checked row count, candidate verification and concurrent-writer conflict handling. A separate read followed by an unguarded update is not sufficient. Repeat the exact approval request after a lost response; it must not republish. A stale approver and two competing valid candidates must not both become the successor. Test failure before commit, failure after commit before acknowledgment, parallel approvals, and stale candidate attempts.
+
+Consumer queries must resolve only committed approved versions under separate identities. An unpublished candidate—even one with all material rows written—must be invisible to the approved-only consumer.
+
+## Native security acceptance
+
+Provision **distinct** scoped identities for publisher, Dataflow worker, release verifier/approver, and consumer, plus an independently authorized teardown role. Bound publisher rights to exact topics/sources; workers to required subscription and append destinations; verifier to source archive and candidate validation; consumer to published-only authorized views.
+
+Use separate authenticated principals for positive and negative tests. Demonstrate source/tenant spoofing rejection, cross-tenant read denial, direct raw ledger denial, unauthorized publication/write denial and role-escalation denial. Attribute a failed request to its real principal and classify authentication, workspace entitlement, IAM and data-plane permission failures separately. Do not publish account identity metadata or secrets. These are synthetic known-fixture security conformance tests, not a claim of production SSO or formal compliance certification.
+
+## Quantified operating envelope: performance and trade-offs
+
+**Correctness and recovery are mandatory; raw volume is not the primary goal.** Use small fixture acceptance as an *automated internal stage* of a complete campaign, not a separate prompt or independent deliverable. Progress to native 100K and 1M event comparisons when permissions, observability, provider quota and bounded cost projection are satisfied. A larger run is optional if it exposes a meaningful bottleneck.
+
+Experiment matrix:
+- Identical deterministic cohort across direct Pub/Sub BigQuery subscription and Dataflow paths, accounting for their distinct processing semantics.
+- Uniform tenant/key distribution versus high-cardinality state and deliberately hot tenant/key distributions.
+- Steady input and rapid backlog bursts, plus post-failure backlog recovery and delayed-source correction.
+- At least one constrained worker configuration and one larger worker configuration supported by measured project-specific quota; repeat comparable runs.
+- Validate publisher throughput independently so source generation bottlenecks do not masquerade as Dataflow saturation.
+- Measure p50/p95/p99 **end-to-end source-eligible-to-approved-publication** latency separately from sink-visibility and processing latency; report job setup/worker provisioning time separately.
+
+Metrics required: published vs delivered vs canonical accepted counts; per-stage exception/conflict counts; watermark lag; backlog; worker-hours, Streaming Engine and disk usage where applicable; source byte sizes; job/Query IDs; throughput; state growth; recovery time; cost per **million unique accepted business events** when billed usage becomes visible. Use provider-observed utilization and actual charge rows when available; do not call planning estimates billed cost.
+
+Predeclare freshness, loss, duplication, parity and recovery service-level **test targets** before running. Record misses, negative results, unstable variance and confidence/number of repeated runs. A single 1M-event success is not an unrestricted enterprise capacity claim.
+
+## Infrastructure, budget and bounded native campaign
+
+Use a named, tagged run namespace; explicit provider API permissions; Terraform plans with readable proposed resource changes; pinned container/dependency digests; region-consistent Pub/Sub, GCS, BigQuery and Dataflow configuration; finite retention and restricted IAM. Confirm actual project-specific vCPU, IP, disk, Dataflow and BigQuery quotas and the selected worker/Streaming Engine pricing before provisioning. Configure Dataflow worker and maximum-worker counts within verified capacity, with explicit job life limits and cancellation/drain checks.
+
+No unbounded streaming jobs, scheduled recurrences, excessive logging, permanent NAT, keys in source, external production API access, billing changes or unrelated account resource modifications. Prefer a separate teardown identity and exact-run owned resource inventory. Independent cleanup must check terminal jobs, snapshots, Pub/Sub subscriptions/topics, BigQuery datasets, GCS retention, staging objects, build images and IAM principals. **Logical deletion is not proof of physical erasure or final billing clearance.**
+
+Private operational spending authority is handled outside this public engineering specification. Before any cloud writes, prepare an account-specific CAD price/usage envelope and owner-approved limits; budget alerts are not hard spending caps. Monitor conservative worst-case cost from planned worker/runtime, Streaming Engine, Pub/Sub, BigQuery and storage retention even when provider billing usage is delayed.
+
+Execute one staged campaign: automated tiny canary → source/identity/event-time correctness → fault and sink-ahead recovery → real security denials → comparative baseline and Dataflow performance → evidence export → cleanup. Continue automatically past a passing canary and routine stages without repeated user approvals. Stop on a genuine policy, permission, correctness, quota or material spending exposure blocker. Do not bypass a failed gate to chase impressive row counts.
+
+## Definition of done and evidence integrity
+
+1. Architecture decision records document source authority, delivery guarantees, durable state, late cutoffs, sink advance, concurrent promotion, BigQuery subscription baseline and why Dataflow is/is not warranted.
+2. Terraform plan, isolated IAM, publisher/archive fixture generator, real Beam transforms, direct-ingestion baseline, canonical facts/dbt publication and guarded release control implemented.
+3. Credible offline DirectRunner/contract/property-based tests: replay, conflicting revisions, timer lifecycle, watermark skew, beyond-horizon rebuilding, missing manifests, spoofed authority, lost acknowledgment and competing approvals.
+4. Source-bound native Pub/Sub, Dataflow and BigQuery execution logs with actual job/resource IDs, native results, test failures and fixes; separate authenticated security-denial observations.
+5. Independent Python oracle reconstructs all expected facts and financial measures directly from archived source records; every material candidate compared with complete rowsets.
+6. Measured operating-envelope experiments, including direct ingestion comparison and one stateful Dataflow failure/recovery under constrained resources; scale results report real limits.
+7. Evidence exporter, manifest hashes, offline evidence verifier, residual inventory and teardown report. Preserve original failed runs and historical artifacts unchanged.
+8. Updated README links a concise **executed** architecture + results matrix and genuine sanitized images or diagrams, not proposed findings or funding details. Draft PR with CI; no merge until review.
+
+**Public evidence labels:** native-executed, local-executed, planned/not-executed, synthetic input, provider-reported measurement, cost estimate vs actual charge. Never relabel any one category as another.
+
+## Official semantics references
+
+- https://docs.cloud.google.com/dataflow/docs/concepts/streaming-with-cloud-pubsub
+- https://docs.cloud.google.com/dataflow/docs/concepts/exactly-once
+- https://docs.cloud.google.com/dataflow/docs/guides/using-snapshots
+- https://docs.cloud.google.com/pubsub/docs/bigquery
+- https://docs.cloud.google.com/bigquery/docs/transactions
+- https://docs.cloud.google.com/dataflow/docs/guides/routes-firewall
+- https://docs.cloud.google.com/dataflow/quotas
