@@ -74,7 +74,7 @@ Before execution, present the exact project, generated dataset names, plan diges
    python scripts/verify_bigquery.py plan --project <project> --run-id <run> --output .local/bigquery-plan.json
    ```
 
-3. Stop for the resource/cost approval described above. The historical billing-disabled sandbox is ineligible. The completed run used a separately approved eligible Free Trial project. For a future run, after separate authorization, establish short-lived local ADC through an approved Google Cloud CLI user-login flow, such as `gcloud auth application-default login`, or an existing workload identity. Never paste tokens or commit ADC files. Installing/authenticating the CLI is not done by this runner. A browser session is insufficient; no service-account JSON key is required by the design.
+3. Stop for the resource/cost approval described above. The historical billing-disabled sandbox is ineligible. The completed run used a separately approved Google Cloud execution project. For a future run, after separate authorization, establish short-lived local ADC through an approved Google Cloud CLI user-login flow, such as `gcloud auth application-default login`, or an existing workload identity. Never paste tokens or commit ADC files. Installing/authenticating the CLI is not done by this runner. A browser session is insufficient; no service-account JSON key is required by the design.
 
 4. Only after approval, execute the exact reviewed digest into a fresh ignored directory:
 
