@@ -143,3 +143,45 @@ def test_native_submission_cannot_create_an_implicit_staging_bucket():
                 "--region=us-central1",
             ],
         )
+
+
+def test_actual_storage_write_row_coder_accepts_timestamps_in_both_sinks():
+    from apache_beam.io.gcp.bigquery_tools import (
+        beam_row_from_dict,
+        get_beam_typehints_from_tableschema,
+    )
+    from apache_beam.typehints.row_type import RowTypeConstraint
+    from apache_beam.typehints.schemas import schema_from_element_type
+    from apache_beam.coders import RowCoder
+    from apache_beam.utils.timestamp import Timestamp
+    from streaming.beam_pipeline import ledger_row, observation_row
+
+    schemas = [
+        (
+            "data:STRING,message_id:STRING,subscription_name:STRING,publish_time:TIMESTAMP,attributes:STRING",
+            ledger_row(
+                dict(
+                    data="{}",
+                    message_id="synthetic",
+                    subscription_name="owned",
+                    publish_time="2026-11-14T12:00:00.123456Z",
+                    attributes="{}",
+                )
+            ),
+        ),
+        (
+            "payload:STRING,observed_at:TIMESTAMP",
+            observation_row(dict(record_type="synthetic")),
+        ),
+    ]
+    for schema, value in schemas:
+        row_type = RowTypeConstraint.from_fields(
+            get_beam_typehints_from_tableschema(schema)
+        )
+        coder = RowCoder(schema_from_element_type(row_type))
+        decoded = coder.decode(coder.encode(beam_row_from_dict(value, schema)))
+        timestamp = (
+            decoded.publish_time if "publish_time" in value else decoded.observed_at
+        )
+        assert isinstance(timestamp, Timestamp)
+    assert decoded.payload == '{"record_type":"synthetic"}'

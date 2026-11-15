@@ -321,6 +321,9 @@ def execute(review_path, approved_digest, executable, dbt_python):
                 approved_digest=destroy["sha256"],
             )
         if bootstrap_applied or (root / "bootstrap.tfstate").exists():
+            from .deployment import stop_owned_builds
+
+            stop_owned_builds(project, run, root / "build-retirement")
             if c is None:
                 # Build source can exist even if the runtime is never applied.
                 from google.cloud import storage

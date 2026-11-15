@@ -190,3 +190,37 @@ def build_image(
             return image
         time.sleep(10)
     raise TimeoutError("native_image_build_timeout")
+
+
+def stop_owned_builds(project, run, work):
+    from .retirement import pages
+
+    cloud = Cloud(project, work)
+    base = f"https://cloudbuild.googleapis.com/v1/projects/{project}/locations/us-central1/builds"
+    builds = pages(cloud, base + "?pageSize=100", "builds", "cleanup-build-inventory")
+    owned = [b for b in builds if run in b.get("tags", [])]
+    active = {"PENDING", "QUEUED", "WORKING"}
+    for build in owned:
+        if build.get("status") in active:
+            cloud.call(
+                "POST", base + "/" + build["id"] + ":cancel", "cancel-owned-build", {}
+            )
+    end = time.monotonic() + 300
+    while True:
+        observations = [
+            cloud.call("GET", base + "/" + b["id"], "confirm-build-terminal")
+            for b in owned
+        ]
+        if not any(b.get("status") in active for b in observations):
+            break
+        if time.monotonic() >= end:
+            raise TimeoutError("owned_build_not_terminal")
+        time.sleep(10)
+    write(
+        Path(work) / "build-retirement.private.json",
+        dict(
+            builds=[dict(id=b["id"], status=b["status"]) for b in observations],
+            active_builds_absent=True,
+            billing_clearance=False,
+        ),
+    )

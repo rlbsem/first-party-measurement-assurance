@@ -16,6 +16,7 @@ from apache_beam.transforms.userstate import (
     on_timer,
 )
 from apache_beam.transforms.timeutil import TimeDomain
+from apache_beam.utils.timestamp import Timestamp
 from .contracts import Refused, canonical, digest, instant, key, meaning, validate
 
 
@@ -183,11 +184,14 @@ def transforms(
     admitted = records | "Validate source" >> beam.ParDo(
         Validate(binding, lateness)
     ).with_outputs("ledger", "exceptions", "rebuilds", "receipts", main="live")
-    decisions = admitted.live | "Business key state" >> beam.ParDo(
+    live = admitted.live | "Deterministic string state keys" >> beam.Map(
+        lambda item: item
+    ).with_output_types(beam.typehints.KV[str, dict])
+    decisions = live | "Business key state" >> beam.ParDo(
         RevisionState(lateness, idle_seconds, processing_clock)
     )
     panes = (
-        admitted.live
+        live
         | "Tenant source quality keys"
         >> beam.Map(lambda x: ((x[1]["tenant"], x[1]["source"]), 1))
         | "Minute event windows"
@@ -227,7 +231,7 @@ def delivery(message, subscription):
 
 def ledger_row(row):
     # Fixed schema is also used by the direct BigQuery subscription.
-    return {
+    value = {
         k: row[k]
         for k in (
             "data",
@@ -237,6 +241,12 @@ def ledger_row(row):
             "attributes",
         )
     }
+    value["publish_time"] = Timestamp.from_utc_datetime(instant(value["publish_time"]))
+    return value
+
+
+def observation_row(row):
+    return dict(payload=canonical(row), observed_at=Timestamp.now())
 
 
 def build_pipeline(cfg, options, *, validate_only=False):
@@ -306,13 +316,7 @@ def _populate(pipeline, cfg):
     ops = observations | "Merge observations" >> beam.Flatten()
     (
         ops
-        | "Encode safe observation"
-        >> beam.Map(
-            lambda r: dict(
-                payload=canonical(r),
-                observed_at=datetime.now(timezone.utc).isoformat(),
-            )
-        )
+        | "Encode safe observation" >> beam.Map(observation_row)
         | "Operational sink"
         >> beam.io.WriteToBigQuery(
             cfg["observations_table"],
