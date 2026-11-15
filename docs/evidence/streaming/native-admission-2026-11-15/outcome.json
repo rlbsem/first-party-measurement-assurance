@@ -1,0 +1,51 @@
+{
+  "actual_charge_cad": null,
+  "approved_review_sha256": "29d4579352cce10d100a4c36a3ea859a2eb2b64ade9dcf9faf6033ac794d99bf",
+  "archived_bytes": 60989,
+  "archived_versions": 1,
+  "billing_clearance": false,
+  "bootstrap_apply": {
+    "added": 15,
+    "changed": 0,
+    "destroyed": 0
+  },
+  "bootstrap_retirement": {
+    "added": 0,
+    "changed": 0,
+    "destroyed": 15
+  },
+  "boundary": "native-bootstrap-and-rejected-build-request",
+  "build_creation_http_status": 400,
+  "build_finished_at": null,
+  "build_id": null,
+  "build_started_at": null,
+  "build_status": "NOT_CREATED",
+  "canary_executed": false,
+  "checks": {
+    "build_bucket": "NOT_FOUND_404",
+    "build_identity": "NOT_FOUND_404",
+    "owned_dataflow_jobs": 0,
+    "owned_project_role_bindings": 0,
+    "private_network": "NOT_FOUND_404",
+    "repository": "NOT_FOUND_404"
+  },
+  "configuration_gap": "The configured build roles did not grant storage.buckets.get; this is a policy observation, not an exhaustive provider permission trace.",
+  "error_status": "FAILED_PRECONDITION",
+  "financial_results": null,
+  "native_streaming_acceptance_executed": false,
+  "new_effective_storage_probe_executed": false,
+  "observed_at": "2026-11-15T05:29:14.668895+00:00",
+  "performance_results": null,
+  "private_observation_sha256": "817bfafa0df1efa8db9c11e1651b7754da87e69a5bd59e7b6cd8bbb54d7f61b6",
+  "redacted_error_message": "invalid bucket \"<project>-sm2611150500-build\"; service account sm2611150500-image@<project>.iam.gserviceaccount.com does not have access to the bucket",
+  "retained_soft_delete": [
+    {
+      "hard_delete_time": "2026-11-22 05:24:50.589000+00:00",
+      "soft_delete_time": "2026-11-15 05:23:50.868000+00:00"
+    }
+  ],
+  "runtime_apply_attempted": false,
+  "schema": "streaming-native-build-admission-outcome.v1",
+  "source_commit": "7e0b575d90350a18f6a4dff9ae81d3584c011784",
+  "source_generation_archive_verified": true
+}

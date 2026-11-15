@@ -24,9 +24,7 @@ A conversion must represent the business event it claims to measure. This reposi
 
 The [streaming lane](docs/governed-streaming.md) adds authenticated source contracts, real Beam state/timer processing, independent full-rowset reconciliation and transactional publication controls. Its local execution is recorded separately. Terraform, a direct-ingestion baseline and the bounded native campaign are implemented; **native Pub/Sub/Dataflow streaming acceptance and performance measurements are not yet executed**. Existing BigQuery/dbt evidence does not stand in for those results.
 
-The [first native bootstrap attempt](docs/evidence/streaming/native-bootstrap-2026-11-15/README.md) stopped on a controller polling error after Cloud Build accepted the request. The build was cancelled and the isolated prerequisites retired. The regional polling correction is covered by regression tests and an actual read-only provider check; it does not establish streaming acceptance.
-
-A [subsequent image-build attempt](docs/evidence/streaming/native-image-2026-11-15/README.md) used the corrected route and reported a Docker build-step failure, with no text logs available through the provider API or console. Its prerequisites were independently checked after retirement. The inner build error remains unknown; no native streaming results are claimed.
+The [streaming evidence index](docs/evidence/streaming/README.md) preserves local execution, SQL planning and three separately approved native prerequisite attempts with independent cleanup checks. The latest request was rejected before build creation because the build identity could not access its log bucket. Current bucket-metadata and effective-principal admission checks are implemented and locally tested; they have not executed natively.
 
 ## Try the application locally
 

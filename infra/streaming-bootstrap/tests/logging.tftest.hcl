@@ -1,5 +1,13 @@
 mock_provider "google" {}
 mock_provider "google-beta" {}
+override_resource {
+  target          = google_service_account.build
+  override_during = plan
+  values = {
+    name  = "projects/example-approved-project/serviceAccounts/sm0123456789-image@example-approved-project.iam.gserviceaccount.com"
+    email = "sm0123456789-image@example-approved-project.iam.gserviceaccount.com"
+  }
+}
 variables {
   project         = "example-approved-project"
   run             = "sm0123456789"
@@ -7,6 +15,14 @@ variables {
 }
 run "owned_log_objects_only" {
   command = plan
+  assert {
+    condition     = google_storage_bucket_iam_member.build_metadata.role == "roles/storage.legacyBucketReader" && google_storage_bucket_iam_member.build_metadata.bucket == google_storage_bucket.source.name
+    error_message = "The build identity needs bucket metadata access on this bucket only."
+  }
+  assert {
+    condition     = google_service_account_iam_member.operator_build_probe.role == "roles/iam.serviceAccountTokenCreator" && google_service_account_iam_member.operator_build_probe.service_account_id == google_service_account.build.name
+    error_message = "Effective probes must use short-lived impersonation of only the owned build identity."
+  }
   assert {
     condition     = google_storage_bucket_iam_member.build_logs.role == "roles/storage.objectUser" && google_storage_bucket_iam_member.build_logs.bucket == google_storage_bucket.source.name
     error_message = "Build logging must be scoped to the owned private source bucket."

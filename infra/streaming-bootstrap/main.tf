@@ -55,6 +55,11 @@ resource "google_storage_bucket_iam_member" "source_reader" {
   role   = "roles/storage.objectViewer"
   member = "serviceAccount:${google_service_account.build.email}"
 }
+resource "google_storage_bucket_iam_member" "build_metadata" {
+  bucket = google_storage_bucket.source.name
+  role   = "roles/storage.legacyBucketReader"
+  member = "serviceAccount:${google_service_account.build.email}"
+}
 resource "google_artifact_registry_repository_iam_member" "image_writer" {
   project    = var.project
   location   = "us-central1"
@@ -75,6 +80,11 @@ resource "google_storage_bucket_iam_member" "build_logs" {
 resource "google_service_account_iam_member" "operator_build" {
   service_account_id = google_service_account.build.name
   role               = "roles/iam.serviceAccountUser"
+  member             = var.operator_member
+}
+resource "google_service_account_iam_member" "operator_build_probe" {
+  service_account_id = google_service_account.build.name
+  role               = "roles/iam.serviceAccountTokenCreator"
   member             = var.operator_member
 }
 output "build_source" { value = google_storage_bucket.source.name }

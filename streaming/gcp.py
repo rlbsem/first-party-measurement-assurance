@@ -46,7 +46,7 @@ class Cloud:
                 target_principal=target,
                 target_scopes=["https://www.googleapis.com/auth/cloud-platform"],
                 lifetime=900,
-                quota_project_id=project,
+                quota_project_id=project if quota_project else None,
             )
             if target
             else base

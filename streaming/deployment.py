@@ -191,6 +191,99 @@ def export_build_log(client, bucket, build_id, work):
     return record
 
 
+def probe_build_storage(owner_client, build_client, bucket, run, work):
+    """Use the actual build identity; preserve and clean every synthetic probe."""
+    from google.api_core.exceptions import Forbidden
+
+    work = Path(work)
+    work.mkdir(parents=True, exist_ok=False)
+    owned = owner_client.get_bucket(bucket, timeout=30)
+    if owned.labels.get("acceptance") != run:
+        raise ValueError("build_probe_bucket_ownership_mismatch")
+    observed = build_client.get_bucket(bucket, timeout=30)
+    if observed.name != bucket:
+        raise ValueError("build_probe_metadata_identity_mismatch")
+    payload = ("Synthetic build storage admission " + run + "\n").encode()
+    (work / "probe-payload.private.txt").write_bytes(payload)
+    result = dict(
+        metadata_read=True,
+        log_write_readback=False,
+        source_write_denied=False,
+        log_deleted=False,
+    )
+    log = observed.blob("log-preflight-" + run + ".txt")
+    log.upload_from_string(payload, if_generation_match=0, timeout=30)
+    generation = log.generation
+    received = log.download_as_bytes(if_generation_match=generation, timeout=30)
+    independent = owned.blob(log.name, generation=generation).download_as_bytes(
+        if_generation_match=generation, timeout=30
+    )
+    if received != payload or independent != payload:
+        raise ValueError("build_probe_readback_mismatch")
+    result.update(
+        log_write_readback=True,
+        independent_owner_readback=True,
+        log_generation=str(generation),
+        payload_sha256=hashlib.sha256(received).hexdigest(),
+    )
+    write(work / "probe.private.json", result)
+    denied = observed.blob("source-preflight-denied-" + run + ".txt")
+    try:
+        denied.upload_from_string(payload, if_generation_match=0, timeout=30)
+    except Forbidden:
+        result["source_write_denied"] = True
+        result["source_write_denial_http"] = 403
+    else:
+        # Do not hide an unexpectedly permitted effect. Verify and archive its
+        # bytes before exact-generation removal using the independent owner.
+        remote = owned.blob(denied.name, generation=denied.generation)
+        if (
+            remote.download_as_bytes(if_generation_match=denied.generation, timeout=30)
+            != payload
+        ):
+            raise ValueError("unexpected_source_probe_readback_mismatch")
+        result["unexpected_source_generation"] = str(denied.generation)
+        write(work / "probe.private.json", result)
+        remote.delete(if_generation_match=denied.generation, timeout=30)
+        if owned.get_blob(denied.name, timeout=30) is not None:
+            raise ValueError("unexpected_source_probe_cleanup_not_established")
+    log.delete(if_generation_match=generation, timeout=30)
+    if owned.get_blob(log.name, timeout=30) is not None:
+        raise ValueError("build_probe_log_cleanup_not_established")
+    result["log_deleted"] = True
+    write(work / "probe.private.json", result)
+    if not result["source_write_denied"]:
+        raise ValueError("build_identity_source_write_not_denied")
+    return result
+
+
+def verify_build_storage(project, run, identity, bucket, owner_client, work):
+    """Only metadata reads may retry while newly granted IAM propagates."""
+    from google.cloud import storage
+    from google.api_core.exceptions import Forbidden
+    from google.auth.exceptions import RefreshError
+
+    scoped = Cloud(
+        project, Path(work) / "identity", target=identity, quota_project=False
+    )
+    client = storage.Client(project=project, credentials=scoped.credentials)
+    reads = []
+    deadline = time.monotonic() + 180
+    for attempt in range(19):
+        try:
+            client.get_bucket(bucket, timeout=10, retry=None)
+            reads.append(dict(attempt=attempt, status="metadata_read"))
+            break
+        except (Forbidden, RefreshError) as error:
+            reads.append(dict(attempt=attempt, status=type(error).__name__))
+            write(Path(work) / "metadata-admission.private.json", dict(reads=reads))
+            if attempt == 18 or time.monotonic() >= deadline:
+                raise
+            time.sleep(min(10, max(0, deadline - time.monotonic())))
+    write(Path(work) / "metadata-admission.private.json", dict(reads=reads))
+    return probe_build_storage(owner_client, client, bucket, run, Path(work) / "probe")
+
+
 def build_image(
     project, run, identity, source_bucket, repository, work, *, expected_source=None
 ):
@@ -200,6 +293,9 @@ def build_image(
     from google.cloud import storage
 
     client = storage.Client(project=project, credentials=cloud.credentials)
+    verify_build_storage(
+        project, run, identity, source_bucket, client, Path(work) / "storage-admission"
+    )
     blob = client.bucket(source_bucket).blob("source-" + source_hash + ".tar.gz")
     blob.upload_from_filename(str(path), if_generation_match=0, timeout=60)
     request = image_build_request(

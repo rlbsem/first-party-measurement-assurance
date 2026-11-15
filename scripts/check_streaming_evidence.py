@@ -148,10 +148,42 @@ def check():
         or image["checks"]["owned_project_role_bindings"] != 0
     ):
         raise ValueError("image_execution_boundary_changed")
+    admission_root = ROOT / "docs/evidence/streaming/native-admission-2026-11-15"
+    admission_index = json.loads((admission_root / "sha256.json").read_bytes())
+    if set(admission_index) != {
+        p.relative_to(admission_root).as_posix()
+        for p in admission_root.rglob("*")
+        if p.is_file() and p.name != "sha256.json"
+    }:
+        raise ValueError("admission_evidence_inventory_changed")
+    for name, expected in admission_index.items():
+        path = (admission_root / name).resolve()
+        if (
+            not path.is_relative_to(admission_root.resolve())
+            or path.is_symlink()
+            or hashlib.sha256(path.read_bytes()).hexdigest() != expected
+        ):
+            raise ValueError("admission_evidence_changed:" + name)
+    admission = json.loads((admission_root / "outcome.json").read_bytes())
+    if (
+        admission["boundary"] != "native-bootstrap-and-rejected-build-request"
+        or admission["build_creation_http_status"] != 400
+        or admission["error_status"] != "FAILED_PRECONDITION"
+        or admission["build_status"] != "NOT_CREATED"
+        or admission["build_id"] is not None
+        or admission["runtime_apply_attempted"]
+        or admission["canary_executed"]
+        or admission["native_streaming_acceptance_executed"]
+        or admission["new_effective_storage_probe_executed"]
+        or admission["billing_clearance"]
+        or admission["actual_charge_cad"] is not None
+    ):
+        raise ValueError("admission_execution_boundary_changed")
     return dict(
         evidence_files=len(manifest),
         bootstrap_evidence_files=len(bootstrap_index),
         image_evidence_files=len(image_index),
+        admission_evidence_files=len(admission_index),
         boundary="offline revalidation of local execution",
         canonical_rows=initial["canonical_rows"],
         native_streaming_executed=False,
