@@ -145,6 +145,12 @@ def image_build_request(
         },
         steps=[
             {
+                "id": "engine-version",
+                "name": "gcr.io/cloud-builders/docker",
+                "args": ["version", "--format", "{{json .Server}}"],
+            },
+            {
+                "id": "worker-image",
                 "name": "gcr.io/cloud-builders/docker",
                 "args": [
                     "build",
@@ -154,13 +160,13 @@ def image_build_request(
                     repository + ":" + source_hash,
                     ".",
                 ],
-            }
+            },
         ],
         images=[repository + ":" + source_hash],
         serviceAccount=f"projects/{project}/serviceAccounts/{identity}",
         timeout="900s",
         logsBucket="gs://" + source_bucket,
-        options={"logging": "GCS_ONLY"},
+        options={"logging": "GCS_ONLY", "workerRelease": "2026.09"},
         tags=[run, "synthetic-acceptance"],
     )
 
@@ -189,6 +195,54 @@ def export_build_log(client, bucket, build_id, work):
             time.sleep(5)
     write(Path(work) / "build-log-export.private.json", record)
     return record
+
+
+def build_engine_record(build, log_text):
+    """Require provider release metadata and actual Docker server output."""
+    options = build.get("options", {})
+    if options.get("workerRelease") != "2026.09" or options.get(
+        "resolvedWorkerRelease"
+    ) not in (None, "2026.09"):
+        raise ValueError("native_build_worker_release_not_established")
+    steps = build.get("steps", [])
+    if (
+        not steps
+        or steps[0].get("id") != "engine-version"
+        or steps[0].get("args") != ["version", "--format", "{{json .Server}}"]
+    ):
+        raise ValueError("native_engine_probe_not_established")
+    versions = set()
+    inside_probe = False
+    for line in log_text.splitlines():
+        if "Starting Step #0" in line:
+            inside_probe = True
+        if "Finished Step #0" in line:
+            inside_probe = False
+        if not (inside_probe or re.match(r"Step #0\b", line)) or "{" not in line:
+            continue
+        try:
+            item, _ = json.JSONDecoder().raw_decode(line[line.index("{") :])
+        except ValueError:
+            continue
+        if (
+            isinstance(item, dict)
+            and isinstance(item.get("Version"), str)
+            and "ApiVersion" in item
+        ):
+            versions.add(item["Version"])
+    if len(versions) != 1:
+        raise ValueError("native_docker_engine_version_not_established")
+    version = versions.pop()
+    if (
+        not re.fullmatch(r"\d+\.\d+\.\d+(?:[-+][a-zA-Z0-9.-]+)?", version)
+        or int(version.split(".")[0]) < 29
+    ):
+        raise ValueError("native_docker_engine_too_old")
+    return dict(
+        worker_release=options["workerRelease"],
+        resolved_worker_release=options.get("resolvedWorkerRelease"),
+        observed_docker_server_version=version,
+    )
 
 
 def probe_build_storage(owner_client, build_client, bucket, run, work):
@@ -333,6 +387,10 @@ def build_image(
             log = export_build_log(client, source_bucket, build["id"], work)
             if log["status"] != "exported" or log["size"] == 0:
                 raise ValueError("successful_build_log_not_preserved")
+            engine = build_engine_record(
+                build,
+                (Path(work) / "build-output.private.log").read_text(encoding="utf-8"),
+            )
             images = build.get("results", {}).get("images", [])
             if (
                 build.get("status") != "SUCCESS"
@@ -360,6 +418,7 @@ def build_image(
                     source_generation=str(blob.generation),
                     independent_registry_readback=True,
                     build_log_sha256=log["sha256"],
+                    build_engine=engine,
                 ),
             )
             return image

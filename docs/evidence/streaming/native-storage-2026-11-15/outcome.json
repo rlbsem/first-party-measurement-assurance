@@ -1,0 +1,55 @@
+{
+  "actual_charge_cad": null,
+  "approved_review_sha256": "a2068229295921b13cbaec786cf1878a898bf47474fd6cf61afe021f5591d64c",
+  "archived_bytes": 66458,
+  "archived_versions": 2,
+  "base_layer_error": "failed to register layer: Error processing tar file(exit status 1): archive/tar: invalid tar header",
+  "billing_clearance": false,
+  "bootstrap_apply": {
+    "added": 17,
+    "changed": 0,
+    "destroyed": 0
+  },
+  "bootstrap_retirement": {
+    "added": 0,
+    "changed": 0,
+    "destroyed": 17
+  },
+  "boundary": "native-build-identity-storage-admission-and-image-failure",
+  "build_finished_at": "2026-11-15T19:09:18.645254Z",
+  "build_id": "12da0d7f-b139-4efa-974d-1ad34e152e11",
+  "build_log_exported_bytes": 4434,
+  "build_log_raw_sha256": "ec61f6428269613bc4f3db61cd34eaa990f1a17484c76b9dc299362ed3ace9fa",
+  "build_started_at": "2026-11-15T19:08:48.600734635Z",
+  "build_status": "FAILURE",
+  "build_worker_release_observed": "legacy",
+  "canary_executed": false,
+  "checks": {
+    "build_bucket": "NOT_FOUND_404",
+    "build_identity": "NOT_FOUND_404",
+    "owned_dataflow_jobs": 0,
+    "owned_project_role_bindings": 0,
+    "private_network": "NOT_FOUND_404",
+    "repository": "NOT_FOUND_404"
+  },
+  "engine_version_from_provider_release_documentation": "20.10",
+  "financial_results": null,
+  "native_streaming_acceptance_executed": false,
+  "observed_at": "2026-11-15T19:15:24.642892+00:00",
+  "performance_results": null,
+  "private_observation_sha256": "d646ff1ce961a67c92742e924af7149315fa28896cbf99d0e37725e0e6eb6b56",
+  "provider_engine_version_command_executed": false,
+  "retained_soft_delete": [
+    {
+      "hard_delete_time": "2026-11-22 19:10:41.166000+00:00",
+      "soft_delete_time": "2026-11-15 19:09:41.538000+00:00"
+    }
+  ],
+  "runtime_apply_attempted": false,
+  "schema": "streaming-native-storage-outcome.v1",
+  "source_commit": "a94d951c9ab6cb8c01f32d209470284d32c03178",
+  "source_generation_archive_verified": true,
+  "storage_probe_executed": true,
+  "storage_probe_passed": true,
+  "storage_probe_sha256": "d6bf5b9c6cae3f2f07cc4f986d3c16238f571fba2c8322b9023a8f60cabd3345"
+}

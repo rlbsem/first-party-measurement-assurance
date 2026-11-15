@@ -24,7 +24,7 @@ A conversion must represent the business event it claims to measure. This reposi
 
 The [streaming lane](docs/governed-streaming.md) adds authenticated source contracts, real Beam state/timer processing, independent full-rowset reconciliation and transactional publication controls. Its local execution is recorded separately. Terraform, a direct-ingestion baseline and the bounded native campaign are implemented; **native Pub/Sub/Dataflow streaming acceptance and performance measurements are not yet executed**. Existing BigQuery/dbt evidence does not stand in for those results.
 
-The [streaming evidence index](docs/evidence/streaming/README.md) preserves local execution, SQL planning and three separately approved native prerequisite attempts with independent cleanup checks. The latest request was rejected before build creation because the build identity could not access its log bucket. Current bucket-metadata and effective-principal admission checks are implemented and locally tested; they have not executed natively.
+The [streaming evidence index](docs/evidence/streaming/README.md) preserves local execution, SQL planning and native prerequisite observations with independent cleanup checks. Native build-identity storage authorization, separate readback and source-write rejection passed. The build log then exposed a legacy worker's base-image layer-unpack failure. A supported worker release is now explicitly pinned; that correction and native streaming acceptance remain unverified.
 
 ## Try the application locally
 

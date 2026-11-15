@@ -1,0 +1,116 @@
+starting build "12da0d7f-b139-4efa-974d-1ad34e152e11" using release legacy
+
+FETCHSOURCE
+Fetching storage object: gs://<project>-sm2611151900-build/source-daab88ed8850c0b062a5f34d1350746926689f41fb21c779195b5fda6d3a9c52.tar.gz#1794769727878898
+Copying gs://<project>-sm2611151900-build/source-daab88ed8850c0b062a5f34d1350746926689f41fb21c779195b5fda6d3a9c52.tar.gz#1794769727878898...
+/ [0 files][    0.0 B/ 60.6 KiB]                                                
+/ [1 files][ 60.6 KiB/ 60.6 KiB]                                                
+Operation completed over 1 objects/60.6 KiB.                                     
+BUILD
+Already have image (with digest): gcr.io/cloud-builders/docker
+Sending build context to Docker daemon  270.3kB
+Step 1/5 : FROM apache/beam_python3.12_sdk:2.77.0@sha256:359e2b669741f12a9b557793e9d47cf755e69f3ef714dc2831154d12bd27a662
+docker.io/apache/beam_python3.12_sdk:2.77.0@sha256:359e2b669741f12a9b557793e9d47cf755e69f3ef714dc2831154d12bd27a662: Pulling from apache/beam_python3.12_sdk
+e9cfbf3d616b: Pulling fs layer
+6a92b433fdf3: Pulling fs layer
+eec95ef388a0: Pulling fs layer
+4ec643e39d41: Pulling fs layer
+a98fd39ce986: Pulling fs layer
+94bdfa6da32a: Pulling fs layer
+927dcfadc8b6: Pulling fs layer
+267c47e78643: Pulling fs layer
+eb2fc6ca561b: Pulling fs layer
+c94d247adf98: Pulling fs layer
+2a2decc6bb19: Pulling fs layer
+d80293906fe5: Pulling fs layer
+f6f132bb9c33: Pulling fs layer
+2c1ce468d9f3: Pulling fs layer
+927dcfadc8b6: Waiting
+267c47e78643: Waiting
+eb2fc6ca561b: Waiting
+c94d247adf98: Waiting
+2a2decc6bb19: Waiting
+d80293906fe5: Waiting
+f6f132bb9c33: Waiting
+2c1ce468d9f3: Waiting
+a98fd39ce986: Verifying Checksum
+a98fd39ce986: Download complete
+6a92b433fdf3: Verifying Checksum
+6a92b433fdf3: Download complete
+927dcfadc8b6: Verifying Checksum
+927dcfadc8b6: Download complete
+94bdfa6da32a: Verifying Checksum
+94bdfa6da32a: Download complete
+eb2fc6ca561b: Verifying Checksum
+eb2fc6ca561b: Download complete
+267c47e78643: Verifying Checksum
+267c47e78643: Download complete
+c94d247adf98: Verifying Checksum
+c94d247adf98: Download complete
+eec95ef388a0: Verifying Checksum
+eec95ef388a0: Download complete
+e9cfbf3d616b: Verifying Checksum
+e9cfbf3d616b: Download complete
+2c1ce468d9f3: Verifying Checksum
+2c1ce468d9f3: Download complete
+f6f132bb9c33: Verifying Checksum
+f6f132bb9c33: Download complete
+2a2decc6bb19: Verifying Checksum
+2a2decc6bb19: Download complete
+4ec643e39d41: Verifying Checksum
+4ec643e39d41: Download complete
+d80293906fe5: Verifying Checksum
+d80293906fe5: Download complete
+docker.io/apache/beam_python3.12_sdk:2.77.0@sha256:359e2b669741f12a9b557793e9d47cf755e69f3ef714dc2831154d12bd27a662: Pulling from apache/beam_python3.12_sdk
+e9cfbf3d616b: Pulling fs layer
+6a92b433fdf3: Pulling fs layer
+eec95ef388a0: Pulling fs layer
+4ec643e39d41: Pulling fs layer
+a98fd39ce986: Pulling fs layer
+94bdfa6da32a: Pulling fs layer
+927dcfadc8b6: Pulling fs layer
+267c47e78643: Pulling fs layer
+eb2fc6ca561b: Pulling fs layer
+c94d247adf98: Pulling fs layer
+2a2decc6bb19: Pulling fs layer
+d80293906fe5: Pulling fs layer
+f6f132bb9c33: Pulling fs layer
+2c1ce468d9f3: Pulling fs layer
+927dcfadc8b6: Waiting
+267c47e78643: Waiting
+eb2fc6ca561b: Waiting
+c94d247adf98: Waiting
+2a2decc6bb19: Waiting
+d80293906fe5: Waiting
+f6f132bb9c33: Waiting
+2c1ce468d9f3: Waiting
+a98fd39ce986: Verifying Checksum
+a98fd39ce986: Download complete
+6a92b433fdf3: Download complete
+927dcfadc8b6: Verifying Checksum
+927dcfadc8b6: Download complete
+94bdfa6da32a: Verifying Checksum
+94bdfa6da32a: Download complete
+e9cfbf3d616b: Verifying Checksum
+e9cfbf3d616b: Download complete
+eb2fc6ca561b: Verifying Checksum
+eb2fc6ca561b: Download complete
+267c47e78643: Verifying Checksum
+267c47e78643: Download complete
+c94d247adf98: Verifying Checksum
+c94d247adf98: Download complete
+eec95ef388a0: Verifying Checksum
+eec95ef388a0: Download complete
+f6f132bb9c33: Verifying Checksum
+f6f132bb9c33: Download complete
+2a2decc6bb19: Verifying Checksum
+2a2decc6bb19: Download complete
+2c1ce468d9f3: Verifying Checksum
+2c1ce468d9f3: Download complete
+4ec643e39d41: Verifying Checksum
+4ec643e39d41: Download complete
+d80293906fe5: Verifying Checksum
+d80293906fe5: Download complete
+failed to register layer: Error processing tar file(exit status 1): archive/tar: invalid tar header
+ERROR
+ERROR: build step 0 "gcr.io/cloud-builders/docker" failed: step exited with non-zero status: 1

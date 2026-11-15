@@ -179,11 +179,61 @@ def check():
         or admission["actual_charge_cad"] is not None
     ):
         raise ValueError("admission_execution_boundary_changed")
+    storage_root = ROOT / "docs/evidence/streaming/native-storage-2026-11-15"
+    storage_index = json.loads((storage_root / "sha256.json").read_bytes())
+    if set(storage_index) != {
+        p.relative_to(storage_root).as_posix()
+        for p in storage_root.rglob("*")
+        if p.is_file() and p.name != "sha256.json"
+    }:
+        raise ValueError("storage_evidence_inventory_changed")
+    for name, expected in storage_index.items():
+        path = (storage_root / name).resolve()
+        if (
+            not path.is_relative_to(storage_root.resolve())
+            or path.is_symlink()
+            or hashlib.sha256(path.read_bytes()).hexdigest() != expected
+        ):
+            raise ValueError("storage_evidence_changed:" + name)
+    storage = json.loads((storage_root / "outcome.json").read_bytes())
+    probe = json.loads((storage_root / "storage-probe.json").read_bytes())
+    if (
+        not storage["storage_probe_executed"]
+        or not storage["storage_probe_passed"]
+        or storage["build_status"] != "FAILURE"
+        or storage["build_worker_release_observed"] != "legacy"
+        or storage["runtime_apply_attempted"]
+        or storage["canary_executed"]
+        or storage["native_streaming_acceptance_executed"]
+        or storage["billing_clearance"]
+        or storage["actual_charge_cad"] is not None
+        or not all(
+            probe[key]
+            for key in [
+                "metadata_read",
+                "log_write_readback",
+                "independent_owner_readback",
+                "source_write_denied",
+                "log_deleted",
+            ]
+        )
+        or probe["source_write_denial_http"] != 403
+        or hashlib.sha256(
+            (storage_root / "storage-probe.json").read_bytes()
+        ).hexdigest()
+        != storage["storage_probe_sha256"]
+        or hashlib.sha256((storage_root / "probe-payload.txt").read_bytes()).hexdigest()
+        != probe["payload_sha256"]
+        or "archive/tar: invalid tar header"
+        not in (storage_root / "build-output.redacted.txt").read_text(encoding="utf-8")
+    ):
+        raise ValueError("storage_execution_boundary_changed")
     return dict(
         evidence_files=len(manifest),
         bootstrap_evidence_files=len(bootstrap_index),
         image_evidence_files=len(image_index),
         admission_evidence_files=len(admission_index),
+        storage_evidence_files=len(storage_index),
         boundary="offline revalidation of local execution",
         canonical_rows=initial["canonical_rows"],
         native_streaming_executed=False,

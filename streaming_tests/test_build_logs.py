@@ -19,7 +19,13 @@ def test_build_logs_use_exact_owned_bucket_and_source_generation():
         "a" * 64,
     )
     assert request["logsBucket"] == "gs://owned-bucket"
-    assert request["options"] == {"logging": "GCS_ONLY"}
+    assert request["options"] == {"logging": "GCS_ONLY", "workerRelease": "2026.09"}
+    assert request["steps"][0] == {
+        "id": "engine-version",
+        "name": "gcr.io/cloud-builders/docker",
+        "args": ["version", "--format", "{{json .Server}}"],
+    }
+    assert request["steps"][1]["id"] == "worker-image"
     assert request["source"]["storageSource"] == dict(
         bucket="owned-bucket", object="sealed-source.tar.gz", generation="123"
     )
@@ -63,3 +69,50 @@ def test_generation_pinned_log_export(tmp_path, monkeypatch, mode):
             record["sha256"] == hashlib.sha256(data).hexdigest()
             and record["generation"] == "42"
         )
+
+
+@pytest.mark.parametrize(
+    "mode",
+    [
+        "accepted",
+        "resolved",
+        "old-engine",
+        "legacy-release",
+        "missing-output",
+        "contradictory",
+    ],
+)
+def test_actual_engine_output_and_provider_release_are_both_required(mode):
+    from streaming.deployment import build_engine_record
+    from copy import deepcopy
+
+    request = image_build_request(
+        "example-project",
+        "sm0123456789",
+        "build@example.invalid",
+        "owned",
+        "source",
+        1,
+        "registry/runner",
+        "a" * 64,
+    )
+    build = deepcopy(request)
+    log = 'Starting Step #0 - "engine-version"\nStep #0 - "engine-version": {"Version":"29.0.1","ApiVersion":"1.52"}\nFinished Step #0 - "engine-version"\n'
+    if mode == "resolved":
+        build["options"]["resolvedWorkerRelease"] = "2026.09"
+    if mode == "old-engine":
+        log = log.replace("29.0.1", "20.10.24")
+    if mode == "legacy-release":
+        build["options"]["workerRelease"] = "legacy"
+    if mode == "missing-output":
+        log = 'Step #1: {"Version":"29.0.1","ApiVersion":"1.52"}'
+    if mode == "contradictory":
+        log += 'Step #0: {"Version":"20.10.24","ApiVersion":"1.41"}'
+    if mode in {"accepted", "resolved"}:
+        assert (
+            build_engine_record(build, log)["observed_docker_server_version"]
+            == "29.0.1"
+        )
+    else:
+        with pytest.raises(ValueError):
+            build_engine_record(build, log)
