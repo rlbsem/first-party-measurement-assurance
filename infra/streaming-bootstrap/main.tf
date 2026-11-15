@@ -62,10 +62,15 @@ resource "google_artifact_registry_repository_iam_member" "image_writer" {
   role       = "roles/artifactregistry.writer"
   member     = "serviceAccount:${google_service_account.build.email}"
 }
-resource "google_project_iam_member" "build_logs" {
-  project = var.project
-  role    = "roles/logging.logWriter"
-  member  = "serviceAccount:${google_service_account.build.email}"
+resource "google_storage_bucket_iam_member" "build_logs" {
+  bucket = google_storage_bucket.source.name
+  role   = "roles/storage.objectUser"
+  member = "serviceAccount:${google_service_account.build.email}"
+  condition {
+    title       = "owned-build-log-objects"
+    description = "Only provider log objects in this run's private build bucket"
+    expression  = "resource.name.startsWith('projects/_/buckets/${google_storage_bucket.source.name}/objects/log-')"
+  }
 }
 resource "google_service_account_iam_member" "operator_build" {
   service_account_id = google_service_account.build.name

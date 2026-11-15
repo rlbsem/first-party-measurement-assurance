@@ -26,6 +26,8 @@ The [streaming lane](docs/governed-streaming.md) adds authenticated source contr
 
 The [first native bootstrap attempt](docs/evidence/streaming/native-bootstrap-2026-11-15/README.md) stopped on a controller polling error after Cloud Build accepted the request. The build was cancelled and the isolated prerequisites retired. The regional polling correction is covered by regression tests and an actual read-only provider check; it does not establish streaming acceptance.
 
+A [subsequent image-build attempt](docs/evidence/streaming/native-image-2026-11-15/README.md) used the corrected route and reported a Docker build-step failure, with no text logs available through the provider API or console. Its prerequisites were independently checked after retirement. The inner build error remains unknown; no native streaming results are claimed.
+
 ## Try the application locally
 
 **No-install preview:** See the [executed measurement-health screenshot](docs/images/measurement-health.png), [browser instrumentation screenshot](docs/images/browser-laboratory.png), and [recorded execution evidence](docs/evidence/README.md). These are saved results, not a publicly hosted live application.

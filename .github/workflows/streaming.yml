@@ -57,6 +57,7 @@ jobs:
       - run: terraform -chdir=infra/streaming-bootstrap init -backend=false -input=false
       - run: terraform -chdir=infra/streaming-bootstrap fmt -check
       - run: terraform -chdir=infra/streaming-bootstrap validate
+      - run: terraform -chdir=infra/streaming-bootstrap test
   worker-image:
     runs-on: ubuntu-24.04
     timeout-minutes: 20

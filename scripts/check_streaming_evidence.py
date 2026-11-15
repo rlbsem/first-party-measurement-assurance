@@ -118,9 +118,40 @@ def check():
         )
     ):
         raise ValueError("bootstrap_execution_boundary_changed")
+    image_root = ROOT / "docs/evidence/streaming/native-image-2026-11-15"
+    image_index = json.loads((image_root / "sha256.json").read_bytes())
+    if set(image_index) != {
+        p.relative_to(image_root).as_posix()
+        for p in image_root.rglob("*")
+        if p.is_file() and p.name != "sha256.json"
+    }:
+        raise ValueError("image_evidence_inventory_changed")
+    for name, expected in image_index.items():
+        path = (image_root / name).resolve()
+        if (
+            not path.is_relative_to(image_root.resolve())
+            or path.is_symlink()
+            or hashlib.sha256(path.read_bytes()).hexdigest() != expected
+        ):
+            raise ValueError("image_evidence_changed:" + name)
+    image = json.loads((image_root / "outcome.json").read_bytes())
+    if (
+        image["boundary"] != "native-image-prerequisite-only"
+        or image["build_status"] != "FAILURE"
+        or image["runtime_apply_attempted"]
+        or image["canary_executed"]
+        or image["native_streaming_acceptance_executed"]
+        or image["inner_docker_failure_cause"] != "not_established"
+        or image["billing_clearance"]
+        or image["actual_charge_cad"] is not None
+        or not image["source_generation_archive_verified"]
+        or image["checks"]["owned_project_role_bindings"] != 0
+    ):
+        raise ValueError("image_execution_boundary_changed")
     return dict(
         evidence_files=len(manifest),
         bootstrap_evidence_files=len(bootstrap_index),
+        image_evidence_files=len(image_index),
         boundary="offline revalidation of local execution",
         canonical_rows=initial["canonical_rows"],
         native_streaming_executed=False,

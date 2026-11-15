@@ -1,0 +1,11 @@
+# Native image prerequisite — November 15, 2026 UTC
+
+**Streaming acceptance did not execute.** At source revision `8451b4c32b9545baf768a6087d3c8b72154066ef`, a second, separately approved attempt created 15 isolated build prerequisites. Regional build polling worked. Cloud Build then reported `FAILURE`, `USER_BUILD_STEP`: Docker step 0 exited with code 1. The provider recorded a build start at 04:46:13 UTC and finish at 04:46:44 UTC. Those timestamps do not establish billed duration or charges.
+
+[Executed metadata and independent cleanup checks](outcome.json). Both timestamp-bounded Cloud Logging reads and the actual Cloud Build console showed no build text logs. Audit observations remain available. The underlying Docker error is **not established**; neither a trial restriction, a registry-rate limit nor an IAM denial is asserted. The source bundle contained the Dockerfile, ignore rules and pinned requirements; its exact generation was exported and verified.
+
+No runtime Terraform apply, Dataflow job, streaming BigQuery dataset, Pub/Sub source, canary, financial reconciliation or scale measurement began. The controller retired all 15 bootstrap state entries. Independent reads returned 404 for the owned repository, identity, bucket and network, zero owned Dataflow jobs and zero owned project role bindings. The source bucket remains soft-deleted until the recorded November 22 UTC date. APIs, Google-managed identities, provider history and deletion tombstones remain; actual charges and billing clearance are unknown.
+
+The current implementation adds generation-pinned log export from the same private build bucket. Its new write grant is restricted to provider log objects, replacing a project-wide Logs Writer grant. This change is locally tested and remains **unexecuted natively**. A successful CI image build is separate from this failed Cloud Build attempt. No automatic build or campaign retry occurred.
+
+[Google's build-log storage contract](https://docs.cloud.google.com/build/docs/api/reference/rest/v1/projects.builds) documents the `log-${buildId}.txt` object name and Cloud Storage logging mode. Raw provider observations and the account-bearing console screenshot are retained privately and are excluded from public packaging.

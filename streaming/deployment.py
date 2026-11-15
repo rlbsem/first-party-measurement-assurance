@@ -125,26 +125,22 @@ def source_bundle(destination, expected_source=None):
     return hashlib.sha256(Path(destination).read_bytes()).hexdigest()
 
 
-def build_image(
-    project, run, identity, source_bucket, repository, work, *, expected_source=None
+def image_build_request(
+    project,
+    run,
+    identity,
+    source_bucket,
+    source_object,
+    source_generation,
+    repository,
+    source_hash,
 ):
-    cloud = Cloud(project, work)
-    path = Path(work) / "source.tar.gz"
-    source_hash = source_bundle(path, expected_source)
-    from google.cloud import storage
-
-    blob = (
-        storage.Client(project=project, credentials=cloud.credentials)
-        .bucket(source_bucket)
-        .blob("source-" + source_hash + ".tar.gz")
-    )
-    blob.upload_from_filename(str(path), if_generation_match=0, timeout=60)
-    request = dict(
+    return dict(
         source={
             "storageSource": {
                 "bucket": source_bucket,
-                "object": blob.name,
-                "generation": str(blob.generation),
+                "object": source_object,
+                "generation": str(source_generation),
             }
         },
         steps=[
@@ -163,8 +159,58 @@ def build_image(
         images=[repository + ":" + source_hash],
         serviceAccount=f"projects/{project}/serviceAccounts/{identity}",
         timeout="900s",
-        options={"logging": "CLOUD_LOGGING_ONLY"},
+        logsBucket="gs://" + source_bucket,
+        options={"logging": "GCS_ONLY"},
         tags=[run, "synthetic-acceptance"],
+    )
+
+
+def export_build_log(client, bucket, build_id, work):
+    """Pin and verify the provider log generation before bucket retirement."""
+    record = dict(build_id=build_id, status="unavailable", observations=[])
+    for attempt in range(4):
+        blob = client.bucket(bucket).get_blob("log-" + build_id + ".txt", timeout=30)
+        record["observations"].append(dict(attempt=attempt, found=blob is not None))
+        if blob is not None:
+            path = Path(work) / "build-output.private.log"
+            blob.download_to_filename(
+                path, if_generation_match=blob.generation, timeout=60, checksum="auto"
+            )
+            if path.stat().st_size != blob.size:
+                raise ValueError("build_log_size_mismatch")
+            record.update(
+                status="exported",
+                generation=str(blob.generation),
+                size=blob.size,
+                sha256=hashlib.sha256(path.read_bytes()).hexdigest(),
+            )
+            break
+        if attempt < 3:
+            time.sleep(5)
+    write(Path(work) / "build-log-export.private.json", record)
+    return record
+
+
+def build_image(
+    project, run, identity, source_bucket, repository, work, *, expected_source=None
+):
+    cloud = Cloud(project, work)
+    path = Path(work) / "source.tar.gz"
+    source_hash = source_bundle(path, expected_source)
+    from google.cloud import storage
+
+    client = storage.Client(project=project, credentials=cloud.credentials)
+    blob = client.bucket(source_bucket).blob("source-" + source_hash + ".tar.gz")
+    blob.upload_from_filename(str(path), if_generation_match=0, timeout=60)
+    request = image_build_request(
+        project,
+        run,
+        identity,
+        source_bucket,
+        blob.name,
+        blob.generation,
+        repository,
+        source_hash,
     )
     operation = cloud.call(
         "POST",
@@ -185,8 +231,12 @@ def build_image(
             "CANCELLED",
             "EXPIRED",
         }:
+            export_build_log(client, source_bucket, build["id"], work)
             raise RuntimeError("native_image_build_failed_see_preserved_status")
         if build.get("status") == "SUCCESS":
+            log = export_build_log(client, source_bucket, build["id"], work)
+            if log["status"] != "exported" or log["size"] == 0:
+                raise ValueError("successful_build_log_not_preserved")
             images = build.get("results", {}).get("images", [])
             if (
                 build.get("status") != "SUCCESS"
@@ -213,6 +263,7 @@ def build_image(
                     build_id=build["id"],
                     source_generation=str(blob.generation),
                     independent_registry_readback=True,
+                    build_log_sha256=log["sha256"],
                 ),
             )
             return image

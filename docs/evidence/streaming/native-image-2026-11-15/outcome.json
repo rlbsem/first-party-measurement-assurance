@@ -1,0 +1,64 @@
+{
+  "actual_charge_cad": null,
+  "approved_review_sha256": "3f056b7d32ba5cdda8740c99987d11dfb4c321adefa53a063a27197dd60f6008",
+  "archived_bytes": 60549,
+  "archived_versions": 1,
+  "billing_clearance": false,
+  "bootstrap_apply": {
+    "added": 15,
+    "changed": 0,
+    "destroyed": 0
+  },
+  "bootstrap_retirement": {
+    "added": 0,
+    "changed": 0,
+    "destroyed": 15
+  },
+  "boundary": "native-image-prerequisite-only",
+  "build_finished_at": "2026-11-15T04:46:44.423066Z",
+  "build_id": "6f2c8f74-3e6d-4c20-9c4b-f45099e48a8e",
+  "build_started_at": "2026-11-15T04:46:13.007377746Z",
+  "build_status": "FAILURE",
+  "canary_executed": false,
+  "checks": {
+    "build_bucket": "NOT_FOUND_404",
+    "build_identity": "NOT_FOUND_404",
+    "owned_dataflow_jobs": 0,
+    "owned_project_role_bindings": 0,
+    "private_network": "NOT_FOUND_404",
+    "repository": "NOT_FOUND_404"
+  },
+  "failure_info": {
+    "builder": "gcr.io/cloud-builders/docker",
+    "exit_code": 1,
+    "step": 0,
+    "type": "USER_BUILD_STEP"
+  },
+  "financial_results": null,
+  "inner_docker_failure_cause": "not_established",
+  "native_streaming_acceptance_executed": false,
+  "observed_at": "2026-11-15T04:53:08.324198+00:00",
+  "performance_results": null,
+  "private_observation_sha256": "369e8ea724c64f46440bd2612ad42ba43eed93fe8dc4e88aba7d3ecae8d737e5",
+  "retained_configuration": [
+    "Enabled APIs",
+    "Google-managed service identities and standard roles",
+    "Provider build history and audit logs",
+    "Service-account deletion tombstone"
+  ],
+  "retained_soft_delete": [
+    {
+      "hard_delete_time": "2026-11-22 04:48:06.688000+00:00",
+      "soft_delete_time": "2026-11-15 04:47:07.041000+00:00"
+    }
+  ],
+  "runtime_apply_attempted": false,
+  "schema": "streaming-native-image-outcome.v1",
+  "source_commit": "8451b4c32b9545baf768a6087d3c8b72154066ef",
+  "source_generation_archive_verified": true,
+  "text_logs": {
+    "log_absence_does_not_establish_permission_denial": true,
+    "provider_api_returned_text_entries": 0,
+    "provider_console": "No logs were found for this build or step"
+  }
+}
