@@ -1,0 +1,7 @@
+{
+  "boundary": "native retirement-time owner read; pre-workload arming did not pass",
+  "delete_http_status": 200,
+  "one_exact_owned_task": true,
+  "retirement_read_http_status": 200,
+  "scheduled_at": "2026-11-15T23:56:15.382148Z"
+}

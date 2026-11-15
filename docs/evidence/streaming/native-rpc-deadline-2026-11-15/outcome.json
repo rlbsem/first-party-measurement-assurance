@@ -1,0 +1,103 @@
+{
+  "actual_charge_cad": null,
+  "approved_review_sha256": "f7176a6594273c5ed93d20569a479589fec4cf6d749e795a9c8cde2d82b70739",
+  "billing_clearance": false,
+  "bootstrap_created": 17,
+  "bootstrap_terraform_destroyed": 17,
+  "boundary": "native deployment and RPC deadline rejection; no streaming acceptance",
+  "build_engine": {
+    "observed_docker_server_version": "29.9.2",
+    "resolved_worker_release": null,
+    "worker_release": "2026.09"
+  },
+  "build_id": "a7a5161c-7e0a-490a-bd97-8031eebf8eb8",
+  "build_status": "SUCCESS",
+  "canary_executed": false,
+  "controller_cleanup_stage": {
+    "boundary": "native-executed",
+    "checks": {
+      "billing_clearance": false,
+      "logical_absence": true,
+      "residual_boundaries": [
+        "GCS soft-deleted generations: seven-day retention",
+        "BigQuery time travel/fail-safe retention",
+        "Provider execution history and project logs",
+        "Enabled APIs and Google-managed service identities retained",
+        "Service-account deletion tombstones and custom-role deletion grace"
+      ]
+    },
+    "observed_at": "2026-11-15T20:58:10.185738+00:00",
+    "stage": "independent_teardown",
+    "status": "passed"
+  },
+  "dataflow_jobs": [],
+  "deeper_deadline_cause_established": false,
+  "financial_results": null,
+  "guard_armed": false,
+  "image_digest": "sha256:77d95d802d3cbc52c4d173ee97d0e543c328e948677b3fb246dc9fe395e9ef8c",
+  "independent_archive_verification": {
+    "observed_at": "2026-11-15T21:02:13.251784+00:00",
+    "verified_bytes": 153293,
+    "verified_versions": 3
+  },
+  "independent_cleanup": {
+    "actual_charge_cad": null,
+    "archive_bytes_verified": 148799,
+    "archive_versions_verified": 2,
+    "billing_clearance": false,
+    "counts": {
+      "active_builds": 0,
+      "active_cleanup_executions": 0,
+      "active_custom_roles": 0,
+      "active_jobs": 0,
+      "addresses": 0,
+      "buckets": 0,
+      "datasets": 0,
+      "disks": 0,
+      "firewalls": 0,
+      "identities": 0,
+      "instances": 0,
+      "jobs": 0,
+      "networks": 0,
+      "owned_role_bindings": 0,
+      "pending_identity_deletions": 0,
+      "pending_role_deletions": 2,
+      "pubsub_snapshots": 0,
+      "residual_boundaries": 5,
+      "snapshots": 0,
+      "subnetworks": 0,
+      "subscriptions": 0,
+      "topics": 0,
+      "user_managed_keys": 0
+    },
+    "logical_absence": true,
+    "observed_at": "2026-11-15T20:59:18.157978+00:00",
+    "retained_soft_delete": [
+      {
+        "generation": "1794776049841870953",
+        "hard_delete_time": "2026-11-22 20:58:28.848000+00:00",
+        "lane": "runtime",
+        "soft_delete_time": "2026-11-15 20:57:29.066000+00:00"
+      },
+      {
+        "generation": "1794775672967299464",
+        "hard_delete_time": "2026-11-22 20:59:02.414000+00:00",
+        "lane": "build",
+        "soft_delete_time": "2026-11-15 20:58:02.700000+00:00"
+      }
+    ]
+  },
+  "independent_registry_readback": true,
+  "models_and_bindings_removed_before_refresh": 4,
+  "native_failed_operation": "CloudTasksClient.get_task with typed GetTaskRequest and timeout=30",
+  "native_failure_message": "400 The request deadline is 2026-11-15T12:56:45.039566471-08:00. The deadline cannot be more than 30s in the future.",
+  "native_failure_type": "InvalidArgument",
+  "native_streaming_acceptance_executed": false,
+  "performance_results": null,
+  "private_failure_sha256": "52d4b33fd05837fe1253403cdaa4c7454d152721a1f22b55f8343a8c5ad4342f",
+  "query_jobs": [],
+  "runtime_created": 132,
+  "runtime_terraform_destroyed": 128,
+  "schema": "streaming-native-rpc-deadline-outcome.v1",
+  "source_commit": "30cd28c15377e70e8f0733ad1cdba45c123e26f4"
+}

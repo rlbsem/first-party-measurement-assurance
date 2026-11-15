@@ -12,6 +12,7 @@ The local controls execute with synthetic sources. Native streaming acceptance r
 | [Native build-identity storage](native-storage-2026-11-15/README.md) | Actual build-principal metadata/log access, independent readback, source-write rejection, log export and cleanup | Source `a94d951`; legacy worker then failed unpacking the base image; no streaming runtime |
 | [Image success and runtime prerequisite failure](native-runtime-prerequisite-2026-11-15/README.md) | Modern worker image build, exact registry readback, partial runtime apply, rejected custom role and independent cleanup | Source `8c60c44`; 130 runtime resources retired; no guard arming or streaming workload |
 | [Full deployment and guard-readback failure](native-guard-readback-2026-11-15/README.md) | Full runtime deployment, actual scheduled task, SDK readback failure, task retirement and independent residual checks | Source `9fe80b1`; native infrastructure compatibility, no Dataflow job or completed arming |
+| [Guard RPC deadline rejection](native-rpc-deadline-2026-11-15/README.md) | Full runtime deployment, typed SDK request reaching Google, RPC deadline rejection, native read-only probes and verified cleanup | Source `30cd28c`; later 30s/10s GETs returned expected absence; no arming or streaming result |
 
 Each historical record retains its original source revision, observations and hash manifest. Current source and tests can advance without changing those bytes. The offline evidence checker verifies committed records; it does not repeat a vendor execution or prove current cloud absence.
 

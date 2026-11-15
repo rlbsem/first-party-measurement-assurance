@@ -6,11 +6,22 @@ from unittest.mock import patch
 
 import pytest
 from google.auth.credentials import AnonymousCredentials
+from google.api_core.exceptions import InvalidArgument
 from google.cloud import tasks_v2
 from streaming.campaign import Campaign
 
 
-@pytest.mark.parametrize("changed", [None, "schedule", "identity"])
+@pytest.mark.parametrize(
+    "changed",
+    [
+        None,
+        "schedule",
+        "identity",
+        "read-error",
+        "deadline-boundary",
+        "deadline-repeat",
+    ],
+)
 def test_guard_readback_uses_real_sdk_request_and_checks_exact_scope(tmp_path, changed):
     project, run = "example-project", "sm0123456789"
     identity = "guard-invoker@example.invalid"
@@ -58,20 +69,31 @@ def test_guard_readback_uses_real_sdk_request_and_checks_exact_scope(tmp_path, c
     captured = {}
 
     def create(request, **kwargs):
+        assert kwargs["timeout"] == 10 and kwargs["retry"] is None
         # Exercise the SDK's request conversion and actual protobuf serializer.
         raw = tasks_v2.CreateTaskRequest.serialize(request)
         request = tasks_v2.CreateTaskRequest.deserialize(raw)
         assert request.parent == c.m["guard_queue"]
         assert request.task.http_request.body == b"{}"
         captured["task"] = request.task
+        captured["creates"] = captured.get("creates", 0) + 1
         return request.task
 
     def read(request, **kwargs):
+        captured["reads"] = captured.get("reads", 0) + 1
+        assert kwargs["timeout"] == (10 if captured["reads"] == 1 else 5)
+        assert kwargs["retry"] is None
         raw = tasks_v2.GetTaskRequest.serialize(request)
         request = tasks_v2.GetTaskRequest.deserialize(raw)
         assert request.response_view == tasks_v2.Task.View.FULL
         assert request.name == captured["task"].name
         captured["read"] = True
+        if changed == "read-error":
+            raise InvalidArgument("Synthetic provider deadline rejection")
+        if changed == "deadline-repeat" or (
+            changed == "deadline-boundary" and captured["reads"] == 1
+        ):
+            raise InvalidArgument("The deadline cannot be more than 30s in the future.")
         value = tasks_v2.Task.deserialize(tasks_v2.Task.serialize(captured["task"]))
         if changed == "schedule":
             value.schedule_time = c.deadline + timedelta(seconds=30)
@@ -85,13 +107,22 @@ def test_guard_readback_uses_real_sdk_request_and_checks_exact_scope(tmp_path, c
     client.transport._wrapped_methods[client.transport.get_task] = read
     try:
         with patch("google.cloud.tasks_v2.CloudTasksClient", lambda **kw: client):
-            if changed:
+            if changed in {"read-error", "deadline-repeat"}:
+                with pytest.raises(InvalidArgument):
+                    c.arm_guard()
+            elif changed in {"identity", "schedule"}:
                 with pytest.raises(ValueError, match="independent_guard_arming_failed"):
                     c.arm_guard()
             else:
                 c.arm_guard()
         assert uploads == ["private/deployment.json"] and captured["read"]
-        assert (tmp_path / "guard-armed.private.json").exists() is (changed is None)
+        assert captured["creates"] == 1
+        assert captured["reads"] == (
+            2 if changed in {"deadline-boundary", "deadline-repeat"} else 1
+        )
+        assert (tmp_path / "guard-armed.private.json").exists() is (
+            changed in {None, "deadline-boundary"}
+        )
     finally:
         client.transport.close()
 

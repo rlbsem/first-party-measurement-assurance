@@ -167,14 +167,34 @@ class Campaign:
             ),
         )
         created = task_client.create_task(
-            parent=m["guard_queue"], task=task, timeout=30
+            parent=m["guard_queue"], task=task, timeout=10, retry=None
         )
-        readback = task_client.get_task(
-            request=tasks_v2.GetTaskRequest(
-                name=created.name, response_view=tasks_v2.Task.View.FULL
-            ),
-            timeout=30,
-        )
+        from google.api_core.exceptions import InvalidArgument
+
+        read_attempts = []
+        for rpc_timeout in (10, 5):
+            try:
+                readback = task_client.get_task(
+                    request=tasks_v2.GetTaskRequest(
+                        name=created.name, response_view=tasks_v2.Task.View.FULL
+                    ),
+                    timeout=rpc_timeout,
+                    retry=None,
+                )
+            except InvalidArgument as error:
+                read_attempts.append(dict(timeout=rpc_timeout, error=str(error)))
+                write(self.work / "guard-readback-attempts.private.json", read_attempts)
+                if rpc_timeout == 10 and (
+                    "The deadline cannot be more than 30s in the future." in str(error)
+                ):
+                    # One bounded read-only retry; never create a second task
+                    # or classify another invalid request as a deadline error.
+                    continue
+                raise
+            else:
+                read_attempts.append(dict(timeout=rpc_timeout, full_readback=True))
+                write(self.work / "guard-readback-attempts.private.json", read_attempts)
+                break
         if (
             readback.http_request.url != url
             or readback.http_request.oauth_token.service_account_email

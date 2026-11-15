@@ -1,0 +1,21 @@
+{
+  "boundary": "native read-only GET after task deletion; expected absence is not successful arming or an IAM denial",
+  "observations": [
+    {
+      "elapsed_seconds": 0.40600000007543713,
+      "error_type": "NotFound",
+      "http_status": 404,
+      "observed_at": "2026-11-15T20:57:57.719085+00:00",
+      "rpc_timeout_seconds": 30
+    },
+    {
+      "elapsed_seconds": 0.09399999992456287,
+      "error_type": "NotFound",
+      "http_status": 404,
+      "observed_at": "2026-11-15T20:57:57.824894+00:00",
+      "rpc_timeout_seconds": 10
+    }
+  ],
+  "private_response_sha256": "e5934d5d653f197a58bd71f768acf149ee7543a5731cffe92ff742ed1a54d17c",
+  "resources_created": false
+}

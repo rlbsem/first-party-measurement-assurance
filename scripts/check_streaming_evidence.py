@@ -307,6 +307,45 @@ def check():
         or not task["target_and_invoker_match_manifest"]
     ):
         raise ValueError("guard_execution_boundary_changed")
+    rpc_root = ROOT / "docs/evidence/streaming/native-rpc-deadline-2026-11-15"
+    rpc_index = json.loads((rpc_root / "sha256.json").read_bytes())
+    if set(rpc_index) != {
+        p.relative_to(rpc_root).as_posix()
+        for p in rpc_root.rglob("*")
+        if p.is_file() and p.name != "sha256.json"
+    }:
+        raise ValueError("rpc_evidence_inventory_changed")
+    for name, expected in rpc_index.items():
+        path = (rpc_root / name).resolve()
+        if (
+            not path.is_relative_to(rpc_root.resolve())
+            or path.is_symlink()
+            or hashlib.sha256(path.read_bytes()).hexdigest() != expected
+        ):
+            raise ValueError("rpc_evidence_changed:" + name)
+    rpc = json.loads((rpc_root / "outcome.json").read_bytes())
+    probes = json.loads((rpc_root / "rpc-readonly-probes.json").read_bytes())
+    if (
+        rpc["native_failure_type"] != "InvalidArgument"
+        or "The deadline cannot be more than 30s" not in rpc["native_failure_message"]
+        or rpc["deeper_deadline_cause_established"]
+        or rpc["guard_armed"]
+        or rpc["canary_executed"]
+        or rpc["native_streaming_acceptance_executed"]
+        or rpc["dataflow_jobs"]
+        or rpc["query_jobs"]
+        or rpc["financial_results"] is not None
+        or rpc["performance_results"] is not None
+        or not rpc["independent_cleanup"]["logical_absence"]
+        or rpc["billing_clearance"]
+        or rpc["actual_charge_cad"] is not None
+        or probes["resources_created"]
+        or [
+            (p["rpc_timeout_seconds"], p["http_status"]) for p in probes["observations"]
+        ]
+        != [(30, 404), (10, 404)]
+    ):
+        raise ValueError("rpc_execution_boundary_changed")
     return dict(
         evidence_files=len(manifest),
         bootstrap_evidence_files=len(bootstrap_index),
@@ -315,6 +354,7 @@ def check():
         storage_evidence_files=len(storage_index),
         runtime_prerequisite_evidence_files=len(runtime_index),
         guard_evidence_files=len(guard_index),
+        rpc_evidence_files=len(rpc_index),
         boundary="offline revalidation of local execution",
         canonical_rows=initial["canonical_rows"],
         native_streaming_executed=False,
