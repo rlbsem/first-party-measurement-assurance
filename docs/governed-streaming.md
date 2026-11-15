@@ -2,7 +2,7 @@
 
 The streaming lane asks whether independently authorized web, contract and payment sources can produce correct measures despite replay, corrections, ambiguous acknowledgments and failed processing. Signed commitments and cash remain separate USD measures. All inputs are synthetic.
 
-**Execution boundary:** source contracts, a real Beam DirectRunner pipeline, SQLite publication transactions and the independent source oracle execute locally. The native campaign and Terraform are implemented; Pub/Sub, Dataflow, native streaming publication, native recovery and comparative performance have **not executed**. The [earlier native BigQuery/dbt acceptance](evidence/native-dbt-bigquery/README.md) is separate historical evidence. It does not validate this streaming lane.
+**Execution boundary:** source contracts, a real Beam DirectRunner pipeline, SQLite publication transactions and the independent source oracle execute locally. The native campaign and Terraform are implemented; Pub/Sub, Dataflow, native streaming publication, native recovery and comparative performance have **not executed**. The [earlier native BigQuery/dbt acceptance](evidence/native-dbt-bigquery/README.md) is separate historical evidence. It does not validate this streaming lane. A separate [non-billable BigQuery dry run](evidence/streaming/sql-planning-2026-11-15/README.md) type-checked the seven models and published-view SQL; it did not execute them or the approval transaction.
 
 ## Architecture and decisions
 

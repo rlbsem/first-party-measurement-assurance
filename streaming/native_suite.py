@@ -270,6 +270,15 @@ def iam_denials(c, outcome):
         "cross_tenant": f"SELECT body FROM `{c.m['project']}.{c.m['consumers'][other]['dataset']}.published` LIMIT 1",
         "publication_write": f"INSERT `{c.m['project']}.{c.m['output_dataset']}.selectors`(tenant) SELECT 'SYN-DENIAL' WHERE FALSE",
     }
+    # A 403 is ambiguous when the resource might be absent; owner metadata
+    # independently establishes all three exact destinations before the probes.
+    owner_bq = c.cloud.bq()
+    for table in [
+        f"{c.m['project']}.{c.m['raw_dataset']}.dataflow",
+        f"{c.m['project']}.{c.m['consumers'][other]['dataset']}.published",
+        f"{c.m['project']}.{c.m['output_dataset']}.selectors",
+    ]:
+        owner_bq.get_table(table, timeout=30)
     denials = []
     for label, sql in queries.items():
         try:
@@ -597,11 +606,22 @@ def sink_ahead_recovery(c, job):
         )
         revised.append((meta, receipt))
     c.stop_dataflow(job)
-    restored = (
-        c.start_dataflow("restored", 1, snapshot=snapshot)
-        if snapshot
-        else c.start_dataflow("archive-restart", 1)
-    )
+    if snapshot:
+        try:
+            restored = c.start_dataflow("restored", 1, snapshot=snapshot)
+        except (RuntimeError, TimeoutError) as error:
+            snapshot_failure = "restore-" + type(error).__name__
+            # Resolve all exact-run jobs before a single documented reduced-scope
+            # fallback. Never overlap an ambiguous restoration with a new source reader.
+            from .cleanup import inventory_jobs, TERMINAL
+
+            for observed in inventory_jobs(c.cloud, c.m):
+                if observed.get("currentState") not in TERMINAL:
+                    c.stop_dataflow(observed["id"])
+            snapshot = None
+            restored = c.start_dataflow("archive-fallback", 1)
+    else:
+        restored = c.start_dataflow("archive-restart", 1)
     _, replayed = c.publish(updated, "recovery", repeat_first=True)
     replay_proof = c.wait_replay_receipts(replayed)
     c.wait_coverage("recovery", corrected["count"])
@@ -712,7 +732,9 @@ def performance(c, current_job):
                         equal=True,
                         sink_visibility=outcome["sink_visibility"],
                         provider_observability=measurement,
-                        processing_latency=c.operational_observations(name),
+                        processing_latency=c.operational_observations(
+                            name, outcome["source_rows"]
+                        ),
                         canonical_events=sum(
                             x["metadata"]["row_count"]
                             for x in outcome["outcomes"]["dataflow"]

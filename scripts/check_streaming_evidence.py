@@ -66,6 +66,23 @@ def check():
             "counts"
         ]["tests"] != len(suite["cases"]):
             raise ValueError("recorded_regression_counts_inconsistent")
+    planning = ROOT / "docs/evidence/streaming/sql-planning-2026-11-15"
+    index = json.loads((planning / "sha256.json").read_bytes())
+    for name, h in index.items():
+        if hashlib.sha256((planning / name).read_bytes()).hexdigest() != h:
+            raise ValueError("planning_record_changed")
+    observed = json.loads((planning / "verification.json").read_bytes())
+    if (
+        observed["executed"]
+        or not observed["dry_run"]
+        or observed["job_id"] is not None
+        or observed["datasets_created"]
+        or observed["approval_transaction_executed"]
+    ):
+        raise ValueError("planning_execution_boundary_changed")
+    for name, h in observed["source_sha256"].items():
+        if hashlib.sha256((ROOT / name).read_bytes()).hexdigest() != h:
+            raise ValueError("planned_sql_source_changed:" + name)
     return dict(
         evidence_files=len(manifest),
         boundary="offline revalidation of local execution",

@@ -59,6 +59,7 @@ class Campaign:
         )
         self.records = []
         self.jobs = []
+        self.submission_attempts = 0
         self.query_ids = []
         self.published_messages = 0
         self.archives = {}
@@ -211,6 +212,9 @@ class Campaign:
 
     def start_dataflow(self, label, workers, snapshot=None):
         self.check_time(1200)
+        self.submission_attempts += 1
+        if self.submission_attempts > 5:
+            raise ValueError("bounded_job_submission_limit")
         if not 1 <= workers <= self.plan["maximum_workers"]:
             raise ValueError("worker_ceiling")
         name = self.m["run"] + "-" + label
@@ -242,6 +246,7 @@ class Campaign:
             "--subnetwork=" + self.m["subnetwork"],
             "--no_use_public_ips",
             "--enable_streaming_engine",
+            "--dataflow_service_options=enable_streaming_engine_resource_based_billing",
             "--disk_size_gb=30",
             "--sdk_container_image=" + self.plan["image"],
             "--sdk_location=container",
@@ -600,7 +605,7 @@ class Campaign:
             raise ValueError("native_snapshot_identity_missing")
         return snapshot
 
-    def operational_observations(self, cohort_id):
+    def operational_observations(self, cohort_id, expected):
         from google.cloud import bigquery
 
         cloud = Cloud(
@@ -636,6 +641,10 @@ class Campaign:
             / "measured.private.json",
             value,
         )
+        if rows[0]["broker_messages"] != expected:
+            raise ValueError(
+                "processing_latency_sample_incomplete_see_private_observations"
+            )
         return value
 
     def metrics(self, identifier):
