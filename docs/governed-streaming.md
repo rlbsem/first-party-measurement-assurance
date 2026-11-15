@@ -79,4 +79,6 @@ A one-shot Cloud Tasks deadline invokes an independently scoped Cloud Run stoppe
 
 The owner-side retirement path separately stops jobs, deletes owned snapshots, verifies every exported GCS generation, refuses late unarchived writes, retires Terraform resources and reads fresh provider inventory. It preserves errors and private state if cleanup fails. No secret values are fetched.
 
+Offline whole-inventory tests check both Dataflow and Pub/Sub snapshot residuals, including randomly named source snapshots identified by an exact registry entry after topic deletion. Partial-run retirement tolerates genuinely absent generated model datasets, while authorization errors and foreign ownership still stop deletion. These are software tests of provider contracts; they are not native teardown results.
+
 Logical absence does not establish physical erasure or billing clearance: seven-day GCS soft deletion, BigQuery time travel/fail-safe retention, provider logs/history, enabled APIs, managed service identities and deletion tombstones can remain. Pricing reservations and provider charge records are separate. No native success, throughput, recovery duration or actual streaming charge is claimed before execution.

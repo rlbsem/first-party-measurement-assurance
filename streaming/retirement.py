@@ -70,7 +70,6 @@ def collect(m, work):
         cloud,
         f"https://dataflow.googleapis.com/v1b3/projects/{p}/locations/{r}/snapshots",
         "snapshots",
-        "pubsub_snapshots",
         "inventory-snapshots",
     )
     ids = {j["id"] for j in rows["jobs"]}
@@ -241,6 +240,7 @@ def collect(m, work):
         for k in [
             "active_jobs",
             "snapshots",
+            "pubsub_snapshots",
             "topics",
             "subscriptions",
             "datasets",
@@ -404,12 +404,18 @@ def prepare_retirement(m, work):
                 raise
     # Model tables are generated outside Terraform. Delete only the labeled owned
     # model datasets; Terraform retires its own tables/views and other datasets.
+    from google.api_core.exceptions import NotFound
     from google.cloud import bigquery, storage
 
     bq = bigquery.Client(project=m["project"], credentials=cloud.credentials)
     for lane in ["dataflow", "baseline"]:
         name = m["run"] + "_" + lane + "_models"
-        dataset = bq.get_dataset(m["project"] + "." + name, timeout=30)
+        try:
+            dataset = bq.get_dataset(m["project"] + "." + name, timeout=30)
+        except NotFound:
+            # A failed canary can precede model creation. Absence is not a
+            # reason to strand the remaining owned infrastructure.
+            continue
         if dataset.labels.get("acceptance") != m["run"]:
             raise ValueError("dataset_ownership_mismatch")
         bq.delete_dataset(dataset, delete_contents=True, timeout=60)
