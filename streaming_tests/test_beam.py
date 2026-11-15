@@ -1,4 +1,6 @@
 import json
+from datetime import datetime, timezone
+import pytest
 import apache_beam as beam
 from apache_beam.testing.test_pipeline import TestPipeline as BeamTestPipeline
 from apache_beam.testing.test_stream import TestStream as BeamTestStream
@@ -6,6 +8,7 @@ from apache_beam.testing.util import assert_that, equal_to
 from apache_beam.transforms.window import TimestampedValue
 from streaming.fixtures import cohort
 from streaming.beam_pipeline import transforms
+from streaming.beam_pipeline import Validate, build_pipeline
 
 
 def delivery(row, published=None):
@@ -73,4 +76,70 @@ def test_beyond_horizon_preserves_durable_input_and_queues_rebuild():
             admitted.rebuilds | beam.Map(lambda x: x["reason"]),
             equal_to(["beyond_live_age_horizon"]),
             label="Explicit rebuild",
+        )
+
+
+@pytest.mark.parametrize(
+    "broker_seconds,rebuild", [(659.999999, False), (660, False), (660.000001, True)]
+)
+def test_live_age_boundary_is_explicit_and_distinct_from_watermark(
+    broker_seconds, rebuild
+):
+    bindings, rows = cohort(projects=1, tenants=1, anchor="1970-01-01T00:00:10Z")
+    seen = list(
+        Validate(bindings[rows[0]["source"]]).process(
+            delivery(
+                rows[0],
+                datetime.fromtimestamp(broker_seconds, timezone.utc).isoformat(),
+            )
+        )
+    )
+    assert (
+        sum(isinstance(x, beam.pvalue.TaggedOutput) and x.tag == "ledger" for x in seen)
+        == 1
+    )
+    assert (
+        any(
+            isinstance(x, beam.pvalue.TaggedOutput) and x.tag == "rebuilds"
+            for x in seen
+        )
+        == rebuild
+    )
+
+
+def test_real_processing_timer_expires_when_source_watermark_is_idle():
+    bindings, rows = cohort(projects=1, tenants=1, anchor="1970-01-01T00:00:10Z")
+    stream = (
+        BeamTestStream()
+        .advance_watermark_to(0)
+        .add_elements([TimestampedValue(delivery(rows[0]), 10)])
+        .advance_processing_time(6)
+        .advance_watermark_to_infinity()
+    )
+    with BeamTestPipeline(
+        options=beam.options.pipeline_options.PipelineOptions(["--streaming"])
+    ) as p:
+        _, ops = transforms(
+            p | stream,
+            bindings[rows[0]["source"]],
+            idle_seconds=5,
+            processing_clock=lambda: 0,
+        )
+        assert_that(
+            ops
+            | beam.Filter(lambda r: r["record_type"] == "state_expiry")
+            | beam.Map(lambda r: r["clock"]),
+            equal_to(["processing_time"]),
+        )
+
+
+def test_native_submission_cannot_create_an_implicit_staging_bucket():
+    with pytest.raises(ValueError, match="explicit_owned_staging"):
+        build_pipeline(
+            {},
+            [
+                "--runner=DataflowRunner",
+                "--project=example-project",
+                "--region=us-central1",
+            ],
         )

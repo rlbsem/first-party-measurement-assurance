@@ -29,6 +29,9 @@ class Validate(beam.DoFn):
         # The reader supplies the binding. It is never taken from a message attribute.
         raw = delivery["data"]
         fingerprint = hashlib.sha256(raw.encode()).hexdigest()
+        # Preserve exact authenticated source bytes, including rejected observations.
+        # The restricted raw ledger is not a published or consented marketing view.
+        yield beam.pvalue.TaggedOutput("ledger", dict(delivery))
         try:
             if len(raw.encode()) > 65_536:
                 raise Refused("bounded_payload_required")
@@ -46,14 +49,24 @@ class Validate(beam.DoFn):
             )
             return
         self.accepted.inc()
+        observed = datetime.now(timezone.utc)
+        attrs = json.loads(delivery.get("attributes", "{}"))
+        yield beam.pvalue.TaggedOutput(
+            "receipts",
+            dict(
+                record_type="validated_delivery",
+                source=self.binding["source"],
+                cohort=attrs.get("cohort"),
+                message_id=delivery.get("message_id"),
+                broker_publish_time=delivery["publish_time"],
+                validation_observed_at=observed.isoformat(),
+                broker_to_validation_seconds=(
+                    observed - instant(delivery["publish_time"])
+                ).total_seconds(),
+                clock="broker UTC versus worker UTC; clock skew is not clamped",
+            ),
+        )
         ts = instant(row["event_time"]).timestamp()
-        body = {
-            **delivery,
-            "data": canonical(row),
-            "bound_source": self.binding["source"],
-            "meaning_hash": digest(meaning(row)),
-        }
-        yield beam.pvalue.TaggedOutput("ledger", body)
         window_end = (int(ts) // 60 + 1) * 60
         # Conservative age gate is distinct from provider-observed watermark lag.
         if instant(delivery["publish_time"]).timestamp() > window_end + self.lateness:
@@ -77,8 +90,11 @@ class RevisionState(beam.DoFn):
     EVENT = TimerSpec("event_expiry", TimeDomain.WATERMARK)
     IDLE = TimerSpec("idle_expiry", TimeDomain.REAL_TIME)
 
-    def __init__(self, lateness=600, idle_seconds=1200):
+    def __init__(self, lateness=600, idle_seconds=1200, processing_clock=None):
         self.lateness, self.idle_seconds = lateness, idle_seconds
+        self.processing_clock = processing_clock or time.time
+        self.created = Metrics.counter("assurance", "key_state_created")
+        self.expired = Metrics.counter("assurance", "key_state_expired")
 
     def process(
         self,
@@ -93,15 +109,29 @@ class RevisionState(beam.DoFn):
         h = digest(meaning(row))
         if old and row["revision"] == old["revision"] and old["hash"] != h:
             decision = "revision_conflict"
+            old["conflict"] = True
+            state.write(canonical(old))
         elif old and row["revision"] == old["revision"]:
             decision = "operational_duplicate"
         elif old and row["revision"] < old["revision"]:
             decision = "older_revision"
         else:
             decision = "correction" if old else "first_observation"
-            state.write(canonical(dict(revision=row["revision"], hash=h)))
+            if old is None:
+                self.created.inc()
+            state.write(
+                canonical(
+                    dict(
+                        revision=row["revision"],
+                        hash=h,
+                        first_time=old["first_time"] if old else float(timestamp),
+                        last_time=float(timestamp),
+                        conflict=bool(old and old.get("conflict")),
+                    )
+                )
+            )
             event_timer.set((int(float(timestamp)) // 60 + 1) * 60 + self.lateness)
-            idle_timer.set(time.time() + self.idle_seconds)
+            idle_timer.set(self.processing_clock() + self.idle_seconds)
         yield dict(
             record_type="operational_decision",
             identity=identity,
@@ -114,6 +144,7 @@ class RevisionState(beam.DoFn):
         self, state=beam.DoFn.StateParam(CURRENT), idle=beam.DoFn.TimerParam(IDLE)
     ):
         if state.read():
+            self.expired.inc()
             yield dict(record_type="state_expiry", clock="event_time")
         state.clear()
         idle.clear()
@@ -123,6 +154,7 @@ class RevisionState(beam.DoFn):
         self, state=beam.DoFn.StateParam(CURRENT), event=beam.DoFn.TimerParam(EVENT)
     ):
         if state.read():
+            self.expired.inc()
             yield dict(record_type="state_expiry", clock="processing_time")
         state.clear()
         event.clear()
@@ -145,12 +177,14 @@ class Pane(beam.DoFn):
         )
 
 
-def transforms(records, binding, lateness=600, idle_seconds=1200):
+def transforms(
+    records, binding, lateness=600, idle_seconds=1200, processing_clock=None
+):
     admitted = records | "Validate source" >> beam.ParDo(
         Validate(binding, lateness)
-    ).with_outputs("ledger", "exceptions", "rebuilds", main="live")
+    ).with_outputs("ledger", "exceptions", "rebuilds", "receipts", main="live")
     decisions = admitted.live | "Business key state" >> beam.ParDo(
-        RevisionState(lateness, idle_seconds)
+        RevisionState(lateness, idle_seconds, processing_clock)
     )
     panes = (
         admitted.live
@@ -171,6 +205,7 @@ def transforms(records, binding, lateness=600, idle_seconds=1200):
         panes,
         admitted.exceptions,
         admitted.rebuilds,
+        admitted.receipts,
     ) | "Operational observations" >> beam.Flatten()
 
 
@@ -181,7 +216,11 @@ def delivery(message, subscription):
         subscription_name=subscription,
         publish_time=message.publish_time.isoformat(),
         attributes=canonical(
-            {k: v for k, v in message.attributes.items() if k in {"segment", "ordinal"}}
+            {
+                k: v
+                for k, v in message.attributes.items()
+                if k in {"segment", "ordinal", "cohort", "eligible_at"}
+            }
         ),
     )
 
@@ -200,68 +239,100 @@ def ledger_row(row):
     }
 
 
+def build_pipeline(cfg, options, *, validate_only=False):
+    opts = PipelineOptions(options)
+    opts.view_as(StandardOptions).streaming = True
+    # Dataflow option validation can create a default staging bucket. A graph
+    # inspection must use a non-submitting runner even if native flags are given.
+    if validate_only:
+        from apache_beam.runners.runner import PipelineRunner
+
+        pipeline = beam.Pipeline(options=opts, runner=PipelineRunner())
+    else:
+        from apache_beam.options.pipeline_options import GoogleCloudOptions
+
+        cloud = opts.view_as(GoogleCloudOptions)
+        if not cloud.temp_location or not cloud.staging_location:
+            raise ValueError("explicit_owned_staging_locations_required")
+        pipeline = beam.Pipeline(options=opts)
+    return _populate(pipeline, cfg)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", required=True)
+    parser.add_argument("--validate-graph")
     known, options = parser.parse_known_args()
     cfg = json.load(open(known.config, encoding="utf-8"))
-    opts = PipelineOptions(options)
-    opts.view_as(StandardOptions).streaming = True
-    with beam.Pipeline(options=opts) as pipeline:
-        ledgers, observations = [], []
-        for source, binding in cfg["bindings"].items():
-            subscription = cfg["subscriptions"][source]
-            records = pipeline | ("Read " + source) >> beam.io.ReadFromPubSub(
-                subscription=subscription, with_attributes=True
-            )
-            records = records | ("Bind " + source) >> beam.Map(delivery, subscription)
-            # Nested labels isolate state and timers for each authenticated source lane.
-            admitted, seen = records | ("Process " + source) >> SourceTransform(binding)
-            ledgers.append(admitted)
-            observations.append(seen)
-        raw = ledgers | "Merge admitted source ledgers" >> beam.Flatten()
-        result = (
-            raw
-            | "Fixed sink schema" >> beam.Map(ledger_row)
-            | "Storage Write API append"
-            >> beam.io.WriteToBigQuery(
-                cfg["ledger_table"],
-                schema="data:STRING,message_id:STRING,subscription_name:STRING,publish_time:TIMESTAMP,attributes:STRING",
-                create_disposition="CREATE_NEVER",
-                write_disposition="WRITE_APPEND",
-                method=beam.io.WriteToBigQuery.Method.STORAGE_WRITE_API,
-                use_at_least_once=True,
+    pipeline = build_pipeline(cfg, options, validate_only=bool(known.validate_graph))
+    if known.validate_graph:
+        from pathlib import Path
+
+        Path(known.validate_graph).write_bytes(
+            pipeline.to_runner_api().SerializeToString()
+        )
+        print(json.dumps({"graph_validated": True, "native_job_submitted": False}))
+        return
+    submitted = pipeline.run()
+    print(json.dumps({"job_id": submitted.job_id(), "submitted": True}), flush=True)
+
+
+def _populate(pipeline, cfg):
+    ledgers, observations = [], []
+    for source, binding in cfg["bindings"].items():
+        subscription = cfg["subscriptions"][source]
+        records = pipeline | ("Read " + source) >> beam.io.ReadFromPubSub(
+            subscription=subscription, with_attributes=True
+        )
+        records = records | ("Bind " + source) >> beam.Map(delivery, subscription)
+        # Nested labels isolate state and timers for each authenticated source lane.
+        admitted, seen = records | ("Process " + source) >> SourceTransform(binding)
+        ledgers.append(admitted)
+        observations.append(seen)
+    raw = ledgers | "Merge admitted source ledgers" >> beam.Flatten()
+    result = (
+        raw
+        | "Fixed sink schema" >> beam.Map(ledger_row)
+        | "Storage Write API append"
+        >> beam.io.WriteToBigQuery(
+            cfg["ledger_table"],
+            schema="data:STRING,message_id:STRING,subscription_name:STRING,publish_time:TIMESTAMP,attributes:STRING",
+            create_disposition="CREATE_NEVER",
+            write_disposition="WRITE_APPEND",
+            method=beam.io.WriteToBigQuery.Method.STORAGE_WRITE_API,
+            use_at_least_once=True,
+        )
+    )
+    ops = observations | "Merge observations" >> beam.Flatten()
+    (
+        ops
+        | "Encode safe observation"
+        >> beam.Map(
+            lambda r: dict(
+                payload=canonical(r),
+                observed_at=datetime.now(timezone.utc).isoformat(),
             )
         )
-        ops = observations | "Merge observations" >> beam.Flatten()
-        (
-            ops
-            | "Encode safe observation"
-            >> beam.Map(
-                lambda r: dict(
-                    payload=canonical(r),
-                    observed_at=datetime.now(timezone.utc).isoformat(),
-                )
-            )
-            | "Operational sink"
-            >> beam.io.WriteToBigQuery(
-                cfg["observations_table"],
-                schema="payload:STRING,observed_at:TIMESTAMP",
-                create_disposition="CREATE_NEVER",
-                method="STORAGE_WRITE_API",
-                use_at_least_once=True,
+        | "Operational sink"
+        >> beam.io.WriteToBigQuery(
+            cfg["observations_table"],
+            schema="payload:STRING,observed_at:TIMESTAMP",
+            create_disposition="CREATE_NEVER",
+            method="STORAGE_WRITE_API",
+            use_at_least_once=True,
+        )
+    )
+    (
+        result.failed_rows_with_errors
+        | "Encode sink rejection"
+        >> beam.Map(
+            lambda r: canonical(
+                dict(reason="storage_write_rejected", row_sha256=digest(str(r)))
             )
         )
-        (
-            result.failed_rows_with_errors
-            | "Encode sink rejection"
-            >> beam.Map(
-                lambda r: canonical(
-                    dict(reason="storage_write_rejected", row_sha256=digest(str(r)))
-                )
-            )
-            | "Sink rejection log" >> beam.Map(lambda s: print(s))
-        )
+        | "Sink rejection log" >> beam.Map(lambda s: print(s))
+    )
+    return pipeline
 
 
 class SourceTransform(beam.PTransform):

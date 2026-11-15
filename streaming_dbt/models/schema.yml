@@ -1,0 +1,14 @@
+version: 2
+models:
+  - name: fct_stream_events
+    columns:
+      - name: business_id
+        data_tests: [not_null]
+      - name: tenant
+        data_tests: [not_null]
+      - name: revision
+        data_tests: [not_null]
+  - name: fct_stream_items
+    columns:
+      - name: item_id
+        data_tests: [not_null]

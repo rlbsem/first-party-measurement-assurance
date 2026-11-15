@@ -1,0 +1,70 @@
+{
+  "bindings": {
+    "operator-00-commerce": {
+      "kind": "commerce",
+      "legal_entity": "SYN-LE-00",
+      "policy_version": "policy-v1",
+      "source": "operator-00-commerce",
+      "tenant": "operator-00"
+    },
+    "operator-00-web": {
+      "kind": "web",
+      "legal_entity": "SYN-LE-00",
+      "policy_version": "policy-v1",
+      "source": "operator-00-web",
+      "tenant": "operator-00"
+    },
+    "operator-01-commerce": {
+      "kind": "commerce",
+      "legal_entity": "SYN-LE-01",
+      "policy_version": "policy-v1",
+      "source": "operator-01-commerce",
+      "tenant": "operator-01"
+    },
+    "operator-01-web": {
+      "kind": "web",
+      "legal_entity": "SYN-LE-01",
+      "policy_version": "policy-v1",
+      "source": "operator-01-web",
+      "tenant": "operator-01"
+    }
+  },
+  "count": 17,
+  "manifest_sha256": "67057f49802c7371dfc4cd9b5b8fcc7e971afb936b49c5efe4036a2763d9b40a",
+  "schema": "stream-source-manifest.v1",
+  "segments": [
+    {
+      "count": 7,
+      "final": true,
+      "name": "operator-00-commerce-00000.jsonl",
+      "sequence": 0,
+      "sha256": "7f44d26b6c06e85337ffdf5b30a8c2d1a856f4ef0db0364ff2d42163d37b4170",
+      "source": "operator-00-commerce"
+    },
+    {
+      "count": 2,
+      "final": true,
+      "name": "operator-00-web-00000.jsonl",
+      "sequence": 0,
+      "sha256": "6d399d6e28384330e45918e3c77a7d03301ca2f21084800eb233de90bbc16816",
+      "source": "operator-00-web"
+    },
+    {
+      "count": 6,
+      "final": true,
+      "name": "operator-01-commerce-00000.jsonl",
+      "sequence": 0,
+      "sha256": "986b163e17392b3f199061f72c4e2d8e97be1bc0628792b9c43a033ad51e793b",
+      "source": "operator-01-commerce"
+    },
+    {
+      "count": 2,
+      "final": true,
+      "name": "operator-01-web-00000.jsonl",
+      "sequence": 0,
+      "sha256": "ed86a0760969c8cdffeade3b9f458eaabd3292700d988ede89c0c2738d13faba",
+      "source": "operator-01-web"
+    }
+  ],
+  "synthetic": true
+}

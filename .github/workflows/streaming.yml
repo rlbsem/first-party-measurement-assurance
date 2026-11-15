@@ -27,7 +27,10 @@ jobs:
           cache: pip
           cache-dependency-path: requirements-streaming.lock
       - run: python -m pip install -r requirements-streaming.lock
+      - run: python -m ruff check streaming streaming_tests scripts/package_streaming.py
       - run: python -m pytest streaming_tests -q --basetemp=.local/streaming-pytest --junitxml=.local/streaming-tests.xml
+      - run: python scripts/check_streaming_evidence.py
+      - run: python scripts/package_streaming.py --check
       - if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
@@ -35,3 +38,30 @@ jobs:
           path: .local/streaming-tests.xml
           include-hidden-files: true
           retention-days: 7
+  terraform:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd
+        with:
+          terraform_version: '1.13.5'
+          terraform_wrapper: false
+      - run: terraform -chdir=infra/streaming init -backend=false -input=false
+      - run: terraform -chdir=infra/streaming fmt -check -recursive
+      - run: terraform -chdir=infra/streaming validate
+      - run: terraform -chdir=infra/streaming test
+      - run: terraform -chdir=infra/streaming-bootstrap init -backend=false -input=false
+      - run: terraform -chdir=infra/streaming-bootstrap fmt -check
+      - run: terraform -chdir=infra/streaming-bootstrap validate
+  worker-image:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - run: docker build -f streaming/Dockerfile -t streaming-acceptance:ci .
+      - run: docker run --rm --entrypoint python streaming-acceptance:ci -m streaming.container_smoke

@@ -8,9 +8,9 @@ import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DIRECTORIES = {'assurance', 'contracts', 'dbt', 'ga4_pipeline', 'web', 'bigquery', 'scripts', 'tests', 'docs', '.github', 'streaming', 'streaming_tests', 'streaming_dbt', 'infra'}
-ROOT_FILES = {'README.md', 'LICENSE', '.gitignore', '.gitattributes', 'pyproject.toml', 'requirements.txt', 'requirements.lock', 'requirements-bigquery.lock', 'requirements-streaming.lock'}
-EXTENSIONS = {'.py', '.json', '.sql', '.yml', '.yaml', '.html', '.css', '.js', '.md', '.png', '.txt', '.lock', '.toml', '.csv', '.tf', '.hcl'}
+DIRECTORIES = {'assurance', 'contracts', 'dbt', 'ga4_pipeline', 'web', 'bigquery', 'scripts', 'tests', 'docs', '.github'}
+ROOT_FILES = {'README.md', 'LICENSE', '.gitignore', '.gitattributes', 'pyproject.toml', 'requirements.txt', 'requirements.lock', 'requirements-bigquery.lock'}
+EXTENSIONS = {'.py', '.json', '.sql', '.yml', '.yaml', '.html', '.css', '.js', '.md', '.png', '.txt', '.lock', '.toml', '.csv'}
 
 
 def files():
@@ -18,7 +18,7 @@ def files():
     candidates = [ROOT / name for name in ROOT_FILES if (ROOT/name).is_file()]
     for folder in DIRECTORIES:
         for base, directories, names in os.walk(ROOT/folder):
-            directories[:] = [d for d in directories if d not in ('__pycache__','target','logs','dbt_packages','.terraform')]
+            directories[:] = [d for d in directories if d not in ('__pycache__','target','logs','dbt_packages')]
             candidates.extend(Path(base)/n for n in names if n != '.user.yml')
     for path in candidates:
         rel = path.relative_to(ROOT)
@@ -28,7 +28,7 @@ def files():
             raise ValueError(f'symlink not allowed: {rel}')
         if len(rel.parts) == 1 and path.name in ROOT_FILES:
             result.append(path)
-        elif rel.parts[0] in DIRECTORIES and (path.suffix in EXTENSIONS or path.name == 'Dockerfile'):
+        elif rel.parts[0] in DIRECTORIES and path.suffix in EXTENSIONS:
             result.append(path)
     return sorted(result)
 

@@ -2,6 +2,7 @@
 
 import hashlib
 import json
+import re
 from datetime import datetime, timezone
 
 VERSION = "measurement-stream.v1"
@@ -69,7 +70,9 @@ def validate(event, binding, published_at):
         "project_id",
         "policy_version",
     ):
-        if not isinstance(event[name], str) or not 1 <= len(event[name]) <= 100:
+        if not isinstance(event[name], str) or not re.fullmatch(
+            r"[A-Za-z0-9_.:-]{1,100}", event[name]
+        ):
             raise Refused("invalid_identifier")
     if tuple(event[k] for k in ("tenant", "legal_entity", "source")) != tuple(
         binding[k] for k in ("tenant", "legal_entity", "source")
@@ -90,7 +93,7 @@ def validate(event, binding, published_at):
         raise Refused("policy_version_mismatch")
     if event["session_id"] is not None and (
         not isinstance(event["session_id"], str)
-        or not 1 <= len(event["session_id"]) <= 100
+        or not re.fullmatch(r"[A-Za-z0-9_.:-]{1,100}", event["session_id"])
     ):
         raise Refused("invalid_session")
     if (instant(event["event_time"]) - instant(published_at)).total_seconds() > 120:
@@ -118,7 +121,7 @@ def validate(event, binding, published_at):
     if expected == "payment":
         if (
             not isinstance(event["transaction_id"], str)
-            or not 1 <= len(event["transaction_id"]) <= 100
+            or not re.fullmatch(r"[A-Za-z0-9_.:-]{1,100}", event["transaction_id"])
             or not items
         ):
             raise Refused("payment_identity")
@@ -137,14 +140,14 @@ def validate(event, binding, published_at):
                     type(item[k]) is not int
                     for k in ("index", "price_minor", "quantity")
                 )
-                or item["index"] < 0
-                or item["price_minor"] < 0
-                or item["quantity"] <= 0
+                or not 0 <= item["index"] <= 99
+                or not 0 <= item["price_minor"] <= 1_000_000_000_000
+                or not 1 <= item["quantity"] <= 1_000_000
             ):
                 raise Refused("item_value")
             if (
                 not isinstance(item["item_id"], str)
-                or not 1 <= len(item["item_id"]) <= 100
+                or not re.fullmatch(r"[A-Za-z0-9_.:-]{1,100}", item["item_id"])
                 or item["index"] in positions
             ):
                 raise Refused("item_identity")
