@@ -303,6 +303,11 @@ class Campaign:
         raise TimeoutError("dataflow_cancel_not_terminal")
 
     def publish(self, path, cohort_id, repeat_first=False):
+        if not Path(path).resolve().is_relative_to((self.work / "sources").resolve()):
+            raise ValueError("only_fresh_owned_campaign_sources_can_be_sealed")
+        from .source_manifest import seal
+
+        seal(path)
         manifest = json.loads((Path(path) / "manifest.json").read_bytes())
         if manifest["bindings"] != self.m["bindings"]:
             raise ValueError("manifest_authority_not_bound_to_deployment")

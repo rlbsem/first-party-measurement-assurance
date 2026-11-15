@@ -168,6 +168,9 @@ def verify_candidate(m, metadata, archive, work):
 
     out = Path(work).resolve()
     out.mkdir(parents=True, exist_ok=True)
+    from .source_manifest import verify_scope
+
+    verified_scope = verify_scope(archive, metadata["tenant"], m["bindings"])
     expected = oracle_build(
         archive, out / "source-oracle.sqlite", tenant=metadata["tenant"]
     )
@@ -216,6 +219,7 @@ def verify_candidate(m, metadata, archive, work):
         output_hash=h,
         source_hash=expected["manifest_sha256"],
         independently_reconciled_minor_units=actual_totals,
+        source_scope=verified_scope,
         query_receipts=cloud.receipts,
     )
 
