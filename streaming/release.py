@@ -259,7 +259,7 @@ def execute(review_path, approved_digest, executable, dbt_python):
         )
         write(root / "resolved-plan.private.json", resolved)
         native_run(c)
-    except Exception as error:
+    except BaseException as error:
         failure = type(error).__name__
         write(
             root / "failure.private.json",
@@ -377,6 +377,18 @@ def execute(review_path, approved_digest, executable, dbt_python):
                 if failure is None and result["logical_absence"]
                 else "native_acceptance_failed"
             )
+            if c.record["status"] == "native_acceptance_passed":
+                from .evidence import validate
+
+                try:
+                    validate(c.record)
+                except (ValueError, KeyError, TypeError) as error:
+                    failure = "IncompleteAcceptanceEvidence"
+                    c.record["status"] = "native_acceptance_failed"
+                    write(
+                        root / "evidence-gate-failure.private.json",
+                        dict(type=type(error).__name__, native_acceptance_passed=False),
+                    )
             write(c.work / "campaign.private.json", c.record)
     if failure:
         raise RuntimeError("campaign_failed_preserved:" + failure)
