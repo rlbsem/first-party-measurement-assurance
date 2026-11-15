@@ -72,6 +72,7 @@ def collect(c, job, cohort, started_at):
     # CPU utilization is a GCE worker metric; allocated vCPUs are not utilization.
     url = f"https://compute.googleapis.com/compute/v1/projects/{c.m['project']}/aggregated/instances?maxResults=500"
     workers = []
+    current_job = c.cloud.call("GET", c.job_url(job), "metric-worker-job-binding")
     for page in range(20):
         value = c.cloud.call("GET", url, "monitoring-worker-inventory-" + str(page))
         for scope in value.get("items", {}).values():
@@ -79,6 +80,9 @@ def collect(c, job, cohort, started_at):
                 if any(
                     a.get("email") == c.m["identities"]["worker"]
                     for a in instance.get("serviceAccounts", [])
+                ) and (
+                    instance.get("labels", {}).get("goog-dataflow-job-id") == job
+                    or instance.get("name", "").startswith(current_job["name"] + "-")
                 ):
                     workers.append(instance)
         token = value.get("nextPageToken")
