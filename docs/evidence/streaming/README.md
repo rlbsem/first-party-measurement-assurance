@@ -1,6 +1,6 @@
 # Governed streaming evidence
 
-The local controls execute with synthetic sources. Native streaming acceptance remains unexecuted: the approved attempts below ended at image prerequisites or partial runtime provisioning, followed by independently verified cleanup. No Dataflow throughput, recovery duration or financial result is inferred from them.
+The local controls execute with synthetic sources. Native streaming acceptance remains unexecuted: the approved attempts below ended at image prerequisites, partial provisioning or guard readback, followed by independently verified cleanup. No Dataflow throughput, recovery duration or financial result is inferred from them.
 
 | Record | What executed | Boundary |
 |---|---|---|
@@ -11,6 +11,7 @@ The local controls execute with synthetic sources. Native streaming acceptance r
 | [Build admission](native-admission-2026-11-15/README.md) | Bootstrap, HTTP 400 access rejection, source export and independent cleanup | Source `7e0b575`; no build job created |
 | [Native build-identity storage](native-storage-2026-11-15/README.md) | Actual build-principal metadata/log access, independent readback, source-write rejection, log export and cleanup | Source `a94d951`; legacy worker then failed unpacking the base image; no streaming runtime |
 | [Image success and runtime prerequisite failure](native-runtime-prerequisite-2026-11-15/README.md) | Modern worker image build, exact registry readback, partial runtime apply, rejected custom role and independent cleanup | Source `8c60c44`; 130 runtime resources retired; no guard arming or streaming workload |
+| [Full deployment and guard-readback failure](native-guard-readback-2026-11-15/README.md) | Full runtime deployment, actual scheduled task, SDK readback failure, task retirement and independent residual checks | Source `9fe80b1`; native infrastructure compatibility, no Dataflow job or completed arming |
 
 Each historical record retains its original source revision, observations and hash manifest. Current source and tests can advance without changing those bytes. The offline evidence checker verifies committed records; it does not repeat a vendor execution or prove current cloud absence.
 

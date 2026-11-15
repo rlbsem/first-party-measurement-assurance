@@ -170,7 +170,10 @@ class Campaign:
             parent=m["guard_queue"], task=task, timeout=30
         )
         readback = task_client.get_task(
-            name=created.name, response_view=tasks_v2.Task.View.FULL, timeout=30
+            request=tasks_v2.GetTaskRequest(
+                name=created.name, response_view=tasks_v2.Task.View.FULL
+            ),
+            timeout=30,
         )
         if (
             readback.http_request.url != url
@@ -248,6 +251,7 @@ class Campaign:
             "--enable_streaming_engine",
             "--dataflow_service_options=enable_streaming_engine_resource_based_billing",
             "--disk_size_gb=30",
+            "--machine_type=" + self.plan["worker_machine_type"],
             "--sdk_container_image=" + self.plan["image"],
             "--sdk_location=container",
             "--num_workers=" + str(workers),
@@ -259,16 +263,22 @@ class Campaign:
         if snapshot:
             args.append("--create_from_snapshot=" + snapshot)
         log = self.work / (label + "-submit.private.log")
+        driver_timeout = False
         with log.open("w", encoding="utf-8") as stream:
-            result = subprocess.run(
-                args, stdout=stream, stderr=subprocess.STDOUT, timeout=600
-            )
+            try:
+                result = subprocess.run(
+                    args, stdout=stream, stderr=subprocess.STDOUT, timeout=600
+                )
+            except subprocess.TimeoutExpired:
+                driver_timeout = True
         # Unknown submit outcome is resolved by exact job name; never a blind new submission.
         matches = [j for j in inventory_jobs(self.cloud, self.m) if j["name"] == name]
         if len(matches) != 1:
             raise RuntimeError("dataflow_submission_not_uniquely_resolved")
         identifier = matches[0]["id"]
         self.jobs.append(identifier)
+        if driver_timeout:
+            raise TimeoutError("dataflow_driver_timeout_job_resolved_for_retirement")
         if result.returncode:
             raise RuntimeError("dataflow_driver_failed_after_job_lookup")
         end = time.monotonic() + 600

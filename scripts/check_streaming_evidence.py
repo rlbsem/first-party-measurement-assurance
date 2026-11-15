@@ -271,6 +271,42 @@ def check():
         or "dataflow.jobs.update" in catalog["observed"]
     ):
         raise ValueError("runtime_prerequisite_execution_boundary_changed")
+    guard_root = ROOT / "docs/evidence/streaming/native-guard-readback-2026-11-15"
+    guard_index = json.loads((guard_root / "sha256.json").read_bytes())
+    if set(guard_index) != {
+        p.relative_to(guard_root).as_posix()
+        for p in guard_root.rglob("*")
+        if p.is_file() and p.name != "sha256.json"
+    }:
+        raise ValueError("guard_evidence_inventory_changed")
+    for name, expected in guard_index.items():
+        path = (guard_root / name).resolve()
+        if (
+            not path.is_relative_to(guard_root.resolve())
+            or path.is_symlink()
+            or hashlib.sha256(path.read_bytes()).hexdigest() != expected
+        ):
+            raise ValueError("guard_evidence_changed:" + name)
+    guard = json.loads((guard_root / "outcome.json").read_bytes())
+    task = json.loads((guard_root / "task-observation.json").read_bytes())
+    if (
+        guard["runtime_created"] != 132
+        or guard["runtime_terraform_destroyed"] != 128
+        or guard["native_failure"]["type"] != "TypeError"
+        or guard["guard_armed"]
+        or guard["canary_executed"]
+        or guard["dataflow_jobs_submitted"] != 0
+        or guard["native_streaming_acceptance_executed"]
+        or not guard["subsequent_independent_cleanup"]["logical_absence"]
+        or guard["financial_results"] is not None
+        or guard["performance_results"] is not None
+        or guard["billing_clearance"]
+        or guard["actual_charge_cad"] is not None
+        or task["read_http_status"] != 200
+        or task["delete_http_status"] != 200
+        or not task["target_and_invoker_match_manifest"]
+    ):
+        raise ValueError("guard_execution_boundary_changed")
     return dict(
         evidence_files=len(manifest),
         bootstrap_evidence_files=len(bootstrap_index),
@@ -278,6 +314,7 @@ def check():
         admission_evidence_files=len(admission_index),
         storage_evidence_files=len(storage_index),
         runtime_prerequisite_evidence_files=len(runtime_index),
+        guard_evidence_files=len(guard_index),
         boundary="offline revalidation of local execution",
         canonical_rows=initial["canonical_rows"],
         native_streaming_executed=False,

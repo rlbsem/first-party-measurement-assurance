@@ -303,10 +303,19 @@ def execute(review_path, approved_digest, executable, dbt_python):
         write(root / "resolved-plan.private.json", resolved)
         native_run(c)
     except BaseException as error:
+        import traceback
+
         failure = type(error).__name__
         write(
             root / "failure.private.json",
-            dict(type=failure, observed_at=utc(), native_acceptance_passed=False),
+            dict(
+                type=failure,
+                observed_at=utc(),
+                native_acceptance_passed=False,
+                private_diagnostic=dict(
+                    message=str(error), traceback=traceback.format_exc()
+                ),
+            ),
         )
     finally:
         if runtime_applied and c is not None:

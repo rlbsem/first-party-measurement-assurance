@@ -115,18 +115,44 @@ def collect(m, work):
         if x.get("deleted", False)
     ]
     rows["user_managed_keys"] = []
+    rows["pending_identity_deletions"] = []
+    confirmed_identities = []
     for identity in rows["identities"]:
-        keys = cloud.call(
-            "GET",
-            "https://iam.googleapis.com/v1/"
-            + identity["name"]
-            + "/keys?keyTypes=USER_MANAGED",
-            "inventory-user-managed-keys",
-        )
+        try:
+            keys = cloud.call(
+                "GET",
+                "https://iam.googleapis.com/v1/"
+                + identity["name"]
+                + "/keys?keyTypes=USER_MANAGED",
+                "inventory-user-managed-keys",
+            )
+        except ProviderFailure as error:
+            if error.status != 404:
+                raise
+            # A stale list is not an active-identity guarantee. Confirm exact
+            # absence independently; an authorization error is never absence.
+            try:
+                cloud.call(
+                    "GET",
+                    "https://iam.googleapis.com/v1/" + identity["name"],
+                    "inventory-identity-after-key-404",
+                )
+            except ProviderFailure as fresh:
+                if fresh.status != 404:
+                    raise
+                rows["pending_identity_deletions"].append(
+                    dict(**identity, exact_identity_http_status=404)
+                )
+                continue
+            raise ValueError(
+                "identity_present_but_key_inventory_unavailable"
+            ) from error
+        confirmed_identities.append(identity)
         rows["user_managed_keys"].extend(
             dict(name=k["name"], key_type=k.get("keyType"))
             for k in keys.get("keys", [])
         )
+    rows["identities"] = confirmed_identities
     policy_client = Cloud(p, Path(work) / "policy-reader", quota_project=False)
     policy = policy_client.call(
         "POST",

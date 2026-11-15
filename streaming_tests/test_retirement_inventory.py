@@ -169,3 +169,82 @@ def test_retirement_after_failure_before_models_exist(tmp_path, monkeypatch, res
     else:
         prepare_retirement(manifest, tmp_path)
     assert len(deleted) == (2 if response == "owned" else 0)
+
+
+@pytest.mark.parametrize(
+    "keys_status,identity_status",
+    [(404, 404), (404, 200), (404, 403), (403, None), (200, None)],
+)
+def test_deleted_identity_list_race_requires_independent_exact_absence(
+    tmp_path, monkeypatch, keys_status, identity_status
+):
+    project, run = "example-project", "sm0123456789"
+    account = f"projects/{project}/serviceAccounts/{run}-worker@example.invalid"
+    manifest = dict(
+        project=project,
+        run=run,
+        region="us-central1",
+        bucket=project + "-" + run,
+        labels={"acceptance": run},
+        created_at="2026-11-14T12:00:00Z",
+        deadline="2026-11-14T15:00:00Z",
+        topics={},
+        identities={"worker": run + "-worker@example.invalid"},
+        cleanup_job=f"projects/{project}/locations/us-central1/jobs/{run}-cleanup",
+        guard_queue=f"projects/{project}/locations/us-central1/queues/{run}",
+    )
+
+    class Reader:
+        credentials = object()
+
+        def __init__(self, *a, **kw):
+            pass
+
+        def call(self, method, url, label, body=None):
+            if label.startswith("inventory-identities-"):
+                return {
+                    "accounts": [
+                        dict(name=account, email=run + "-worker@example.invalid")
+                    ]
+                }
+            if label == "inventory-user-managed-keys":
+                if keys_status == 200:
+                    return {"keys": []}
+                raise ProviderFailure(label, keys_status, "SYNTHETIC")
+            if label == "inventory-identity-after-key-404":
+                if identity_status == 200:
+                    return {"name": account}
+                raise ProviderFailure(label, identity_status, "SYNTHETIC")
+            if label in {
+                "inventory-image_repository",
+                "inventory-cleanup_job",
+                "inventory-guard_queue",
+            }:
+                raise ProviderFailure(label, 404, "NOT_FOUND")
+            return {}
+
+    monkeypatch.setattr("streaming.retirement.Cloud", Reader)
+    monkeypatch.setattr(
+        bigquery, "Client", lambda **kw: SimpleNamespace(list_datasets=lambda **kw: [])
+    )
+    monkeypatch.setattr(
+        storage, "Client", lambda **kw: SimpleNamespace(list_buckets=lambda **kw: [])
+    )
+    if keys_status == 403 or identity_status == 403:
+        with pytest.raises(ProviderFailure) as error:
+            collect(manifest, tmp_path)
+        assert error.value.status == 403
+        assert not (tmp_path / "inventory.private.json").exists()
+    elif keys_status == 404 and identity_status == 200:
+        with pytest.raises(
+            ValueError, match="identity_present_but_key_inventory_unavailable"
+        ):
+            collect(manifest, tmp_path)
+    else:
+        result = collect(manifest, tmp_path)
+        assert result["logical_absence"] is (identity_status == 404)
+        assert len(result["pending_identity_deletions"]) == (
+            1 if identity_status == 404 else 0
+        )
+        assert len(result["identities"]) == (0 if identity_status == 404 else 1)
+        assert not result["billing_clearance"]
