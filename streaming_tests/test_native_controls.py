@@ -5,7 +5,7 @@ import pytest
 from streaming.budget import initialize, reserve
 from streaming.cleanup import validate_manifest
 from streaming.contracts import canonical
-from streaming.evidence import validate
+from streaming.evidence import validate, REQUIRED
 from streaming.fixtures import archive, cohort
 from streaming.merkle import root
 from streaming.oracle import reconstruct
@@ -112,4 +112,23 @@ def test_evidence_cannot_relabel_local_or_incomplete_as_native():
     assert validate(record)
     record["actual_charge_cad"] = "0"
     with pytest.raises(ValueError, match="charge_record"):
+        validate(record)
+
+
+def test_green_stage_labels_without_observed_invariants_are_not_acceptance():
+    record = dict(
+        schema="streaming-campaign-evidence.v1",
+        source_commit="a" * 40,
+        status="native_acceptance_passed",
+        job_ids=["actual-shape-not-proof"],
+        query_ids=["actual-shape-not-proof"],
+        logical_cleanup_verified=True,
+        actual_charge_cad=None,
+        billing_clearance=False,
+        stages=[
+            dict(stage=name, status="passed", boundary="native-executed", checks={})
+            for name in REQUIRED
+        ],
+    )
+    with pytest.raises(ValueError, match="invariant"):
         validate(record)

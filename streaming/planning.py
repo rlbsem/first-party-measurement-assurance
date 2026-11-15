@@ -27,7 +27,7 @@ def source_map():
                 "streaming_tests/",
             )
         )
-        or n == "requirements-streaming.lock"
+        or n in {"requirements-streaming.lock", ".dockerignore"}
     }
 
 

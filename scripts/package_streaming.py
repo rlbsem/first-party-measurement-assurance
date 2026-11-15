@@ -53,6 +53,7 @@ def inventory():
                 ):
                     selected[p.relative_to(ROOT).as_posix()] = p
     selected["requirements-streaming.lock"] = ROOT / "requirements-streaming.lock"
+    selected[".dockerignore"] = ROOT / ".dockerignore"
     selected["package-manifest.json"] = ROOT / "package-manifest.json"
     audit(list(selected.values()))
     return {

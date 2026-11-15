@@ -1,0 +1,7 @@
+**
+!requirements-streaming.lock
+!streaming/
+!streaming/**
+streaming/**/__pycache__/
+streaming/**/.local/
+streaming/**/*.pyc

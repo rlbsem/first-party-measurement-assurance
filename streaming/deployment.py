@@ -88,7 +88,7 @@ def terraform(
 
 def source_bundle(destination):
     names = (
-        ["requirements-streaming.lock"]
+        ["requirements-streaming.lock", ".dockerignore"]
         + [
             p.relative_to(ROOT).as_posix()
             for p in (ROOT / "streaming").rglob("*")

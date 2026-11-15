@@ -191,6 +191,31 @@ def collect(m, work):
             if e.status != 404:
                 raise
             rows[key] = None
+    builds = pages(
+        cloud,
+        f"https://cloudbuild.googleapis.com/v1/projects/{p}/locations/{r}/builds?pageSize=100",
+        "builds",
+        "inventory-image-builds",
+    )
+    rows["active_builds"] = [
+        dict(id=b["id"], status=b["status"])
+        for b in builds
+        if run in b.get("tags", [])
+        and b.get("status") in ["QUEUED", "PENDING", "WORKING"]
+    ]
+    rows["active_cleanup_executions"] = []
+    if rows["cleanup_job"]:
+        executions = pages(
+            cloud,
+            "https://run.googleapis.com/v2/"
+            + m["cleanup_job"]
+            + "/executions?pageSize=100",
+            "executions",
+            "inventory-cleanup-executions",
+        )
+        rows["active_cleanup_executions"] = [
+            dict(name=e["name"]) for e in executions if not e.get("completionTime")
+        ]
     rows["observed_at"] = utc()
     rows["active_jobs"] = [
         j["id"] for j in rows["jobs"] if j.get("currentState") not in TERMINAL
@@ -217,6 +242,8 @@ def collect(m, work):
             "active_custom_roles",
             "owned_role_bindings",
             "user_managed_keys",
+            "active_builds",
+            "active_cleanup_executions",
         ]
     )
     rows["billing_clearance"] = False
@@ -310,6 +337,8 @@ def prepare_retirement(m, work):
         expected_run=m["run"],
     )
     observed = collect(m, Path(work) / "before")
+    if observed["active_builds"] or observed["active_cleanup_executions"]:
+        raise ValueError("provider_execution_still_active_before_evidence_export")
     # Cancel the one-shot guard only after independent absence of active workers.
     tasks = pages(
         cloud,
