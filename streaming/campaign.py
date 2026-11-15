@@ -302,7 +302,7 @@ class Campaign:
             time.sleep(10)
         raise TimeoutError("dataflow_cancel_not_terminal")
 
-    def publish(self, path, cohort_id, repeat_first=False):
+    def publish(self, path, cohort_id, repeat_first=False, rate=None):
         if not Path(path).resolve().is_relative_to((self.work / "sources").resolve()):
             raise ValueError("only_fresh_owned_campaign_sources_can_be_sealed")
         from .source_manifest import seal
@@ -321,7 +321,12 @@ class Campaign:
             f"sources/{cohort_id}/{manifest['manifest_sha256']}/manifest.json",
         )
         self.archives[cohort_id] = Path(path)
+        if rate is not None and not 1 <= rate <= 20_000:
+            raise ValueError("bounded_publisher_rate_required")
         accepted = []
+        eligible_at = (
+            utc()
+        )  # All sealed source bytes are now available, before publisher queuing.
         publishers = {}
         for segment in manifest["segments"]:
             self.check_time()
@@ -334,7 +339,6 @@ class Campaign:
                 )
             cloud = publishers[source]
             messages = []
-            eligible_at = utc()
             for ordinal, line in enumerate(
                 (Path(path) / segment["name"]).read_bytes().splitlines()
             ):
@@ -354,6 +358,7 @@ class Campaign:
             if self.published_messages + len(messages) > 8_000_000:
                 raise ValueError("campaign_message_ceiling")
             began = utc()
+            started = time.monotonic()
             result = cloud.call(
                 "POST",
                 "https://pubsub.googleapis.com/v1/"
@@ -390,6 +395,8 @@ class Campaign:
                     raise ValueError("distinct_transport_replay_not_observed")
                 self.published_messages += 1
                 repeat_first = False
+            if rate is not None:
+                time.sleep(max(0, len(messages) / rate - (time.monotonic() - started)))
         write(
             self.work / (cohort_id + "-publisher.private.json"),
             dict(source_manifest=manifest["manifest_sha256"], segments=accepted),

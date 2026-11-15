@@ -77,12 +77,19 @@ def verified_archive(c, path, name):
 
 
 def cohort_acceptance(
-    c, name, projects=4, skew=False, repeat=False, load_events=None, path_override=None
+    c,
+    name,
+    projects=4,
+    skew=False,
+    repeat=False,
+    load_events=None,
+    path_override=None,
+    rate=None,
 ):
     path = path_override or c.source_fixture(
         name, projects, skew, load_events=load_events
     )
-    manifest, segments = c.publish(path, name, repeat_first=repeat)
+    manifest, segments = c.publish(path, name, repeat_first=repeat, rate=rate)
     register_source(c, path, name)
     coverage = c.wait_coverage(name, manifest["count"])
     independent = verified_archive(c, path, name)
@@ -367,7 +374,11 @@ def competing_approvals(c, outcome, archive_path):
     scope = original["tenant"]
     # Both candidates are independently verified before competing for the same predecessor.
     variants = []
-    model = f"{c.m['project']}.{c.m['run']}_dataflow_models.fct_stream_events"
+    from .warehouse import build_models
+
+    model, _ = build_models(
+        c.m, outcome["cohort"], "dataflow", c.work / "race-models", c.dbt_python
+    )
     for suffix in ["race-a", "race-b"]:
         meta, _ = create_candidate(
             c.m,
@@ -528,6 +539,47 @@ def competing_approvals(c, outcome, archive_path):
     )[0]["n"]
     if verified != meta["row_count"]:
         raise ValueError("exact_candidate_restoration_failed")
+    other = next(t for t in c.m["consumers"] if t != scope)
+    other_original = next(
+        x["metadata"]
+        for x in outcome["outcomes"]["dataflow"]
+        if x["metadata"]["tenant"] == other
+    )
+    lost_meta, _ = create_candidate(
+        c.m,
+        "lost-publication-ack-" + other,
+        other,
+        model,
+        other_original["source_hash"],
+        c.work / "lost-publication-ack" / "candidate",
+        "dataflow",
+        outcome["cohort"],
+    )
+    verify_candidate(
+        c.m, lost_meta, archive_path, c.work / "lost-publication-ack" / "verify"
+    )
+    try:
+        approve(
+            c.m,
+            lost_meta,
+            "lost-publication-ack",
+            1,
+            c.work / "lost-publication-ack" / "commit",
+            fault="after_commit",
+        )
+    except ConnectionError:
+        pass
+    else:
+        raise ValueError("post_commit_ack_loss_not_executed")
+    recovered, _ = approve(
+        c.m,
+        lost_meta,
+        "lost-publication-ack",
+        1,
+        c.work / "lost-publication-ack" / "recover",
+    )
+    if recovered["epoch"] != 2 or recovered["candidate"] != lost_meta["candidate"]:
+        raise ValueError("post_commit_receipt_recovery_failed")
     c.save(
         "competing_approvals",
         "passed",
@@ -538,6 +590,7 @@ def competing_approvals(c, outcome, archive_path):
             current_policy_required_for_new_action=True,
             results=results,
             exact_request_retry_unchanged=True,
+            post_commit_ack_loss_recovered=True,
             independent_epoch=2,
         ),
     )
@@ -549,7 +602,7 @@ def sink_ahead_recovery(c, job):
     register_source(c, path, "recovery")
     c.wait_coverage("recovery", m["count"])
     source = verified_archive(c, path, "recovery")
-    c.publish_candidate(source, "recovery", "dataflow")
+    original = c.publish_candidate(source, "recovery", "dataflow")
     snapshot = None
     snapshot_failure = None
     try:
@@ -673,6 +726,50 @@ def sink_ahead_recovery(c, job):
         )
         if retry != receipt:
             raise ValueError("restored_processing_reactivated_stale_release")
+    # Old certified rows and receipts must remain independently inspectable.
+    # An exact old receipt retry is historical reconciliation, never activation.
+    from google.api_core.exceptions import BadRequest
+    from google.cloud import bigquery
+
+    for prior in original:
+        meta = prior["metadata"]
+        verify_candidate(
+            c.m, meta, source, c.work / "retained-original" / meta["tenant"]
+        )
+        retried, _ = approve(
+            c.m,
+            meta,
+            prior["approval"]["request"],
+            0,
+            c.work / "old-request-retry" / meta["tenant"],
+        )
+        if retried != prior["approval"]:
+            raise ValueError("historical_approval_receipt_changed")
+        try:
+            approve(
+                c.m,
+                meta,
+                "stale-source-new-action-" + meta["tenant"],
+                2,
+                c.work / "stale-new-action" / meta["tenant"],
+            )
+        except BadRequest:
+            pass
+        else:
+            raise ValueError("old_source_candidate_reactivated")
+        params = [bigquery.ScalarQueryParameter("tenant", "STRING", meta["tenant"])]
+        observed = c.cloud.query(
+            f"SELECT candidate,epoch FROM `{c.m['project']}.{c.m['output_dataset']}.selectors` WHERE tenant=@tenant AND cohort='recovery' AND lane='dataflow'",
+            "independent-post-restore-selector-" + meta["tenant"],
+            params,
+        )
+        current = next(m for m, r in revised if m["tenant"] == meta["tenant"])
+        if (
+            len(observed) != 1
+            or observed[0]["epoch"] != 2
+            or observed[0]["candidate"] != current["candidate"]
+        ):
+            raise ValueError("old_receipt_retry_changed_current_release")
     c.save(
         "sink_ahead_recovery",
         "passed",
@@ -723,7 +820,12 @@ def performance(c, current_job):
                     )
                 start = time.monotonic()
                 measurement_started_at = utc()
-                outcome, _ = cohort_acceptance(c, name, path_override=frozen[key])
+                outcome, _ = cohort_acceptance(
+                    c,
+                    name,
+                    path_override=frozen[key],
+                    rate=5000 if size == 100_000 and repeat == 0 and not skew else None,
+                )
                 metrics = c.metrics(current_job)
                 from .campaign import metric_observations
 
@@ -735,6 +837,9 @@ def performance(c, current_job):
                     dict(
                         cohort=name,
                         events=size,
+                        input_mode="paced-5000-per-second"
+                        if size == 100_000 and repeat == 0 and not skew
+                        else "unpaced-burst",
                         workers=workers,
                         skew=skew,
                         repeat=repeat,

@@ -143,6 +143,7 @@ def acceptance_checks(stages):
             for k in [
                 "before_commit_rolled_back",
                 "exact_request_retry_unchanged",
+                "post_commit_ack_loss_recovered",
                 "unpublished_invisible",
                 "current_policy_required_for_new_action",
                 "selected_content_corruption_blocks_reads",
