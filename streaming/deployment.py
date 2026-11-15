@@ -178,6 +178,16 @@ def build_image(
             ):
                 raise ValueError("image_build_provenance_mismatch")
             image = repository + "@" + images[0]["digest"]
+            from .retirement import pages
+
+            registry = pages(
+                cloud,
+                f"https://artifactregistry.googleapis.com/v1/projects/{project}/locations/us-central1/repositories/{run}/dockerImages?pageSize=100",
+                "dockerImages",
+                "independent-image-readback",
+            )
+            if len([entry for entry in registry if entry.get("uri") == image]) != 1:
+                raise ValueError("registry_digest_readback_not_established")
             write(
                 Path(work) / "verified-image.private.json",
                 dict(
@@ -185,6 +195,7 @@ def build_image(
                     source_sha256=source_hash,
                     build_id=build["id"],
                     source_generation=str(blob.generation),
+                    independent_registry_readback=True,
                 ),
             )
             return image
