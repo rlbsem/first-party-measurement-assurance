@@ -66,7 +66,12 @@ def acceptance_checks(stages):
     negatives = correct.get("native_negative_probes", [])
     require(
         {x["probe"] for x in negatives}
-        == {"authority-spoof", "revision-conflict", "future-clock"},
+        == {
+            "authority-spoof",
+            "tenant-entity-spoof",
+            "revision-conflict",
+            "future-clock",
+        },
         "native_negative_probes",
     )
     require(
@@ -229,6 +234,31 @@ def export(private_record, destination):
     result["private_record_sha256"] = hashlib.sha256(
         Path(private_record).read_bytes()
     ).hexdigest()
+    deployment = Path(private_record).parent / "deployment.private.json"
+    project = (
+        json.loads(deployment.read_bytes())["project"] if deployment.exists() else None
+    )
+
+    def sanitize(value):
+        if isinstance(value, dict):
+            return {k: sanitize(v) for k, v in value.items()}
+        if isinstance(value, list):
+            return [sanitize(v) for v in value]
+        if isinstance(value, str):
+            value = value.replace(project, "<approved-project>") if project else value
+            value = re.sub(
+                r"[A-Za-z0-9_.+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}",
+                lambda m: "<principal-"
+                + hashlib.sha256(m[0].encode()).hexdigest()[:16]
+                + ">",
+                value,
+            )
+        return value
+
+    result = sanitize(result)
+    result["redaction_boundary"] = (
+        "Exact project identifiers replaced; principal identifiers hashed. Measurements and provider job/query IDs retained."
+    )
     validate(result)
     text = json.dumps(result, sort_keys=True, indent=2) + "\n"
     if re.search(

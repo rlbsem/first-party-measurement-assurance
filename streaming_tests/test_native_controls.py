@@ -132,3 +132,31 @@ def test_green_stage_labels_without_observed_invariants_are_not_acceptance():
     )
     with pytest.raises(ValueError, match="invariant"):
         validate(record)
+
+
+def test_native_cleanup_sdk_request_is_available_and_serializes_offline():
+    from google.cloud import tasks_v2
+    from google.protobuf.timestamp_pb2 import Timestamp
+    from datetime import datetime, timezone
+
+    stamp = Timestamp()
+    stamp.FromDatetime(datetime.now(timezone.utc))
+    task = tasks_v2.Task(
+        name="projects/example-project/locations/us-central1/queues/owned/tasks/deadline",
+        schedule_time=stamp,
+        http_request=tasks_v2.HttpRequest(
+            url="https://run.googleapis.com/v2/projects/example-project/locations/us-central1/jobs/owned:run",
+            http_method=tasks_v2.HttpMethod.POST,
+            body=b"{}",
+            oauth_token=tasks_v2.OAuthToken(
+                service_account_email="guard@example-project.iam.gserviceaccount.com",
+                scope="https://www.googleapis.com/auth/cloud-platform",
+            ),
+        ),
+    )
+    decoded = tasks_v2.Task.deserialize(tasks_v2.Task.serialize(task))
+    assert decoded.http_request.body == b"{}" and decoded.schedule_time.timestamp() > 0
+    assert (
+        decoded.http_request.oauth_token.service_account_email
+        == "guard@example-project.iam.gserviceaccount.com"
+    )

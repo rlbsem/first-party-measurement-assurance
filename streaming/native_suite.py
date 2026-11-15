@@ -7,7 +7,7 @@ from concurrent.futures import ThreadPoolExecutor
 from copy import deepcopy
 from datetime import datetime, timezone
 from pathlib import Path
-from .gcp import Cloud, ProviderFailure, write
+from .gcp import Cloud, ProviderFailure, write, utc
 from .fixtures import archive, correction
 from .warehouse import approve, create_candidate, verify_candidate
 from .metrics import publication_latency
@@ -132,7 +132,12 @@ def adversarial_cohorts(c):
     from .oracle_disk import build as oracle_build
 
     observations = []
-    for name in ["authority-spoof", "revision-conflict", "future-clock"]:
+    for name in [
+        "authority-spoof",
+        "tenant-entity-spoof",
+        "revision-conflict",
+        "future-clock",
+    ]:
         original = c.source_fixture("source-" + name, 4)
         manifest = json.loads((original / "manifest.json").read_bytes())
         routed = {source: [] for source in c.m["bindings"]}
@@ -145,6 +150,9 @@ def adversarial_cohorts(c):
         healthy = sorted(c.m["consumers"])[1]
         if name == "authority-spoof":
             row = deepcopy(routed[bad + "-commerce"][0])
+            routed[bad + "-web"].append(row)
+        elif name == "tenant-entity-spoof":
+            row = deepcopy(routed[healthy + "-web"][0])
             routed[bad + "-web"].append(row)
         elif name == "revision-conflict":
             row = deepcopy(
@@ -714,11 +722,15 @@ def performance(c, current_job):
                         skew=skew,
                     )
                 start = time.monotonic()
+                measurement_started_at = utc()
                 outcome, _ = cohort_acceptance(c, name, path_override=frozen[key])
                 metrics = c.metrics(current_job)
                 from .campaign import metric_observations
 
                 measurement = metric_observations(metrics)
+                from .observability import collect
+
+                series = collect(c, current_job, name, measurement_started_at)
                 pairs.append(
                     dict(
                         cohort=name,
@@ -732,6 +744,7 @@ def performance(c, current_job):
                         equal=True,
                         sink_visibility=outcome["sink_visibility"],
                         provider_observability=measurement,
+                        provider_timeseries=series,
                         processing_latency=c.operational_observations(
                             name, outcome["source_rows"]
                         ),
