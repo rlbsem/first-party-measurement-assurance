@@ -51,10 +51,26 @@ def collect(m, work):
             if x.get("labels", {}).get("acceptance") == run
             or belongs(x["name"].split("/")[-1], run)
         ]
+    # Dataflow can create randomly named Pub/Sub source snapshots. Namespace
+    # matching alone is insufficient: bind ownership to exact owned topics and
+    # retain their names for verification after topic deletion.
+    source_snapshots = pages(
+        cloud,
+        f"https://pubsub.googleapis.com/v1/projects/{p}/snapshots?pageSize=1000",
+        "snapshots",
+        "inventory-source-snapshots",
+    )
+    rows["pubsub_snapshots"] = [
+        s
+        for s in source_snapshots
+        if s.get("topic") in set(m["topics"].values())
+        or s["name"] in m.get("pubsub_snapshot_refs", [])
+    ]
     snapshots = pages(
         cloud,
         f"https://dataflow.googleapis.com/v1b3/projects/{p}/locations/{r}/snapshots",
         "snapshots",
+        "pubsub_snapshots",
         "inventory-snapshots",
     )
     ids = {j["id"] for j in rows["jobs"]}
@@ -339,6 +355,9 @@ def prepare_retirement(m, work):
     observed = collect(m, Path(work) / "before")
     if observed["active_builds"] or observed["active_cleanup_executions"]:
         raise ValueError("provider_execution_still_active_before_evidence_export")
+    m["pubsub_snapshot_refs"] = [s["name"] for s in observed["pubsub_snapshots"]]
+    write(Path(work) / "resource-registry.private.json", m)
+
     # Cancel the one-shot guard only after independent absence of active workers.
     tasks = pages(
         cloud,
@@ -362,6 +381,27 @@ def prepare_retirement(m, work):
             f"https://dataflow.googleapis.com/v1b3/projects/{m['project']}/locations/{m['region']}/snapshots/{snap['id']}",
             "delete-snapshot-" + snap["id"],
         )
+    for snapshot in observed["pubsub_snapshots"]:
+        if snapshot.get("topic") not in set(m["topics"].values()) or not snapshot[
+            "name"
+        ].startswith("projects/" + m["project"] + "/snapshots/"):
+            raise ValueError("source_snapshot_ownership_not_established")
+        try:
+            fresh = cloud.call(
+                "GET",
+                "https://pubsub.googleapis.com/v1/" + snapshot["name"],
+                "fresh-source-snapshot",
+            )
+            if fresh.get("topic") not in set(m["topics"].values()):
+                raise ValueError("source_snapshot_topic_changed")
+            cloud.call(
+                "DELETE",
+                "https://pubsub.googleapis.com/v1/" + snapshot["name"],
+                "delete-owned-source-snapshot",
+            )
+        except ProviderFailure as error:
+            if error.status != 404:
+                raise
     # Model tables are generated outside Terraform. Delete only the labeled owned
     # model datasets; Terraform retires its own tables/views and other datasets.
     from google.cloud import bigquery, storage

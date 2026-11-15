@@ -192,7 +192,7 @@
   "streaming/preflight.py": "fe7300d8ef02a48b2504c99f9647469380e0a3190e0d460da6dbc9cce9e52a32",
   "streaming/pricing.py": "77399998ecb9629d4cc66756e1d0415f306dc44e5088b0105c9f8951a4142dae",
   "streaming/release.py": "a2ef767f84c1ace5735ee6bbcbf2a357ab89f4a4a3800ab2987f4e2f23bdabdf",
-  "streaming/retirement.py": "9017b2d484fe5e03d55f0a3a3801f0aa44a6c4cf6136fdf13e05ff6659708271",
+  "streaming/retirement.py": "2d2974cec34859904b139a4e92d9cc13a021e04ca552328f74715db83ffaa480",
   "streaming/setup.py": "e4bb20f4eeac5423c066dbd0d60a146a4a9792447a041014ee00501553299ed3",
   "streaming/source_manifest.py": "84ebdfb0e5025276a8736e6d7de1b7a6d17fdfccfaf70395b302d9ef55be6abf",
   "streaming/sqlcheck.py": "eecadfeca9e59dec0a4c05b2742951f39e15447e7b943f6f40349991cfd283fc",
