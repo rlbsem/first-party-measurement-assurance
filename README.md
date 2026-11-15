@@ -24,6 +24,8 @@ A conversion must represent the business event it claims to measure. This reposi
 
 The [streaming lane](docs/governed-streaming.md) adds authenticated source contracts, real Beam state/timer processing, independent full-rowset reconciliation and transactional publication controls. Its local execution is recorded separately. Terraform, a direct-ingestion baseline and the bounded native campaign are implemented; **native Pub/Sub/Dataflow streaming acceptance and performance measurements are not yet executed**. Existing BigQuery/dbt evidence does not stand in for those results.
 
+The [first native bootstrap attempt](docs/evidence/streaming/native-bootstrap-2026-11-15/README.md) stopped on a controller polling error after Cloud Build accepted the request. The build was cancelled and the isolated prerequisites retired. The regional polling correction is covered by regression tests and an actual read-only provider check; it does not establish streaming acceptance.
+
 ## Try the application locally
 
 **No-install preview:** See the [executed measurement-health screenshot](docs/images/measurement-health.png), [browser instrumentation screenshot](docs/images/browser-laboratory.png), and [recorded execution evidence](docs/evidence/README.md). These are saved results, not a publicly hosted live application.

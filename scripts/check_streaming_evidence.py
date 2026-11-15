@@ -83,8 +83,44 @@ def check():
     for name, h in observed["source_sha256"].items():
         if hashlib.sha256((ROOT / name).read_bytes()).hexdigest() != h:
             raise ValueError("planned_sql_source_changed:" + name)
+    bootstrap = ROOT / "docs/evidence/streaming/native-bootstrap-2026-11-15"
+    bootstrap_index = json.loads((bootstrap / "sha256.json").read_bytes())
+    if set(bootstrap_index) != {
+        p.relative_to(bootstrap).as_posix()
+        for p in bootstrap.rglob("*")
+        if p.is_file() and p.name != "sha256.json"
+    }:
+        raise ValueError("bootstrap_evidence_inventory_changed")
+    for name, h in bootstrap_index.items():
+        path = (bootstrap / name).resolve()
+        if (
+            not path.is_relative_to(bootstrap.resolve())
+            or path.is_symlink()
+            or hashlib.sha256(path.read_bytes()).hexdigest() != h
+        ):
+            raise ValueError("bootstrap_evidence_changed:" + name)
+    attempt = json.loads((bootstrap / "outcome.json").read_bytes())
+    if (
+        attempt["boundary"] != "native-bootstrap-and-read-only-verification-only"
+        or attempt["build_status"] != "CANCELLED"
+        or attempt["runtime_apply_attempted"]
+        or attempt["canary_executed"]
+        or attempt["native_streaming_acceptance_executed"]
+        or attempt["financial_results"] is not None
+        or attempt["performance_results"] is not None
+        or attempt["billing_clearance"]
+        or attempt["actual_charge_cad"] is not None
+        or attempt["cleanup_checks"]["owned_dataflow_jobs"] != 0
+        or any(
+            value != "NOT_FOUND_404"
+            for key, value in attempt["cleanup_checks"].items()
+            if key != "owned_dataflow_jobs"
+        )
+    ):
+        raise ValueError("bootstrap_execution_boundary_changed")
     return dict(
         evidence_files=len(manifest),
+        bootstrap_evidence_files=len(bootstrap_index),
         boundary="offline revalidation of local execution",
         canonical_rows=initial["canonical_rows"],
         native_streaming_executed=False,

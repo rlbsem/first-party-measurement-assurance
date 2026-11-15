@@ -3,6 +3,7 @@
 import hashlib
 import io
 import json
+import re
 import subprocess
 import tarfile
 import time
@@ -10,6 +11,19 @@ from pathlib import Path
 from .gcp import Cloud, write
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def accepted_build_url(project, run, operation):
+    """Regional creation can return a legacy LRO name; poll the regional Build."""
+    build = operation.get("metadata", {}).get("build", {})
+    identifier = build.get("id", "")
+    if (
+        build.get("projectId") != project
+        or run not in build.get("tags", [])
+        or not re.fullmatch(r"[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}", identifier)
+    ):
+        raise ValueError("accepted_build_identity_not_established")
+    return f"https://cloudbuild.googleapis.com/v1/projects/{project}/locations/us-central1/builds/{identifier}"
 
 
 def terraform(
@@ -160,16 +174,19 @@ def build_image(
     )
     # Persist the accepted operation before polling. Never submit another build on an unknown result.
     write(Path(work) / "build-operation.private.json", operation)
-    name = operation["name"]
+    url = accepted_build_url(project, run, operation)
     end = time.monotonic() + 1000
     while time.monotonic() < end:
-        result = cloud.call(
-            "GET", "https://cloudbuild.googleapis.com/v1/" + name, "observe-image-build"
-        )
-        if result.get("done"):
-            if "error" in result:
-                raise RuntimeError("native_image_build_failed")
-            build = result["response"]
+        build = cloud.call("GET", url, "observe-image-build")
+        if build.get("status") in {
+            "FAILURE",
+            "INTERNAL_ERROR",
+            "TIMEOUT",
+            "CANCELLED",
+            "EXPIRED",
+        }:
+            raise RuntimeError("native_image_build_failed_see_preserved_status")
+        if build.get("status") == "SUCCESS":
             images = build.get("results", {}).get("images", [])
             if (
                 build.get("status") != "SUCCESS"

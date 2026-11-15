@@ -74,6 +74,25 @@ def test_image_resolution_cannot_smuggle_permission_or_resource_changes():
     assert scope(old, "preview") != scope(resolved, "actual-digest")
 
 
+def test_delayed_prior_consumption_is_reserved_inside_the_same_envelope(monkeypatch):
+    monkeypatch.setattr("streaming.planning.source_map", lambda: {"file": "a" * 64})
+    plan = dict(
+        expires_at="2026-11-16T00:00:00Z",
+        source_sha256={"file": "a" * 64},
+        predicted_cad="299",
+        execution_envelope_cad="300",
+        prior_pending_cad="2",
+    )
+    with pytest.raises(ValueError, match="exposure"):
+        authorize(
+            plan,
+            digest(plan),
+            True,
+            "299",
+            now=datetime(2026, 11, 15, tzinfo=timezone.utc),
+        )
+
+
 @pytest.mark.parametrize(
     "url",
     [
@@ -151,3 +170,27 @@ def test_image_bundle_cannot_include_unreviewed_private_files(tmp_path, monkeypa
         assert archive.getnames() == ["streaming/code.py"]
     with pytest.raises(ValueError, match="source_changed"):
         source_bundle(tmp_path / "changed.tar.gz", {"streaming/code.py": "0" * 64})
+
+
+def test_regional_build_uses_accepted_build_id_instead_of_legacy_operation_route():
+    from streaming.deployment import accepted_build_url
+
+    # Contract fixture based on the preserved response shape, not an execution log.
+    operation = {
+        "name": "operations/build/example-project/opaque",
+        "metadata": {
+            "build": {
+                "projectId": "example-project",
+                "id": "12345678-1234-1234-1234-123456789012",
+                "tags": ["sm0123456789"],
+            }
+        },
+    }
+    assert (
+        accepted_build_url("example-project", "sm0123456789", operation)
+        == "https://cloudbuild.googleapis.com/v1/projects/example-project/locations/us-central1/builds/12345678-1234-1234-1234-123456789012"
+    )
+    with pytest.raises(ValueError, match="identity"):
+        accepted_build_url("another-project", "sm0123456789", operation)
+    with pytest.raises(ValueError, match="identity"):
+        accepted_build_url("example-project", "sm9999999999", operation)

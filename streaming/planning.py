@@ -145,6 +145,9 @@ def authorize(
         valid = False
     if not valid:
         raise ValueError("bounded_exposure_required")
+    admit_step(
+        "0", plan.get("prior_pending_cad", "0"), value, plan["execution_envelope_cad"]
+    )
     if plan["source_sha256"] != source_map():
         raise ValueError("source_changed_since_approval")
     return True

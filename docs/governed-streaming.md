@@ -73,6 +73,8 @@ Test targets are **zero unexplained source loss, zero repeated financial value, 
 
 ## Cleanup and residual boundaries
 
+The [November 15 UTC bootstrap record](evidence/streaming/native-bootstrap-2026-11-15/README.md) preserves an actual aborted image-build attempt, the controller correction and independent cleanup observations. Runtime deployment and streaming acceptance did not begin. A cancelled build, an available quota and a successful metadata read are separate observations from completed native processing.
+
 A one-shot Cloud Tasks deadline invokes an independently scoped Cloud Run stopper. Arming checks the scheduled request, identity, image and exact arguments before starting Dataflow. The stopper has three bounded attempts; it is not a recurring experiment and does not retire every resource.
 
 The owner-side retirement path separately stops jobs, deletes owned snapshots, verifies every exported GCS generation, refuses late unarchived writes, retires Terraform resources and reads fresh provider inventory. It preserves errors and private state if cleanup fails. No secret values are fetched.
