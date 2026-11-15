@@ -1,0 +1,8 @@
+1: starting build "826bc76c-00a8-4417-b492-9e87cca7fa3f" using release 2026.09
+10: Starting Step #0 - "engine-version"
+11: Step #0 - "engine-version": Already have image (with digest): gcr.io/cloud-builders/docker
+12: Step #0 - "engine-version": {"Platform":{"Name":"Docker Engine - Community"},"Version":"29.9.2","ApiVersion":"1.56","MinAPIVersion":"1.40","Os":"linux","Arch":"amd64","Components":[{"Name":"Engine","Version":"29.9.2","Details":{"ApiVersion":"1.56","Arch":"amd64","BuildTime":"Tue Oct 20 18:45:13 2026","Experimental":"false","GitCommit":"0367cbe","GoVersion":"go1.26.10","KernelVersion":"6.12.113+deb13-cloud-amd64","MinAPIVersion":"1.40","Module":"github.com/moby/moby/v2","ModuleVersion":"v2.0.0+unknown","Os":"linux"}},{"Name":"containerd","Version":"v2.4.2","Details":{"GitCommit":"b7a25261e029d68978bbf290df0a62fc819b3c51"}},{"Name":"runc","Version":"1.5.2","Details":{"GitCommit":"v1.5.2-0-g29dd3dc2"}},{"Name":"docker-init","Version":"0.19.0","Details":{"GitCommit":"de40ad0"}}],"GitCommit":"0367cbe","GoVersion":"go1.26.10","KernelVersion":"6.12.113+deb13-cloud-amd64","BuildTime":"2026-10-20T18:45:13.000000000+00:00"}
+13: Finished Step #0 - "engine-version"
+717: Finished Step #1 - "worker-image"
+769: d55ceed310ab935c7157b0c1847a1dcc15b0f37a36790d294b19e14471302c2e: digest: sha256:dd8d9420b8d5c80a6522f4e8371cc1823f398e5bf6fe7e73eecbf0dbbd8b46fa size: 856
+770: DONE

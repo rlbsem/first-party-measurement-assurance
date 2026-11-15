@@ -27,6 +27,10 @@ variables {
 run "private_source_scoped_defaults" {
   command = plan
   assert {
+    condition     = toset(google_project_iam_custom_role.stop_jobs.permissions) == toset(["dataflow.jobs.get", "dataflow.jobs.list", "dataflow.jobs.cancel"])
+    error_message = "Deadline cancellation needs jobs.cancel, not an invented jobs.update or runtime-parameter update permission."
+  }
+  assert {
     condition     = google_compute_subnetwork.workers.private_ip_google_access && !google_compute_network.private.auto_create_subnetworks
     error_message = "Workers must use the isolated private API-enabled network."
   }

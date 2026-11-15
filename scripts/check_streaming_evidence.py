@@ -228,12 +228,56 @@ def check():
         not in (storage_root / "build-output.redacted.txt").read_text(encoding="utf-8")
     ):
         raise ValueError("storage_execution_boundary_changed")
+    runtime_root = (
+        ROOT / "docs/evidence/streaming/native-runtime-prerequisite-2026-11-15"
+    )
+    runtime_index = json.loads((runtime_root / "sha256.json").read_bytes())
+    if set(runtime_index) != {
+        p.relative_to(runtime_root).as_posix()
+        for p in runtime_root.rglob("*")
+        if p.is_file() and p.name != "sha256.json"
+    }:
+        raise ValueError("runtime_prerequisite_inventory_changed")
+    for name, expected in runtime_index.items():
+        path = (runtime_root / name).resolve()
+        if (
+            not path.is_relative_to(runtime_root.resolve())
+            or path.is_symlink()
+            or hashlib.sha256(path.read_bytes()).hexdigest() != expected
+        ):
+            raise ValueError("runtime_prerequisite_evidence_changed:" + name)
+    runtime = json.loads((runtime_root / "outcome.json").read_bytes())
+    catalog = json.loads((runtime_root / "permission-catalog.json").read_bytes())
+    if (
+        runtime["build_status"] != "SUCCESS"
+        or runtime["build_engine"]["observed_docker_server_version"] != "29.9.2"
+        or not runtime["independent_registry_readback"]
+        or not runtime["runtime_apply_attempted"]
+        or runtime["runtime_resources_created"] != runtime["runtime_resources_retired"]
+        or runtime["runtime_resources_retired"] != 130
+        or runtime["bootstrap_resources_retired"] != 17
+        or runtime["guard_armed"]
+        or runtime["canary_executed"]
+        or runtime["native_streaming_acceptance_executed"]
+        or runtime["financial_results"] is not None
+        or runtime["performance_results"] is not None
+        or not runtime["independent_cleanup"]["logical_absence"]
+        or runtime["actual_charge_cad"] is not None
+        or runtime["billing_clearance"]
+        or not catalog["valid"]
+        or catalog["resources_created"]
+        or len(catalog["observed"]) != 6
+        or "dataflow.jobs.cancel" not in catalog["observed"]
+        or "dataflow.jobs.update" in catalog["observed"]
+    ):
+        raise ValueError("runtime_prerequisite_execution_boundary_changed")
     return dict(
         evidence_files=len(manifest),
         bootstrap_evidence_files=len(bootstrap_index),
         image_evidence_files=len(image_index),
         admission_evidence_files=len(admission_index),
         storage_evidence_files=len(storage_index),
+        runtime_prerequisite_evidence_files=len(runtime_index),
         boundary="offline revalidation of local execution",
         canonical_rows=initial["canonical_rows"],
         native_streaming_executed=False,

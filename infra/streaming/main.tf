@@ -320,7 +320,7 @@ resource "google_storage_bucket_iam_member" "worker_staging" {
 resource "google_project_iam_custom_role" "stop_jobs" {
   role_id     = "${var.run}_stop_jobs"
   title       = "Owned deadline stopper ${var.run}"
-  permissions = ["dataflow.jobs.get", "dataflow.jobs.list", "dataflow.jobs.update"]
+  permissions = ["dataflow.jobs.get", "dataflow.jobs.list", "dataflow.jobs.cancel"]
 }
 resource "google_project_iam_member" "cleanup_jobs" {
   project = var.project

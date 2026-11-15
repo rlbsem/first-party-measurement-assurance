@@ -65,6 +65,16 @@ def prepare(project, run, operator_member, quotas, rates, executable, work):
         root / "runtime-review",
     )
     campaign = plan(project, run, image, runtime["path"], quotas, rates)
+    from .permission_catalog import validate_saved_roles
+
+    validate_saved_roles(
+        project,
+        [
+            root / "bootstrap-review/plan-review.private.json",
+            root / "runtime-review/plan-review.private.json",
+        ],
+        root / "permission-validation",
+    )
     bundle = dict(
         schema="streaming-deployment-review.v1",
         prepared_at=utc(),
@@ -82,6 +92,16 @@ def prepare(project, run, operator_member, quotas, rates, executable, work):
             permit_only_reviewed_digest_substitution=True,
         ),
         approval_covers_cleanup=True,
+        custom_role_validation_sha256=hashlib.sha256(
+            (root / "permission-validation/verification.private.json").read_bytes()
+        ).hexdigest(),
+        reviewed_metadata_sha256={
+            name: hashlib.sha256((root / name).read_bytes()).hexdigest()
+            for name in [
+                "bootstrap-review/plan-review.private.json",
+                "runtime-review/plan-review.private.json",
+            ]
+        },
         billing_arrangements_must_not_change=True,
     )
     write(root / "owner-review.private.json", bundle)
@@ -144,6 +164,29 @@ def execute(review_path, approved_digest, executable, dbt_python):
             != bundle[key]["sha256"]
         ):
             raise ValueError("saved_plan_changed")
+    from .permission_catalog import validate_saved_roles
+
+    metadata = bundle.get("reviewed_metadata_sha256", {})
+    if set(metadata) != {
+        "bootstrap-review/plan-review.private.json",
+        "runtime-review/plan-review.private.json",
+    } or any(
+        hashlib.sha256((root / name).read_bytes()).hexdigest() != expected
+        for name, expected in metadata.items()
+    ):
+        raise ValueError("reviewed_plan_metadata_changed")
+    if hashlib.sha256(
+        (root / "permission-validation/verification.private.json").read_bytes()
+    ).hexdigest() != bundle.get("custom_role_validation_sha256"):
+        raise ValueError("reviewed_permission_validation_changed")
+    validate_saved_roles(
+        project,
+        [
+            root / "bootstrap-review/plan-review.private.json",
+            root / "runtime-review/plan-review.private.json",
+        ],
+        root / "live-permission-validation",
+    )
     write(
         root / "execution-started.private.json",
         dict(approved_digest=approved_digest, started_at=utc()),
