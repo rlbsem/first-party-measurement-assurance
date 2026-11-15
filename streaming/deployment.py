@@ -1,6 +1,7 @@
 """Saved-plan controls and a finite, source-bound Cloud Build image prerequisite."""
 
 import hashlib
+import io
 import json
 import subprocess
 import tarfile
@@ -86,28 +87,36 @@ def terraform(
     return dict(applied_plan_sha256=hashlib.sha256(target.read_bytes()).hexdigest())
 
 
-def source_bundle(destination):
-    names = (
-        ["requirements-streaming.lock", ".dockerignore"]
-        + [
-            p.relative_to(ROOT).as_posix()
-            for p in (ROOT / "streaming").rglob("*")
-            if p.is_file()
-            and p.suffix in [".py", ".sql"]
-            and "__pycache__" not in p.parts
-        ]
-        + ["streaming/Dockerfile"]
-    )
+def source_bundle(destination, expected_source=None):
+    from .planning import source_map
+
+    approved = source_map() if expected_source is None else expected_source
+    names = [
+        name
+        for name in approved
+        if name in {".dockerignore", "requirements-streaming.lock"}
+        or name.startswith("streaming/")
+        and (Path(name).suffix in {".py", ".sql"} or name == "streaming/Dockerfile")
+    ]
     with tarfile.open(destination, "w:gz") as archive:
         for name in sorted(names):
-            archive.add(ROOT / name, arcname=name, recursive=False)
+            path = ROOT / name
+            raw = path.read_bytes()
+            if path.is_symlink() or hashlib.sha256(raw).hexdigest() != approved[name]:
+                raise ValueError("image_source_changed_during_packaging")
+            info = tarfile.TarInfo(name)
+            info.size = len(raw)
+            info.mode = 0o644
+            archive.addfile(info, io.BytesIO(raw))
     return hashlib.sha256(Path(destination).read_bytes()).hexdigest()
 
 
-def build_image(project, run, identity, source_bucket, repository, work):
+def build_image(
+    project, run, identity, source_bucket, repository, work, *, expected_source=None
+):
     cloud = Cloud(project, work)
     path = Path(work) / "source.tar.gz"
-    source_hash = source_bundle(path)
+    source_hash = source_bundle(path, expected_source)
     from google.cloud import storage
 
     blob = (

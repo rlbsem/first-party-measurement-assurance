@@ -126,3 +126,28 @@ def test_finite_percentiles_preserve_missing_observations_and_event_weight():
     result = publication_latency(segments, "2026-11-14T12:00:10+00:00")
     assert result["n"] == 100 and result["p50"] == result["p99"] == 10
     assert result["provider_commit_timestamp"] is False
+
+
+def test_image_bundle_cannot_include_unreviewed_private_files(tmp_path, monkeypatch):
+    import hashlib
+    import tarfile
+    from streaming.deployment import source_bundle
+
+    (tmp_path / "streaming").mkdir()
+    (tmp_path / "streaming/code.py").write_text("approved = True\n")
+    (tmp_path / "streaming/private.json").write_text("unreviewed private content")
+    (tmp_path / "streaming/untracked.py").write_text("unapproved = True\n")
+    monkeypatch.setattr("streaming.deployment.ROOT", tmp_path)
+    monkeypatch.setattr(
+        "streaming.planning.source_map",
+        lambda: {
+            "streaming/code.py": hashlib.sha256(
+                (tmp_path / "streaming/code.py").read_bytes()
+            ).hexdigest()
+        },
+    )
+    source_bundle(tmp_path / "bundle.tar.gz")
+    with tarfile.open(tmp_path / "bundle.tar.gz") as archive:
+        assert archive.getnames() == ["streaming/code.py"]
+    with pytest.raises(ValueError, match="source_changed"):
+        source_bundle(tmp_path / "changed.tar.gz", {"streaming/code.py": "0" * 64})

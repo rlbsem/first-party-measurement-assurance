@@ -212,6 +212,7 @@ def execute(review_path, approved_digest, executable, dbt_python):
             build["build_source"],
             build["image_repository"],
             root / "image",
+            expected_source=campaign_plan["source_sha256"],
         )
         variables = {**bundle["runtime_variables"], "cleanup_image": image}
         actual = terraform(
