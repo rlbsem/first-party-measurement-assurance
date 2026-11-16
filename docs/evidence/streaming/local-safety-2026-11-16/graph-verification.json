@@ -1,0 +1,17 @@
+{
+  "checked_flatten": [
+    "Merge admitted source ledgers",
+    "Process operator-00-web/Operational observations",
+    "Process operator-00-commerce/Operational observations",
+    "Merge observations",
+    "Process operator-01-web/Operational observations",
+    "Process operator-01-commerce/Operational observations"
+  ],
+  "graph_only": true,
+  "graph_sha256": "6fa7fdf9bc4be3118a7371aaa15fdba9a4dd8baf97d62d04b5380faf898c49dc",
+  "mixed_window_mismatches": [],
+  "mixed_window_warning": false,
+  "native_job_submitted": false,
+  "schema": "streaming-local-graph.v1",
+  "transforms": 147
+}

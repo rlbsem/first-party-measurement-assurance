@@ -92,6 +92,64 @@ def inventory_jobs(cloud, m):
     raise ValueError("job_inventory_incomplete")
 
 
+def resolve_submissions(cloud, m, *, seal=False, registry=None, persist=False):
+    from .submissions import registry_for
+
+    registry = registry or registry_for(m, cloud.credentials)
+    if seal:
+        registry.seal()
+    _, value = registry.read()
+    listed = inventory_jobs(cloud, m)
+    by_name = {}
+    for job in listed:
+        by_name.setdefault(job["name"], []).append(job)
+    jobs, unresolved = {}, []
+    if set(by_name) - set(value["attempts"]):
+        raise ValueError("unregistered_owned_job_blocks_retirement")
+    for name, attempt in value["attempts"].items():
+        matches = by_name.get(name, [])
+        if len(matches) > 1:
+            raise ValueError("conflicting_owned_job_observations")
+        if attempt["state"] == "ABSENT":
+            if matches:
+                raise ValueError("job_observed_after_absence_fence")
+            continue
+        identifier = attempt.get("job_id") or (matches[0]["id"] if matches else None)
+        if not identifier:
+            if attempt["state"] != "PREPARED":
+                unresolved.append(name)
+            continue
+        if attempt.get("job_id") and matches and matches[0]["id"] != identifier:
+            raise ValueError("conflicting_provider_job_id")
+        try:
+            job = verified_job(cloud, m, identifier, "resolve-exact-" + identifier)
+        except ProviderFailure as error:
+            if error.status != 404:
+                raise
+            unresolved.append(name)
+            continue
+        if attempt["state"] == "TERMINAL" and job["currentState"] not in TERMINAL:
+            raise ValueError("terminal_provider_observation_conflict")
+        if persist:
+            registry.bind(name, identifier)
+            if job["currentState"] in TERMINAL:
+                registry.terminal(name, job)
+        elif job["currentState"] in TERMINAL:
+            attempt.update(state="TERMINAL", job_id=identifier)
+        jobs[identifier] = job
+    final = registry.read()[1] if persist else value
+    return dict(
+        jobs=list(jobs.values()),
+        unresolved=unresolved,
+        registry=final,
+        cleanup_allowed=final["phase"] == "SEALED"
+        and not unresolved
+        and all(
+            a["state"] in {"TERMINAL", "ABSENT"} for a in final["attempts"].values()
+        ),
+    )
+
+
 def stop_owned_jobs(
     manifest, work, deadline_only=False, expected_project=None, expected_run=None
 ):
@@ -112,12 +170,17 @@ def stop_owned_jobs(
     if deadline_only and datetime.now(timezone.utc) < instant(m["deadline"]):
         return dict(status="not_due", resources_changed=False)
     cloud = Cloud(m["project"], work)
+    from .submissions import registry_for
+
+    registry = registry_for(m, cloud.credentials)
+    registry.seal()
     observations = []
     deadline = time.monotonic() + 600
     accepted = set()
     while True:
         active = []
-        for item in inventory_jobs(cloud, m):
+        resolved = resolve_submissions(cloud, m, registry=registry, persist=True)
+        for item in resolved["jobs"]:
             identifier, previous = item["id"], item["currentState"]
             if previous in TERMINAL:
                 continue
@@ -151,7 +214,7 @@ def stop_owned_jobs(
                     job_id=identifier, before=previous, cancellation_requested=requested
                 )
             )
-        if not active or time.monotonic() >= deadline:
+        if (not active and not resolved["unresolved"]) or time.monotonic() >= deadline:
             break
         time.sleep(10)
     result = dict(
@@ -160,7 +223,9 @@ def stop_owned_jobs(
         manifest_sha256=digest(m),
         jobs=observations,
         active_jobs=active,
-        active_compute_absent=not active,
+        unresolved_submissions=resolved["unresolved"],
+        registry_sealed=True,
+        active_compute_absent=not active and resolved["cleanup_allowed"],
         full_resource_retirement=False,
         billing_clearance=False,
     )
@@ -171,7 +236,7 @@ def stop_owned_jobs(
         storage.Client(project=m["project"]).bucket(m["bucket"]).blob(
             "private/guard-" + str(int(time.time())) + ".json"
         ).upload_from_string(json.dumps(result), if_generation_match=0, timeout=30)
-    if active:
+    if active or not resolved["cleanup_allowed"]:
         raise RuntimeError("owned_jobs_not_terminal_before_cleanup_timeout")
     return result
 

@@ -98,3 +98,7 @@ Offline whole-inventory tests check both Dataflow and Pub/Sub snapshot residuals
 The first post-deletion inventory of the full deployment encountered a stale account-list entry followed by a key-read 404. A separate subsequent full provider inventory established active-resource absence. Current code requires an independent exact account GET returning 404 before classifying such a stale entry as pending deletion. A 403, an account that remains present or unavailable key inventory cannot establish absence. The original failure and later observation remain separate evidence.
 
 Logical absence does not establish physical erasure or billing clearance: seven-day GCS soft deletion, BigQuery time travel/fail-safe retention, provider logs/history, enabled APIs, managed service identities and deletion tombstones can remain. Pricing reservations and provider charge records are separate. No native processing acceptance, throughput, recovery duration or actual streaming charge is inferred from the verified prerequisites.
+
+## Follow-up safety corrections
+
+The [submission, window and sink safety review](streaming-safety-review.md) documents the durable dispatch fence, actual local graph checks, independent failure journal, four scoped IAM additions and remaining native gates. These corrections have not been deployed; prior native records remain immutable.

@@ -50,7 +50,10 @@ def test_complete_inventory_and_snapshot_residuals(tmp_path, monkeypatch, residu
                         }
                     ]
                 }
-            if label == "inventory-exact-job-completed-job":
+            if label in {
+                "inventory-exact-job-completed-job",
+                "resolve-exact-completed-job",
+            }:
                 return dict(
                     id="completed-job",
                     name=run + "-canary",
@@ -101,6 +104,15 @@ def test_complete_inventory_and_snapshot_residuals(tmp_path, monkeypatch, residu
     monkeypatch.setattr(
         storage, "Client", lambda **kw: SimpleNamespace(list_buckets=lambda **kw: [])
     )
+    from streaming.submissions import Registry, SQLiteStore
+
+    registry = Registry(SQLiteStore(tmp_path / "completed-registry.sqlite"), manifest)
+    registry.initialize()
+    registry.prepare(run + "-canary")
+    registry.dispatch(run + "-canary")
+    registry.bind(run + "-canary", "completed-job")
+    registry.seal()
+    monkeypatch.setattr("streaming.submissions.registry_for", lambda *a, **kw: registry)
     result = collect(manifest, tmp_path)
     assert result["logical_absence"] is (residual is None)
     assert result["billing_clearance"] is False
@@ -161,6 +173,8 @@ def test_retirement_after_failure_before_models_exist(tmp_path, monkeypatch, res
         "streaming.retirement.collect",
         lambda *args: dict(
             active_builds=[],
+            submission_fence_clear=True,
+            unresolved_submissions=[],
             active_cleanup_executions=[],
             pubsub_snapshots=[],
             snapshots=[],
@@ -257,3 +271,24 @@ def test_deleted_identity_list_race_requires_independent_exact_absence(
         )
         assert len(result["identities"]) == (0 if identity_status == 404 else 1)
         assert not result["billing_clearance"]
+
+
+@pytest.fixture(autouse=True)
+def sealed_submission_fixture(tmp_path, monkeypatch):
+    # These tests isolate provider-resource metadata; separate submission tests
+    # exercise unresolved/lagged discovery. A real durable empty fence is explicit.
+    from streaming.submissions import Registry, SQLiteStore
+
+    counter = [0]
+
+    def factory(m, credentials=None):
+        counter[0] += 1
+        scope = {**m, "region": m.get("region", "us-central1")}
+        r = Registry(
+            SQLiteStore(tmp_path / ("registry-" + str(counter[0]) + ".sqlite")), scope
+        )
+        r.initialize()
+        r.seal()
+        return r
+
+    monkeypatch.setattr("streaming.submissions.registry_for", factory)

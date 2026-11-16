@@ -459,3 +459,42 @@ resource "google_project_iam_member" "quota_usage" {
   role     = "roles/serviceusage.serviceUsageConsumer"
   member   = "serviceAccount:${each.value}"
 }
+
+# Exact mutable control object; this identity cannot edit source/staging or retire infrastructure.
+resource "google_storage_bucket_iam_member" "cleanup_submission_fence" {
+  bucket = google_storage_bucket.archive.name
+  role   = "roles/storage.objectUser"
+  member = "serviceAccount:${google_service_account.runtime["cleanup"].email}"
+  condition {
+    title      = "Exact submission fence"
+    expression = "resource.name == 'projects/_/buckets/${google_storage_bucket.archive.name}/objects/private/control/submissions.json'"
+  }
+}
+resource "google_storage_bucket_iam_member" "worker_failure_index" {
+  bucket = google_storage_bucket.archive.name
+  role   = "roles/storage.objectUser"
+  member = "serviceAccount:${google_service_account.runtime["worker"].email}"
+  condition {
+    title      = "Exact failure index"
+    expression = "resource.name == 'projects/_/buckets/${google_storage_bucket.archive.name}/objects/private/control/failure-index.json'"
+  }
+}
+resource "google_storage_bucket_iam_member" "worker_failure_records" {
+  for_each = toset(["roles/storage.objectCreator"])
+  bucket   = google_storage_bucket.archive.name
+  role     = each.key
+  member   = "serviceAccount:${google_service_account.runtime["worker"].email}"
+  condition {
+    title      = "Append-only failure evidence"
+    expression = "resource.name.startsWith('projects/_/buckets/${google_storage_bucket.archive.name}/objects/failures/')"
+  }
+}
+resource "google_storage_bucket_iam_member" "verifier_failure_resolutions" {
+  bucket = google_storage_bucket.archive.name
+  role   = "roles/storage.objectCreator"
+  member = "serviceAccount:${google_service_account.runtime["verifier"].email}"
+  condition {
+    title      = "Independent immutable failure resolutions"
+    expression = "resource.name.startsWith('projects/_/buckets/${google_storage_bucket.archive.name}/objects/failure-resolutions/')"
+  }
+}

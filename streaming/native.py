@@ -16,6 +16,7 @@ def main():
             "inventory",
             "export",
             "verify",
+            "reconcile-sink",
         ],
     )
     p.add_argument("--project")
@@ -34,6 +35,8 @@ def main():
     p.add_argument("--approved-digest")
     p.add_argument("--record")
     p.add_argument("--output")
+    p.add_argument("--failure-id")
+    p.add_argument("--source-archive")
     a = p.parse_args()
     from pathlib import Path
 
@@ -118,6 +121,23 @@ def main():
         print(
             json.dumps(
                 dict(logical_absence=result["logical_absence"], billing_clearance=False)
+            )
+        )
+    elif a.action == "reconcile-sink":
+        from .sink_failures import reconcile_ledger_failure
+
+        if not all([a.manifest, a.failure_id, a.source_archive]):
+            p.error("reconcile-sink needs manifest/failure-id/source-archive")
+        result = reconcile_ledger_failure(
+            read(a.manifest), a.failure_id, a.source_archive, a.work
+        )
+        print(
+            json.dumps(
+                dict(
+                    failure_id=result["failure_id"],
+                    source_readback_verified=True,
+                    financial_publication_approved=False,
+                )
             )
         )
     elif a.action == "export":

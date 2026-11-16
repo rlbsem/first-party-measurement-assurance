@@ -10,7 +10,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from .fixtures import archive, cohort
 from .gcp import Cloud, utc, write
-from .cleanup import inventory_jobs, TERMINAL
+from .cleanup import TERMINAL
 from .planning import authorize
 from .warehouse import build_models, create_candidate, verify_candidate, approve
 
@@ -56,7 +56,16 @@ class Campaign:
             created_at=self.started.isoformat(),
             deadline=self.deadline.isoformat(),
             approved_plan_sha256=approved_digest,
+            submission_protocol="submission-fence.v1",
         )
+        from .submissions import registry_for
+
+        self.submissions = registry_for(self.m, self.cloud.credentials)
+        self.submissions.initialize()
+        from .sink_failures import journal_for
+
+        self.failure_journal = journal_for(self.m, self.cloud.credentials)
+        self.failure_journal.initialize()
         self.records = []
         self.jobs = []
         self.submission_attempts = 0
@@ -247,11 +256,18 @@ class Campaign:
         if not 1 <= workers <= self.plan["maximum_workers"]:
             raise ValueError("worker_ceiling")
         name = self.m["run"] + "-" + label
+        self.submissions.prepare(name)
         config = dict(
             bindings=self.m["bindings"],
             subscriptions=self.m["subscriptions"],
             ledger_table=f"{self.m['project']}:{self.m['raw_dataset']}.dataflow",
             observations_table=f"{self.m['project']}:{self.m['raw_dataset']}.observations",
+            submission_scope={
+                k: self.m[k]
+                for k in ["project", "region", "run", "bucket", "submission_protocol"]
+            },
+            submission_name=name,
+            failure_scope={k: self.m[k] for k in ["project", "run", "bucket"]},
         )
         path = self.work / (label + "-pipeline.private.json")
         write(path, config)
@@ -298,7 +314,20 @@ class Campaign:
             except subprocess.TimeoutExpired:
                 driver_timeout = True
         # Unknown submit outcome is resolved by exact job name; never a blind new submission.
-        matches = [j for j in inventory_jobs(self.cloud, self.m) if j["name"] == name]
+        from .cleanup import resolve_submissions
+
+        matches = []
+        until = time.monotonic() + 300
+        while time.monotonic() < until:
+            self.failure_journal.require_clear()
+            observed = resolve_submissions(
+                self.cloud, self.m, registry=self.submissions, persist=True
+            )
+            matches = [j for j in observed["jobs"] if j["name"] == name]
+            if matches:
+                break
+            self.check_time(600)
+            time.sleep(5)
         if len(matches) != 1:
             raise RuntimeError("dataflow_submission_not_uniquely_resolved")
         identifier = matches[0]["id"]
@@ -462,6 +491,7 @@ class Campaign:
         observations = []
         while time.monotonic() < deadline:
             self.check_time()
+            self.failure_journal.require_clear()
             counts = {}
             for lane in ("dataflow", "baseline"):
                 sql = f"SELECT COUNT(DISTINCT CONCAT(subscription_name,':',JSON_VALUE(attributes,'$.segment'),':',JSON_VALUE(attributes,'$.ordinal'))) n FROM `{self.m['project']}.{self.m['raw_dataset']}.{lane}` WHERE JSON_VALUE(attributes,'$.cohort')=@cohort"

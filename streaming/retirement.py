@@ -8,7 +8,7 @@ import hashlib
 import json
 from pathlib import Path
 from urllib.parse import quote
-from .cleanup import validate_manifest, inventory_jobs, TERMINAL
+from .cleanup import validate_manifest, resolve_submissions, TERMINAL
 from .gcp import Cloud, ProviderFailure, utc, write
 
 
@@ -37,7 +37,12 @@ def collect(m, work):
     validate_manifest(m, m["project"], m["run"])
     cloud = Cloud(m["project"], work)
     p, r, run = m["project"], m["region"], m["run"]
-    rows = {"jobs": inventory_jobs(cloud, m)}
+    resolved = resolve_submissions(cloud, m)
+    rows = {
+        "jobs": resolved["jobs"],
+        "unresolved_submissions": resolved["unresolved"],
+        "submission_fence_clear": resolved["cleanup_allowed"],
+    }
     for kind in ("topics", "subscriptions"):
         all_rows = pages(
             cloud,
@@ -261,10 +266,11 @@ def collect(m, work):
     rows["active_jobs"] = [
         j["id"] for j in rows["jobs"] if j.get("currentState") not in TERMINAL
     ]
-    rows["logical_absence"] = not any(
+    rows["logical_absence"] = rows["submission_fence_clear"] and not any(
         rows[k]
         for k in [
             "active_jobs",
+            "unresolved_submissions",
             "snapshots",
             "pubsub_snapshots",
             "topics",
@@ -378,8 +384,17 @@ def prepare_retirement(m, work):
         expected_project=m["project"],
         expected_run=m["run"],
     )
+    from .submissions import registry_for
+
+    m["submission_closure"] = registry_for(m, cloud.credentials).read()[1]
+    write(Path(work) / "submission-closure.private.json", m["submission_closure"])
     observed = collect(m, Path(work) / "before")
-    if observed["active_builds"] or observed["active_cleanup_executions"]:
+    if (
+        observed["active_builds"]
+        or observed["active_cleanup_executions"]
+        or observed.get("unresolved_submissions")
+        or not observed.get("submission_fence_clear", False)
+    ):
         raise ValueError("provider_execution_still_active_before_evidence_export")
     m["pubsub_snapshot_refs"] = [s["name"] for s in observed["pubsub_snapshots"]]
     write(Path(work) / "resource-registry.private.json", m)

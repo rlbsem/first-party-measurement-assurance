@@ -163,6 +163,12 @@ def test_worker_shape_is_pinned_and_uncertain_submission_is_resolved_without_ret
         image="example.invalid/image@sha256:" + "0" * 64,
     )
     c.cloud = SimpleNamespace(call=lambda *a: dict(currentState="JOB_STATE_RUNNING"))
+    from streaming.submissions import Registry, SQLiteStore
+
+    c.m.update(region="us-central1", submission_protocol="submission-fence.v1")
+    c.submissions = Registry(SQLiteStore(tmp_path / "submission.sqlite"), c.m)
+    c.submissions.initialize()
+    c.failure_journal = SimpleNamespace(require_clear=lambda: None)
     calls = []
 
     def submit(args, **kwargs):
@@ -180,12 +186,15 @@ def test_worker_shape_is_pinned_and_uncertain_submission_is_resolved_without_ret
 
     observations = []
 
-    def inventory(*a):
+    def inventory(*a, **kw):
         observations.append(True)
-        return [dict(name="sm0123456789-canary", id="synthetic-job")]
+        return {
+            "jobs": [dict(name="sm0123456789-canary", id="synthetic-job")],
+            "unresolved": [],
+        }
 
     monkeypatch.setattr("streaming.campaign.subprocess.run", submit)
-    monkeypatch.setattr("streaming.campaign.inventory_jobs", inventory)
+    monkeypatch.setattr("streaming.cleanup.resolve_submissions", inventory)
     if driver_timeout:
         with pytest.raises(TimeoutError, match="job_resolved_for_retirement"):
             c.start_dataflow("canary", 1)

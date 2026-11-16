@@ -302,6 +302,9 @@ def execute(review_path, approved_digest, executable, dbt_python):
         )
         write(root / "resolved-plan.private.json", resolved)
         native_run(c)
+        # Final independent sink health is captured before evidence is archived.
+        # A failure changes acceptance, never the obligation to stop and clean up.
+        c.save("sink_failure_health", "passed", c.failure_journal.require_clear())
     except BaseException as error:
         import traceback
 

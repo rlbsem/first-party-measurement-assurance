@@ -54,6 +54,18 @@ run "private_source_scoped_defaults" {
     condition     = google_cloud_run_v2_job.cleanup.template[0].template[0].max_retries == 0
     error_message = "The cleanup job must have bounded explicit retry policy."
   }
+  assert {
+    condition     = endswith(google_storage_bucket_iam_member.cleanup_submission_fence.condition[0].expression, "/objects/private/control/submissions.json'") && google_storage_bucket_iam_member.cleanup_submission_fence.role == "roles/storage.objectUser"
+    error_message = "The independent stopper may CAS only the exact submission fence."
+  }
+  assert {
+    condition     = endswith(google_storage_bucket_iam_member.worker_failure_index.condition[0].expression, "/objects/private/control/failure-index.json'") && alltrue([for v in google_storage_bucket_iam_member.worker_failure_records : contains(["roles/storage.objectCreator", "roles/storage.objectViewer"], v.role) && endswith(v.condition[0].expression, "/objects/failures/')")])
+    error_message = "Workers may append failure details and edit only the exact bounded index."
+  }
+  assert {
+    condition     = google_storage_bucket_iam_member.verifier_failure_resolutions.role == "roles/storage.objectCreator" && endswith(google_storage_bucket_iam_member.verifier_failure_resolutions.condition[0].expression, "/objects/failure-resolutions/')")
+    error_message = "Only the independent verifier can append immutable resolution evidence."
+  }
 }
 run "reject_cross_region" {
   command = plan

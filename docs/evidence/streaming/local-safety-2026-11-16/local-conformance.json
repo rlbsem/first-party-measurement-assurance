@@ -1,0 +1,35 @@
+{
+  "boundary": "local-executed",
+  "canonical_rows": 16,
+  "concurrent_approval_results": [
+    1,
+    "rejected"
+  ],
+  "conflicting_request_rejected": true,
+  "currency": "USD",
+  "earlier_revision_did_not_regress": true,
+  "exact_lost_ack_retry": true,
+  "independently_reconciled_totals": {
+    "contract_minor": 20060000,
+    "payment_minor": 6018000
+  },
+  "late_correction_retained": true,
+  "native_cloud_execution": false,
+  "native_recovery_proven": false,
+  "observed_at": "2026-11-16T04:20:00.066057+00:00",
+  "persisted_attempts": 17,
+  "precommit_rollback": true,
+  "schema": "streaming-local-conformance.v1",
+  "source_manifest_sha256": "52e17407c1d0ab369cae77ddf50ba74e98954c7164db982f468ae6bd8e636141",
+  "source_revision_base": "e1030a494929f089b6f10ed8c80353b399266cd6",
+  "source_rows": 16,
+  "source_sha256": {
+    "streaming/contracts.py": "d458e90a35ce466d696717bbffbf7cd33ed729f0984dcffe4aa1a39fcfd40c41",
+    "streaming/control.py": "966ee014c99fd2a7b94969a6277ff1a72410c9050eb7c1daa9c0f64002f774b6",
+    "streaming/fixtures.py": "c1b89af3fb27e9366836afc3648dabe59f96a732677894bef30cbb0324c98630",
+    "streaming/local_demo.py": "126c09dc5c843b5e0c93d72f071c013bc932da5a806afaa5fc010e0dbd24a878",
+    "streaming/oracle.py": "afe95aa851b6bc093b3845fb55f4754feafe4484578fc48641fc068552bd1faf",
+    "streaming/oracle_disk.py": "d6e9666fde2adfbf083b761524b70baf30ce2e9a077e7b0a9c041710aa1a51b2"
+  },
+  "synthetic": true
+}

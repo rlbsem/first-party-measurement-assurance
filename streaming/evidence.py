@@ -13,6 +13,7 @@ REQUIRED = {
     "competing_approvals",
     "baseline_comparison",
     "independent_teardown",
+    "sink_failure_health",
 }
 
 
@@ -24,6 +25,13 @@ def require(value, reason):
 def acceptance_checks(stages):
     """Validate observations, not just green stage labels."""
     c = {k: v["checks"] for k, v in stages.items()}
+    health = c["sink_failure_health"]
+    require(
+        re.fullmatch(r"[0-9a-f]{64}", health.get("index_root", ""))
+        and health.get("unresolved") == []
+        and health.get("overflow") is False,
+        "independent_sink_failure_health",
+    )
     require(
         c["canary"].get("source_rows", 0) > 0
         and c["canary"].get("architectures_reconciled"),

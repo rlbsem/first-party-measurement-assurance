@@ -142,21 +142,31 @@ class RevisionState(beam.DoFn):
 
     @on_timer(EVENT)
     def expire_event(
-        self, state=beam.DoFn.StateParam(CURRENT), idle=beam.DoFn.TimerParam(IDLE)
+        self,
+        state=beam.DoFn.StateParam(CURRENT),
+        idle=beam.DoFn.TimerParam(IDLE),
+        identity=beam.DoFn.KeyParam,
     ):
         if state.read():
             self.expired.inc()
-            yield dict(record_type="state_expiry", clock="event_time")
+            yield dict(
+                record_type="state_expiry", clock="event_time", identity=identity
+            )
         state.clear()
         idle.clear()
 
     @on_timer(IDLE)
     def expire_idle(
-        self, state=beam.DoFn.StateParam(CURRENT), event=beam.DoFn.TimerParam(EVENT)
+        self,
+        state=beam.DoFn.StateParam(CURRENT),
+        event=beam.DoFn.TimerParam(EVENT),
+        identity=beam.DoFn.KeyParam,
     ):
         if state.read():
             self.expired.inc()
-            yield dict(record_type="state_expiry", clock="processing_time")
+            yield dict(
+                record_type="state_expiry", clock="processing_time", identity=identity
+            )
         state.clear()
         event.clear()
 
@@ -203,14 +213,30 @@ def transforms(
         )
         | "Count observations not business effects" >> beam.CombinePerKey(sum)
         | "Label provisional panes" >> beam.ParDo(Pane())
+        | "Normalize operational pane transport"
+        >> beam.WindowInto(window.GlobalWindows())
     )
-    return admitted, (
-        decisions,
-        panes,
-        admitted.exceptions,
-        admitted.rebuilds,
-        admitted.receipts,
-    ) | "Operational observations" >> beam.Flatten()
+    return (
+        admitted,
+        (
+            decisions,
+            panes,
+            admitted.exceptions,
+            admitted.rebuilds,
+            admitted.receipts,
+        )
+        | "Operational observations" >> beam.Flatten()
+        | "Bind operational provenance"
+        >> beam.Map(
+            lambda row, b: {
+                **row,
+                "trusted_source": b["source"],
+                "trusted_tenant": b["tenant"],
+                "financially_authoritative": False,
+            },
+            binding,
+        ),
+    )
 
 
 def delivery(message, subscription):
@@ -249,6 +275,33 @@ def observation_row(row):
     return dict(payload=canonical(row), observed_at=Timestamp.now())
 
 
+class PreserveSinkFailure(beam.DoFn):
+    def __init__(self, scope, sink, subscriptions, journal=None):
+        self.scope, self.sink, self.subscriptions, self.journal = (
+            scope,
+            sink,
+            subscriptions,
+            journal,
+        )
+
+    def setup(self):
+        if self.journal is None:
+            from .sink_failures import journal_for
+
+            self.journal = journal_for(self.scope)
+
+    def process(self, item):
+        from .sink_failures import failure_record, SinkRejected
+
+        identifier = self.journal.persist(
+            failure_record(item, self.sink, self.subscriptions)
+        )
+        # Deliberately fail the bundle after durable evidence. The broker must
+        # not acknowledge a rejected sink row as successful processing.
+        raise SinkRejected("sink_rejection_preserved:" + identifier)
+        yield  # pragma: no cover -- documents DoFn iterator contract
+
+
 def build_pipeline(cfg, options, *, validate_only=False):
     opts = PipelineOptions(options)
     opts.view_as(StandardOptions).streaming = True
@@ -283,7 +336,12 @@ def main():
         )
         print(json.dumps({"graph_validated": True, "native_job_submitted": False}))
         return
+    from .submissions import registry_for
+
+    registry = registry_for(cfg["submission_scope"])
+    registry.dispatch(cfg["submission_name"])
     submitted = pipeline.run()
+    registry.bind(cfg["submission_name"], submitted.job_id())
     print(json.dumps({"job_id": submitted.job_id(), "submitted": True}), flush=True)
 
 
@@ -314,7 +372,7 @@ def _populate(pipeline, cfg):
         )
     )
     ops = observations | "Merge observations" >> beam.Flatten()
-    (
+    operational_result = (
         ops
         | "Encode safe observation" >> beam.Map(observation_row)
         | "Operational sink"
@@ -326,16 +384,11 @@ def _populate(pipeline, cfg):
             use_at_least_once=True,
         )
     )
-    (
-        result.failed_rows_with_errors
-        | "Encode sink rejection"
-        >> beam.Map(
-            lambda r: canonical(
-                dict(reason="storage_write_rejected", row_sha256=digest(str(r)))
-            )
-        )
-        | "Sink rejection log" >> beam.Map(lambda s: print(s))
-    )
+    subscriptions = {cfg["subscriptions"][s]: b for s, b in cfg["bindings"].items()}
+    for name, sink_result in [("ledger", result), ("observations", operational_result)]:
+        sink_result.failed_rows_with_errors | (
+            "Preserve " + name + " rejection"
+        ) >> beam.ParDo(PreserveSinkFailure(cfg["failure_scope"], name, subscriptions))
     return pipeline
 
 

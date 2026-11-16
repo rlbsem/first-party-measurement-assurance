@@ -27,10 +27,13 @@ jobs:
           cache: pip
           cache-dependency-path: requirements-streaming.lock
       - run: python -m pip install -r requirements-streaming.lock
-      - run: python -m ruff check streaming streaming_tests scripts/package_streaming.py
+      - run: python -m ruff check streaming streaming_tests scripts/package_streaming.py scripts/check_streaming_graph.py
       - run: python -c "from pathlib import Path; Path('.local').mkdir(exist_ok=True)"
       - run: python -m pytest streaming_tests -q --basetemp=.local/streaming-pytest --junitxml=.local/streaming-tests.xml
+      - name: Inspect real cross-language graph without submission
+        run: python scripts/check_streaming_graph.py --output .local/beam-graph
       - run: python scripts/check_streaming_evidence.py
+      - run: python scripts/check_streaming_safety.py
       - run: python scripts/package_streaming.py --check
       - if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

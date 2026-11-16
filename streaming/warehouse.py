@@ -15,6 +15,9 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def build_models(m, cohort, lane, work, dbt_python):
+    from .sink_failures import require_clear
+
+    require_clear(m)
     if lane not in ("dataflow", "baseline") or not re.fullmatch(
         r"[a-z0-9_-]{1,60}", cohort
     ):
@@ -99,6 +102,9 @@ def build_models(m, cohort, lane, work, dbt_python):
 
 
 def create_candidate(m, identifier, tenant, model, source_hash, work, lane, cohort):
+    from .sink_failures import require_clear
+
+    require_clear(m)
     from google.cloud import bigquery
 
     if not re.fullmatch(r"[a-z0-9_-]{1,80}", identifier):
@@ -164,6 +170,9 @@ def create_candidate(m, identifier, tenant, model, source_hash, work, lane, coho
 
 
 def verify_candidate(m, metadata, archive, work):
+    from .sink_failures import require_clear
+
+    require_clear(m)
     from google.cloud import bigquery
 
     out = Path(work).resolve()
@@ -257,7 +266,37 @@ def approve(m, metadata, request, epoch, work, *, fault=None):
         for k, v in args.items()
     ]
     cloud = Cloud(m["project"], work, m["identities"]["approver"])
+    from .sink_failures import require_clear
+
+    # Receipt reconciliation below is read-only and remains separate from new
+    # authorization. A new action requires current independent sink health.
+    prior = cloud.query(
+        f"SELECT request,candidate,tenant,epoch,content_hash FROM `{output}.approvals` WHERE request=@request",
+        "reconcile-" + request,
+        [bigquery.ScalarQueryParameter("request", "STRING", request)],
+    )
+    if prior:
+        if len(prior) != 1 or prior[0]["content_hash"] != args["content_hash"]:
+            raise ValueError("approval_request_conflict")
+        return {
+            k: v for k, v in prior[0].items() if k != "content_hash"
+        }, cloud.receipts
+    before_health = require_clear(m)
     result = cloud.query(text, "approve-" + request, params)
+    write(
+        Path(work) / "approval-effect.private.json",
+        dict(result=result, health_before=before_health),
+    )
+    try:
+        after_health = require_clear(m)
+        if after_health != before_health:
+            raise ValueError("sink_health_changed_during_approval")
+    except Exception:
+        write(
+            Path(work) / "approval-not-cleared.private.json",
+            dict(effect_may_have_committed=True, acceptance_passed=False),
+        )
+        raise
     if len(result) != 1:
         raise ValueError("exactly_one_approval_receipt_required")
     if fault == "after_commit":

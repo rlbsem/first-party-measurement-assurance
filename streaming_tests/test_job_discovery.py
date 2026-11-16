@@ -125,6 +125,15 @@ def test_pending_cancel_keeps_resources_blocked_until_exact_job_is_terminal(
                 raise ProviderFailure(label, 400, "FAILED_PRECONDITION")
             return job("JOB_STATE_CANCELLING")
 
+    from streaming.submissions import Registry, SQLiteStore
+
+    registry = Registry(SQLiteStore(tmp_path / "registry.sqlite"), m)
+    registry.initialize()
+    registry.prepare(m["run"] + "-canary")
+    registry.dispatch(m["run"] + "-canary")
+    registry.bind(m["run"] + "-canary", job()["id"])
+    Reader.credentials = None
+    monkeypatch.setattr("streaming.submissions.registry_for", lambda *a, **kw: registry)
     monkeypatch.setattr("streaming.cleanup.Cloud", Reader)
     monkeypatch.setattr("streaming.retirement.Cloud", Reader)
     monkeypatch.setattr("streaming.cleanup.time.monotonic", lambda: clock.value)
