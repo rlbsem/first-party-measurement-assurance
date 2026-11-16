@@ -173,3 +173,38 @@ def test_read_budget_and_index_exhaustion_fail_closed(tmp_path, monkeypatch):
     assert j.read()[1]["overflow"]
     with pytest.raises(SinkRejected):
         j.require_clear()
+
+
+@pytest.mark.parametrize("changed_cohort", [False, True])
+def test_replay_transport_changes_do_not_replace_business_identity(
+    tmp_path, changed_cohort
+):
+    m, j, row = fixture(tmp_path)
+    attrs = json.loads(row["attributes"])
+    row["attributes"] = json.dumps({**attrs, "eligible_at": "first-delivery"})
+    r = failure_record(dict(failed_row=row, error_message="temporary"), "ledger", {})
+    fid = j.persist(r)
+    replay = {
+        **row,
+        "message_id": "physical-2",
+        "publish_time": Timestamp(90),
+        "attributes": json.dumps(
+            {
+                **attrs,
+                "eligible_at": "replayed-later",
+                "cohort": "other" if changed_cohort else attrs["cohort"],
+            }
+        ),
+    }
+    if changed_cohort:
+        with pytest.raises(ValueError, match="independent_replay"):
+            j.resolve(fid, replay, dict(equal=True, source_hash="a" * 64))
+        with pytest.raises(SinkRejected):
+            j.require_clear()
+    else:
+        j.resolve(fid, replay, dict(equal=True, source_hash="a" * 64))
+        assert not j.require_clear()["unresolved"]
+    original = j.objects.get("failures/" + fid + ".json")
+    assert original["physical_message_id"] == "physical-1"
+    assert original["physical_publish_time"] == str(Timestamp(1))
+    assert original["status"] == "rejected_not_persisted"

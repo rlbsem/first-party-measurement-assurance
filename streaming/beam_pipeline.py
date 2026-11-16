@@ -296,8 +296,9 @@ class PreserveSinkFailure(beam.DoFn):
         identifier = self.journal.persist(
             failure_record(item, self.sink, self.subscriptions)
         )
-        # Deliberately fail the bundle after durable evidence. The broker must
-        # not acknowledge a rejected sink row as successful processing.
+        # Fail the rejected branch after durable evidence. Broker acknowledgment
+        # and intermediate checkpoint timing remain runner-managed; the frozen
+        # source archive is the independent recovery authority.
         raise SinkRejected("sink_rejection_preserved:" + identifier)
         yield  # pragma: no cover -- documents DoFn iterator contract
 

@@ -35,6 +35,8 @@ Limits are 1,000 distinct rejects, 16 KiB per detail, 4 KiB per diagnostic, 128 
 
 A source effect can be marked recovered only by the independent verifier's immutable resolution: exact persisted normalized row, complete duplicate-collapsed source-position/content comparison and source-manifest oracle must agree. Original physical rejection is not relabeled as acknowledged or persisted. `reconcile-sink` is an explicit future authorized operation; it does not publish data or approve financial results. Operational/pane failures remain blocked pending explicit review. Independent financial rowset/totals reconciliation is still required afterward.
 
+Replay matching excludes physical message ID, broker publish time and publisher-generated eligibility time. It retains exact source content, subscription identity, cohort, segment and ordinal. The immutable rejection separately preserves the original physical ID/time and attributes hash; changing a cohort or source content still rejects recovery. The failure branch raises, but source acknowledgment and intermediate checkpoint timing remain runner-managed and unverified natively. Frozen source archives remain the recovery authority.
+
 Transport submission, broker acknowledgment, raw sink persistence, observed rejection, replay recovery and canonical admission are separate states. Raw completeness, model building, candidate verification and each new approval check journal health. Historical receipt reconciliation is read-only and remains available during an outage; it does not authorize a new effect. The final native acceptance validator requires a clear, source-bound sink-health record before cleanup.
 
 ## Critical publication and recovery boundaries

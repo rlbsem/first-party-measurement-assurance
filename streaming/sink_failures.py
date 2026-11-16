@@ -29,6 +29,15 @@ def mapping(row):
 def normalized_row(row):
     row = dict(mapping(row))
     row.pop("observed_at", None)
+    row.pop("publish_time", None)
+    if isinstance(row.get("attributes"), str):
+        try:
+            attrs = json.loads(row["attributes"])
+        except ValueError:
+            attrs = None
+        if isinstance(attrs, dict):
+            attrs.pop("eligible_at", None)
+            row["attributes"] = canonical(attrs)
     if isinstance(row.get("payload"), str):
         try:
             value = json.loads(row["payload"])
@@ -118,6 +127,8 @@ def failure_record(item, sink, subscriptions):
         segment=attrs.get("segment"),
         ordinal=attrs.get("ordinal"),
         physical_message_id=row.get("message_id"),
+        physical_publish_time=str(row.get("publish_time")),
+        physical_attributes_sha256=digest(row.get("attributes")),
         classification=classification,
         diagnostic=diagnostic,
         diagnostic_truncated=len(safe.encode()) > 4096,

@@ -4,6 +4,7 @@ The local controls execute with synthetic sources. Native streaming processing a
 
 | Record | What executed | Boundary |
 |---|---|---|
+| [Replay-aware safety verification](local-safety-replay-2026-11-16/README.md) | 167 regression tests; source-content replay matching with physical rejection evidence retained | Offline follow-up; prior 165-test snapshot unchanged |
 | [Local safety correction](local-safety-2026-11-16/README.md) | Durable submission fence, actual graph/window semantics, independent sink rejection/replay evidence, financial and browser regression | Offline execution only; no new managed-cloud run |
 | [Local acceptance](local-2026-11-15/README.md) | Source preservation, independent financial reconstruction and software failure controls | Local execution; the recorded test count belongs to that source snapshot |
 | [GoogleSQL planning](sql-planning-2026-11-15/README.md) | Provider dry-run validation of seven model definitions and the published view | Planning only; no streaming warehouse build or publication transaction |
