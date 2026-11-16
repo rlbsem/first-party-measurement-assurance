@@ -40,6 +40,9 @@ class Cloud:
             quota_project_id=project if quota_project else None,
             scopes=["https://www.googleapis.com/auth/cloud-platform"],
         )
+        # Retain the original ADC credentials for caller-identity diagnostics.
+        # An impersonated target credential is not proof of the original caller.
+        self.source_credentials = base
         self.credentials = (
             impersonated_credentials.Credentials(
                 source_credentials=base,
