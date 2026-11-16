@@ -292,6 +292,30 @@ def execute(review_path, approved_digest, executable, dbt_python):
             "image": image,
             "terraform_plan_sha256": actual["sha256"],
         }
+        # An IAM binding in a saved Terraform plan is not effective access.
+        # After the approved runtime apply, but before Dataflow submission,
+        # prove that the reviewed operator can actually mint short-lived tokens
+        # for every exact scoped runtime role. Bounded token-creator 403 polling
+        # covers eventual IAM propagation without adding or broadening grants.
+        from .iam_admission import admit_operator_impersonation
+
+        targets = {
+            **manifest["identities"],
+            **{
+                "publisher-" + name: email
+                for name, email in manifest["publishers"].items()
+            },
+            **{
+                "consumer-" + name: item["email"]
+                for name, item in manifest["consumers"].items()
+            },
+        }
+        admit_operator_impersonation(
+            project,
+            bundle["runtime_variables"]["operator_member"],
+            targets,
+            root / "runtime-iam-admission",
+        )
         # This derived plan changes only the approved conditional image and its
         # saved binary digest. The original owner review remains the authority.
         from .campaign import Campaign
