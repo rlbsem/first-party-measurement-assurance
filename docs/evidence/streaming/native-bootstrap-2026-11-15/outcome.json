@@ -1,0 +1,63 @@
+{
+  "actual_charge_cad": null,
+  "approved_review_sha256": "a9cc0951c0c99bbb4f096a418d4321616b23c80d2ad4ff6f96af6e8f5ca2d9ed",
+  "billing_clearance": false,
+  "bootstrap_apply": {
+    "added": 15,
+    "changed": 0,
+    "destroyed": 0
+  },
+  "bootstrap_retirement": {
+    "added": 0,
+    "changed": 0,
+    "destroyed": 15
+  },
+  "boundary": "native-bootstrap-and-read-only-verification-only",
+  "build_finished_at": "2026-11-15T04:17:00.265765Z",
+  "build_id": "348b6196-84a2-436c-8522-5834833bc3b6",
+  "build_started_at": "2026-11-15T04:16:58.922731418Z",
+  "build_status": "CANCELLED",
+  "canary_executed": false,
+  "cleanup_checks": {
+    "build_bucket": "NOT_FOUND_404",
+    "build_identity": "NOT_FOUND_404",
+    "owned_dataflow_jobs": 0,
+    "private_network": "NOT_FOUND_404",
+    "repository": "NOT_FOUND_404"
+  },
+  "financial_results": null,
+  "native_streaming_acceptance_executed": false,
+  "observations": [
+    {
+      "http_status": 200,
+      "operation": "regional Cloud Build creation"
+    },
+    {
+      "error_status": "NOT_FOUND",
+      "http_status": 404,
+      "operation": "legacy global operation polling"
+    },
+    {
+      "http_status": 200,
+      "operation": "canonical regional Build GET after cancellation"
+    }
+  ],
+  "performance_results": null,
+  "private_observation_sha256": "6e75873562eaf4c1514718744ca76af33d329befa7a6cd2f30839dde0cfb4203",
+  "region": "us-central1",
+  "retained_configuration": [
+    "Enabled APIs",
+    "Google-managed service identities and their standard roles",
+    "Provider build history and logs",
+    "Service-account deletion tombstone"
+  ],
+  "retained_soft_deletion": [
+    {
+      "hard_delete_time": "2026-11-22 04:18:23.344000+00:00",
+      "soft_delete_time": "2026-11-15 04:17:23.696000+00:00"
+    }
+  ],
+  "runtime_apply_attempted": false,
+  "schema": "streaming-native-bootstrap-outcome.v1",
+  "source_commit": "ac7ef0be2bee76142797e03ee4d0287d7bcef7ff"
+}

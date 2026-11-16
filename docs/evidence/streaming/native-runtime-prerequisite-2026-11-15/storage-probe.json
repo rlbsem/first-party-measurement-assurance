@@ -1,0 +1,10 @@
+{
+  "independent_owner_readback": true,
+  "log_deleted": true,
+  "log_generation": "1794770961466650",
+  "log_write_readback": true,
+  "metadata_read": true,
+  "payload_sha256": "f077d4654d4f93c85a926c2ce73e406d5925c7d9ca5fd463a2db1b05100b3755",
+  "source_write_denial_http": 403,
+  "source_write_denied": true
+}

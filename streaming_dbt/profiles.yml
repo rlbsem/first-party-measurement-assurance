@@ -1,0 +1,14 @@
+governed_streaming:
+  target: native
+  outputs:
+    native:
+      type: bigquery
+      method: oauth
+      project: "{{ env_var('STREAM_PROJECT') }}"
+      dataset: "{{ env_var('STREAM_MODELS_DATASET') }}"
+      location: us-central1
+      impersonate_service_account: "{{ env_var('STREAM_BUILDER_IDENTITY') }}"
+      threads: 1
+      job_execution_timeout_seconds: 300
+      job_retries: 0
+      maximum_bytes_billed: 10000000000

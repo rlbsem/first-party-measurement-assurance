@@ -1,0 +1,15 @@
+{
+  "README.md": "c980b09b154b0047b278ab8d7eeecf6e8e8ebe0ab75a1ab405aa74da913ca006",
+  "corrected-source/manifest.json": "cc6b342235917210291506aecbabfe18b80806c07d332069ecb5f9628dabe9af",
+  "corrected-source/operator-00-commerce-00000.jsonl": "7f44d26b6c06e85337ffdf5b30a8c2d1a856f4ef0db0364ff2d42163d37b4170",
+  "corrected-source/operator-00-web-00000.jsonl": "6d399d6e28384330e45918e3c77a7d03301ca2f21084800eb233de90bbc16816",
+  "corrected-source/operator-01-commerce-00000.jsonl": "986b163e17392b3f199061f72c4e2d8e97be1bc0628792b9c43a033ad51e793b",
+  "corrected-source/operator-01-web-00000.jsonl": "ed86a0760969c8cdffeade3b9f458eaabd3292700d988ede89c0c2738d13faba",
+  "regression-results.json": "ae8f116c81af19e14cf40d1e4ef76faae5beac25a42898f435899515c49099ad",
+  "source/manifest.json": "4a73e839a8a2a186fe8924464331ee317b64086f72cc4e1fb5064b40d0991358",
+  "source/operator-00-commerce-00000.jsonl": "a15a57b1ebe775bf547e5685db0bc966cde473760808e98d043d9fdb540dc2b9",
+  "source/operator-00-web-00000.jsonl": "6d399d6e28384330e45918e3c77a7d03301ca2f21084800eb233de90bbc16816",
+  "source/operator-01-commerce-00000.jsonl": "986b163e17392b3f199061f72c4e2d8e97be1bc0628792b9c43a033ad51e793b",
+  "source/operator-01-web-00000.jsonl": "ed86a0760969c8cdffeade3b9f458eaabd3292700d988ede89c0c2738d13faba",
+  "verification.json": "721faae84a337640082ec70433708221fb79d13f9185d3b9f4b6ed941e191722"
+}

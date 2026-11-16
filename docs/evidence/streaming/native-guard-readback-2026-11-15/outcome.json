@@ -1,0 +1,97 @@
+{
+  "actual_charge_cad": null,
+  "approved_review_sha256": "9fa8b5704e2bd0f38c63de213ce289966dde86c2f92e1798b61567771a0d13d5",
+  "billing_clearance": false,
+  "bootstrap_created": 17,
+  "bootstrap_terraform_destroyed": 17,
+  "boundary": "native full infrastructure deployment and failed guard-readback; no streaming workload",
+  "build_engine": {
+    "observed_docker_server_version": "29.9.2",
+    "resolved_worker_release": null,
+    "worker_release": "2026.09"
+  },
+  "build_id": "fdd6c4d8-e1bb-4f30-b298-c63faea74c40",
+  "build_status": "SUCCESS",
+  "canary_executed": false,
+  "controller_terminal_inventory_failure": "inventory-user-managed-keys:404:NOT_FOUND",
+  "dataflow_jobs_submitted": 0,
+  "dataset_bindings_removed_with_datasets": 2,
+  "financial_results": null,
+  "guard_armed": false,
+  "image_digest": "sha256:6e60f6feac6cb2a88e13d4f3a4a383d2e416dce0607ba652a039ffcded6b9ea4",
+  "image_independently_verified": true,
+  "independent_archive_verification": {
+    "observed_at": "2026-11-15T20:24:21.562815+00:00",
+    "verified_bytes": 151574,
+    "verified_versions": 3
+  },
+  "models_deleted_before_terraform_refresh": [
+    "google_bigquery_dataset.models[\"baseline\"]",
+    "google_bigquery_dataset.models[\"dataflow\"]"
+  ],
+  "native_failure": {
+    "native_acceptance_passed": false,
+    "observed_at": "2026-11-15T20:17:11.447316+00:00",
+    "type": "TypeError"
+  },
+  "native_original_exception_message_recorded": false,
+  "native_streaming_acceptance_executed": false,
+  "offline_sdk_reproduction": {
+    "boundary": "offline pinned SDK; no RPC",
+    "message": "CloudTasksClient.get_task() got an unexpected keyword argument 'response_view'",
+    "package": "google-cloud-tasks",
+    "type": "TypeError",
+    "version": "2.26.0"
+  },
+  "performance_results": null,
+  "runtime_created": 132,
+  "runtime_terraform_destroyed": 128,
+  "schema": "streaming-native-guard-readback-outcome.v1",
+  "source_commit": "9fe80b1740ad142080e4a6f070324649ad696ba4",
+  "subsequent_independent_cleanup": {
+    "actual_charge_cad": null,
+    "archive_bytes_verified": 147080,
+    "archive_versions_verified": 2,
+    "billing_clearance": false,
+    "counts": {
+      "active_builds": 0,
+      "active_cleanup_executions": 0,
+      "active_custom_roles": 0,
+      "active_jobs": 0,
+      "addresses": 0,
+      "buckets": 0,
+      "datasets": 0,
+      "disks": 0,
+      "firewalls": 0,
+      "identities": 0,
+      "instances": 0,
+      "jobs": 0,
+      "networks": 0,
+      "owned_role_bindings": 0,
+      "pending_role_deletions": 2,
+      "pubsub_snapshots": 0,
+      "residual_boundaries": 5,
+      "snapshots": 0,
+      "subnetworks": 0,
+      "subscriptions": 0,
+      "topics": 0,
+      "user_managed_keys": 0
+    },
+    "logical_absence": true,
+    "observed_at": "2026-11-15T20:20:14.590285+00:00",
+    "retained_soft_delete": [
+      {
+        "generation": "1794773657060462316",
+        "hard_delete_time": "2026-11-22 20:19:24.196000+00:00",
+        "lane": "runtime",
+        "soft_delete_time": "2026-11-15 20:18:24.562000+00:00"
+      },
+      {
+        "generation": "1794773297066004924",
+        "hard_delete_time": "2026-11-22 20:20:01.202000+00:00",
+        "lane": "build",
+        "soft_delete_time": "2026-11-15 20:19:01.445000+00:00"
+      }
+    ]
+  }
+}

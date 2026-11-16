@@ -1,0 +1,104 @@
+{
+  "actual_charge_cad": null,
+  "approved_review_sha256": "b6fa22a79b20b5104a7a390d8612b8b43e26baa2480016dc35f1ba0edb6369c5",
+  "archive_verification": {
+    "actual_charge_cad": null,
+    "archive_bytes_verified": 251610089,
+    "archive_index_sha256": [
+      "93d172f086d3cd52c61d57369b29a3657ae72b327158d4a6aa1cc8b0d43b1dbe",
+      "3902f7f24188af82f6eefddff3b2726b15e4416bf130eaed53f0c22a603029c5"
+    ],
+    "archive_versions_verified": 8,
+    "billing_clearance": false,
+    "observed_at": "2026-11-16T01:26:17.061767+00:00",
+    "soft_deleted_buckets": [
+      {
+        "hard_delete_time": "2026-11-22 21:40:35.640000+00:00",
+        "lane": "runtime",
+        "soft_delete_time": "2026-11-15 21:39:35.891000+00:00"
+      },
+      {
+        "hard_delete_time": "2026-11-22 21:41:07.345000+00:00",
+        "lane": "build",
+        "soft_delete_time": "2026-11-15 21:40:07.607000+00:00"
+      }
+    ]
+  },
+  "billing_clearance": false,
+  "boundary": "Native build, infrastructure, verified guard arming and Dataflow job submission; no processing acceptance",
+  "build_id": "6fd0a836-5176-489c-80f5-d88394241464",
+  "build_status": "SUCCESS",
+  "canary_completed": false,
+  "corrected_independent_inventory": {
+    "active_jobs": [],
+    "boundary": "Fresh native read-only inventory using corrected discovery logic; not another campaign",
+    "counts": {
+      "active_builds": 0,
+      "active_cleanup_executions": 0,
+      "active_custom_roles": 0,
+      "active_jobs": 0,
+      "addresses": 0,
+      "buckets": 0,
+      "datasets": 0,
+      "disks": 0,
+      "firewalls": 0,
+      "identities": 0,
+      "instances": 0,
+      "jobs": 1,
+      "networks": 0,
+      "owned_role_bindings": 0,
+      "pending_identity_deletions": 0,
+      "pending_role_deletions": 2,
+      "pubsub_snapshots": 0,
+      "residual_boundaries": 5,
+      "snapshots": 0,
+      "subnetworks": 0,
+      "subscriptions": 0,
+      "topics": 0,
+      "user_managed_keys": 0
+    },
+    "logical_absence": true,
+    "observed_at": "2026-11-16T01:18:35.441484+00:00"
+  },
+  "financial_results": null,
+  "force_cancellation_executed": false,
+  "guard_arming": {
+    "deadline": "2026-11-16T00:37:41.140225+00:00",
+    "effective_deadline_cancellation_executed": false,
+    "exact_readback_recorded": true,
+    "raw_full_task_readback_retained": false,
+    "read_attempts": [
+      {
+        "full_readback": true,
+        "timeout": 10
+      }
+    ],
+    "rpc_timeout_seconds": 10
+  },
+  "image_digest": "sha256:039e81062e7c1789baabc8abfb943df7421350f4c727d2feb79451fc4be73fda",
+  "independent_registry_readback": true,
+  "job_id": "2026-11-15_13_38_12-3184962932157250092",
+  "job_submitted": true,
+  "native_pending_cancel_rejected": true,
+  "native_processing_acceptance_passed": false,
+  "original_cleanup_claim_valid": false,
+  "original_false_negative": {
+    "observed_at": "2026-11-15T21:40:14.642594+00:00",
+    "private_receipt_sha256": "17f9a177c640dcc2c55cbbde37ff28efcd18e18074c4550986287dc0d91ef9e4",
+    "reported_job_count": 0,
+    "reported_logical_absence": true
+  },
+  "original_guard_false_negative_sha256": "b1df68c3a34663afe9134ca3a09d8f882c9d81dae98edfca7e743c4a3480c967",
+  "performance_results": null,
+  "root_cause": "ListJobs summary omitted labels; label-only filtering discarded the exact owned job, causing failed resolution and premature teardown",
+  "schema": "streaming-native-job-discovery-outcome.v1",
+  "source_commit": "2c7941d8701165e14cc01182b3d83992cb21e3e1",
+  "submission_failure_cause_established": true,
+  "terminal_job_state": "JOB_STATE_FAILED",
+  "terminal_job_state_time": "2026-11-15T21:41:44.953243Z",
+  "verification_code_sha256": {
+    "streaming/cleanup.py": "5e91cb0e0e440a403d9498d7135760d55838e5b4aedec7c96ac07308342ec2d8",
+    "streaming/gcp.py": "70bf348f6b914c4f5b82ec1d732d23d5c4fbc37d7f9e4738440f7154af0f72d2",
+    "streaming/retirement.py": "2f9049748661a7810979526be63875f4894dbd0b7ab0d72265c2607fcc2655a5"
+  }
+}

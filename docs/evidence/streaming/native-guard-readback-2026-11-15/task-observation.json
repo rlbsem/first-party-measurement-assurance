@@ -1,0 +1,9 @@
+{
+  "boundary": "native owner-side read during retirement; not successful pre-workload arming",
+  "delete_http_status": 200,
+  "one_exact_owned_task": true,
+  "private_read_receipt_sha256": "98f131a0d1fdb3a820eaf4c3b73ca29535c5e4a2a11734bd1d7fecb2612ba7b3",
+  "read_http_status": 200,
+  "scheduled_at": "2026-11-15T23:17:10.534083Z",
+  "target_and_invoker_match_manifest": true
+}

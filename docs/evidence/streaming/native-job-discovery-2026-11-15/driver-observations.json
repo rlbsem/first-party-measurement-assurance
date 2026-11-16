@@ -1,0 +1,13 @@
+{
+  "boundary": "Warnings selected from the actual submitted driver log; not a demonstrated processing failure",
+  "source_commit": "2c7941d8701165e14cc01182b3d83992cb21e3e1",
+  "driver_log_raw_sha256": "d09609b583c28d89829b3297c9ebb1a37b366ce9122ac8b4fb450ed69152bd3e",
+  "warnings": [
+    "WARNING:apache_beam.transforms.core:All input pcollections must have the same window. Windowing for flatten set to Windowing(<apache_beam.transforms.window.GlobalWindows object at 0x000002914FCA9430>, DefaultTrigger(), 1, 1, None), windowing of pcoll PCollection[Process operator-00-commerce/Label provisional panes.None] set to Windowing(<apache_beam.transforms.window.FixedWindows object at 0x000002914F8BD8B0>, AfterWatermark(late=AfterCount(1)), 2, 1, None)",
+    "WARNING:apache_beam.transforms.core:All input pcollections must have the same window. Windowing for flatten set to Windowing(<apache_beam.transforms.window.GlobalWindows object at 0x000002914FCABBC0>, DefaultTrigger(), 1, 1, None), windowing of pcoll PCollection[Process operator-00-web/Label provisional panes.None] set to Windowing(<apache_beam.transforms.window.FixedWindows object at 0x000002914FCA82F0>, AfterWatermark(late=AfterCount(1)), 2, 1, None)",
+    "WARNING:apache_beam.transforms.core:All input pcollections must have the same window. Windowing for flatten set to Windowing(<apache_beam.transforms.window.GlobalWindows object at 0x000002914F90F4D0>, DefaultTrigger(), 1, 1, None), windowing of pcoll PCollection[Process operator-01-commerce/Label provisional panes.None] set to Windowing(<apache_beam.transforms.window.FixedWindows object at 0x000002914F8BFE30>, AfterWatermark(late=AfterCount(1)), 2, 1, None)",
+    "WARNING:apache_beam.transforms.core:All input pcollections must have the same window. Windowing for flatten set to Windowing(<apache_beam.transforms.window.GlobalWindows object at 0x000002914F90FB60>, DefaultTrigger(), 1, 1, None), windowing of pcoll PCollection[Process operator-01-web/Label provisional panes.None] set to Windowing(<apache_beam.transforms.window.FixedWindows object at 0x000002914FCA88F0>, AfterWatermark(late=AfterCount(1)), 2, 1, None)"
+  ],
+  "root_cause_of_abort_established_by_these_warnings": false,
+  "requires_review_before_another_campaign": true
+}

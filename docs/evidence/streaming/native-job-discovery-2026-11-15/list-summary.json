@@ -1,0 +1,18 @@
+{
+  "http_status": 200,
+  "jobs": [
+    {
+      "createTime": "2026-11-15T21:38:13.991594Z",
+      "currentState": "JOB_STATE_PENDING",
+      "currentStateTime": "2026-11-15T21:38:14.168919Z",
+      "id": "2026-11-15_13_38_12-3184962932157250092",
+      "location": "us-central1",
+      "name": "sm2611152106-canary",
+      "projectId": "example-project",
+      "type": "JOB_TYPE_STREAMING"
+    }
+  ],
+  "observed_at": "2026-11-15T21:38:15.885270+00:00",
+  "private_receipt_sha256": "4a312f4f575a06c443331942563db0ceba08ba3c33e581a33c9b01de454ae35f",
+  "transformation": "Display subset; project identifier replaced with example-project; absent labels remain absent"
+}

@@ -1,0 +1,61 @@
+{
+  "boundary": "native read-only permission metadata, not a grant or cancellation test",
+  "catalog_exhausted": false,
+  "missing": [],
+  "observed": {
+    "bigquery.tables.get": {
+      "api_disabled": false,
+      "custom_roles_support": "SUPPORTED",
+      "name": "bigquery.tables.get",
+      "stage": "GA"
+    },
+    "bigquery.tables.getData": {
+      "api_disabled": false,
+      "custom_roles_support": "SUPPORTED",
+      "name": "bigquery.tables.getData",
+      "stage": "GA"
+    },
+    "bigquery.tables.updateData": {
+      "api_disabled": false,
+      "custom_roles_support": "SUPPORTED",
+      "name": "bigquery.tables.updateData",
+      "stage": "GA"
+    },
+    "dataflow.jobs.cancel": {
+      "api_disabled": false,
+      "custom_roles_support": "SUPPORTED",
+      "name": "dataflow.jobs.cancel",
+      "stage": "GA"
+    },
+    "dataflow.jobs.get": {
+      "api_disabled": false,
+      "custom_roles_support": "SUPPORTED",
+      "name": "dataflow.jobs.get",
+      "stage": "GA"
+    },
+    "dataflow.jobs.list": {
+      "api_disabled": false,
+      "custom_roles_support": "SUPPORTED",
+      "name": "dataflow.jobs.list",
+      "stage": "GA"
+    }
+  },
+  "observed_at": "2026-11-15T19:45:19.305706+00:00",
+  "pages_read": 7,
+  "resources_created": false,
+  "roles": {
+    "append": [
+      "bigquery.tables.get",
+      "bigquery.tables.getData",
+      "bigquery.tables.updateData"
+    ],
+    "stop_jobs": [
+      "dataflow.jobs.get",
+      "dataflow.jobs.list",
+      "dataflow.jobs.cancel"
+    ]
+  },
+  "schema": "streaming-custom-role-catalog.v1",
+  "unsupported": [],
+  "valid": true
+}

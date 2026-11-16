@@ -1,0 +1,1072 @@
+{
+  "boundary": "local-executed",
+  "native_execution": false,
+  "suites": {
+    "existing_application": {
+      "cases": [
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_offline_plan_does_not_import_or_authenticate_google"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_edited_or_stale_plan_rejected_even_with_new_digest[maximum_bytes_billed-0]"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_edited_or_stale_plan_rejected_even_with_new_digest[threads-8]"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_edited_or_stale_plan_rejected_even_with_new_digest[dbt_job_retries-1]"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_edited_or_stale_plan_rejected_even_with_new_digest[requires_billing_enabled-False]"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_edited_or_stale_plan_rejected_even_with_new_digest[datasets-value4]"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_edited_or_stale_plan_rejected_even_with_new_digest[source_sha256-value5]"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_wrong_approval_digest_and_expiration_rejected"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_sql_identifiers_are_pinned[Display Name-safe_run]"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_sql_identifiers_are_pinned[abc` DROP-safe_run]"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_sql_identifiers_are_pinned[example-project-bad-name]"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_sql_identifiers_are_pinned[example-project-../../data]"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_runtime_output_cannot_target_public_evidence"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_physical_admission_preserves_batches_and_superseded_items"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_complete_oracle_detects_duplicate_rows[fct_ga4_events]"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_complete_oracle_detects_duplicate_rows[fct_ga4_items]"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_complete_oracle_detects_duplicate_rows[mart_ga4_purchase_quality]"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_complete_oracle_detects_duplicate_rows[mart_ga4_sessions]"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_complete_oracle_detects_duplicate_rows[mart_ga4_daily]"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_complete_oracle_detects_field_corruption[fct_ga4_events-session_id-wrong-session]"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_complete_oracle_detects_field_corruption[fct_ga4_items-item_id-wrong-item]"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_complete_oracle_detects_field_corruption[mart_ga4_sessions-last_event_date-2099-01-01]"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_complete_oracle_detects_field_corruption[mart_ga4_purchase_quality-revenue_variance_cents--500]"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_complete_oracle_detects_field_corruption[mart_ga4_daily-purchase_item_rows-999]"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_dataset_delete_requires_ownership_and_location"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_sandbox_or_unknown_billing_cannot_execute_merge[info0]"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_sandbox_or_unknown_billing_cannot_execute_merge[info1]"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_sandbox_or_unknown_billing_cannot_execute_merge[info2]"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_read_only_billing_check_does_not_upgrade_project"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_collision_preflight_never_marks_existing_dataset_for_cleanup"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_uncertain_job_receipt_prohibits_cleanup"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_query_submission_is_bounded_and_intent_precedes_request"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_package_includes_entire_ga4_module_and_optional_lock"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_public_projection_rejects_ambiguous_parameter_and_preserves_unknowns"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_actual_landing_sql_rejects_faults_locally[none-assert_landing_values]"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_actual_landing_sql_rejects_faults_locally[missing_price-assert_landing_values]"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_actual_landing_sql_rejects_faults_locally[missing_quantity-assert_landing_values]"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_actual_landing_sql_rejects_faults_locally[negative_position-assert_landing_values]"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_actual_landing_sql_rejects_faults_locally[missing_event_date-assert_landing_values]"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_actual_landing_sql_rejects_faults_locally[empty_event_key-assert_landing_values]"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_actual_landing_sql_rejects_faults_locally[orphan_revision-assert_item_version_identity]"
+        },
+        {
+          "class_name": "tests.test_bigquery_acceptance",
+          "name": "test_actual_landing_sql_rejects_faults_locally[duplicate_position-assert_item_version_identity]"
+        },
+        {
+          "class_name": "tests.test_bigquery_execution_evidence",
+          "name": "test_recorded_native_acceptance_and_independent_cleanup"
+        },
+        {
+          "class_name": "tests.test_bigquery_execution_evidence",
+          "name": "test_recorded_evidence_rejects_faults[failed_acceptance]"
+        },
+        {
+          "class_name": "tests.test_bigquery_execution_evidence",
+          "name": "test_recorded_evidence_rejects_faults[source_revision]"
+        },
+        {
+          "class_name": "tests.test_bigquery_execution_evidence",
+          "name": "test_recorded_evidence_rejects_faults[source_hash]"
+        },
+        {
+          "class_name": "tests.test_bigquery_execution_evidence",
+          "name": "test_recorded_evidence_rejects_faults[production_claim]"
+        },
+        {
+          "class_name": "tests.test_bigquery_execution_evidence",
+          "name": "test_recorded_evidence_rejects_faults[missing_phase]"
+        },
+        {
+          "class_name": "tests.test_bigquery_execution_evidence",
+          "name": "test_recorded_evidence_rejects_faults[wrong_corrected_value]"
+        },
+        {
+          "class_name": "tests.test_bigquery_execution_evidence",
+          "name": "test_recorded_evidence_rejects_faults[duplicate_fact]"
+        },
+        {
+          "class_name": "tests.test_bigquery_execution_evidence",
+          "name": "test_recorded_evidence_rejects_faults[missing_null_field]"
+        },
+        {
+          "class_name": "tests.test_bigquery_execution_evidence",
+          "name": "test_recorded_evidence_rejects_faults[missing_dbt_test]"
+        },
+        {
+          "class_name": "tests.test_bigquery_execution_evidence",
+          "name": "test_recorded_evidence_rejects_faults[failed_dbt_model]"
+        },
+        {
+          "class_name": "tests.test_bigquery_execution_evidence",
+          "name": "test_recorded_evidence_rejects_faults[incorrect_negative_probe]"
+        },
+        {
+          "class_name": "tests.test_bigquery_execution_evidence",
+          "name": "test_recorded_evidence_rejects_faults[failed_job]"
+        },
+        {
+          "class_name": "tests.test_bigquery_execution_evidence",
+          "name": "test_recorded_evidence_rejects_faults[missing_independent_job]"
+        },
+        {
+          "class_name": "tests.test_bigquery_execution_evidence",
+          "name": "test_recorded_evidence_rejects_faults[duplicate_job]"
+        },
+        {
+          "class_name": "tests.test_bigquery_execution_evidence",
+          "name": "test_recorded_evidence_rejects_faults[missing_query_cap]"
+        },
+        {
+          "class_name": "tests.test_bigquery_execution_evidence",
+          "name": "test_recorded_evidence_rejects_faults[changed_sql]"
+        },
+        {
+          "class_name": "tests.test_bigquery_execution_evidence",
+          "name": "test_recorded_evidence_rejects_faults[cleanup_ack_only]"
+        },
+        {
+          "class_name": "tests.test_bigquery_execution_evidence",
+          "name": "test_recorded_evidence_rejects_faults[independent_cleanup_missing]"
+        },
+        {
+          "class_name": "tests.test_bigquery_execution_evidence",
+          "name": "test_recorded_evidence_rejects_faults[changed_resource_total]"
+        },
+        {
+          "class_name": "tests.test_bigquery_execution_evidence",
+          "name": "test_recorded_evidence_rejects_faults[billing_clearance_claim]"
+        },
+        {
+          "class_name": "tests.test_bigquery_execution_evidence",
+          "name": "test_recorded_evidence_rejects_faults[replay_changes_rows]"
+        },
+        {
+          "class_name": "tests.test_bigquery_execution_evidence",
+          "name": "test_recorded_evidence_rejects_faults[non_merge_statement]"
+        },
+        {
+          "class_name": "tests.test_bigquery_execution_evidence",
+          "name": "test_recorded_evidence_rejects_faults[unbound_dbt_job]"
+        },
+        {
+          "class_name": "tests.test_bigquery_execution_evidence",
+          "name": "test_export_refuses_to_overwrite_even_without_source_access"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_retry_and_changed_content"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_transaction_identity_and_conflict"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_closed_contract[schema_version-3]"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_closed_contract[schema_version-1]"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_closed_contract[email-private@example.invalid]"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_closed_contract[url-https://example.invalid/?email=private]"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_closed_contract[campaign-private@example.invalid]"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_closed_contract[event_name-page_view]"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_closed_contract[event_id-private@example.invalid]"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_closed_contract[session_id-not-a-session]"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_closed_contract[value_cents--1]"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_closed_contract[value_cents-True]"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_closed_contract[currency-EUR]"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_closed_contract[occurred_at-2026-01-15]"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_closed_contract[items-value12]"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_closed_contract[transaction_id-actual-customer-order]"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_closed_contract[collection-production]"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_non_event[None]"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_non_event[bad1]"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_non_event[1]"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_non_event[hello]"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_non_event[bad4]"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_value_and_catalog"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_consent_current_not_payload_assertion"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_arrival_bounds[2026-01-14T12:00:00Z-time_rejected]"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_arrival_bounds[2026-01-17T12:00:00Z-accepted_late]"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_arrival_bounds[2026-01-23T12:00:00Z-time_rejected]"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_atomic_rollback_and_restart"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_concurrent_duplicate"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_fixture_independent_expected_values"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_mp_units_and_boundary"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_http_boundaries"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_oracle_detects_same_count_wrong_value"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_duplicate_transaction_receipt_links_original"
+        },
+        {
+          "class_name": "tests.test_core",
+          "name": "test_analytics_rejects_tampered_source"
+        },
+        {
+          "class_name": "tests.test_ga4_contract",
+          "name": "test_batch_admission_correction_and_late_event"
+        },
+        {
+          "class_name": "tests.test_ga4_contract",
+          "name": "test_same_revision_collision_is_not_resolved_arbitrarily"
+        },
+        {
+          "class_name": "tests.test_ga4_contract",
+          "name": "test_orphan_items_rejected"
+        },
+        {
+          "class_name": "tests.test_ga4_contract",
+          "name": "test_duplicate_item_index_rejected"
+        },
+        {
+          "class_name": "tests.test_ga4_regression_guard",
+          "name": "test_full_event_slice_guard[event_name-page_view]"
+        },
+        {
+          "class_name": "tests.test_ga4_regression_guard",
+          "name": "test_full_event_slice_guard[user_pseudo_id-another-user]"
+        },
+        {
+          "class_name": "tests.test_ga4_regression_guard",
+          "name": "test_full_event_slice_guard[session_id-another-session]"
+        },
+        {
+          "class_name": "tests.test_ga4_regression_guard",
+          "name": "test_full_event_slice_guard[transaction_id-another-transaction]"
+        },
+        {
+          "class_name": "tests.test_ga4_regression_guard",
+          "name": "test_full_event_slice_guard[event_date-2020-01-01]"
+        },
+        {
+          "class_name": "tests.test_ga4_regression_guard",
+          "name": "test_full_event_slice_guard[arrival_batch-1]"
+        },
+        {
+          "class_name": "tests.test_ga4_regression_guard",
+          "name": "test_full_event_slice_guard[source_version-99]"
+        },
+        {
+          "class_name": "tests.test_ga4_regression_guard",
+          "name": "test_full_event_slice_guard[revenue_cents-1]"
+        },
+        {
+          "class_name": "tests.test_ga4_regression_guard",
+          "name": "test_full_event_slice_guard[event_key-unknown-event]"
+        },
+        {
+          "class_name": "tests.test_ga4_regression_guard",
+          "name": "test_full_event_slice_guard[user_pseudo_id-None]"
+        },
+        {
+          "class_name": "tests.test_ga4_regression_guard",
+          "name": "test_full_event_slice_guard[transaction_id-None]"
+        },
+        {
+          "class_name": "tests.test_ga4_regression_guard",
+          "name": "test_full_event_slice_guard[session_id-None]"
+        },
+        {
+          "class_name": "tests.test_ga4_regression_guard",
+          "name": "test_full_event_slice_guard[extra_future_event-None]"
+        },
+        {
+          "class_name": "tests.test_ga4_regression_guard",
+          "name": "test_full_event_slice_guard[missing_event-None]"
+        },
+        {
+          "class_name": "tests.test_ga4_regression_guard",
+          "name": "test_full_event_slice_guard[none-None]"
+        },
+        {
+          "class_name": "tests.test_google_evidence",
+          "name": "test_captured_native_record_reconciles_without_google_access"
+        },
+        {
+          "class_name": "tests.test_google_evidence",
+          "name": "test_tampered_native_proof_is_rejected[path0-0000000000000000000000000000000000000000000000000000000000000000]"
+        },
+        {
+          "class_name": "tests.test_google_evidence",
+          "name": "test_tampered_native_proof_is_rejected[path1-0000000000000000000000000000000000000000000000000000000000000000]"
+        },
+        {
+          "class_name": "tests.test_google_evidence",
+          "name": "test_tampered_native_proof_is_rejected[path2-RUNNING]"
+        },
+        {
+          "class_name": "tests.test_google_evidence",
+          "name": "test_tampered_native_proof_is_rejected[path3-True]"
+        },
+        {
+          "class_name": "tests.test_google_evidence",
+          "name": "test_tampered_native_proof_is_rejected[path4-100000001]"
+        },
+        {
+          "class_name": "tests.test_google_evidence",
+          "name": "test_tampered_native_proof_is_rejected[path5-15]"
+        },
+        {
+          "class_name": "tests.test_google_evidence",
+          "name": "test_tampered_native_proof_is_rejected[path6-0]"
+        },
+        {
+          "class_name": "tests.test_native",
+          "name": "test_public_result_parity"
+        },
+        {
+          "class_name": "tests.test_native",
+          "name": "test_dry_run_has_no_execution"
+        },
+        {
+          "class_name": "tests.test_native",
+          "name": "test_budget_gate_precedes_execution[None]"
+        },
+        {
+          "class_name": "tests.test_native",
+          "name": "test_budget_gate_precedes_execution[100000001]"
+        },
+        {
+          "class_name": "tests.test_native",
+          "name": "test_invalid_budget_never_calls_client[0]"
+        },
+        {
+          "class_name": "tests.test_native",
+          "name": "test_invalid_budget_never_calls_client[-1]"
+        },
+        {
+          "class_name": "tests.test_native",
+          "name": "test_invalid_budget_never_calls_client[100000001]"
+        },
+        {
+          "class_name": "tests.test_native",
+          "name": "test_native_adapter_contract_records_jobs_without_claiming_cloud"
+        },
+        {
+          "class_name": "tests.test_project_measurement",
+          "name": "test_browser_cannot_claim_offline_authority[qualify_lead]"
+        },
+        {
+          "class_name": "tests.test_project_measurement",
+          "name": "test_browser_cannot_claim_offline_authority[working_lead]"
+        },
+        {
+          "class_name": "tests.test_project_measurement",
+          "name": "test_browser_cannot_claim_offline_authority[close_convert_lead]"
+        },
+        {
+          "class_name": "tests.test_project_measurement",
+          "name": "test_browser_cannot_claim_offline_authority[purchase]"
+        },
+        {
+          "class_name": "tests.test_project_measurement",
+          "name": "test_event_mapping_and_value_basis[generate_lead]"
+        },
+        {
+          "class_name": "tests.test_project_measurement",
+          "name": "test_event_mapping_and_value_basis[qualify_lead]"
+        },
+        {
+          "class_name": "tests.test_project_measurement",
+          "name": "test_event_mapping_and_value_basis[working_lead]"
+        },
+        {
+          "class_name": "tests.test_project_measurement",
+          "name": "test_event_mapping_and_value_basis[disqualify_lead]"
+        },
+        {
+          "class_name": "tests.test_project_measurement",
+          "name": "test_event_mapping_and_value_basis[close_convert_lead]"
+        },
+        {
+          "class_name": "tests.test_project_measurement",
+          "name": "test_event_mapping_and_value_basis[purchase]"
+        },
+        {
+          "class_name": "tests.test_project_measurement",
+          "name": "test_proposal_is_not_contract"
+        },
+        {
+          "class_name": "tests.test_project_measurement",
+          "name": "test_new_id_cannot_duplicate_contract_value"
+        },
+        {
+          "class_name": "tests.test_project_measurement",
+          "name": "test_valid_payment_units_can_still_disagree_with_source"
+        },
+        {
+          "class_name": "tests.test_project_measurement",
+          "name": "test_multiple_actual_payments_do_not_repeat_contract"
+        },
+        {
+          "class_name": "tests.test_project_measurement",
+          "name": "test_offline_must_match_registered_source[change0]"
+        },
+        {
+          "class_name": "tests.test_project_measurement",
+          "name": "test_offline_must_match_registered_source[change1]"
+        },
+        {
+          "class_name": "tests.test_project_measurement",
+          "name": "test_offline_must_match_registered_source[change2]"
+        },
+        {
+          "class_name": "tests.test_project_measurement",
+          "name": "test_invalid_source_economics[payment-1]"
+        },
+        {
+          "class_name": "tests.test_project_measurement",
+          "name": "test_invalid_source_economics[signed_contract-1]"
+        },
+        {
+          "class_name": "tests.test_project_measurement",
+          "name": "test_invalid_source_economics[proposal-50000001]"
+        },
+        {
+          "class_name": "tests.test_project_measurement",
+          "name": "test_invalid_source_economics[inquiry-100]"
+        },
+        {
+          "class_name": "tests.test_project_measurement",
+          "name": "test_append_only_sources_and_payment_cap"
+        },
+        {
+          "class_name": "tests.test_project_measurement",
+          "name": "test_inquiry_source_idempotency_and_denied_measurement"
+        },
+        {
+          "class_name": "tests.test_project_measurement",
+          "name": "test_gtm_message_is_separate_from_private_collection"
+        },
+        {
+          "class_name": "tests.test_project_measurement",
+          "name": "test_legacy_workspace_refused_without_modification"
+        },
+        {
+          "class_name": "tests.test_project_measurement",
+          "name": "test_api_offline_claim_is_rejected"
+        },
+        {
+          "class_name": "tests.test_project_measurement",
+          "name": "test_revocation_blocks_offline_replay_without_erasing_history"
+        },
+        {
+          "class_name": "tests.test_project_measurement",
+          "name": "test_lead_stages_cannot_invent_monetary_value[generate_lead]"
+        },
+        {
+          "class_name": "tests.test_project_measurement",
+          "name": "test_lead_stages_cannot_invent_monetary_value[qualify_lead]"
+        },
+        {
+          "class_name": "tests.test_project_measurement",
+          "name": "test_lead_stages_cannot_invent_monetary_value[working_lead]"
+        },
+        {
+          "class_name": "tests.test_project_measurement",
+          "name": "test_lead_stages_cannot_invent_monetary_value[disqualify_lead]"
+        },
+        {
+          "class_name": "tests.test_project_measurement",
+          "name": "test_payment_cannot_claim_contract_value_basis"
+        },
+        {
+          "class_name": "tests.test_project_measurement",
+          "name": "test_project_oracle_detects_wrong_cash_without_count_change"
+        },
+        {
+          "class_name": "tests.test_project_measurement",
+          "name": "test_rollup_cannot_combine_payment_and_contract"
+        },
+        {
+          "class_name": "tests.test_warehouse_preview",
+          "name": "test_actual_model_bodies_match_complete_independent_oracle"
+        },
+        {
+          "class_name": "tests.test_warehouse_preview",
+          "name": "test_only_one_valid_public_shard_is_rendered[20210101 OR 1=1]"
+        },
+        {
+          "class_name": "tests.test_warehouse_preview",
+          "name": "test_only_one_valid_public_shard_is_rendered[2021011]"
+        },
+        {
+          "class_name": "tests.test_warehouse_preview",
+          "name": "test_only_one_valid_public_shard_is_rendered[20210201]"
+        },
+        {
+          "class_name": "tests.test_warehouse_preview",
+          "name": "test_only_one_valid_public_shard_is_rendered[20201031]"
+        },
+        {
+          "class_name": "tests.test_warehouse_preview",
+          "name": "test_only_one_valid_public_shard_is_rendered[20211301]"
+        },
+        {
+          "class_name": "tests.test_warehouse_preview",
+          "name": "test_preview_never_authenticates_and_preserves_duplicate_multiplicity"
+        },
+        {
+          "class_name": "tests.test_warehouse_preview",
+          "name": "test_checked_sql_matches_actual_sources"
+        },
+        {
+          "class_name": "tests.test_warehouse_preview",
+          "name": "test_sessions_cross_midnight_users_and_repeated_purchase_events"
+        },
+        {
+          "class_name": "tests.test_warehouse_preview_evidence",
+          "name": "test_genuine_native_record_matches_source_and_independent_queries"
+        },
+        {
+          "class_name": "tests.test_warehouse_preview_evidence",
+          "name": "test_changed_result_cannot_pass[count]"
+        },
+        {
+          "class_name": "tests.test_warehouse_preview_evidence",
+          "name": "test_changed_result_cannot_pass[hash]"
+        },
+        {
+          "class_name": "tests.test_warehouse_preview_evidence",
+          "name": "test_changed_result_cannot_pass[missing]"
+        },
+        {
+          "class_name": "tests.test_warehouse_preview_evidence",
+          "name": "test_changed_result_cannot_pass[duplicate]"
+        },
+        {
+          "class_name": "tests.test_warehouse_preview_evidence",
+          "name": "test_invalid_provider_metadata_cannot_pass[state-RUNNING]"
+        },
+        {
+          "class_name": "tests.test_warehouse_preview_evidence",
+          "name": "test_invalid_provider_metadata_cannot_pass[cache_hit-true]"
+        },
+        {
+          "class_name": "tests.test_warehouse_preview_evidence",
+          "name": "test_invalid_provider_metadata_cannot_pass[completed_without_error-false]"
+        },
+        {
+          "class_name": "tests.test_warehouse_preview_evidence",
+          "name": "test_invalid_provider_metadata_cannot_pass[statement_type-MERGE]"
+        },
+        {
+          "class_name": "tests.test_warehouse_preview_evidence",
+          "name": "test_invalid_provider_metadata_cannot_pass[total_bytes_processed-100000001]"
+        },
+        {
+          "class_name": "tests.test_warehouse_preview_evidence",
+          "name": "test_invalid_provider_metadata_cannot_pass[sql_sha256-0000000000000000000000000000000000000000000000000000000000000000]"
+        },
+        {
+          "class_name": "tests.test_warehouse_preview_evidence",
+          "name": "test_native_select_cannot_be_promoted_to_unexecuted_acceptance[native_dbt_compile]"
+        },
+        {
+          "class_name": "tests.test_warehouse_preview_evidence",
+          "name": "test_native_select_cannot_be_promoted_to_unexecuted_acceptance[native_dbt_build]"
+        },
+        {
+          "class_name": "tests.test_warehouse_preview_evidence",
+          "name": "test_native_select_cannot_be_promoted_to_unexecuted_acceptance[native_incremental_merge]"
+        },
+        {
+          "class_name": "tests.test_warehouse_preview_evidence",
+          "name": "test_native_select_cannot_be_promoted_to_unexecuted_acceptance[production_ga4_export]"
+        }
+      ],
+      "counts": {
+        "errors": 0,
+        "failures": 0,
+        "skipped": 0,
+        "tests": 195
+      },
+      "private_junit_sha256": "37f602d9d29bc9ac6633dc4c3da234575f241c9fa1394e759404e85bfc47d564"
+    },
+    "streaming": {
+      "cases": [
+        {
+          "class_name": "streaming_tests.test_admission_and_observability",
+          "name": "test_approval_requires_the_exact_finite_priced_exposure[None]"
+        },
+        {
+          "class_name": "streaming_tests.test_admission_and_observability",
+          "name": "test_approval_requires_the_exact_finite_priced_exposure[NaN]"
+        },
+        {
+          "class_name": "streaming_tests.test_admission_and_observability",
+          "name": "test_approval_requires_the_exact_finite_priced_exposure[Infinity]"
+        },
+        {
+          "class_name": "streaming_tests.test_admission_and_observability",
+          "name": "test_approval_requires_the_exact_finite_priced_exposure[301]"
+        },
+        {
+          "class_name": "streaming_tests.test_admission_and_observability",
+          "name": "test_approval_requires_the_exact_finite_priced_exposure[-1]"
+        },
+        {
+          "class_name": "streaming_tests.test_admission_and_observability",
+          "name": "test_approval_requires_the_exact_finite_priced_exposure[0]"
+        },
+        {
+          "class_name": "streaming_tests.test_admission_and_observability",
+          "name": "test_approval_requires_the_exact_finite_priced_exposure[1]"
+        },
+        {
+          "class_name": "streaming_tests.test_admission_and_observability",
+          "name": "test_changed_source_expired_approval_or_unverified_billing_cannot_admit"
+        },
+        {
+          "class_name": "streaming_tests.test_admission_and_observability",
+          "name": "test_image_resolution_cannot_smuggle_permission_or_resource_changes"
+        },
+        {
+          "class_name": "streaming_tests.test_admission_and_observability",
+          "name": "test_unapproved_endpoints_are_rejected_before_authentication[http://pubsub.googleapis.com/v1/topic]"
+        },
+        {
+          "class_name": "streaming_tests.test_admission_and_observability",
+          "name": "test_unapproved_endpoints_are_rejected_before_authentication[https://evil.googleapis.com/v1/topic]"
+        },
+        {
+          "class_name": "streaming_tests.test_admission_and_observability",
+          "name": "test_unapproved_endpoints_are_rejected_before_authentication[https://pubsub.googleapis.com.evil.invalid/v1/topic]"
+        },
+        {
+          "class_name": "streaming_tests.test_admission_and_observability",
+          "name": "test_unapproved_endpoints_are_rejected_before_authentication[https://user@pubsub.googleapis.com/v1/topic]"
+        },
+        {
+          "class_name": "streaming_tests.test_admission_and_observability",
+          "name": "test_unapproved_endpoints_are_rejected_before_authentication[https://pubsub.googleapis.com:444/v1/topic]"
+        },
+        {
+          "class_name": "streaming_tests.test_admission_and_observability",
+          "name": "test_real_permission_error_shape_is_journaled_without_treating_404_as_denial"
+        },
+        {
+          "class_name": "streaming_tests.test_admission_and_observability",
+          "name": "test_finite_percentiles_preserve_missing_observations_and_event_weight"
+        },
+        {
+          "class_name": "streaming_tests.test_beam",
+          "name": "test_direct_runner_real_watermark_late_panes_and_timer_expiration"
+        },
+        {
+          "class_name": "streaming_tests.test_beam",
+          "name": "test_beyond_horizon_preserves_durable_input_and_queues_rebuild"
+        },
+        {
+          "class_name": "streaming_tests.test_beam",
+          "name": "test_live_age_boundary_is_explicit_and_distinct_from_watermark[659.999999-False]"
+        },
+        {
+          "class_name": "streaming_tests.test_beam",
+          "name": "test_live_age_boundary_is_explicit_and_distinct_from_watermark[660-False]"
+        },
+        {
+          "class_name": "streaming_tests.test_beam",
+          "name": "test_live_age_boundary_is_explicit_and_distinct_from_watermark[660.000001-True]"
+        },
+        {
+          "class_name": "streaming_tests.test_beam",
+          "name": "test_real_processing_timer_expires_when_source_watermark_is_idle"
+        },
+        {
+          "class_name": "streaming_tests.test_beam",
+          "name": "test_native_submission_cannot_create_an_implicit_staging_bucket"
+        },
+        {
+          "class_name": "streaming_tests.test_controls",
+          "name": "test_closed_typed_authority[amount_minor-True-integer_minor_units_required]"
+        },
+        {
+          "class_name": "streaming_tests.test_controls",
+          "name": "test_closed_typed_authority[revision-1.5-invalid_revision]"
+        },
+        {
+          "class_name": "streaming_tests.test_controls",
+          "name": "test_closed_typed_authority[legal_entity-other-source_binding_mismatch]"
+        },
+        {
+          "class_name": "streaming_tests.test_controls",
+          "name": "test_closed_typed_authority[currency-CAD-value_basis_or_currency]"
+        },
+        {
+          "class_name": "streaming_tests.test_controls",
+          "name": "test_closed_typed_authority[event_time-2026-11-14T12:10:00Z-future_clock_skew]"
+        },
+        {
+          "class_name": "streaming_tests.test_controls",
+          "name": "test_closed_typed_authority[policy_version-old-policy_version_mismatch]"
+        },
+        {
+          "class_name": "streaming_tests.test_controls",
+          "name": "test_closed_typed_authority[eligible-1-invalid_eligibility]"
+        },
+        {
+          "class_name": "streaming_tests.test_controls",
+          "name": "test_browser_cannot_claim_payment_and_unknown_pii_is_not_persisted"
+        },
+        {
+          "class_name": "streaming_tests.test_controls",
+          "name": "test_lost_ack_replay_competing_approval_and_original_history"
+        },
+        {
+          "class_name": "streaming_tests.test_controls",
+          "name": "test_two_real_database_writers_only_one_successor"
+        },
+        {
+          "class_name": "streaming_tests.test_controls",
+          "name": "test_source_missing_or_equal_count_wrong_value_blocks"
+        },
+        {
+          "class_name": "streaming_tests.test_controls",
+          "name": "test_archive_hashes_and_revision_conflict"
+        },
+        {
+          "class_name": "streaming_tests.test_controls",
+          "name": "test_permutation_and_duplicate_conservation"
+        },
+        {
+          "class_name": "streaming_tests.test_controls",
+          "name": "test_correction_and_old_revision_after_sink_ahead"
+        },
+        {
+          "class_name": "streaming_tests.test_native_controls",
+          "name": "test_external_memory_oracle_agrees_with_independent_original_oracle"
+        },
+        {
+          "class_name": "streaming_tests.test_native_controls",
+          "name": "test_external_oracle_rejects_missing_sealed_source_even_with_rehashed_manifest"
+        },
+        {
+          "class_name": "streaming_tests.test_native_controls",
+          "name": "test_query_budget_is_an_actual_concurrent_database_gate"
+        },
+        {
+          "class_name": "streaming_tests.test_native_controls",
+          "name": "test_pending_exposure_fails_closed[299-1-1]"
+        },
+        {
+          "class_name": "streaming_tests.test_native_controls",
+          "name": "test_pending_exposure_fails_closed[-1-0-0]"
+        },
+        {
+          "class_name": "streaming_tests.test_native_controls",
+          "name": "test_pending_exposure_fails_closed[NaN-0-0]"
+        },
+        {
+          "class_name": "streaming_tests.test_native_controls",
+          "name": "test_pending_exposure_fails_closed[0-Infinity-0]"
+        },
+        {
+          "class_name": "streaming_tests.test_native_controls",
+          "name": "test_content_fingerprint_preserves_multiplicity"
+        },
+        {
+          "class_name": "streaming_tests.test_native_controls",
+          "name": "test_guard_rejects_changed_target_or_extended_clock"
+        },
+        {
+          "class_name": "streaming_tests.test_native_controls",
+          "name": "test_evidence_cannot_relabel_local_or_incomplete_as_native"
+        },
+        {
+          "class_name": "streaming_tests.test_source_reconciliation",
+          "name": "test_exact_coverage_rejects_equal_counts_with_wrong_bytes_or_positions"
+        },
+        {
+          "class_name": "streaming_tests.test_source_reconciliation",
+          "name": "test_independent_oracle_rejects_malformed_source_not_only_production_validator[change0]"
+        },
+        {
+          "class_name": "streaming_tests.test_source_reconciliation",
+          "name": "test_independent_oracle_rejects_malformed_source_not_only_production_validator[change1]"
+        },
+        {
+          "class_name": "streaming_tests.test_source_reconciliation",
+          "name": "test_independent_oracle_rejects_malformed_source_not_only_production_validator[change2]"
+        },
+        {
+          "class_name": "streaming_tests.test_source_reconciliation",
+          "name": "test_independent_oracle_rejects_malformed_source_not_only_production_validator[change3]"
+        },
+        {
+          "class_name": "streaming_tests.test_source_reconciliation",
+          "name": "test_independent_oracle_rejects_malformed_source_not_only_production_validator[change4]"
+        },
+        {
+          "class_name": "streaming_tests.test_source_reconciliation",
+          "name": "test_independent_oracle_rejects_malformed_source_not_only_production_validator[change5]"
+        },
+        {
+          "class_name": "streaming_tests.test_source_reconciliation",
+          "name": "test_independent_oracle_rejects_malformed_source_not_only_production_validator[change6]"
+        },
+        {
+          "class_name": "streaming_tests.test_source_reconciliation",
+          "name": "test_item_types_bounds_and_conservation[item0]"
+        },
+        {
+          "class_name": "streaming_tests.test_source_reconciliation",
+          "name": "test_item_types_bounds_and_conservation[item1]"
+        },
+        {
+          "class_name": "streaming_tests.test_source_reconciliation",
+          "name": "test_item_types_bounds_and_conservation[item2]"
+        },
+        {
+          "class_name": "streaming_tests.test_source_reconciliation",
+          "name": "test_item_types_bounds_and_conservation[item3]"
+        },
+        {
+          "class_name": "streaming_tests.test_source_reconciliation",
+          "name": "test_item_types_bounds_and_conservation[item4]"
+        },
+        {
+          "class_name": "streaming_tests.test_source_reconciliation",
+          "name": "test_item_types_bounds_and_conservation[item5]"
+        },
+        {
+          "class_name": "streaming_tests.test_source_reconciliation",
+          "name": "test_source_authority_is_archive_route_not_payload_and_failure_is_tenant_scoped"
+        },
+        {
+          "class_name": "streaming_tests.test_source_reconciliation",
+          "name": "test_browser_heavy_load_is_exact_bounded_and_independently_conserves_finance"
+        },
+        {
+          "class_name": "streaming_tests.test_source_reconciliation",
+          "name": "test_namespace_does_not_match_adjacent_run"
+        },
+        {
+          "class_name": "streaming_tests.test_source_reconciliation",
+          "name": "test_late_unarchived_write_prevents_every_delete"
+        },
+        {
+          "class_name": "streaming_tests.test_source_reconciliation",
+          "name": "test_corrupt_private_export_prevents_deletion"
+        }
+      ],
+      "counts": {
+        "errors": 0,
+        "failures": 0,
+        "skipped": 0,
+        "tests": 66
+      },
+      "private_junit_sha256": "83ed4b341d47e591c106f5b6b7a94c983b3cdc39e3182a1feb4d8da7120fb7c8"
+    }
+  }
+}

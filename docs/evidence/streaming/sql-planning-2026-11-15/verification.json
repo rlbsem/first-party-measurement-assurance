@@ -1,0 +1,25 @@
+{
+  "approval_transaction_executed": false,
+  "boundary": "native-query-planning-only",
+  "datasets_created": false,
+  "dry_run": true,
+  "estimated_bytes_processed": 0,
+  "executed": false,
+  "includes_published_view": true,
+  "job_id": null,
+  "model_count": 7,
+  "observed_at": "2026-11-15T01:04:36.552358+00:00",
+  "query_sha256": "5cb3640f3ea5021845d1caef4c88d3c4cc5f87375d2fb5bda9ca1e701d1e2935",
+  "source_revision_base": "2468e3de9db2c2900957220810d6901ad32b24de",
+  "source_sha256": {
+    "infra/streaming/published.sql.tftpl": "1a8c85fb7dd620c47eb0e337736d0a8d7084b4419638f34179faa88461d4d45f",
+    "streaming/sqlcheck.py": "eecadfeca9e59dec0a4c05b2742951f39e15447e7b943f6f40349991cfd283fc",
+    "streaming_dbt/models/fct_stream_events.sql": "9225c1f24dd3d2d3be6fdb5aede52725db9f55bd1ca3906424badff6e1ae735c",
+    "streaming_dbt/models/fct_stream_items.sql": "e452520c4ea89550f29833c058cd8c17270001f41b174c26b358a13e599d3a1f",
+    "streaming_dbt/models/fct_stream_sessions.sql": "fc887367fcc8ce98c929faff0a77c063169e3f2a4ed1f44c7a9671b7c1a4356e",
+    "streaming_dbt/models/mart_stream.sql": "1e65b1dc6a8b32b3ceed386e5688e166ec62e0e341b616673eba700490396dcd",
+    "streaming_dbt/models/mart_stream_projects.sql": "3bafe524b07b397476e771903943113d0d583971f6953110dbcaf6dd1f74a8e9",
+    "streaming_dbt/models/stg_stream.sql": "31ebce32f76138c76b21759caf89d086c01bb74072c30c22229605f2f6ae64fc",
+    "streaming_dbt/models/stream_exceptions.sql": "bf4279eb95956065b165d2733f68e1048e740bb2d36e59cfdf07ed58667ffb05"
+  }
+}
