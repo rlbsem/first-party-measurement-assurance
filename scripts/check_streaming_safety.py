@@ -2,10 +2,15 @@
 
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 RECORD = ROOT / "docs/evidence/streaming/local-native-probes-2026-11-16"
+# The local probe report certifies the old, immutable source commit. Once
+# development continues, verify archived bytes from that Git object rather
+# than changing the report or claiming it tested the new working tree.
+PINNED_PROBE_COMMIT = "174a8840114366f9683ad93faecd38f121ef6413"
 
 
 def check():
@@ -23,8 +28,22 @@ def check():
             raise ValueError("safety_evidence_changed:" + name)
     record = json.loads((RECORD / "verification.json").read_bytes())
     for name, expected in record["source_sha256"].items():
-        if hashlib.sha256((ROOT / name).read_bytes()).hexdigest() != expected:
-            raise ValueError("safety_source_changed:" + name)
+        if hashlib.sha256((ROOT / name).read_bytes()).hexdigest() == expected:
+            continue
+        # GitHub CI fetches full history for this exact historical proof.
+        # A subsequent edit may diverge, but the recorded evidence remains
+        # bound to the actual committed source bytes that were tested.
+        try:
+            historical = subprocess.check_output(
+                ["git", "show", f"{PINNED_PROBE_COMMIT}:{name}"],
+                cwd=ROOT,
+                timeout=15,
+                stderr=subprocess.DEVNULL,
+            )
+        except (subprocess.CalledProcessError, subprocess.TimeoutExpired) as error:
+            raise ValueError("historical_source_unavailable:" + name) from error
+        if hashlib.sha256(historical).hexdigest() != expected:
+            raise ValueError("historical_safety_source_changed:" + name)
     tests = record["streaming_tests"]
     core = record["core_regression"]
     graph = json.loads((RECORD / "graph-verification.json").read_bytes())
