@@ -152,7 +152,8 @@ def test_worker_shape_is_pinned_and_uncertain_submission_is_resolved_without_ret
         run="sm0123456789",
         bucket="owned",
         raw_dataset="raw",
-        subnetwork="regions/us-central1/subnetworks/owned",
+        # Terraform returns the project-prefixed Compute resource ID.
+        subnetwork="projects/example-project/regions/us-central1/subnetworks/sm0123456789",
         identities={"worker": "worker@example.invalid"},
         bindings=cohort()[0],
         subscriptions={},
@@ -174,6 +175,8 @@ def test_worker_shape_is_pinned_and_uncertain_submission_is_resolved_without_ret
     def submit(args, **kwargs):
         calls.append(args)
         options = PipelineOptions(args[5:]).view_as(WorkerOptions)
+        assert "--subnetwork=regions/us-central1/subnetworks/sm0123456789" in args
+        assert not any(a.startswith("--subnetwork=projects/") for a in args)
         assert options.machine_type == "n1-standard-2"
         assert (
             options.num_workers == 1
