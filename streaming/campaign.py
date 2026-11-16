@@ -12,6 +12,7 @@ from .fixtures import archive, cohort
 from .gcp import Cloud, utc, write
 from .cleanup import TERMINAL
 from .planning import authorize
+from .dataflow_network import dataflow_subnetwork
 from .warehouse import build_models, create_candidate, verify_candidate, approve
 
 
@@ -48,6 +49,9 @@ class Campaign:
             or deployment["region"] != plan["region"]
         ):
             raise ValueError("deployment_plan_target_mismatch")
+        # Validate the provider readback before the campaign workspace is armed.
+        # The original Terraform ID is retained for inventory and ownership.
+        dataflow_subnetwork(deployment)
         self.work.mkdir(parents=True)
         self.cloud = Cloud(plan["project"], self.work / "owner")
         self.started = datetime.now(timezone.utc)
@@ -250,6 +254,9 @@ class Campaign:
 
     def start_dataflow(self, label, workers, snapshot=None):
         self.check_time(1200)
+        # Fail before even PREPARING a submission when Dataflow would reject
+        # the provider's project-prefixed Compute subnetwork representation.
+        regional_subnetwork = dataflow_subnetwork(self.m)
         self.submission_attempts += 1
         if self.submission_attempts > 5:
             raise ValueError("bounded_job_submission_limit")
@@ -288,7 +295,7 @@ class Campaign:
             + name
             + "/files",
             "--service_account_email=" + self.m["identities"]["worker"],
-            "--subnetwork=" + self.m["subnetwork"],
+            "--subnetwork=" + regional_subnetwork,
             "--no_use_public_ips",
             "--enable_streaming_engine",
             "--dataflow_service_options=enable_streaming_engine_resource_based_billing",
