@@ -346,6 +346,46 @@ def check():
         != [(30, 404), (10, 404)]
     ):
         raise ValueError("rpc_execution_boundary_changed")
+    discovery_root = ROOT / "docs/evidence/streaming/native-job-discovery-2026-11-15"
+    discovery_index = json.loads((discovery_root / "sha256.json").read_bytes())
+    if set(discovery_index) != {
+        p.relative_to(discovery_root).as_posix()
+        for p in discovery_root.rglob("*")
+        if p.is_file() and p.name != "sha256.json"
+    }:
+        raise ValueError("discovery_evidence_inventory_changed")
+    for name, expected in discovery_index.items():
+        path = (discovery_root / name).resolve()
+        if (
+            not path.is_relative_to(discovery_root.resolve())
+            or path.is_symlink()
+            or hashlib.sha256(path.read_bytes()).hexdigest() != expected
+        ):
+            raise ValueError("discovery_evidence_changed:" + name)
+    discovery = json.loads((discovery_root / "outcome.json").read_bytes())
+    listed = json.loads((discovery_root / "list-summary.json").read_bytes())["jobs"]
+    exact = json.loads((discovery_root / "job-summary.json").read_bytes())["job"]
+    if (
+        not discovery["job_submitted"]
+        or not discovery["guard_arming"]["exact_readback_recorded"]
+        or discovery["original_cleanup_claim_valid"]
+        or not discovery["submission_failure_cause_established"]
+        or discovery["canary_completed"]
+        or discovery["native_processing_acceptance_passed"]
+        or discovery["financial_results"] is not None
+        or discovery["performance_results"] is not None
+        or discovery["terminal_job_state"] != "JOB_STATE_FAILED"
+        or not discovery["corrected_independent_inventory"]["logical_absence"]
+        or discovery["corrected_independent_inventory"]["active_jobs"]
+        or discovery["corrected_independent_inventory"]["counts"]["jobs"] != 1
+        or discovery["billing_clearance"]
+        or discovery["actual_charge_cad"] is not None
+        or len(listed) != 1
+        or "labels" in listed[0]
+        or listed[0]["id"] != exact["id"]
+        or exact["labels"]["acceptance"] != exact["name"].removesuffix("-canary")
+    ):
+        raise ValueError("discovery_execution_boundary_changed")
     return dict(
         evidence_files=len(manifest),
         bootstrap_evidence_files=len(bootstrap_index),
@@ -355,9 +395,11 @@ def check():
         runtime_prerequisite_evidence_files=len(runtime_index),
         guard_evidence_files=len(guard_index),
         rpc_evidence_files=len(rpc_index),
+        discovery_evidence_files=len(discovery_index),
         boundary="offline revalidation of local execution",
         canonical_rows=initial["canonical_rows"],
-        native_streaming_executed=False,
+        native_dataflow_job_submitted=True,
+        native_processing_acceptance_passed=False,
     )
 
 

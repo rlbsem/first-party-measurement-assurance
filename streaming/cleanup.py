@@ -7,7 +7,7 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 from .contracts import digest, instant
-from .gcp import Cloud, write, utc
+from .gcp import Cloud, ProviderFailure, write, utc
 
 TERMINAL = {
     "JOB_STATE_DONE",
@@ -42,16 +42,47 @@ def validate_manifest(m, expected_project=None, expected_run=None):
     return m
 
 
+def verified_job(cloud, m, identifier, label):
+    if not re.fullmatch(r"[A-Za-z0-9_-]+", identifier):
+        raise ValueError("unsafe_job_identifier")
+    job = cloud.call(
+        "GET",
+        f"https://dataflow.googleapis.com/v1b3/projects/{m['project']}/locations/{m['region']}/jobs/{identifier}?view=JOB_VIEW_SUMMARY",
+        label,
+    )
+    if (
+        job.get("id") != identifier
+        or job.get("projectId") != m["project"]
+        or job.get("location") != m["region"]
+        or job.get("labels", {}).get("acceptance") != m["run"]
+        or not job.get("name", "").startswith(m["run"] + "-")
+        or not job.get("currentState")
+    ):
+        raise ValueError("fresh_job_ownership_mismatch")
+    return job
+
+
 def inventory_jobs(cloud, m):
+    # jobs.list always returns summaries, which can omit labels. Discover by
+    # namespace, then establish ownership through an independent exact GET.
     url = f"https://dataflow.googleapis.com/v1b3/projects/{m['project']}/locations/{m['region']}/jobs?filter=ALL&pageSize=100"
     jobs = []
+    seen = set()
     for page in range(20):
         response = cloud.call("GET", url, "inventory-jobs-" + str(page))
-        jobs.extend(
-            j
-            for j in response.get("jobs", [])
-            if j.get("labels", {}).get("acceptance") == m["run"]
-        )
+        for item in response.get("jobs", []):
+            if not (
+                item.get("labels", {}).get("acceptance") == m["run"]
+                or item.get("name", "").startswith(m["run"] + "-")
+            ):
+                continue
+            identifier = item["id"]
+            if identifier in seen:
+                raise ValueError("duplicate_job_inventory_entry")
+            seen.add(identifier)
+            jobs.append(
+                verified_job(cloud, m, identifier, "inventory-exact-job-" + identifier)
+            )
         token = response.get("nextPageToken")
         if not token:
             return jobs
@@ -82,38 +113,44 @@ def stop_owned_jobs(
         return dict(status="not_due", resources_changed=False)
     cloud = Cloud(m["project"], work)
     observations = []
-    for item in inventory_jobs(cloud, m):
-        identifier = item["id"]
-        url = f"https://dataflow.googleapis.com/v1b3/projects/{m['project']}/locations/{m['region']}/jobs/{identifier}"
-        job = cloud.call("GET", url, "verify-job-" + identifier)
-        if (
-            job.get("labels", {}).get("acceptance") != m["run"]
-            or not job.get("name", "").startswith(m["run"] + "-")
-            or job.get("projectId") != m["project"]
-        ):
-            raise ValueError("fresh_job_ownership_mismatch")
-        previous = job["currentState"]
-        if previous not in TERMINAL:
-            cloud.call(
-                "PUT",
-                url,
-                "cancel-job-" + identifier,
-                dict(requestedState="JOB_STATE_CANCELLED"),
-            )
-        observations.append(
-            dict(
-                job_id=identifier,
-                before=previous,
-                cancellation_requested=previous not in TERMINAL,
-            )
-        )
     deadline = time.monotonic() + 600
+    accepted = set()
     while True:
-        active = [
-            j["id"]
-            for j in inventory_jobs(cloud, m)
-            if j.get("currentState") not in TERMINAL
-        ]
+        active = []
+        for item in inventory_jobs(cloud, m):
+            identifier, previous = item["id"], item["currentState"]
+            if previous in TERMINAL:
+                continue
+            active.append(identifier)
+            if identifier in accepted:
+                continue
+            url = f"https://dataflow.googleapis.com/v1b3/projects/{m['project']}/locations/{m['region']}/jobs/{identifier}"
+            try:
+                cloud.call(
+                    "PUT",
+                    url,
+                    "cancel-job-" + identifier,
+                    dict(requestedState="JOB_STATE_CANCELLED"),
+                )
+            except ProviderFailure as error:
+                if not (
+                    previous == "JOB_STATE_PENDING"
+                    and error.status == 400
+                    and error.reason == "FAILED_PRECONDITION"
+                ):
+                    raise
+                # PENDING can transition only to RUNNING or FAILED. Wait within
+                # the finite cleanup budget; never infer absence or delete its
+                # staging files while the service cannot yet accept cancel.
+                requested = False
+            else:
+                accepted.add(identifier)
+                requested = True
+            observations.append(
+                dict(
+                    job_id=identifier, before=previous, cancellation_requested=requested
+                )
+            )
         if not active or time.monotonic() >= deadline:
             break
         time.sleep(10)

@@ -1,0 +1,78 @@
+{
+  "cancellation": {
+    "error": {
+      "code": 400,
+      "message": "(8f6c527fca8b2b0a): Workflow modification failed. Causes: (63331e1fdd46ab5a): Operation cancel not allowed for job 2026-11-15_13_38_12-3184962932157250092. Job is not yet ready for canceling. Please retry in a few minutes.",
+      "status": "FAILED_PRECONDITION"
+    },
+    "http_status": 400,
+    "private_receipt_sha256": "f18559fc3715f71e3469667f5d724efaea2dc78527df709cb7a376c35819a901"
+  },
+  "explicit_request_id_exposed": false,
+  "job_id": "2026-11-15_13_38_12-3184962932157250092",
+  "messages": [
+    {
+      "id": "1794778695143",
+      "messageImportance": "JOB_MESSAGE_WARNING",
+      "messageText": "The requested max number of workers (1) is ignored as autoscaling is explicitly disabled (autoscalingAlgorithm=NONE).",
+      "time": "2026-11-15T21:38:15.143Z"
+    },
+    {
+      "id": "1794778757977",
+      "messageImportance": "JOB_MESSAGE_ERROR",
+      "messageText": "Staged package beam-sdks-java-io-google-cloud-platform-expansion-service-2.77.0-uCGnHpvuIsv6vvnNKZrDXdQAXznLNIzBlZkTYvhCtQs.jar at location 'gs://example-project-sm2611152106/staging/sm2611152106-canary/files/sm2611152106-canary.1794778678.776343/beam-sdks-java-io-google-cloud-platform-expansion-service-2.77.0-uCGnHpvuIsv6vvnNKZrDXdQAXznLNIzBlZkTYvhCtQs.jar' is inaccessible.",
+      "time": "2026-11-15T21:39:17.977Z"
+    },
+    {
+      "id": "1794778788034",
+      "messageImportance": "JOB_MESSAGE_ERROR",
+      "messageText": "Staged package pickled_main_session at location 'gs://example-project-sm2611152106/staging/sm2611152106-canary/files/sm2611152106-canary.1794778678.776343/pickled_main_session' is inaccessible.",
+      "time": "2026-11-15T21:39:48.034Z"
+    },
+    {
+      "id": "1794778818131",
+      "messageImportance": "JOB_MESSAGE_ERROR",
+      "messageText": "Staged package submission_environment_dependencies.txt at location 'gs://example-project-sm2611152106/staging/sm2611152106-canary/files/sm2611152106-canary.1794778678.776343/submission_environment_dependencies.txt' is inaccessible.",
+      "time": "2026-11-15T21:40:18.131Z"
+    },
+    {
+      "id": "1794778839935",
+      "messageImportance": "JOB_MESSAGE_DETAILED",
+      "messageText": "Workflow modification failed. Causes: Operation cancel not allowed for job 2026-11-15_13_38_12-3184962932157250092. Job is not yet ready for canceling. Please retry in a few minutes.",
+      "time": "2026-11-15T21:40:39.935Z"
+    },
+    {
+      "id": "1794778848148",
+      "messageImportance": "JOB_MESSAGE_ERROR",
+      "messageText": "Workflow failed. Causes: One or more access checks for temp location or staged files failed. Please refer to other error messages for details. For more information, see https://cloud.google.com/dataflow/docs/guides/common-errors#staged-package-inaccessible.",
+      "time": "2026-11-15T21:40:48.148Z"
+    },
+    {
+      "id": "1794778873610",
+      "messageImportance": "JOB_MESSAGE_DETAILED",
+      "messageText": "Cleaning up.",
+      "time": "2026-11-15T21:41:13.610Z"
+    },
+    {
+      "id": "1794778873652",
+      "messageImportance": "JOB_MESSAGE_BASIC",
+      "messageText": "Worker pool stopped.",
+      "time": "2026-11-15T21:41:13.652Z"
+    },
+    {
+      "id": "1794778877245",
+      "messageImportance": "JOB_MESSAGE_ERROR",
+      "messageText": "Workflow failed. Causes: Please make sure the service account exists and is enabled.",
+      "time": "2026-11-15T21:41:17.245Z"
+    }
+  ],
+  "private_message_receipt_sha256": "fdaa280c47f5843181cb21b9afe590b52bb420f3b20eeb1c52faf796b19ebc0d",
+  "request_id_boundary": "Job ID, message IDs and workflow diagnostic codes are retained; an explicit request ID was not exposed in captured responses",
+  "response_metadata": {
+    "Date": "Mon, 16 Nov 2026 01:18:35 GMT"
+  },
+  "workflow_diagnostic_codes": [
+    "8f6c527fca8b2b0a",
+    "63331e1fdd46ab5a"
+  ]
+}

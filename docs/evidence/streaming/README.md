@@ -1,6 +1,6 @@
 # Governed streaming evidence
 
-The local controls execute with synthetic sources. Native streaming acceptance remains unexecuted: the approved attempts below ended at image prerequisites, partial provisioning or guard readback, followed by independently verified cleanup. No Dataflow throughput, recovery duration or financial result is inferred from them.
+The local controls execute with synthetic sources. Native streaming processing acceptance remains incomplete. The latest attempt armed its guard and submitted a real Dataflow job, then exposed a job-discovery defect and an invalid initial cleanup inference. The corrected final inventory identifies the failed terminal job and no active owned resources. No throughput, recovery duration or financial result is inferred from submission.
 
 | Record | What executed | Boundary |
 |---|---|---|
@@ -13,6 +13,7 @@ The local controls execute with synthetic sources. Native streaming acceptance r
 | [Image success and runtime prerequisite failure](native-runtime-prerequisite-2026-11-15/README.md) | Modern worker image build, exact registry readback, partial runtime apply, rejected custom role and independent cleanup | Source `8c60c44`; 130 runtime resources retired; no guard arming or streaming workload |
 | [Full deployment and guard-readback failure](native-guard-readback-2026-11-15/README.md) | Full runtime deployment, actual scheduled task, SDK readback failure, task retirement and independent residual checks | Source `9fe80b1`; native infrastructure compatibility, no Dataflow job or completed arming |
 | [Guard RPC deadline rejection](native-rpc-deadline-2026-11-15/README.md) | Full runtime deployment, typed SDK request reaching Google, RPC deadline rejection, native read-only probes and verified cleanup | Source `30cd28c`; later 30s/10s GETs returned expected absence; no arming or streaming result |
+| [Submission and job-discovery root cause](native-job-discovery-2026-11-15/README.md) | Guard arming, real Dataflow submission, missing-label summary, pending cancellation rejection and corrected final inventory | Source `2c7941d`; original cleanup claim invalidated; job failed before processing acceptance |
 
 Each historical record retains its original source revision, observations and hash manifest. Current source and tests can advance without changing those bytes. The offline evidence checker verifies committed records; it does not repeat a vendor execution or prove current cloud absence.
 

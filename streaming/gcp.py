@@ -98,6 +98,18 @@ class Cloud:
             http_status=response.status_code,
             duration_seconds=time.monotonic() - began,
             body=value,
+            response_metadata={
+                key: val
+                for key, val in getattr(response, "headers", {}).items()
+                if key.lower()
+                in {
+                    "date",
+                    "x-request-id",
+                    "x-goog-request-id",
+                    "x-cloud-trace-context",
+                    "traceparent",
+                }
+            },
         )
         # The private journal is append-only per call; uncertain outcomes are never retried here.
         name = f"{self.journal_id}-{len(self.receipts):05}-{label}.private.json"

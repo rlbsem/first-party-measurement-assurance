@@ -1,0 +1,17 @@
+{
+  "job": {
+    "createTime": "2026-11-15T21:38:13.991594Z",
+    "currentState": "JOB_STATE_FAILED",
+    "currentStateTime": "2026-11-15T21:41:44.953243Z",
+    "id": "2026-11-15_13_38_12-3184962932157250092",
+    "labels": {
+      "acceptance": "sm2611152106"
+    },
+    "location": "us-central1",
+    "name": "sm2611152106-canary",
+    "projectId": "example-project",
+    "type": "JOB_TYPE_STREAMING"
+  },
+  "observed_at": "2026-11-16T01:18:35.441484+00:00",
+  "transformation": "Display subset; project identifier replaced with example-project"
+}

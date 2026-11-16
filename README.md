@@ -22,9 +22,9 @@ A conversion must represent the business event it claims to measure. This reposi
 
 ## Governed streaming extension
 
-The [streaming lane](docs/governed-streaming.md) adds authenticated source contracts, real Beam state/timer processing, independent full-rowset reconciliation and transactional publication controls. Its local execution is recorded separately. Terraform, a direct-ingestion baseline and the bounded native campaign are implemented; **native Pub/Sub/Dataflow streaming acceptance and performance measurements are not yet executed**. Existing BigQuery/dbt evidence does not stand in for those results.
+The [streaming lane](docs/governed-streaming.md) adds authenticated source contracts, real Beam state/timer processing, independent full-rowset reconciliation and transactional publication controls. Its local execution is recorded separately. Terraform, a direct-ingestion baseline and the bounded native campaign are implemented; **native Pub/Sub/Dataflow processing acceptance and performance measurements remain incomplete**. Existing BigQuery/dbt evidence does not stand in for those results.
 
-The [streaming evidence index](docs/evidence/streaming/README.md) preserves local execution, SQL planning and native prerequisite observations with independent cleanup checks. Native build-identity storage controls, the real worker image build and full runtime provisioning passed. A subsequent guard-readback request encountered a provider RPC deadline rejection; the scheduled task and resources were retired and independently checked. Native guard arming, streaming correctness, recovery and performance acceptance remain unexecuted.
+The [streaming evidence index](docs/evidence/streaming/README.md) preserves local execution, SQL planning and native observations. Native build-identity storage controls, image verification, full runtime provisioning, guard arming and a Dataflow job submission passed. A job-discovery defect then aborted acceptance and produced an incorrect initial cleanup claim. The defect is corrected locally; a fresh exact-job inventory confirms a failed terminal job and no active owned resources. Native processing, recovery and performance acceptance remain incomplete.
 
 ## Try the application locally
 

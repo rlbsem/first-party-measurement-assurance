@@ -45,11 +45,20 @@ def test_complete_inventory_and_snapshot_residuals(tmp_path, monkeypatch, residu
                     "jobs": [
                         {
                             "id": "completed-job",
-                            "labels": {"acceptance": run},
+                            "name": run + "-canary",
                             "currentState": "JOB_STATE_CANCELLED",
                         }
                     ]
                 }
+            if label == "inventory-exact-job-completed-job":
+                return dict(
+                    id="completed-job",
+                    name=run + "-canary",
+                    projectId=project,
+                    location="us-central1",
+                    labels={"acceptance": run},
+                    currentState="JOB_STATE_CANCELLED",
+                )
             if "inventory-source-snapshots-" in label:
                 snapshots = [
                     {

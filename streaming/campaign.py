@@ -194,6 +194,12 @@ class Campaign:
             else:
                 read_attempts.append(dict(timeout=rpc_timeout, full_readback=True))
                 write(self.work / "guard-readback-attempts.private.json", read_attempts)
+                from google.protobuf.json_format import MessageToDict
+
+                write(
+                    self.work / "guard-task-readback.private.json",
+                    MessageToDict(tasks_v2.Task.pb(readback)),
+                )
                 break
         if (
             readback.http_request.url != url
@@ -297,6 +303,16 @@ class Campaign:
             raise RuntimeError("dataflow_submission_not_uniquely_resolved")
         identifier = matches[0]["id"]
         self.jobs.append(identifier)
+        write(
+            self.work / (label + "-submission-resolution.private.json"),
+            dict(
+                job_id=identifier,
+                exact_job=matches[0],
+                driver_timeout=driver_timeout,
+                driver_returncode=None if driver_timeout else result.returncode,
+                second_submission_attempted=False,
+            ),
+        )
         if driver_timeout:
             raise TimeoutError("dataflow_driver_timeout_job_resolved_for_retirement")
         if result.returncode:

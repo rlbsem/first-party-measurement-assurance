@@ -194,3 +194,34 @@ def test_regional_build_uses_accepted_build_id_instead_of_legacy_operation_route
         accepted_build_url("another-project", "sm0123456789", operation)
     with pytest.raises(ValueError, match="identity"):
         accepted_build_url("example-project", "sm9999999999", operation)
+
+
+def test_provider_response_ids_are_allowlisted_without_credentials(tmp_path):
+    import json
+
+    class Response:
+        status_code = 200
+        headers = {
+            "Date": "synthetic-date",
+            "X-Goog-Request-Id": "synthetic-request",
+            "Authorization": "must-not-persist",
+            "Set-Cookie": "must-not-persist",
+        }
+
+        def json(self):
+            return {"result": "synthetic"}
+
+    cloud = object.__new__(Cloud)
+    cloud.work, cloud.journal_id, cloud.receipts = tmp_path, "headers", []
+    cloud.session = type("Session", (), {"request": lambda *a, **k: Response()})()
+    cloud.call(
+        "GET",
+        "https://dataflow.googleapis.com/v1b3/projects/example/jobs",
+        "read-only-probe",
+    )
+    record = json.loads(next(tmp_path.glob("*.private.json")).read_bytes())
+    assert record["response_metadata"] == {
+        "Date": "synthetic-date",
+        "X-Goog-Request-Id": "synthetic-request",
+    }
+    assert "must-not-persist" not in json.dumps(record)
