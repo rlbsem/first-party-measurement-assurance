@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-RECORD = ROOT / "docs/evidence/streaming/local-safety-replay-2026-11-16"
+RECORD = ROOT / "docs/evidence/streaming/local-native-probes-2026-11-16"
 
 
 def check():
@@ -13,6 +13,10 @@ def check():
     for name, expected in json.loads((archived / "sha256.json").read_bytes()).items():
         if hashlib.sha256((archived / name).read_bytes()).hexdigest() != expected:
             raise ValueError("historical_safety_evidence_changed:" + name)
+    replay = ROOT / "docs/evidence/streaming/local-safety-replay-2026-11-16"
+    for name, expected in json.loads((replay / "sha256.json").read_bytes()).items():
+        if hashlib.sha256((replay / name).read_bytes()).hexdigest() != expected:
+            raise ValueError("historical_replay_evidence_changed:" + name)
     index = json.loads((RECORD / "sha256.json").read_bytes())
     for name, expected in index.items():
         if hashlib.sha256((RECORD / name).read_bytes()).hexdigest() != expected:
@@ -27,7 +31,7 @@ def check():
     if (
         record["boundary"] != "local-executed"
         or record["native_cloud_execution"]
-        or tests["tests"] < 167
+        or tests["tests"] < 180
         or any(tests[k] for k in ["failures", "errors", "skipped"])
         or core["python_tests"]["tests"] != 195
         or core["python_tests"]["failures"]

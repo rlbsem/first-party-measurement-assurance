@@ -4,6 +4,7 @@ The local controls execute with synthetic sources. Native streaming processing a
 
 | Record | What executed | Boundary |
 |---|---|---|
+| [Native probe contracts](local-native-probes-2026-11-16/README.md) | 180 local tests; actual SDK serialization and bounded native probe requirements | Native probes remain unexecuted until campaign approval |
 | [Replay-aware safety verification](local-safety-replay-2026-11-16/README.md) | 167 regression tests; source-content replay matching with physical rejection evidence retained | Offline follow-up; prior 165-test snapshot unchanged |
 | [Local safety correction](local-safety-2026-11-16/README.md) | Durable submission fence, actual graph/window semantics, independent sink rejection/replay evidence, financial and browser regression | Offline execution only; no new managed-cloud run |
 | [Local acceptance](local-2026-11-15/README.md) | Source preservation, independent financial reconstruction and software failure controls | Local execution; the recorded test count belongs to that source snapshot |

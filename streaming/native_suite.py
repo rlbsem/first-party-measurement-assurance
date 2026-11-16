@@ -895,6 +895,9 @@ def performance(c, current_job):
 
 def run(c):
     """Failures remain failed. The caller always executes independent stop/teardown."""
+    from .native_safety_probes import precheck, sink_controls, final_stop
+
+    precheck(c)
     c.arm_guard()
     job = c.start_dataflow("canary", 1)
     small, source = cohort_acceptance(c, "canary", 4, repeat=True)
@@ -916,9 +919,10 @@ def run(c):
         ),
     )
     iam_denials(c, correct)
+    sink_controls(c, correct, source)
     competing_approvals(c, correct, source)
     job = sink_ahead_recovery(c, job)
     job = performance(c, job)
     c.metrics(job)
-    c.stop_dataflow(job)
+    final_stop(c)
     return c.record

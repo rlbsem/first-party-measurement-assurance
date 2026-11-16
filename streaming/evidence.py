@@ -14,6 +14,8 @@ REQUIRED = {
     "baseline_comparison",
     "independent_teardown",
     "sink_failure_health",
+    "native_sink_controls",
+    "native_stop_controls",
 }
 
 
@@ -25,6 +27,43 @@ def require(value, reason):
 def acceptance_checks(stages):
     """Validate observations, not just green stage labels."""
     c = {k: v["checks"] for k, v in stages.items()}
+    sink = c["native_sink_controls"]
+    require(
+        all(
+            sink.get(k)
+            for k in [
+                "real_storage_write_rejection",
+                "independent_failure_readback",
+                "unresolved_failure_blocked_publication",
+                "original_rejection_preserved",
+                "exact_source_recovery",
+            ]
+        ),
+        "native_sink_controls",
+    )
+    require(
+        len(sink.get("storage_denials", [])) == 4
+        and all(
+            d.get("http_status") == 403 and d.get("denied")
+            for d in sink["storage_denials"]
+        ),
+        "native_journal_iam",
+    )
+    stop = c["native_stop_controls"]
+    require(
+        all(
+            stop.get(k)
+            for k in [
+                "separate_cleanup_principal",
+                "pre_submit_fence_verified",
+                "actual_cancellation_requested",
+                "exact_terminal_reads",
+                "sealed_submission_fence",
+                "active_compute_absent",
+            ]
+        ),
+        "native_stop_controls",
+    )
     health = c["sink_failure_health"]
     require(
         re.fullmatch(r"[0-9a-f]{64}", health.get("index_root", ""))

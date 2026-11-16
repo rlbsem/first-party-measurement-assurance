@@ -151,7 +151,13 @@ def resolve_submissions(cloud, m, *, seal=False, registry=None, persist=False):
 
 
 def stop_owned_jobs(
-    manifest, work, deadline_only=False, expected_project=None, expected_run=None
+    manifest,
+    work,
+    deadline_only=False,
+    expected_project=None,
+    expected_run=None,
+    *,
+    cloud=None,
 ):
     if str(manifest).startswith("gs://"):
         from google.cloud import storage
@@ -169,7 +175,7 @@ def stop_owned_jobs(
     )
     if deadline_only and datetime.now(timezone.utc) < instant(m["deadline"]):
         return dict(status="not_due", resources_changed=False)
-    cloud = Cloud(m["project"], work)
+    cloud = cloud or Cloud(m["project"], work)
     from .submissions import registry_for
 
     registry = registry_for(m, cloud.credentials)

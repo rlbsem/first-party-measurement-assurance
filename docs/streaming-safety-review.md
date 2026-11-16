@@ -75,3 +75,12 @@ python scripts/package_streaming.py --check
 ```
 
 The recovery entry point is `python -m streaming.native reconcile-sink --manifest PRIVATE_MANIFEST --failure-id HASH --source-archive INDEPENDENT_ARCHIVE --work FRESH_PRIVATE_DIRECTORY`. It makes read-only warehouse queries and writes a scoped resolution artifact, so it belongs only inside an explicitly authorized future recovery operation. Never use it to clear an operational/pane reject automatically.
+
+
+## Native acceptance probe completion
+
+The execution runner now performs cleanup-principal generation-CAS with independent owner readback and real job discovery before the first Dataflow submission. It checks the existing Cloud Tasks/Cloud Run arming afterward. At the end of the campaign, the same stopper algorithm runs under the separate cleanup identity and must record an actual cancellation request followed by terminal reads; a pre-submit read alone cannot pass that stage.
+
+After genuine managed processing and financial reconciliation, one small native Python Storage Write request preserves a verified source row but supplies an out-of-range physical timestamp. Only an actual timestamp/range rejection passes. The worker identity must persist the real rejection; an independent verifier must read it, confirm publication is blocked, and reconcile complete source positions plus exact persisted content before recording recovery. The original physical request stays rejected; the logical source effect was already independently persisted. This probe exercises the native Storage Write SDK and GCS journal together. It does not pretend the managed Beam Java connector emitted this rejection; its failed-output routing remains separately covered by actual DirectRunner tests.
+
+Four genuine GCS 403 probes cover worker writes outside the failure index/detail scope, worker resolution writes, and verifier/cleanup source writes. Each targets only a new disposable synthetic probe key; unexpected successful effects are inspected and retired exactly, and fail acceptance. No original source or rejection record is overwritten. Missing native stopper or sink-control results now prevent the final evidence validator from accepting a campaign. These additions change the acceptance runner, not the processing/financial architecture, infrastructure or permission scope. [Offline probe contracts](evidence/streaming/local-native-probes-2026-11-16/README.md) are not native results.
